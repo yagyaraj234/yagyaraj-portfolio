@@ -1,101 +1,353 @@
+"use client";
 import Image from "next/image";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { FaXTwitter } from "react-icons/fa6";
+import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
+import { navItems } from "./components/navbar";
+import Link from "next/link";
 
+const social_links = [
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/yagyaraj234",
+    icon: FaLinkedin,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/yagyaraj234",
+    icon: FaXTwitter,
+  },
+  {
+    name: "Github",
+    url: "https://github.com/yagyaraj234",
+    icon: FaGithub,
+  },
+  {
+    name: "Email",
+    url: "mailto:workyagyaraj@gmail.com",
+    icon: IoMdMail,
+  },
+];
+const skills = [
+  "React",
+  "Next.js",
+  "TailwindCSS",
+  "Typescript",
+  "Node.js",
+  "Redux",
+  "Prisma",
+  "Firebase",
+  "MongoDB",
+  "Docker",
+  "C++",
+  "Python",
+  "FastAPI",
+];
+
+const projectData = [
+  {
+    id: 32412,
+    name: "Postly",
+    git: "https://github.com/yagyaraj234/collab",
+    status: "In Progress",
+    live: "https://collab-neon.vercel.app/",
+    about: [""],
+  },
+  {
+    id: 1242,
+    name: "Workbot",
+    git: "https://github.com/yagyaraj234/collab",
+    status: "Completed",
+    live: "https://workbot.site",
+    about: [""],
+  },
+  {
+    id: 12,
+    name: "Collab",
+    git: "https://github.com/yagyaraj234/collab",
+    status: "Completed",
+    live: "https://collab-neon.vercel.app/",
+    about: [
+      "Collab is a platform for teams to collaborate.",
+      "It is a platform where you can create a team, add members, create projects, and collaborate on them.",
+      "Built with Next.js, TailwindCSS, Prisma, and Clerk.",
+    ],
+  },
+  {
+    id: 2,
+    name: "CoinfolioX",
+    git: "https://github.com/yagyaraj234/coinfolioX",
+    // img: project2,
+    live: "https://coinfolioX.vercel.app",
+  },
+  {
+    id: 3,
+    name: "Git stats Checker",
+    git: "https://github.com/yagyaraj234/github-stats-checker",
+    live: "https://github-stats-checker.vercel.app/",
+  },
+];
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const about = useRef(null);
+  const journeyRef = useRef(null);
+  const projectsRef = useRef(null);
+  const skillsRef = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const scrollToSection = (ref: any) => {
+    if (!ref.current) return;
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  };
+  return (
+    <div className="box-border">
+      <div className="flex justify-end">
+        <div className="flex gap-2">
+          {navItems.map((item) => {
+            const isActive = item.name === "about" ? true : false;
+            return (
+              <div
+                // href={item.link}
+                className={`p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white ${
+                  isActive ? "dark:text-white  text-gray-900" : ""
+                }`}
+                onClick={() => scrollToSection(item.ref)}
+              >
+                {item.name}
+              </div>
+            );
+          })}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </div>
+      <div className="flex gap-4 mt-6">
+        {/* Image */}
+        <div className="rounded-full max-h-[96px] max-w-[96px] overflow-hidden bg-slate-500">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/notion.png"
+            height={96}
+            width={96}
+            alt="user"
+            className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+        {/* About */}
+        <div className="flex flex-col gap-2 ">
+          <h1>I'm Yagyaraj</h1>
+          <h2>A full-stack software engineer, from India.</h2>
+
+          <div className="flex gap-x-2">
+            {social_links.map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                className="rounded-full p-1"
+              >
+                <link.icon
+                  size={16}
+                  className="text-white dark:text-zinc-300"
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <h2 className="font-semibold">about me.</h2>
+        <p className="mt-4">
+          {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
+          Pradesh, India. My mission is to transform complex problems into
+          simple, beautiful, and intuitive solutions through creative web
+          development and design. I'd be excited to discuss potential
+          opportunities to collaborate and learn more about your need */}
+          I'm a passionate full-stack developer who learns and transforms
+          complex problems into simple, beautiful, and intuitive solutions
+          through development and design.
+          {/* I'm excited to discuss potential job */}
+        </p>
+      </div>
+
+      <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800">
+        <div>
+          {/* I'd be excited to discuss potential collaboration opportunities and
+          learn more about your needs. */}
+          {/* I'm excited to continue learning and growing in this field, and I'm */}
+          {/* also open */}
+          {/* always looking for new opportunities */}
+          I'm open to collaborate with talented individuals and contribute to
+          impactful projects. If you'd like to learn more about my work or
+          discuss potential opportunities, feel free to reach out!
+        </div>
+
+        <div className="flex gap-4 items-center">
+          <button className="bg-black rounded-md p-3 text-white text-sm hover:bg-black/80  transition-colors duration-300 ease-in-out">
+            Drop message on X
+          </button>
+
+          <button className="group">
+            <a
+              href=""
+              className="flex justify-between items-center text-sm dark:text-white "
+            >
+              Resume
+              <ArrowUpRight
+                className=" group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+                size={16}
+              />
+            </a>
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-8" ref={journeyRef}>
+        <h2 className="font-semibold"> journey </h2>
+
+        <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
+          <div className="group flex gap-4">
+            <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+
+            <div className="w-full">
+              <div className="flex justify-between min-w-full text-sm">
+                <div>
+                  <div className="text-lg  normal-case ">
+                    Software Engineering, Rava
+                  </div>
+                  <div>
+                    at,{" "}
+                    <a
+                      href="https://rava.ai"
+                      target="_black"
+                      className="underline"
+                    >
+                      rava.ai
+                    </a>
+                  </div>
+                </div>
+                <div className="text-md">Jan,2024- Present</div>
+              </div>
+              <ul className="list-disc pl-4 mt-2  space-y-1">
+                <li>
+                  Implemented a feature enabling users to create and globally
+                  apply a brand voice (writing style, tone, etc.) for consistent
+                  content creation across app.
+                </li>{" "}
+                <li>
+                  Developed a copilot and embedding feature (including embedded
+                  documents, URLs, and text), enabling effortless content
+                  creation for social platforms and facilitating seamless
+                  sharing across networks.
+                </li>
+                <li>
+                  Collaborated with the{" "}
+                  <span className="uppercase font-medium">LLM</span> team to
+                  develop automated content creation workflows, personalizing
+                  content for thousands of customers based on user personas.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="group flex gap-4">
+            <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+
+            <div className="w-full">
+              <div className="flex justify-between min-w-full text-sm">
+                <div>
+                  <div className="normal-case text-lg">
+                    Full Stack Developer, Skillrazr
+                  </div>
+                  <div>
+                    at,{" "}
+                    <a
+                      href="https://skillrazr.com"
+                      target="_black"
+                      className="underline"
+                    >
+                      skillrazr
+                    </a>
+                  </div>
+                </div>
+                <div className="text-md">Oct - Dec, 2023</div>
+              </div>
+              <ul className="list-disc pl-4 mt-2  space-y-1">
+                <li>
+                  Developed an interactive Git Playground using Google Cloud
+                  Platform, Node.js, and Firebase, enabling users to practice
+                  and improve their Git commands in a simulated environment.
+                </li>
+                <li>
+                  Enhanced the Skillrazr platform’s UI, ensuring responsiveness
+                  across all devices which improves user experience.
+                </li>
+                <li>
+                  Added interactive SQL Playground, enabling users to practice
+                  and enhance SQL skills in a dynamic, web-based environment.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8" ref={projectsRef}>
+        <h2 className="font-semibold"> projects </h2>
+
+        <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
+          {projectData.map((project, idx) => (
+            <div className="group flex gap-4">
+              <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+
+              <div className="w-full">
+                <div className="flex justify-start min-w-full text-sm">
+                  <div>
+                    <div className="text-lg  normal-case ">{project.name}</div>
+                    <div className="flex gap-4">
+                      <div className="flex gap-1 items-center group/live  ">
+                        <a href={project.live} target="_black">
+                          live preview
+                        </a>
+                        <ArrowUpRight
+                          className=" group-hover/live:translate-x-1 transition-all duration-300 ease-in-out"
+                          size={16}
+                        />
+                      </div>
+                      <div className="flex gap-1 items-center group/github">
+                        <a href={project.git} target="_black">
+                          source code
+                        </a>
+                        <ArrowUpRight
+                          className=" group-hover/github:translate-x-1 transition-all duration-300 ease-in-out"
+                          size={16}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul className="list-disc pl-4 mt-2  space-y-1">
+                  {project?.about &&
+                    project?.about?.map((about, idx) => (
+                      <li key={idx}>{about}</li>
+                    ))}{" "}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-8" ref={skillsRef}>
+        <h2 className="font-semibold"> skills </h2>
+
+        <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
+          {skills.map((skill, idx) => (
+            <div
+              key={idx}
+              className="bg-zinc-900 hover:bg-zinc-950 hover:dark:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs dark:text-white transition-colors duration-500 ease-in-out"
+            >
+              {skill}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
