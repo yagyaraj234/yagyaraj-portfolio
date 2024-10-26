@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { ArrowUpRight  } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 const social_links = [
   {
@@ -98,7 +98,7 @@ export default function Home() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
 
-  const { setTheme } = useTheme();
+  // const { setTheme } = useTheme();
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
