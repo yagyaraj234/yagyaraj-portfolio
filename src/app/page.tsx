@@ -3,9 +3,10 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
+import { useTheme } from "next-themes";
 
 const social_links = [
   {
@@ -97,6 +98,8 @@ export default function Home() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
 
+  const { setTheme } = useTheme();
+
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -118,7 +121,7 @@ export default function Home() {
   return (
     <div className="box-border mb-8">
       <div className="flex justify-end">
-        <div className="flex gap-2">
+        <div className="flex lg:gap-2 gap-0.5">
           {navItems.map((item:NavItem,idx:number) => {
             const isActive = item.name === "about" ? true : false;
             return (
@@ -135,17 +138,33 @@ export default function Home() {
           })}
         </div>
       </div>
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-4 lg:mt-6 mt-3">
         {/* Image */}
-        <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden bg-slate-500">
+
+        <div className="relative">
+        {/* <button className="absolute z-50 bottom-2 -right-2">
+          <SunIcon className="size-[1.2rem] rotate-0 scale-0 transition-all dark:-rotate-90 dark:scale-100"
+          onClick={()=>setTheme('light')}
+          
+          />
+          <MoonIcon className="absolute size-[1.2rem] rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0"
+          onClick={()=>setTheme('dark')}
+          />
+          </button> */}
+        <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
+
+          
           <Image
             src="/notion.png"
             height={96}
             width={96}
+          
             alt="user"
             className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
           />
         </div>
+        </div>
+
         {/* About */}
         <div className="flex flex-col gap-2 ">
           <h1 className="text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
@@ -169,7 +188,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="lg:mt-12 ">
         <h2 className="font-semibold">about me.</h2>
         <p className="mt-4">
           {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
