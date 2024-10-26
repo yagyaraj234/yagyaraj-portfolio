@@ -97,22 +97,37 @@ export default function Home() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
 
-  const scrollToSection = (ref: any) => {
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  function handleScroll(item:string){
+
+    if(item === 'about'){
+      scrollToSection(about)
+    }else if(item === 'journey'){
+      scrollToSection(journeyRef)
+    }else if(item === 'projects'){
+      scrollToSection(projectsRef)
+    }else{
+      scrollToSection(skillsRef)
+    }
+
+  }
   return (
-    <div className="box-border">
+    <div className="box-border mb-8">
       <div className="flex justify-end">
         <div className="flex gap-2">
-          {navItems.map((item) => {
+          {navItems.map((item:any,idx) => {
             const isActive = item.name === "about" ? true : false;
             return (
               <div
+              key={idx}
                 className={`p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
                   isActive ? "dark:text-white  text-gray-900" : ""
                 }`}
-                onClick={() => scrollToSection(item.ref)}
+                onClick={() => handleScroll(item.name)}
               >
                 {item.name}
               </div>
@@ -133,7 +148,7 @@ export default function Home() {
         </div>
         {/* About */}
         <div className="flex flex-col gap-2 ">
-          <h1 className="text-xl normal-case">Hey👋, I'm Yagyaraj</h1>
+          <h1 className="text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
           <h2>A full-stack software engineer, from India.</h2>
 
           <div className="flex gap-x-2">
@@ -162,7 +177,7 @@ export default function Home() {
           simple, beautiful, and intuitive solutions through creative web
           development and design. I'd be excited to discuss potential
           opportunities to collaborate and learn more about your need */}
-          I'm a passionate full-stack developer who learns and transforms
+          I&apos;m a passionate full-stack developer who learns and transforms
           complex problems into simple, beautiful, and intuitive solutions
           through development and design.
           {/* I'm excited to discuss potential job */}
@@ -171,8 +186,8 @@ export default function Home() {
 
       <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800">
         <div>
-          I'm open to collaborate with talented individuals and contribute to
-          impactful projects. If you'd like to learn more about my work or
+          I&apos;m open to collaborate with talented individuals and contribute to
+          impactful projects. If you&apos;d like to learn more about my work or
           discuss potential opportunities, feel free to reach out!
         </div>
 
@@ -303,7 +318,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
           {projectData.map((project, idx) => (
-            <div className="group flex gap-4">
+            <div className="group flex gap-4" key={idx}>
               <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
               <div className="w-full">
