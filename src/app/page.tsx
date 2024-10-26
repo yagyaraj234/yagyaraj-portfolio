@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
-import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
+import { ArrowUpRight  } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
