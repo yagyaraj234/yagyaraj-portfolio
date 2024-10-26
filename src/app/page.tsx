@@ -57,8 +57,8 @@ const projectData = [
   {
     id: 1242,
     name: "Workbot",
-    git: "https://github.com/yagyaraj234/collab",
-    status: "⏳ In Progress",
+    git: "https://github.com/yagyaraj234/intelli-docs",
+    status: "⏳ On-Going",
     live: "https://workbot.site",
     about: [
       "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
@@ -137,7 +137,7 @@ export default function Home() {
       </div>
       <div className="flex gap-4 mt-6">
         {/* Image */}
-        <div className="rounded-full max-h-[96px] max-w-[96px] overflow-hidden bg-slate-500">
+        <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden bg-slate-500">
           <Image
             src="/notion.png"
             height={96}
@@ -245,7 +245,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan,2024- Present</div>
+                <div className="text-md">Jan,2024 - Present</div>
               </div>
               <ul className="list-disc pl-4 mt-2  space-y-1">
                 <li>
@@ -313,7 +313,7 @@ export default function Home() {
       <div className="mt-8">
         <h2 className="font-semibold" ref={projectsRef}>
           {" "}
-          projects{" "}
+          projects.{" "}
         </h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
@@ -326,7 +326,7 @@ export default function Home() {
                   <div>
                     <div className="text-lg  normal-case flex gap-4 items-center ">
                       {project.name}{" "}
-                      <span className="text-xs uppercase px-2 dark:bg-zinc-700 hover:bg-zinc-800 rounded-[4px] py-1 my-1 transition-colors duration-500 ease-in-out delay-75">
+                      <span className="text-xs uppercase  dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
                         {project.status}
                       </span>
                     </div>
@@ -370,7 +370,7 @@ export default function Home() {
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="bg-zinc-900 hover:bg-zinc-950 hover:dark:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs dark:text-white transition-colors duration-500 ease-in-out"
+              className="bg-zinc-900 hover:bg-zinc-800 text-white hover:dark:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs  transition-colors duration-500 ease-in-out"
             >
               {skill}
             </div>

@@ -13,6 +13,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Yagyaraj's Portfolio",
   description: "Yagyaraj's Portfolio",
+  icons: {
+    icon: "/notion.png",
+  },
 };
 
 export default function RootLayout({
