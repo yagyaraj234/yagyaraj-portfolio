@@ -5,7 +5,7 @@ import { IoMdMail } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
 import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
-import { navItems } from "./components/navbar";
+import { NavItem, navItems } from "./components/navbar";
 
 const social_links = [
   {
@@ -119,7 +119,7 @@ export default function Home() {
     <div className="box-border mb-8">
       <div className="flex justify-end">
         <div className="flex gap-2">
-          {navItems.map((item:any,idx) => {
+          {navItems.map((item:NavItem,idx:number) => {
             const isActive = item.name === "about" ? true : false;
             return (
               <div

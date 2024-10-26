@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-interface NavItem {
+export interface NavItem {
   name: string;
   link: string;
 }
