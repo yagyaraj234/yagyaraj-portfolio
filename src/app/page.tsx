@@ -107,15 +107,15 @@ export default function Home() {
   return (
     <div className="box-border mb-8">
       <div className="flex justify-end items-center">
-        <div className="flex lg:gap-2 gap-0.5">
+        <div className="flex lg:gap-2 ">
           {navItems.map((item: NavItem, idx: number) => {
             const isActive = item.name === "about" ? true : false;
             return (
               <div
                 key={idx}
-                className={`p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
+                className={`lg:p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
                   isActive ? "dark:text-white  text-gray-900" : ""
-                }`}
+                } max-lg:hidden `}
                 onClick={() => handleScroll(item.name)}
               >
                 {item.name}
@@ -135,13 +135,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex gap-4 lg:mt-6 mt-3">
+      <div className="flex gap-4 lg:mt-6 ">
         <div className="relative">
           <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
             <Image
               src="/notion.png"
               height={96}
               width={96}
+              sizes="(max-width: 768px) 64px, 96px"
               alt="user"
               className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
             />
@@ -150,8 +151,8 @@ export default function Home() {
 
         {/* About */}
         <div className="flex flex-col gap-2 ">
-          <h1 className="text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
-          <h2>A full-stack software engineer, from India.</h2>
+          <h1 className="lg:text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
+          <h2 className="max-lg:text-sm">A full-stack software engineer, from India.</h2>
 
           <div className="flex gap-x-2">
             {social_links.map((link, idx) => (
