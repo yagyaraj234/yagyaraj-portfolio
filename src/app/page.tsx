@@ -3,10 +3,10 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
-import { ArrowUpRight  } from "lucide-react";
+import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
-// import { useTheme } from "next-themes";
+import { useTheme } from "next-themes";
 
 const social_links = [
   {
@@ -78,19 +78,7 @@ const projectData = [
       "Integrated Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
     ],
   },
-  // {
-  //   id: 2,
-  //   name: "CoinfolioX",
-  //   git: "https://github.com/yagyaraj234/coinfolioX",
-  //   // img: project2,
-  //   live: "https://coinfolioX.vercel.app",
-  // },
-  // {
-  //   id: 3,
-  //   name: "Git stats Checker",
-  //   git: "https://github.com/yagyaraj234/github-stats-checker",
-  //   live: "https://github-stats-checker.vercel.app/",
-  // },
+  
 ];
 export default function Home() {
   const about = useRef(null);
@@ -98,35 +86,33 @@ export default function Home() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
 
-  // const { setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  function handleScroll(item:string){
-
-    if(item === 'about'){
-      scrollToSection(about)
-    }else if(item === 'journey'){
-      scrollToSection(journeyRef)
-    }else if(item === 'projects'){
-      scrollToSection(projectsRef)
-    }else{
-      scrollToSection(skillsRef)
+  function handleScroll(item: string) {
+    if (item === "about") {
+      scrollToSection(about);
+    } else if (item === "journey") {
+      scrollToSection(journeyRef);
+    } else if (item === "projects") {
+      scrollToSection(projectsRef);
+    } else {
+      scrollToSection(skillsRef);
     }
-
   }
   return (
     <div className="box-border mb-8">
-      <div className="flex justify-end">
+      <div className="flex justify-end items-center">
         <div className="flex lg:gap-2 gap-0.5">
-          {navItems.map((item:NavItem,idx:number) => {
+          {navItems.map((item: NavItem, idx: number) => {
             const isActive = item.name === "about" ? true : false;
             return (
               <div
-              key={idx}
+                key={idx}
                 className={`p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
                   isActive ? "dark:text-white  text-gray-900" : ""
                 }`}
@@ -136,33 +122,30 @@ export default function Home() {
               </div>
             );
           })}
+          <div className="flex mt-3 cursor-pointer">
+            <SunIcon
+             
+              className="size-[16px]   hidden  dark:block"
+              onClick={() => setTheme("light")}
+            />
+            <MoonIcon
+              className="size-[16px]  dark:hidden"
+              onClick={() => setTheme("dark")}
+            />
+          </div>
         </div>
       </div>
       <div className="flex gap-4 lg:mt-6 mt-3">
-        {/* Image */}
-
         <div className="relative">
-        {/* <button className="absolute z-50 bottom-2 -right-2">
-          <SunIcon className="size-[1.2rem] rotate-0 scale-0 transition-all dark:-rotate-90 dark:scale-100"
-          onClick={()=>setTheme('light')}
-          
-          />
-          <MoonIcon className="absolute size-[1.2rem] rotate-90 scale-100 transition-all dark:rotate-0 dark:scale-0"
-          onClick={()=>setTheme('dark')}
-          />
-          </button> */}
-        <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
-
-          
-          <Image
-            src="/notion.png"
-            height={96}
-            width={96}
-          
-            alt="user"
-            className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
-          />
-        </div>
+          <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
+            <Image
+              src="/notion.png"
+              height={96}
+              width={96}
+              alt="user"
+              className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
+            />
+          </div>
         </div>
 
         {/* About */}
@@ -180,7 +163,7 @@ export default function Home() {
               >
                 <link.icon
                   size={16}
-                  className="text-white dark:text-zinc-300"
+                  className="text-zinc-900 dark:text-zinc-300"
                 />
               </a>
             ))}
@@ -188,7 +171,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="lg:mt-12 ">
+      <div className="lg:mt-8 mt-4 text-sm ">
         <h2 className="font-semibold">about me.</h2>
         <p className="mt-4">
           {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
@@ -203,11 +186,11 @@ export default function Home() {
         </p>
       </div>
 
-      <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800">
+      <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800 text-sm">
         <div>
-          I&apos;m open to collaborate with talented individuals and contribute to
-          impactful projects. If you&apos;d like to learn more about my work or
-          discuss potential opportunities, feel free to reach out!
+          I&apos;m open to collaborate with talented individuals and contribute
+          to impactful projects. If you&apos;d like to learn more about my work
+          or discuss potential opportunities, feel free to reach out!
         </div>
 
         <div className="flex gap-4 items-center">
@@ -249,8 +232,8 @@ export default function Home() {
 
             <div className="w-full">
               <div className="flex justify-between min-w-full text-sm">
-                <div>
-                  <div className="text-lg  normal-case ">
+                <div className="text-xs">
+                  <div className="text-[16px] normal-case ">
                     Software Engineering, Rava
                   </div>
                   <div>
@@ -264,39 +247,29 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan,2024 - Present</div>
+                <div className="text-md">Jan, 2024 - Present</div>
               </div>
-              <ul className="list-disc pl-4 mt-2  space-y-1">
-                <li>
-                  Implemented a feature enabling users to create and globally
-                  apply a brand voice (writing style, tone, etc.) for consistent
-                  content creation across app.
-                </li>{" "}
-                <li>
-                  Developed a copilot and embedding feature (including embedded
-                  documents, URLs, and text), enabling effortless content
-                  creation for social platforms and facilitating seamless
-                  sharing across networks.
-                </li>
-                <li>
-                  Collaborated with the{" "}
-                  <span className="uppercase font-medium">LLM</span> team to
-                  develop automated content creation workflows, personalizing
-                  content for thousands of customers based on user personas.
-                </li>
-              </ul>
+
+              <p className="normal-case  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+                As a core engineer, developed automated content workflows and
+                embedding systems for diverse content types. Implemented browser
+                caching optimizations reducing server load by 40%. Established
+                CI/CD pipelines improving deployment speed by 70%. Built
+                personalized content generation features serving 1000+ customers
+                based on user personas.
+              </p>
             </div>
           </div>
           <div className="group flex gap-4">
             <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
             <div className="w-full">
-              <div className="flex justify-between min-w-full text-sm">
-                <div>
-                  <div className="normal-case text-lg">
+              <div className="flex justify-between min-w-full ">
+                <div className="text-xs">
+                  <div className="normal-case text-[16px]">
                     Full Stack Developer, Skillrazr
                   </div>
-                  <div>
+                  <div className="text-xs">
                     at,{" "}
                     <a
                       href="https://skillrazr.com"
@@ -307,23 +280,16 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Oct - Dec, 2023</div>
+                <div className="text-[16px]">Oct - Dec, 2023</div>
               </div>
-              <ul className="list-disc pl-4 mt-2  space-y-1">
-                <li>
-                  Developed an interactive Git Playground using Google Cloud
-                  Platform, Node.js, and Firebase, enabling users to practice
-                  and improve their Git commands in a simulated environment.
-                </li>
-                <li>
-                  Enhanced the Skillrazr platform’s UI, ensuring responsiveness
-                  across all devices which improves user experience.
-                </li>
-                <li>
-                  Added interactive SQL Playground, enabling users to practice
-                  and enhance SQL skills in a dynamic, web-based environment.
-                </li>
-              </ul>
+
+              <p className="normal-case mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+                Engineered interactive Git and SQL learning platforms utilizing
+                GCP and Firebase, while implementing responsive design
+                principles to optimize cross-device functionality and user
+                experience. Led UI/UX improvements across the platform
+                ecosystem.
+              </p>
             </div>
           </div>
         </div>
@@ -335,7 +301,7 @@ export default function Home() {
           projects.{" "}
         </h2>
 
-        <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
+        <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
           {projectData.map((project, idx) => (
             <div className="group flex gap-4" key={idx}>
               <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
@@ -374,7 +340,12 @@ export default function Home() {
                 <ul className="list-disc pl-4 mt-2  space-y-1">
                   {project?.about &&
                     project?.about?.map((about, idx) => (
-                      <li key={idx}>{about}</li>
+                      <li
+                        className="text-sm dark:text-zinc-200 text-zinc-800	"
+                        key={idx}
+                      >
+                        {about}
+                      </li>
                     ))}{" "}
                 </ul>
               </div>
