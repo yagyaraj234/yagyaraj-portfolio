@@ -7,6 +7,7 @@ import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
+import { PiReadCvLogoFill } from "react-icons/pi";
 
 const social_links = [
   {
@@ -14,11 +15,11 @@ const social_links = [
     url: "https://linkedin.com/in/yagyaraj234",
     icon: FaLinkedin,
   },
-  {
-    name: "Twitter",
-    url: "https://twitter.com/yagyaraj234",
-    icon: FaXTwitter,
-  },
+  // {
+  //   name: "Twitter",
+  //   url: "https://twitter.com/yagyaraj234",
+  //   icon: FaXTwitter,
+  // },
   {
     name: "Github",
     url: "https://github.com/yagyaraj234",
@@ -28,6 +29,11 @@ const social_links = [
     name: "Email",
     url: "mailto:workyagyaraj@gmail.com",
     icon: IoMdMail,
+  },
+  {
+    name: "Resume",
+    url: "https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing",
+    icon: PiReadCvLogoFill,
   },
 ];
 const skills = [
@@ -78,7 +84,6 @@ const projectData = [
       "Integrated Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
     ],
   },
-  
 ];
 export default function Home() {
   const about = useRef(null);
@@ -124,7 +129,6 @@ export default function Home() {
           })}
           <div className="flex mt-3 cursor-pointer">
             <SunIcon
-             
               className="size-[16px]   hidden  dark:block"
               onClick={() => setTheme("light")}
             />
@@ -152,7 +156,9 @@ export default function Home() {
         {/* About */}
         <div className="flex flex-col gap-2 ">
           <h1 className="lg:text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
-          <h2 className="max-lg:text-sm">A full-stack software engineer, from India.</h2>
+          <h2 className="max-lg:text-sm">
+            A full-stack software engineer, from India.
+          </h2>
 
           <div className="flex gap-x-2">
             {social_links.map((link, idx) => (
@@ -187,7 +193,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800 text-sm">
+      {/* <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800 text-sm">
         <div>
           I&apos;m open to collaborate with talented individuals and contribute
           to impactful projects. If you&apos;d like to learn more about my work
@@ -219,7 +225,7 @@ export default function Home() {
             </div>
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-8">
         <h2 className="font-semibold" ref={journeyRef}>
@@ -251,7 +257,7 @@ export default function Home() {
                 <div className="text-md">Jan, 2024 - Present</div>
               </div>
 
-              <p className="normal-case  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+              <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
                 As a core engineer, developed automated content workflows and
                 embedding systems for diverse content types. Implemented browser
                 caching optimizations reducing server load by 40%. Established
@@ -284,7 +290,7 @@ export default function Home() {
                 <div className="text-[16px]">Oct - Dec, 2023</div>
               </div>
 
-              <p className="normal-case mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+              <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
                 Engineered interactive Git and SQL learning platforms utilizing
                 GCP and Firebase, while implementing responsive design
                 principles to optimize cross-device functionality and user
@@ -367,6 +373,25 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="mt-8" ref={skillsRef}>
+        <h2 className="font-semibold"> contact </h2>
+        <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+          Interested in a conversation? Drop DM&apos;s over{" "}
+          <a
+            className="underline"
+            target="_blank"
+            href="https://yagyaraj.online/linkedin"
+          >
+            Linkedin
+          </a>{" "}
+          or{" "}
+          <a href="mailto:workyagyaraj@gmail.com" className="underline">
+            Email
+          </a>{" "}
+          Ask me anything about my work, my projects, or anything else
+          you&apos;d like.
+        </p>
       </div>
     </div>
   );
