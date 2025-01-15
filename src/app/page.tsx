@@ -254,7 +254,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan, 2024 - Present</div>
+                <div className="text-md">Jan, 2024 - Dec, 2024</div>
               </div>
 
               <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">

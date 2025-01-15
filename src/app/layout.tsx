@@ -3,6 +3,7 @@ import "./globals.css";
 import { Outfit } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./components/theme-provider";
+import { ReactLenis } from "lenis/react";
 
 // Font settings
 const outfit = Outfit({
@@ -25,21 +26,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          outfit.className,
-          "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212] lowercase dark:text-white text-black mx-auto max-w-3xl p-4"
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+      <ReactLenis root>
+        <body
+          className={cn(
+            outfit.className,
+            "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212] lowercase dark:text-white text-black mx-auto max-w-3xl p-4"
+          )}
         >
-          {children}
-        </ThemeProvider>
-      </body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </ReactLenis>
     </html>
   );
 }
