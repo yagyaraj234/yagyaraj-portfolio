@@ -2,14 +2,14 @@
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-// import { FaXTwitter } from "react-icons/fa6";
 import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
 import { PiReadCvLogoFill } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
-const social_links = [
+export const social_links = [
   {
     name: "LinkedIn",
     url: "https://linkedin.com/in/yagyaraj234",
@@ -53,14 +53,6 @@ const skills = [
 ];
 
 const projectData = [
-  // {
-  //   id: 32412,
-  //   name: "Postly",
-  //   git: "https://github.com/yagyaraj234/collab",
-  //   status: "⏳ In Progress",
-  //   live: "https://collab-neon.vercel.app/",
-  //   about: [""],
-  // },
   {
     id: 1242,
     name: "Workbot",
@@ -85,13 +77,29 @@ const projectData = [
     ],
   },
 ];
+
+export const ThemeButton = () => {
+  const { setTheme } = useTheme();
+
+  return (
+    <div className="flex mt-3 cursor-pointer">
+      <SunIcon
+        className="size-[16px]   hidden  dark:block"
+        onClick={() => setTheme("light")}
+      />
+      <MoonIcon
+        className="size-[16px]  dark:hidden"
+        onClick={() => setTheme("dark")}
+      />
+    </div>
+  );
+};
 export default function Home() {
+  const router = useRouter();
   const about = useRef(null);
   const journeyRef = useRef(null);
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
-
-  const { setTheme } = useTheme();
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -99,6 +107,10 @@ export default function Home() {
   };
 
   function handleScroll(item: string) {
+    if (item.includes("blog")) {
+      router.push(item);
+      return;
+    }
     if (item === "about") {
       scrollToSection(about);
     } else if (item === "journey") {
@@ -127,16 +139,7 @@ export default function Home() {
               </div>
             );
           })}
-          <div className="flex mt-3 cursor-pointer">
-            <SunIcon
-              className="size-[16px]   hidden  dark:block"
-              onClick={() => setTheme("light")}
-            />
-            <MoonIcon
-              className="size-[16px]  dark:hidden"
-              onClick={() => setTheme("dark")}
-            />
-          </div>
+          <ThemeButton />
         </div>
       </div>
       <div className="flex gap-4 lg:mt-6 ">
@@ -156,21 +159,16 @@ export default function Home() {
         {/* About */}
         <div className="flex flex-col gap-2 ">
           <h1 className="lg:text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
-          <h2 className="max-lg:text-sm">
+          <h2 className="max-lg:text-sm dark:text-zinc-300 text-zinc-800">
             A full-stack software engineer, from India.
           </h2>
 
           <div className="flex gap-x-2">
             {social_links.map((link, idx) => (
-              <a
-                key={idx}
-                href={link.url}
-                target="_blank"
-                className="rounded-full p-1"
-              >
+              <a key={idx} href={link.url} target="_blank">
                 <link.icon
                   size={16}
-                  className="text-zinc-900 dark:text-zinc-300"
+                  className="text-zinc-800 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300 ease-in-out"
                 />
               </a>
             ))}
@@ -180,7 +178,7 @@ export default function Home() {
 
       <div className="lg:mt-8 mt-4 text-sm ">
         <h2 className="font-semibold">about me.</h2>
-        <p className="mt-4">
+        <p className="mt-4 dark:text-zinc-300 text-zinc-800">
           {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
           Pradesh, India. My mission is to transform complex problems into
           simple, beautiful, and intuitive solutions through creative web
@@ -238,7 +236,7 @@ export default function Home() {
             <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
             <div className="w-full">
-              <div className="flex justify-between min-w-full text-sm">
+              <div className="flex justify-between min-w-full text-sm dark:text-zinc-100 text-zinc-800">
                 <div className="text-xs">
                   <div className="text-[16px] normal-case ">
                     Software Engineering, Rava
@@ -257,7 +255,7 @@ export default function Home() {
                 <div className="text-md">Jan, 2024 - Dec, 2024</div>
               </div>
 
-              <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+              <p className="lowercase  mt-2 dark:text-zinc-300 text-zinc-800 text-sm ">
                 As a core engineer, developed automated content workflows and
                 embedding systems for diverse content types. Implemented browser
                 caching optimizations reducing server load by 40%. Established
@@ -271,7 +269,7 @@ export default function Home() {
             <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
             <div className="w-full">
-              <div className="flex justify-between min-w-full ">
+              <div className="flex justify-between min-w-full dark:text-zinc-100 text-zinc-800 ">
                 <div className="text-xs">
                   <div className="normal-case text-[16px]">
                     Full Stack Developer, Skillrazr
@@ -290,7 +288,7 @@ export default function Home() {
                 <div className="text-[16px]">Oct - Dec, 2023</div>
               </div>
 
-              <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+              <p className="lowercase mt-2 dark:text-zinc-300 text-zinc-800 text-sm ">
                 Engineered interactive Git and SQL learning platforms utilizing
                 GCP and Firebase, while implementing responsive design
                 principles to optimize cross-device functionality and user
@@ -315,7 +313,7 @@ export default function Home() {
 
               <div className="w-full">
                 <div className="flex justify-start min-w-full text-sm">
-                  <div>
+                  <div className="dark:text-zinc-100 text-zinc-800">
                     <div className="text-lg  normal-case flex gap-4 items-center ">
                       {project.name}{" "}
                       <span className="text-xs uppercase  dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
@@ -348,7 +346,7 @@ export default function Home() {
                   {project?.about &&
                     project?.about?.map((about, idx) => (
                       <li
-                        className="text-sm dark:text-zinc-200 text-zinc-800	"
+                        className="text-sm dark:text-zinc-300 text-zinc-800	"
                         key={idx}
                       >
                         {about}
@@ -376,7 +374,7 @@ export default function Home() {
       </div>
       <div className="mt-8" ref={skillsRef}>
         <h2 className="font-semibold"> contact </h2>
-        <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
+        <p className="lowercase mt-2 dark:text-zinc-300 text-zinc-800 text-sm ">
           Interested in a conversation? Drop DM&apos;s over{" "}
           <a
             className="underline"
@@ -393,6 +391,13 @@ export default function Home() {
           you&apos;d like.
         </p>
       </div>
+
+      {/* <div className="mt-8">
+        <h2 className="font-semibold" ref={arcticleRef}>
+          {" "}
+          blogs{" "}
+        </h2>
+      </div> */}
     </div>
   );
 }
