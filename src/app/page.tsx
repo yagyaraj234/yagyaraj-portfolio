@@ -242,7 +242,7 @@ export default function Home() {
               <div className="flex justify-between min-w-full text-sm">
                 <div className="text-xs">
                   <div className="text-[16px] normal-case ">
-                    Software Engineering,
+                    Software Engineer,
                   </div>
                   <div>
                     at,{" "}
@@ -255,7 +255,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan, 2024 - Dec, 2024</div>
+                <div className="text-md">Jan - Dec, 2024</div>
               </div>
 
               <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
@@ -385,7 +385,7 @@ export default function Home() {
             href="/linkedin"
           >
             Linkedin
-          </a>{" "}
+          </Link>{" "}
           or{" "}
           <a href="mailto:hey@yagyaraj.com" className="underline">
             Email
