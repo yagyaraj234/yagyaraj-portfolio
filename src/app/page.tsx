@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
 import { PiReadCvLogoFill } from "react-icons/pi";
+import Link from 'next/link'
 
 const social_links = [
   {
@@ -27,7 +28,7 @@ const social_links = [
   },
   {
     name: "Email",
-    url: "mailto:workyagyaraj@gmail.com",
+    url: "mailto:hey@yagyaraj.com",
     icon: IoMdMail,
   },
   {
@@ -61,18 +62,18 @@ const projectData = [
   //   live: "https://collab-neon.vercel.app/",
   //   about: [""],
   // },
-  {
-    id: 1242,
-    name: "Workbot",
-    git: "https://github.com/yagyaraj234/intelli-docs",
-    status: "⏳ On-Going",
-    live: "https://workbot.site",
-    about: [
-      "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
-      "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
-      "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
-    ],
-  },
+  // {
+  //   id: 1242,
+  //   name: "Workbot",
+  //   git: "https://github.com/yagyaraj234/intelli-docs",
+  //   status: "⏳ On-Going",
+  //   live: "https://workbot.site",
+  //   about: [
+  //     "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
+  //     "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
+  //     "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
+  //   ],
+  // },
   {
     id: 12,
     name: "Collab",
@@ -241,7 +242,7 @@ export default function Home() {
               <div className="flex justify-between min-w-full text-sm">
                 <div className="text-xs">
                   <div className="text-[16px] normal-case ">
-                    Software Engineering, Rava
+                    Software Engineering,
                   </div>
                   <div>
                     at,{" "}
@@ -250,7 +251,7 @@ export default function Home() {
                       target="_black"
                       className="underline"
                     >
-                      rava.ai
+                      Rava AI
                     </a>
                   </div>
                 </div>
@@ -274,7 +275,7 @@ export default function Home() {
               <div className="flex justify-between min-w-full ">
                 <div className="text-xs">
                   <div className="normal-case text-[16px]">
-                    Full Stack Developer, Skillrazr
+                    Full Stack Developer,
                   </div>
                   <div className="text-xs">
                     at,{" "}
@@ -283,7 +284,7 @@ export default function Home() {
                       target="_black"
                       className="underline"
                     >
-                      skillrazr
+                      Skillrazr
                     </a>
                   </div>
                 </div>
@@ -378,15 +379,15 @@ export default function Home() {
         <h2 className="font-semibold"> contact </h2>
         <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
           Interested in a conversation? Drop DM&apos;s over{" "}
-          <a
+          <Link
             className="underline"
             target="_blank"
-            href="https://yagyaraj.online/linkedin"
+            href="/linkedin"
           >
             Linkedin
           </a>{" "}
           or{" "}
-          <a href="mailto:workyagyaraj@gmail.com" className="underline">
+          <a href="mailto:hey@yagyaraj.com" className="underline">
             Email
           </a>{" "}
           Ask me anything about my work, my projects, or anything else
