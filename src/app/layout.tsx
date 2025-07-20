@@ -14,7 +14,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Yagyaraj | Full-Stack Developer",
   description:
-    "Portfolio of Yagyaraj — Full-stack software engineer from India. Explore my journey, projects, skills, and contact details.",
+    "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
   metadataBase: new URL("https://yagyaraj.com"),
   openGraph: {
     title: "Yagyaraj | Full-Stack Developer",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Yagyaraj Portfolio",
     images: [
       {
-        url: "/api/og", // Make sure this image exists in /public
+        url: "https://yagyaraj.com/api/og",
         width: 1200,
         height: 630,
         alt: "Yagyaraj | Full-Stack Developer",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yagyaraj | Full-Stack Developer",
     description:
-      "Explore Yagyaraj's work as a full-stack developer from India. Projects, experience, and tech skills.",
+      "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
     creator: "@yagyaraj234",
-    images: ["/api/og"],
+    images: ["https://yagyaraj.com/api/og"],
   },
   alternates: {
     canonical: "https://yagyaraj.com",

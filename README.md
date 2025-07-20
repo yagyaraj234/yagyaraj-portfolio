@@ -1,9 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yagyaraj Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 14, showcasing my journey as a full-stack software engineer from India.
 
-First, run the development server:
+## 🚀 Features
 
+- **Modern Design**: Clean, minimalist design with dark/light theme support
+- **Smooth Animations**: Powered by Motion library for engaging user interactions
+- **Responsive**: Fully responsive design that works on all devices
+- **Performance Optimized**: Built with Next.js 14 for optimal performance
+- **SEO Friendly**: Complete metadata and Open Graph tags for better discoverability
+- **Smooth Scrolling**: Enhanced scrolling experience with Lenis
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Motion (Framer Motion)
+- **Icons**: Lucide React, React Icons
+- **Smooth Scrolling**: Lenis
+- **Theme**: next-themes for dark/light mode
+- **Deployment**: Vercel
+
+## 📋 Sections
+
+- **About**: Personal introduction and background
+- **Journey**: Professional experience timeline
+- **Projects**: Showcase of completed projects with live demos
+- **Skills**: Technical skills and technologies
+- **Contact**: Social media links and resume
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yagyaraj234/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +67,65 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── components/     # Reusable UI components
+│   ├── globals.css    # Global styles
+│   ├── layout.tsx     # Root layout with metadata
+│   └── page.tsx       # Main portfolio page
+└── lib/
+    └── utils.ts       # Utility functions
+```
 
-## Learn More
+## 🎨 Customization
 
-To learn more about Next.js, take a look at the following resources:
+### Personal Information
+Update the following in `src/app/page.tsx`:
+- Profile image in `/public/notion.png`
+- Name and title
+- Social media links
+- About section content
+- Experience timeline
+- Projects data
+- Skills list
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Styling
+- Colors and themes can be customized in `tailwind.config.ts`
+- Global styles are in `src/app/globals.css`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Available Scripts
 
-## Deploy on Vercel
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run postbuild` - Generate sitemap after build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy this portfolio is using [Vercel](https://vercel.com):
+
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Vercel will automatically detect Next.js and deploy
+
+## 📄 License
+
+This project is private and for personal use.
+
+## 📞 Contact
+
+- **Email**: hey@yagyaraj.com
+- **GitHub**: [yagyaraj234](https://github.com/yagyaraj234)
+- **LinkedIn**: [yagyaraj234](https://linkedin.com/in/yagyaraj234)
+- **Twitter**: [yagyaraj234](https://twitter.com/yagyaraj234)
+- **Resume**: [View Resume](https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing)
+
+---
+
+Built with ❤️ by Yagyaraj
