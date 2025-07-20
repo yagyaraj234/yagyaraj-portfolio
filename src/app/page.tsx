@@ -406,13 +406,14 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 1 }}
         >
           interested in a conversation? drop dm&apos;s over{" "}
-          <motion.span whileHover={{ scale: 1.05 }} display="inline-block">
+          <motion.span whileHover={{ scale: 1.05 }} >
             <Link className="underline" target="_blank" href="/linkedin">
               linkedin
             </Link>
           </motion.span>{" "}
           or{" "}
-          <motion.span whileHover={{ scale: 1.05 }} display="inline-block">
+          <motion.span whileHover={{ scale: 1.05 }}
+          >
             <a href="mailto:hey@yagyaraj.com" className="underline">
               email
             </a>
