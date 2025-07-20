@@ -2,34 +2,35 @@
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-// import { FaXTwitter } from "react-icons/fa6";
 import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
 import { PiReadCvLogoFill } from "react-icons/pi";
-import Link from 'next/link'
+import Link from "next/link";
+import { motion } from "motion/react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const social_links = [
   {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/yagyaraj234",
-    icon: FaLinkedin,
+    name: "Email",
+    url: "mailto:hey@yagyaraj.com",
+    icon: IoMdMail,
   },
-  // {
-  //   name: "Twitter",
-  //   url: "https://twitter.com/yagyaraj234",
-  //   icon: FaXTwitter,
-  // },
   {
     name: "Github",
     url: "https://github.com/yagyaraj234",
     icon: FaGithub,
   },
   {
-    name: "Email",
-    url: "mailto:hey@yagyaraj.com",
-    icon: IoMdMail,
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/yagyaraj234",
+    icon: FaLinkedin,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/yagyaraj234",
+    icon: FaXTwitter,
   },
   {
     name: "Resume",
@@ -37,6 +38,7 @@ const social_links = [
     icon: PiReadCvLogoFill,
   },
 ];
+
 const skills = [
   "React",
   "Next.js",
@@ -54,26 +56,6 @@ const skills = [
 ];
 
 const projectData = [
-  // {
-  //   id: 32412,
-  //   name: "Postly",
-  //   git: "https://github.com/yagyaraj234/collab",
-  //   status: "⏳ In Progress",
-  //   live: "https://collab-neon.vercel.app/",
-  //   about: [""],
-  // },
-  // {
-  //   id: 1242,
-  //   name: "Workbot",
-  //   git: "https://github.com/yagyaraj234/intelli-docs",
-  //   status: "⏳ On-Going",
-  //   live: "https://workbot.site",
-  //   about: [
-  //     "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
-  //     "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
-  //     "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
-  //   ],
-  // },
   {
     id: 12,
     name: "Collab",
@@ -86,13 +68,15 @@ const projectData = [
     ],
   },
 ];
+
 export default function Home() {
   const about = useRef(null);
   const journeyRef = useRef(null);
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
-
   const { setTheme } = useTheme();
+
+
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -112,36 +96,57 @@ export default function Home() {
   }
   return (
     <div className="box-border mb-8">
-      <div className="flex justify-end items-center">
-        <div className="flex lg:gap-2 ">
+      <motion.div
+        className="flex justify-end items-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex lg:gap-2">
           {navItems.map((item: NavItem, idx: number) => {
             const isActive = item.name === "about" ? true : false;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className={`lg:p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
-                  isActive ? "dark:text-white  text-gray-900" : ""
-                } max-lg:hidden `}
+                className={`lg:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${isActive ? "dark:text-white text-gray-900" : ""
+                  } max-lg:hidden`}
                 onClick={() => handleScroll(item.name)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 * idx }}
               >
                 {item.name}
-              </div>
+              </motion.div>
             );
           })}
-          <div className="flex mt-3 cursor-pointer">
+          <motion.div
+            className="flex mt-3 cursor-pointer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+          >
             <SunIcon
-              className="size-[16px]   hidden  dark:block"
+              className="size-[16px] hidden dark:block"
               onClick={() => setTheme("light")}
             />
             <MoonIcon
-              className="size-[16px]  dark:hidden"
+              className="size-[16px] dark:hidden"
               onClick={() => setTheme("dark")}
             />
-          </div>
+          </motion.div>
         </div>
-      </div>
-      <div className="flex gap-4 lg:mt-6 ">
-        <div className="relative">
+      </motion.div>
+      <motion.div
+        className="flex gap-4 lg:mt-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <motion.div
+          className="relative"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
           <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
             <Image
               src="/notion.png"
@@ -149,90 +154,87 @@ export default function Home() {
               width={96}
               sizes="(max-width: 768px) 64px, 96px"
               alt="user"
-              className="rounded-full  hover:transition-transform scale-110 hover:scale-125  duration-300 ease-in-out cursor-pointer bg-slate-500"
+              className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* About */}
-        <div className="flex flex-col gap-2 ">
-          <h1 className="lg:text-xl normal-case">Hey👋, I&apos;m Yagyaraj</h1>
-          <h2 className="max-lg:text-sm">
-            A full-stack software engineer, from India.
-          </h2>
+        <div className="flex flex-col gap-2">
+          <motion.h1
+            className="lg:text-xl lowercase"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Hey👋, i&apos;m yagyaraj
+          </motion.h1>
+          <motion.h2
+            className="max-lg:text-sm lowercase"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            Full-Stack Software Engineer | India
+          </motion.h2>
 
-          <div className="flex gap-x-2">
+          <motion.div
+            className="flex gap-x-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             {social_links.map((link, idx) => (
-              <a
+              <motion.a
                 key={idx}
                 href={link.url}
                 target="_blank"
                 className="rounded-full p-1"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  duration: 0.3,
+                  delay: 0.6 + idx * 0.1,
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
               >
                 <link.icon
                   size={16}
                   className="text-zinc-900 dark:text-zinc-300"
                 />
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="lg:mt-8 mt-4 text-sm ">
-        <h2 className="font-semibold">about me.</h2>
-        <p className="mt-4">
-          {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
-          Pradesh, India. My mission is to transform complex problems into
-          simple, beautiful, and intuitive solutions through creative web
-          development and design. I'd be excited to discuss potential
-          opportunities to collaborate and learn more about your need */}
-          I&apos;m a passionate full-stack developer who learns and transforms
-          complex problems into simple, beautiful, and intuitive solutions
-          through development and design.
-          {/* I'm excited to discuss potential job */}
-        </p>
-      </div>
+      <motion.div
+        className="lg:mt-8 mt-4 text-sm"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <h2 className="font-semibold lowercase">about me.</h2>
+        <motion.p
+          className="mt-4 lowercase"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          i&apos;m a passionate full-stack developer who learns and transforms complex problems into simple, beautiful, and intuitive solutions through development and design.
+        </motion.p>
+      </motion.div>
 
-      {/* <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800 text-sm">
-        <div>
-          I&apos;m open to collaborate with talented individuals and contribute
-          to impactful projects. If you&apos;d like to learn more about my work
-          or discuss potential opportunities, feel free to reach out!
-        </div>
-
-        <div className="flex gap-4 items-center">
-          <button
-            className="bg-black rounded-md p-3 text-white text-sm hover:bg-black/80  transition-colors duration-300 ease-in-out"
-            onClick={() => window.open("https://x.com/yagyaraj234")}
-          >
-            Drop message on X
-          </button>
-
-          <button
-            className="group"
-            onClick={() =>
-              window.open(
-                "https://drive.google.com/file/d/1HH94EgoL2M73UtJD4miG74NAdxWg-HGS/view?usp=sharing"
-              )
-            }
-          >
-            <div className="flex justify-between items-center text-sm dark:text-white">
-              Resume
-              <ArrowUpRight
-                className=" group-hover:translate-x-1 transition-all duration-300 ease-in-out"
-                size={16}
-              />
-            </div>
-          </button>
-        </div>
-      </div> */}
-
-      <div className="mt-8">
-        <h2 className="font-semibold" ref={journeyRef}>
-          {" "}
-          journey.{" "}
-        </h2>
+      <motion.div
+        className="mt-8"
+        ref={journeyRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <h2 className="font-semibold lowercase">journey.</h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
           <div className="group flex gap-4">
@@ -241,30 +243,25 @@ export default function Home() {
             <div className="w-full">
               <div className="flex justify-between min-w-full text-sm">
                 <div className="text-xs">
-                  <div className="text-[16px] normal-case ">
-                    Software Engineer,
+                  <div className="text-[16px] lowercase">
+                    Software engineer,
                   </div>
-                  <div>
+                  <div className="lowercase">
                     at,{" "}
                     <a
                       href="https://rava.ai"
                       target="_black"
                       className="underline"
                     >
-                      Rava AI
+                      rava ai
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan - Dec, 2024</div>
+                <div className="text-md">jan - dec, 2024</div>
               </div>
 
-              <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
-                As a core engineer, developed automated content workflows and
-                embedding systems for diverse content types. Implemented browser
-                caching optimizations reducing server load by 40%. Established
-                CI/CD pipelines improving deployment speed by 70%. Built
-                personalized content generation features serving 1000+ customers
-                based on user personas.
+              <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
+                as a core engineer, developed automated content workflows and embedding systems for diverse content types. implemented browser caching optimizations reducing server load by 40%. established ci/cd pipelines improving deployment speed by 70%. built personalized content generation features serving 1000+ customers based on user personas.
               </p>
             </div>
           </div>
@@ -272,128 +269,158 @@ export default function Home() {
             <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
             <div className="w-full">
-              <div className="flex justify-between min-w-full ">
+              <div className="flex justify-between min-w-full">
                 <div className="text-xs">
-                  <div className="normal-case text-[16px]">
-                    Full Stack Developer,
+                  <div className="lowercase text-[16px]">
+                    Full stack developer,
                   </div>
-                  <div className="text-xs">
+                  <div className="text-xs lowercase">
                     at,{" "}
                     <a
                       href="https://skillrazr.com"
                       target="_black"
                       className="underline"
                     >
-                      Skillrazr
+                      skillrazr
                     </a>
                   </div>
                 </div>
-                <div className="text-[16px]">Oct - Dec, 2023</div>
+                <div className="text-md">oct - dec, 2023</div>
               </div>
 
-              <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
-                Engineered interactive Git and SQL learning platforms utilizing
-                GCP and Firebase, while implementing responsive design
-                principles to optimize cross-device functionality and user
-                experience. Led UI/UX improvements across the platform
-                ecosystem.
+              <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
+                engineered interactive git and sql learning platforms utilizing gcp and firebase, while implementing responsive design principles to optimize cross-device functionality and user experience. led ui/ux improvements across the platform ecosystem.
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="mt-8">
-        <h2 className="font-semibold" ref={projectsRef}>
-          {" "}
-          projects.{" "}
-        </h2>
+      <motion.div
+        className="mt-8"
+        ref={projectsRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <h2 className="font-semibold lowercase">projects.</h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
           {projectData.map((project, idx) => (
-            <div className="group flex gap-4" key={idx}>
+            <motion.div
+              className="group flex gap-4"
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 + idx * 0.2 }}
+
+            // whileHover={{ x: 4 }}
+            >
               <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
               <div className="w-full">
                 <div className="flex justify-start min-w-full text-sm">
-                  <div>
-                    <div className="text-lg  normal-case flex gap-4 items-center ">
+                  <div className="w-full">
+                    <div className="text-lg lowercase flex gap-4 items-center">
                       {project.name}{" "}
-                      <span className="text-xs uppercase  dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
+                      <span className="text-xs uppercase dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
                         {project.status}
                       </span>
                     </div>
                     <div className="flex gap-4">
-                      <div className="flex gap-1 items-center group/live  ">
+                      <div className="flex gap-1 items-center group/live lowercase">
                         <a href={project.live} target="_black">
                           live preview
                         </a>
                         <ArrowUpRight
-                          className=" group-hover/live:translate-x-1 transition-all duration-300 ease-in-out"
+                          className="group-hover/live:translate-x-1 transition-all duration-300 ease-in-out"
                           size={16}
                         />
                       </div>
-                      <div className="flex gap-1 items-center group/github">
+                      <div className="flex gap-1 items-center group/github lowercase">
                         <a href={project.git} target="_black">
                           source code
                         </a>
                         <ArrowUpRight
-                          className=" group-hover/github:translate-x-1 transition-all duration-300 ease-in-out"
+                          className="group-hover/github:translate-x-1 transition-all duration-300 ease-in-out"
                           size={16}
                         />
                       </div>
                     </div>
                   </div>
                 </div>
-                <ul className="list-disc pl-4 mt-2  space-y-1">
+                <ul className="list-disc pl-4 mt-2 space-y-1">
                   {project?.about &&
                     project?.about?.map((about, idx) => (
                       <li
-                        className="text-sm dark:text-zinc-200 text-zinc-800	"
+                        className="text-sm dark:text-zinc-200 text-zinc-800 lowercase"
                         key={idx}
                       >
                         {about}
                       </li>
-                    ))}{" "}
+                    ))}
                 </ul>
+
+
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-      <div className="mt-8" ref={skillsRef}>
-        <h2 className="font-semibold"> skills </h2>
+      </motion.div>
+      <motion.div
+        className="mt-8"
+        ref={skillsRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+      >
+        <h2 className="font-semibold lowercase">skills</h2>
 
         <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
           {skills.map((skill, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-zinc-900 hover:bg-zinc-800 text-white hover:dark:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs  transition-colors duration-500 ease-in-out"
+              className="bg-zinc-900 hover:bg-zinc-800 text-white hover:dark:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs transition-colors duration-500 ease-in-out lowercase"
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.8 + idx * 0.05 }}
+              whileHover={{ scale: 1.1, y: -2 }}
             >
-              {skill}
-            </div>
+              {skill.toLowerCase()}
+            </motion.div>
           ))}
         </div>
-      </div>
-      <div className="mt-8" ref={skillsRef}>
-        <h2 className="font-semibold"> contact </h2>
-        <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
-          Interested in a conversation? Drop DM&apos;s over{" "}
-          <Link
-            className="underline"
-            target="_blank"
-            href="/linkedin"
-          >
-            Linkedin
-          </Link>{" "}
+      </motion.div>
+
+      <motion.div
+        className="mt-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+      >
+        <h2 className="font-semibold lowercase">contact</h2>
+        <motion.p
+          className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1 }}
+        >
+          interested in a conversation? drop dm&apos;s over{" "}
+          <motion.span whileHover={{ scale: 1.05 }} >
+            <Link className="underline" target="_blank" href="/linkedin">
+              linkedin
+            </Link>
+          </motion.span>{" "}
           or{" "}
-          <a href="mailto:hey@yagyaraj.com" className="underline">
-            Email
-          </a>{" "}
-          Ask me anything about my work, my projects, or anything else
-          you&apos;d like.
-        </p>
-      </div>
+          <motion.span whileHover={{ scale: 1.05 }}
+          >
+            <a href="mailto:hey@yagyaraj.com" className="underline">
+              email
+            </a>
+          </motion.span>
+          . ask me anything about my work, projects, or anything else.
+        </motion.p>
+      </motion.div>
     </div>
   );
 }

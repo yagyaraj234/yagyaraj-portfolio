@@ -1,0 +1,64 @@
+# llms.txt - Metadata for LLMs and automated agents
+
+# Personal Information
+Name: Yagyaraj
+Role: Full-Stack Software Engineer
+Location: India
+Website: https://yagyaraj.com
+Email: hey@yagyaraj.com
+GitHub: https://github.com/yagyaraj234
+LinkedIn: https://linkedin.com/in/yagyaraj234
+Twitter: https://twitter.com/yagyaraj234
+
+# Professional Summary
+Description: Passionate full-stack developer who learns and transforms complex problems into simple, beautiful, and intuitive solutions through development and design. Specializes in modern web technologies, automated content workflows, and scalable application architecture.
+
+# Technical Skills
+Frontend: React, Next.js, TailwindCSS, TypeScript, Redux
+Backend: Node.js, FastAPI, Python
+Databases: MongoDB, Prisma, Firebase
+Cloud & DevOps: Docker, GCP, Firebase, CI/CD pipelines
+Languages: TypeScript, JavaScript, Python, C++
+Tools: Git, Browser optimization, Embedding systems
+
+# Professional Experience
+Current Role: Software Engineer at Rava AI (January 2024 - December 2024)
+- Developed automated content workflows and embedding systems for diverse content types
+- Implemented browser caching optimizations reducing server load by 40%
+- Established CI/CD pipelines improving deployment speed by 70%
+- Built personalized content generation features serving 1000+ customers based on user personas
+
+Previous Role: Full Stack Developer at SkillRazr (October 2023 - December 2023)
+- Engineered interactive Git and SQL learning platforms utilizing GCP and Firebase
+- Implemented responsive design principles to optimize cross-device functionality
+- Led UI/UX improvements across the platform ecosystem
+
+# Notable Projects
+Collab - Trello-like Application:
+- GitHub: https://github.com/yagyaraj234/collab
+- Live: https://collab-neon.vercel.app/
+- Features: Organization management, multiple boards per organization, task management with status updates and due dates
+- Integrated Stripe for payment processing and subscription management
+
+# Education & Interests
+Focus: Modern web development, performance optimization, user experience design
+Passion: Building scalable applications, learning new technologies, solving complex problems
+
+# Contact Information
+Primary Email: hey@yagyaraj.com
+Portfolio: https://yagyaraj.com
+Resume: https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing
+
+# Communication Preferences
+- Open to conversations about work, projects, technology, and collaboration
+- Preferred contact methods: LinkedIn DMs or email
+- Available for: Technical discussions, project collaborations, career opportunities
+
+# Expertise Areas
+- Full-stack web development
+- Performance optimization and caching strategies
+- CI/CD pipeline implementation
+- Content management systems
+- Payment integration (Stripe)
+- Cloud platform integration (GCP, Firebase)
+- Responsive design and cross-device compatibility
