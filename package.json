@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.7.2",
     "clsx": "^2.1.1",
     "lenis": "^1.1.19",

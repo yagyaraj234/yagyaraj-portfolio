@@ -4,6 +4,7 @@ import { Outfit } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./components/theme-provider";
 import { ReactLenis } from "lenis/react";
+import { Analytics } from "@vercel/analytics/next"
 
 // Font settings
 const outfit = Outfit({
@@ -73,7 +74,7 @@ export default function RootLayout({
         <body
           className={cn(
             outfit.className,
-            "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212] lowercase dark:text-white text-black mx-auto max-w-3xl p-4"
+            "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4"
           )}
         >
           <ThemeProvider
@@ -84,6 +85,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+          <Analytics />
         </body>
       </ReactLenis>
     </html>
