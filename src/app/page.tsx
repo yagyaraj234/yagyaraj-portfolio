@@ -1,12 +1,7 @@
-"use client";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-// import { FaXTwitter } from "react-icons/fa6";
-import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
-import { useRef } from "react";
-import { NavItem, navItems } from "./components/navbar";
-import { useTheme } from "next-themes";
+import { ArrowUpRight } from "lucide-react";
 import { PiReadCvLogoFill } from "react-icons/pi";
 
 const social_links = [
@@ -54,25 +49,20 @@ const skills = [
 
 const projectData = [
   // {
-  //   id: 32412,
-  //   name: "Postly",
-  //   git: "https://github.com/yagyaraj234/collab",
-  //   status: "⏳ In Progress",
-  //   live: "https://collab-neon.vercel.app/",
-  //   about: [""],
+  //   id: 1242,
+  //   name: "Workbot",
+  //   git: "https://github.com/yagyaraj234/intelli-docs",
+  //   status: "⏳ On-Going",
+  //   live: "https://workbot.site",
+  //   about: [
+  //     "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
+  //     "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
+  //     "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
+  //   ],
+  //   summary:
+  //     "It's a document processing system that uses RAG methodology, Pinecone for vector embeddings, and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text). It allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases. It also has persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
+  //   item: "it's a document chatbot that uses RAG concepts, to create a vector database of documents, and then uses it to answer questions about the documents. It also has a chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
   // },
-  {
-    id: 1242,
-    name: "Workbot",
-    git: "https://github.com/yagyaraj234/intelli-docs",
-    status: "⏳ On-Going",
-    live: "https://workbot.site",
-    about: [
-      "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
-      "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
-      "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
-    ],
-  },
   {
     id: 12,
     name: "Collab",
@@ -83,62 +73,13 @@ const projectData = [
       "Designed and implemented a Trello-like application architecture, allowing users to create organizations, multiple boards per organization, and manage tasks with status updates and due dates",
       "Integrated Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
     ],
+    summary:
+      "It's a Trello-like application that allows users to create organizations, multiple boards per organization, and manage tasks with status updates and due dates. It also integrates Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
   },
 ];
 export default function Home() {
-  const about = useRef(null);
-  const journeyRef = useRef(null);
-  const projectsRef = useRef(null);
-  const skillsRef = useRef(null);
-
-  const { setTheme } = useTheme();
-
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    if (!ref.current) return;
-    ref.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  function handleScroll(item: string) {
-    if (item === "about") {
-      scrollToSection(about);
-    } else if (item === "journey") {
-      scrollToSection(journeyRef);
-    } else if (item === "projects") {
-      scrollToSection(projectsRef);
-    } else {
-      scrollToSection(skillsRef);
-    }
-  }
   return (
     <div className="box-border mb-8">
-      <div className="flex justify-end items-center">
-        <div className="flex lg:gap-2 ">
-          {navItems.map((item: NavItem, idx: number) => {
-            const isActive = item.name === "about" ? true : false;
-            return (
-              <div
-                key={idx}
-                className={`lg:p-2 transition-colors ease-in-out duration-700  text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
-                  isActive ? "dark:text-white  text-gray-900" : ""
-                } max-lg:hidden `}
-                onClick={() => handleScroll(item.name)}
-              >
-                {item.name}
-              </div>
-            );
-          })}
-          <div className="flex mt-3 cursor-pointer">
-            <SunIcon
-              className="size-[16px]   hidden  dark:block"
-              onClick={() => setTheme("light")}
-            />
-            <MoonIcon
-              className="size-[16px]  dark:hidden"
-              onClick={() => setTheme("dark")}
-            />
-          </div>
-        </div>
-      </div>
       <div className="flex gap-4 lg:mt-6 ">
         <div className="relative">
           <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
@@ -181,15 +122,9 @@ export default function Home() {
       <div className="lg:mt-8 mt-4 text-sm ">
         <h2 className="font-semibold">about me.</h2>
         <p className="mt-4">
-          {/* Hey! I'm a passionate full-stack developer based in Satna, Madhya
-          Pradesh, India. My mission is to transform complex problems into
-          simple, beautiful, and intuitive solutions through creative web
-          development and design. I'd be excited to discuss potential
-          opportunities to collaborate and learn more about your need */}
           I&apos;m a passionate full-stack developer who learns and transforms
           complex problems into simple, beautiful, and intuitive solutions
           through development and design.
-          {/* I'm excited to discuss potential job */}
         </p>
       </div>
 
@@ -228,10 +163,7 @@ export default function Home() {
       </div> */}
 
       <div className="mt-8">
-        <h2 className="font-semibold" ref={journeyRef}>
-          {" "}
-          journey.{" "}
-        </h2>
+        <h2 className="font-semibold"> journey. </h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
           <div className="group flex gap-4">
@@ -254,7 +186,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="text-md">Jan, 2024 - Dec, 2024</div>
+                <div className="text-md">Jan - Dec, 2024</div>
               </div>
 
               <p className="lowercase  mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
@@ -303,10 +235,7 @@ export default function Home() {
       </div>
 
       <div className="mt-8">
-        <h2 className="font-semibold" ref={projectsRef}>
-          {" "}
-          projects.{" "}
-        </h2>
+        <h2 className="font-semibold"> projects. </h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
           {projectData.map((project, idx) => (
@@ -342,9 +271,13 @@ export default function Home() {
                         />
                       </div>
                     </div>
+                    <div className="mt-2 text-sm dark:text-zinc-200 text-zinc-800">
+                      {project.summary}
+                    </div>
                   </div>
                 </div>
-                <ul className="list-disc pl-4 mt-2  space-y-1">
+
+                {/* <ul className="list-disc pl-4 mt-2  space-y-1">
                   {project?.about &&
                     project?.about?.map((about, idx) => (
                       <li
@@ -354,13 +287,13 @@ export default function Home() {
                         {about}
                       </li>
                     ))}{" "}
-                </ul>
+                </ul> */}
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div className="mt-8" ref={skillsRef}>
+      <div className="mt-8">
         <h2 className="font-semibold"> skills </h2>
 
         <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
@@ -374,7 +307,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="mt-8" ref={skillsRef}>
+      <div className="mt-8">
         <h2 className="font-semibold"> contact </h2>
         <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm ">
           Interested in a conversation? Drop DM&apos;s over{" "}
