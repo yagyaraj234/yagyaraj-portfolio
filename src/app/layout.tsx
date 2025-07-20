@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 // Page metadata
-export const metadata = {
+export const metadata: Metadata = {
   title: "Yagyaraj | Full-Stack Developer",
   description:
     "Portfolio of Yagyaraj — Full-stack software engineer from India. Explore my journey, projects, skills, and contact details.",
