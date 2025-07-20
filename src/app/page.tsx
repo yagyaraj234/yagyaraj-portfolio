@@ -9,12 +9,13 @@ import { useTheme } from "next-themes";
 import { PiReadCvLogoFill } from "react-icons/pi";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const social_links = [
   {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/yagyaraj234",
-    icon: FaLinkedin,
+    name: "Email",
+    url: "mailto:hey@yagyaraj.com",
+    icon: IoMdMail,
   },
   {
     name: "Github",
@@ -22,9 +23,14 @@ const social_links = [
     icon: FaGithub,
   },
   {
-    name: "Email",
-    url: "mailto:hey@yagyaraj.com",
-    icon: IoMdMail,
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/yagyaraj234",
+    icon: FaLinkedin,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/yagyaraj234",
+    icon: FaXTwitter,
   },
   {
     name: "Resume",
@@ -57,36 +63,9 @@ const projectData = [
     status: "📦 Completed",
     live: "https://collab-neon.vercel.app/",
     about: [
-      "built a trello-like app with org management, boards, and task tracking",
-      "integrated stripe for payments and subscription management",
+      "Designed and implemented a Trello-like application architecture, allowing users to create organizations, multiple boards per organization, and manage tasks with status updates and due dates",
+      "Integrated Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
     ],
-    details: [
-      "implemented drag-and-drop functionality for intuitive task management",
-      "created a responsive ui that works seamlessly on mobile and desktop",
-      "built secure auth system with role-based permissions for organizations",
-      "designed scalable database schema for handling multiple organizations",
-      "implemented real-time updates for collaborative work environments",
-    ],
-    tech: ["next.js", "tailwind", "prisma", "postgresql", "stripe api"],
-  },
-  {
-    id: 13,
-    name: "workbot",
-    git: "https://github.com/yagyaraj234/workbot",
-    status: "⏳ in progress",
-    live: "https://workbot.site",
-    about: [
-      "building an ai-powered document processing system with rag methodology",
-      "creating workspace environments for different document types",
-    ],
-    details: [
-      "integrating pinecone for vector embeddings and fast similarity search",
-      "using jina ai for robust data extraction across multiple file formats",
-      "implementing persistent chat history with contextual memory",
-      "designing custom ui for different workspace types (docs, code, video)",
-      "building secure file upload and processing pipeline for sensitive data",
-    ],
-    tech: ["next.js", "openai api", "pinecone", "jina ai", "vercel ai sdk"],
   },
 ];
 
@@ -96,17 +75,7 @@ export default function Home() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
 
-  const [expandedProjects, setExpandedProjects] = useState<{
-    [key: number]: boolean;
-  }>({});
-  const { setTheme } = useTheme();
 
-  const toggleProjectDetails = (id: number) => {
-    setExpandedProjects((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -138,9 +107,8 @@ export default function Home() {
             return (
               <motion.div
                 key={idx}
-                className={`lg:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
-                  isActive ? "dark:text-white text-gray-900" : ""
-                } max-lg:hidden`}
+                className={`lg:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${isActive ? "dark:text-white text-gray-900" : ""
+                  } max-lg:hidden`}
                 onClick={() => handleScroll(item.name)}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -198,7 +166,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            hey👋, i&apos;m yagyaraj
+            Hey👋, i&apos;m yagyaraj
           </motion.h1>
           <motion.h2
             className="max-lg:text-sm lowercase"
@@ -206,7 +174,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            a full-stack software engineer, from india.
+            Full-Stack Software Engineer | India
           </motion.h2>
 
           <motion.div
@@ -254,9 +222,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          i&apos;m a passionate full-stack developer who transforms complex
-          problems into simple, beautiful solutions through development and
-          design.
+          i&apos;m a passionate full-stack developer who learns and transforms complex problems into simple, beautiful, and intuitive solutions through development and design.
         </motion.p>
       </motion.div>
 
@@ -277,7 +243,7 @@ export default function Home() {
               <div className="flex justify-between min-w-full text-sm">
                 <div className="text-xs">
                   <div className="text-[16px] lowercase">
-                    software engineer,
+                    Software engineer,
                   </div>
                   <div className="lowercase">
                     at,{" "}
@@ -294,10 +260,7 @@ export default function Home() {
               </div>
 
               <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
-                built automated content workflows and embedding systems.
-                implemented browser caching reducing server load by 40%. set up
-                ci/cd pipelines improving deployment by 70%. created
-                personalized content features for 1000+ users.
+                as a core engineer, developed automated content workflows and embedding systems for diverse content types. implemented browser caching optimizations reducing server load by 40%. established ci/cd pipelines improving deployment speed by 70%. built personalized content generation features serving 1000+ customers based on user personas.
               </p>
             </div>
           </div>
@@ -308,7 +271,7 @@ export default function Home() {
               <div className="flex justify-between min-w-full">
                 <div className="text-xs">
                   <div className="lowercase text-[16px]">
-                    full stack developer,
+                    Full stack developer,
                   </div>
                   <div className="text-xs lowercase">
                     at,{" "}
@@ -325,9 +288,7 @@ export default function Home() {
               </div>
 
               <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
-                built git and sql learning platforms with gcp and firebase.
-                implemented responsive design for cross-device use. led ui/ux
-                improvements across platform.
+                engineered interactive git and sql learning platforms utilizing gcp and firebase, while implementing responsive design principles to optimize cross-device functionality and user experience. led ui/ux improvements across the platform ecosystem.
               </p>
             </div>
           </div>
@@ -352,7 +313,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 + idx * 0.2 }}
 
-              // whileHover={{ x: 4 }}
+            // whileHover={{ x: 4 }}
             >
               <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
@@ -399,60 +360,7 @@ export default function Home() {
                     ))}
                 </ul>
 
-                <motion.button
-                  onClick={() => toggleProjectDetails(project.id)}
-                  className="mt-2 flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {expandedProjects[project.id] ? "see less" : "see more"}
-                  <ChevronDown size={14} />
-                </motion.button>
 
-                {expandedProjects[project.id] && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-3 pl-4"
-                  >
-                    <ul className="list-disc pl-2 space-y-1 mb-3">
-                      {project?.details?.map((detail, idx) => (
-                        <motion.li
-                          className="text-sm dark:text-zinc-300 text-zinc-700 lowercase"
-                          key={idx}
-                          initial={{ opacity: 0, x: -5 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.2, delay: idx * 0.1 }}
-                        >
-                          {detail}
-                        </motion.li>
-                      ))}
-                    </ul>
-
-                    <h4 className="text-sm font-medium mb-2 dark:text-zinc-300">
-                      tech stack:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project?.tech?.map((tech, idx) => (
-                        <motion.span
-                          key={idx}
-                          className="bg-zinc-200 dark:bg-zinc-800 px-2 py-1 rounded-md text-xs lowercase"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            duration: 0.2,
-                            delay: 0.3 + idx * 0.05,
-                          }}
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
               </div>
             </motion.div>
           ))}

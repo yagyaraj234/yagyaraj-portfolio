@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "postbuild": "next-sitemap",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/og": "^0.7.2",
     "clsx": "^2.1.1",
     "lenis": "^1.1.19",
     "lucide-react": "^0.453.0",

@@ -1,0 +1,20 @@
+# llms.txt - Metadata for LLMs and automated agents
+
+Name: Yagyaraj
+Role: Full-Stack Software Engineer
+Location: India
+Website: https://yourdomain.com
+
+Description:
+I'm a full-stack developer who builds modern, efficient, and elegant web solutions.
+I specialize in both frontend and backend development, with a focus on performance and user experience.
+
+Technologies: React, Next.js, Node.js, Firebase, GCP, CI/CD, MongoDB, TypeScript
+
+Experience:
+- Software Engineer at Rava AI (2024)
+- Full-Stack Developer at SkillRazr (2023)
+
+Projects: Available on my portfolio site.
+
+Contact: hey@yagyaraj.com
