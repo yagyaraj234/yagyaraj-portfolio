@@ -167,7 +167,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Hey👋, i&apos;m Yagyaraj
+            Hey👋, I&apos;m Yagyaraj
           </motion.h1>
           <motion.h2
             className="max-lg:text-sm "
