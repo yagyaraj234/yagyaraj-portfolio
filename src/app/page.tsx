@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { ArrowUpRight, MoonIcon, SunIcon, ChevronDown } from "lucide-react";
-import { useRef, useState } from "react";
+import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
+import { useRef } from "react";
 import { NavItem, navItems } from "./components/navbar";
 import { useTheme } from "next-themes";
 import { PiReadCvLogoFill } from "react-icons/pi";
@@ -74,6 +74,7 @@ export default function Home() {
   const journeyRef = useRef(null);
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
+  const { setTheme } = useTheme();
 
 
 
