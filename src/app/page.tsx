@@ -162,15 +162,15 @@ export default function Home() {
         {/* About */}
         <div className="flex flex-col gap-2">
           <motion.h1
-            className="lg:text-xl lowercase"
+            className="lg:text-xl "
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Hey👋, i&apos;m yagyaraj
+            Hey👋, i&apos;m Yagyaraj
           </motion.h1>
           <motion.h2
-            className="max-lg:text-sm lowercase"
+            className="max-lg:text-sm "
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -243,7 +243,7 @@ export default function Home() {
             <div className="w-full">
               <div className="flex justify-between min-w-full text-sm">
                 <div className="text-xs">
-                  <div className="text-[16px] lowercase">
+                  <div className="text-[16px]">
                     Software engineer,
                   </div>
                   <div className="lowercase">
@@ -271,7 +271,7 @@ export default function Home() {
             <div className="w-full">
               <div className="flex justify-between min-w-full">
                 <div className="text-xs">
-                  <div className="lowercase text-[16px]">
+                  <div className="text-[16px]">
                     Full stack developer,
                   </div>
                   <div className="text-xs lowercase">
@@ -321,7 +321,7 @@ export default function Home() {
               <div className="w-full">
                 <div className="flex justify-start min-w-full text-sm">
                   <div className="w-full">
-                    <div className="text-lg lowercase flex gap-4 items-center">
+                    <div className="text-lg  flex gap-4 items-center">
                       {project.name}{" "}
                       <span className="text-xs uppercase dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
                         {project.status}
