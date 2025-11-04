@@ -30,8 +30,8 @@
     "@types/node": "^20",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "eslint": "^8",
-    "eslint-config-next": "16.0.1",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.1",
     "postcss": "^8",
     "tailwindcss": "^4.1.16",
     "typescript": "^5"
