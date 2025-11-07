@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Outfit } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from "@/app/components/theme-provider";
 import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/app/components/footer";
