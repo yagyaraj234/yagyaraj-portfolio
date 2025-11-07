@@ -1,3 +1,4 @@
+import { blogData } from "./data";
 export default async function Page({
   params,
 }: {
@@ -19,11 +20,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  return [
-    { slug: "what-is-ppr-in-nextjs" },
-    { slug: "hello" },
-    { slug: "whats-new-in-nextjs16" },
-  ];
+  return blogData.map((slug) => ({ slug }));
 }
 
 export const dynamicParams = false;
