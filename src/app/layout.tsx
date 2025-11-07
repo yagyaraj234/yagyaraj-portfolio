@@ -71,7 +71,7 @@ export default function RootLayout({
         <body
           className={cn(
             outfit.className,
-            "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4"
+            "antialiased min-h-screen  scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4 selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
           )}
         >
           <ThemeProvider
