@@ -6,4 +6,178 @@ export const metadata = {
   summary: "Why this blog exists and how posts are organized.",
 };
 
-## Hey i'm raj you friend
+# Decoding the Complex World of LLMs
+
+Ever feel lost in the AI race, confused by jargon like **tokens**, **temperature**, and **vectors**?  
+This blog will break down all the confusing **LLM** jargon into simple, human terms.
+
+---
+
+## What are LLMs?
+
+Imagine a super-smart human who has read every book, article, and website in the world.  
+This smart human can answer almost any question you ask — that’s kind of what a **Large Language Model (LLM)** is.
+
+LLMs are like massive computer brains trained on huge datasets of text, images, and videos.  
+They learn from examples to understand and generate text that sounds like a real human wrote it.
+
+These models learn using a method called **deep learning**, which is like teaching a computer by giving it tons of examples.  
+They use **neural networks** (inspired by how our brains work) to understand relationships between words and phrases.
+
+At their core, LLMs are **next-word predictors**. They’re trained to predict the most likely continuation of text based on the context they’ve been given.
+
+---
+
+## Transformer
+
+A **Transformer** is like a very fast reader and writer.  
+It looks at words in a sentence to see what they mean and then uses that understanding to create new sentences.
+
+One key idea Transformers use is called **self-attention** (we’ll get to that soon).  
+Because Transformers can look at many parts of text at the same time, they’re faster than older models that processed one word at a time.
+
+Transformers can **learn on their own without a teacher** — this is known as **self-learning**.  
+It’s like figuring out how to ride a bike by trying over and over. Along the way, they learn grammar, languages, and useful facts by finding patterns in the data they read.
+
+Often, this self-learning is combined with other methods to make results more accurate and controlled.
+
+---
+
+## Encoder and Decoder
+
+Think of the encoder and decoder as the **reading and writing team** of LLMs.
+
+- The **Encoder** is the reader. It takes your input — like _“how loops work in Python”_ — and turns it into special code that the LLM understands.  
+  This is like translating English sentences into **tokens** (numbers) that a computer can process.  
+  The encoder uses **attention mechanisms** to focus on the most important parts of the input.
+
+- The **Decoder** is the writer. It takes that code and turns it back into English — this time as an answer.  
+  It uses its understanding of language and the encoded context to produce a meaningful response.
+
+---
+
+## Tokenization
+
+Humans communicate in languages like Japanese, Hindi, or English — but AI models don’t “understand” languages directly.  
+They understand **numbers**, specifically structures called **tokens**.
+
+Tokens are the **building blocks** of any LLM’s input and output.  
+They can be individual words, parts of words, or even characters — depending on the model.
+
+**Tokenization** is the process that converts human language into these numerical tokens that AI models can understand.  
+It’s what bridges the gap between human text and machine learning.
+
+Every AI model — whether it’s **Gemini**, **GPT-4o**, or **DeepSeek** — uses its own tokenizer to interpret and generate human-like text.
+
+👉 Try it yourself: [https://tiktokenizer.vercel.app](https://tiktokenizer.vercel.app)
+
+---
+
+## Vectors
+
+**Vectors** are numerical representations of words and tokens.  
+They allow models to perform **mathematical operations** on text — like measuring how similar two words are.
+
+When words are converted to vectors, models can calculate relationships between them and understand meaning.  
+The **quality** and **dimensionality** of these vectors determine how well a model understands and generates language.
+
+Each model represents words differently — even for the same word.
+
+---
+
+## Embeddings
+
+**Embeddings** are a special kind of vector representation that captures **semantic meaning**.  
+Unlike simple encodings, embeddings place **similar words close together** in a high-dimensional space.
+
+For example:
+
+- “King” and “Queen” have embeddings that are close together.
+- “King” and “Automobile” are far apart.
+
+Embeddings usually have hundreds of dimensions, and each dimension represents some aspect of meaning.  
+They are learned during **pre-training** by analyzing patterns of how words co-occur in large text datasets.
+
+Embeddings are the **foundation** of how LLMs understand language — they convert text into mathematical form while preserving meaning.
+
+---
+
+## Softmax
+
+When an LLM generates text, it needs to decide which word to use next.  
+There are many possible options — so how does it choose?
+
+Enter **Softmax**.
+
+Think of softmax like a **voting system**:  
+Each possible next word gets a score for how likely it is to fit best in the sentence.  
+Softmax turns those scores into probabilities that add up to 1, and the word with the highest probability is chosen.
+
+This mechanism helps LLMs produce text that’s **coherent, grammatically correct, and contextually relevant**.
+
+---
+
+## Temperature
+
+Imagine you’re writing a story and want it to be more creative and surprising.  
+That’s what **temperature** controls in an LLM.
+
+- **High temperature:** “Surprise me!” → More random, creative, and diverse responses.
+- **Low temperature:** “Keep it simple.” → More focused, predictable, and conservative responses.
+
+Technically, temperature modifies how probabilities from the softmax are distributed:
+
+- **Higher temperatures** spread probabilities evenly, encouraging variety.
+- **Lower temperatures** sharpen them, making the model stick to the most likely choices.
+
+Set it too high, and the output gets chaotic — like ordering an ice cream flavor that doesn’t exist.
+
+---
+
+## Self-Attention
+
+Picture this: you’re reading a newspaper. You don’t focus on every single word — your eyes jump to key phrases and names.  
+That’s exactly how **self-attention** works.
+
+The model assigns different importance levels to each word in a sentence, focusing on what matters most.  
+This helps it understand **context**, **relationships**, and **meaning** between words.
+
+Without self-attention, LLMs wouldn’t be able to generate responses that feel natural or contextually accurate.  
+It’s computationally expensive, but it’s the core reason why modern models like GPTs are so powerful.
+
+---
+
+## Knowledge Cutoff
+
+LLMs are trained on massive datasets — but only up to a certain point in time.  
+This is called the **knowledge cutoff**.
+
+After that date, the model doesn’t know about new events — it’s like asking someone who hasn’t read the news in months.  
+Developers update models occasionally, which changes this cutoff date.
+
+---
+
+## Vocabulary Size
+
+When tokenizing text, the model builds a list of all tokens it has seen during training — this is its **vocabulary**.
+
+The **vocab size** is the number of unique tokens it knows.  
+A larger vocabulary lets a model understand more words and phrases.
+
+If it encounters a token it doesn’t recognize, it uses clever methods to break it down and still make sense of it.
+
+---
+
+## Conclusion
+
+That wraps it up!  
+We’ve simplified the big words — **Transformers**, **Embeddings**, **Self-Attention**, **Softmax**, and more — into digestible concepts.
+
+You now understand the key parts that let LLMs read, write, and think like humans.
+
+---
+
+📧 **Email:** [hey@yagyaraj.com](mailto:hey@yagyaraj.com)  
+🌐 **Portfolio:** [yagyaraj.com](https://yagyaraj.com)  
+🔗 **LinkedIn:** [linkedin.com/in/yagyaraj234](https://linkedin.com/in/yagyaraj234)  
+💻 **GitHub:** [github.com/yagyaraj234](https://github.com/yagyaraj234)

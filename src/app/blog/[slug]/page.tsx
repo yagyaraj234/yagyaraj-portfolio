@@ -10,7 +10,11 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  return [{ slug: "what-is-ppr-in-nextjs" }, { slug: "hello" }];
+  return [
+    { slug: "what-is-ppr-in-nextjs" },
+    { slug: "hello" },
+    { slug: "whats-new-in-nextjs16" },
+  ];
 }
 
 export const dynamicParams = false;
