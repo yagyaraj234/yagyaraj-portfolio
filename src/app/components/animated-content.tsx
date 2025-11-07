@@ -2,23 +2,17 @@
 
 import { useRef } from "react";
 import { NavItem, navItems } from "../components/navbar";
-import { useTheme } from "next-themes";
 import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
 import { motion } from "motion/react";
-import {
-  StaticContent,
-  social_links,
-  skills,
-  projectData,
-} from "./static-content";
+import { social_links, skills, projectData } from "./static-content";
 import Image from "next/image";
+import ThemeButton from "./theme-button";
 
 export function AnimatedContent() {
   const about = useRef(null);
   const journeyRef = useRef(null);
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
-  const { setTheme } = useTheme();
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (!ref.current) return;
@@ -64,21 +58,7 @@ export function AnimatedContent() {
               </motion.div>
             );
           })}
-          <motion.div
-            className="flex mt-3 cursor-pointer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-          >
-            <SunIcon
-              className="size-[16px] hidden dark:block"
-              onClick={() => setTheme("light")}
-            />
-            <MoonIcon
-              className="size-[16px] dark:hidden"
-              onClick={() => setTheme("dark")}
-            />
-          </motion.div>
+          <ThemeButton />
         </div>
       </motion.div>
 
