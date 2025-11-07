@@ -4,8 +4,8 @@ import { Outfit } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./components/theme-provider";
 import { ReactLenis } from "lenis/react";
-import { Analytics } from "@vercel/analytics/next"
-
+import { Analytics } from "@vercel/analytics/next";
+import Footer from "@/app/components/footer";
 // Font settings
 const outfit = Outfit({
   subsets: ["latin"],
@@ -56,7 +56,6 @@ export const metadata: Metadata = {
   ],
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,10 +64,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0f172a" />
-
       </head>
       <ReactLenis root>
         <body
@@ -84,6 +81,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Footer />
           </ThemeProvider>
           <Analytics />
         </body>
