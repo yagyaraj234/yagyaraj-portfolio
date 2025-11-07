@@ -9,8 +9,9 @@ export default async function Page({
   return (
     <>
       <Post />
-      <div className="flex justify-center gap-2 items-center mt-8 mb-4 dark:text-zinc-600 text-zinc-700 text-xs">
-        <h3>Written by Yagyaraj </h3> <hr />
+
+      <div className="flex flex-col text-sm font-normal text-zinc-600 mt-4">
+        <p>Written by Yagyaraj </p>
         <p>Published on {new Date().toLocaleDateString()}</p>
       </div>
     </>

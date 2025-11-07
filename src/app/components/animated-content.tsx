@@ -1,143 +1,17 @@
 "use client";
 
-import { useRef } from "react";
-import { NavItem, navItems } from "../components/navbar";
-import { ArrowUpRight, MoonIcon, SunIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
-import { social_links, skills, projectData } from "./static-content";
-import Image from "next/image";
-import ThemeButton from "./theme-button";
+import { skills, projectData } from "./static-content";
+import { Navbar } from "./navbar";
+import { UserInfo } from "./user-info";
 
 export function AnimatedContent() {
-  const about = useRef(null);
-  const journeyRef = useRef(null);
-  const projectsRef = useRef(null);
-  const skillsRef = useRef(null);
-
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
-    if (!ref.current) return;
-    ref.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  function handleScroll(item: string) {
-    if (item === "about") {
-      scrollToSection(about);
-    } else if (item === "journey") {
-      scrollToSection(journeyRef);
-    } else if (item === "projects") {
-      scrollToSection(projectsRef);
-    } else {
-      scrollToSection(skillsRef);
-    }
-  }
-
   return (
     <div className="box-border mb-8">
-      {/* Animated Header */}
-      <motion.div
-        className="flex justify-end items-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex lg:gap-2">
-          {navItems.map((item: NavItem, idx: number) => {
-            const isActive = item.name === "about" ? true : false;
-            return (
-              <motion.div
-                key={idx}
-                className={`lg:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
-                  isActive ? "dark:text-white text-gray-900" : ""
-                } max-lg:hidden`}
-                onClick={() => handleScroll(item.name)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 * idx }}
-              >
-                {item.name}
-              </motion.div>
-            );
-          })}
-          <ThemeButton />
-        </div>
-      </motion.div>
+      <Navbar />
+      <UserInfo />
 
-      {/* Animated Hero Section */}
-      <motion.div
-        className="flex gap-4 lg:mt-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <motion.div
-          className="relative"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
-            <Image
-              src="/notion.png"
-              height={96}
-              width={96}
-              sizes="(max-width: 768px) 64px, 96px"
-              alt="user"
-              className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
-            />
-          </div>
-        </motion.div>
-
-        {/* Animated About */}
-        <div className="flex flex-col gap-2">
-          <motion.h1
-            className="lg:text-xl"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            Hey👋, I&apos;m Yagyaraj
-          </motion.h1>
-          <motion.h2
-            className="max-lg:text-sm"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            Full-Stack Software Engineer | India
-          </motion.h2>
-
-          <motion.div
-            className="flex gap-x-2"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            {social_links.map((link, idx) => (
-              <motion.a
-                key={idx}
-                href={link.url}
-                target="_blank"
-                className="rounded-full p-1"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  duration: 0.3,
-                  delay: 0.6 + idx * 0.1,
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
-                <link.icon
-                  size={16}
-                  className="text-zinc-900 dark:text-zinc-300"
-                />
-              </motion.a>
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Animated About Section */}
       <motion.div
         className="lg:mt-8 mt-4 text-sm"
         initial={{ opacity: 0, y: 20 }}
@@ -160,7 +34,6 @@ export function AnimatedContent() {
       {/* Animated Journey Section */}
       <motion.div
         className="mt-8"
-        ref={journeyRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
@@ -235,7 +108,6 @@ export function AnimatedContent() {
       {/* Animated Projects Section */}
       <motion.div
         className="mt-8"
-        ref={projectsRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
@@ -304,7 +176,6 @@ export function AnimatedContent() {
       {/* Animated Skills Section */}
       <motion.div
         className="mt-8"
-        ref={skillsRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.7 }}

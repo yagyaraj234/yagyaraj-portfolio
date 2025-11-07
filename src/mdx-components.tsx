@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { highlight } from "sugar-high";
 
@@ -11,43 +11,53 @@ type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 const components = {
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0" {...props} />
+    <h1
+      className="font-medium pt-4  mb-0 text-2xl uppercase tracking-wide"
+      {...props}
+    />
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
+      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 text-xl"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
+      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 text-lg"
       {...props}
     />
   ),
-  h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
+  h4: (props: HeadingProps) => (
+    <h4 className="font-medium text-base" {...props} />
+  ),
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+    <p
+      className="text-gray-800 dark:text-zinc-300 leading-snug text-base"
+      {...props}
+    />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2"
+      className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2 text-base"
       {...props}
     />
   ),
   ul: (props: ListProps) => (
     <ul
-      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1"
+      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1 text-base"
       {...props}
     />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<"em">) => (
-    <em className="font-medium" {...props} />
+    <em className="font-medium text-base" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium" {...props} />
+    <strong className="font-medium text-base" {...props} />
   ),
+  br: () => <br />,
+  hr: () => <hr className="my-4 invisible" />,
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
       "text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800";
