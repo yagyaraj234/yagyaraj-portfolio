@@ -11,7 +11,7 @@ export default async function Page({
     <>
       <Post />
 
-      <div className="flex flex-col text-sm font-normal text-zinc-600 mt-4">
+      <div className="flex flex-col text-sm font-normal text-zinc-400 mt-4">
         <p>Written by Yagyaraj </p>
         <p>Published on {new Date().toLocaleDateString()}</p>
       </div>
