@@ -62,6 +62,18 @@ export const projectData = [
       "Integrated Stripe for seamless payment processing within the app, enhancing user experience and enabling subscription management for premium features.",
     ],
   },
+  {
+    id: 1242,
+    name: "Workbot",
+    git: "https://github.com/yagyaraj234/intelli-docs",
+    status: "⏳ On-Going",
+    live: "https://workbot.site",
+    about: [
+      "Architected a versatile document processing system using RAG methodology, integrating Pinecone for vector embeddings and Jina AI for robust data extraction across multiple file formats (PDFs, code, plain text).",
+      "Developed an intuitive workspace system that allows users to create dedicated environments for different purposes (general chat, code reviews, YouTube video analysis), each optimized for specific content types and use cases.",
+      "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
+    ],
+  },
 ];
 
 export function StaticContent() {

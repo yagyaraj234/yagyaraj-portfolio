@@ -59,7 +59,7 @@ export default async function BlogIndexPage() {
   const posts = await readPosts();
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 flex-1">
       {posts.length === 0 ? (
         <p>No posts yet.</p>
       ) : (
