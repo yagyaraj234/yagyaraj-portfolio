@@ -57,7 +57,6 @@ export const dynamic = "force-static"; // list can be built at build-time; adjus
 
 export default async function BlogIndexPage() {
   const posts = await readPosts();
-  console.log("posts --->", posts);
 
   return (
     <div className="mt-8">
@@ -66,14 +65,17 @@ export default async function BlogIndexPage() {
       ) : (
         <ul className="not-prose space-y-6">
           {posts.map(({ slug, metadata }) => (
-            <li key={slug} className=" pb-6 flex justify-between gap-2">
+            <li
+              key={slug}
+              className="md:pb-6 pb-2 flex justify-between gap-2 max-md:flex-col"
+            >
               <div>
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-xl max-md:text-lg font-semibold">
                   <Link href={`/blog/${slug}`} className="hover:underline">
                     {metadata.title}
                   </Link>
                 </h2>
-                <div className="mt-1 text-sm text-muted-foreground">
+                <div className="mt-1 text-sm text-muted-foreground max-md:text-xs">
                   {metadata.author ? <span>By {metadata.author}</span> : null}
                   {metadata.date ? (
                     <span>
@@ -103,7 +105,7 @@ export default async function BlogIndexPage() {
                 alt={metadata.title}
                 width={300}
                 height={100}
-                className="rounded-md bg-white"
+                className="rounded-md bg-white max-md:hidden"
                 loading="lazy"
                 priority={false}
               />

@@ -1,13 +1,8 @@
-import { motion } from "motion/react";
+import Link from "next/link";
 
 export function Journey() {
   return (
-    <motion.div
-      className="mt-8"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.6 }}
-    >
+    <div className="mt-8">
       <h2 className="font-semibold lowercase">journey.</h2>
 
       <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
@@ -20,13 +15,13 @@ export function Journey() {
                 <div className="text-[16px]">Software engineer,</div>
                 <div className="lowercase">
                   at,{" "}
-                  <a
+                  <Link
                     href="https://rava.ai"
                     target="_blank"
-                    className="underline"
+                    className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
                   >
                     rava ai
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="text-md">jan - dec, 2024</div>
@@ -51,13 +46,13 @@ export function Journey() {
                 <div className="text-[16px]">Full stack developer,</div>
                 <div className="text-xs lowercase">
                   at,{" "}
-                  <a
+                  <Link
                     href="https://skillrazr.com"
                     target="_blank"
-                    className="underline"
+                    className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
                   >
                     skillrazr
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="text-md">oct - dec, 2023</div>
@@ -72,6 +67,6 @@ export function Journey() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

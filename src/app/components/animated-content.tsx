@@ -8,45 +8,24 @@ import { Journey } from "../(user)/_components/journey";
 export function AnimatedContent() {
   return (
     <div className="box-border mb-8">
-      <motion.div
-        className="lg:mt-8 mt-4 text-sm"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
+      <div className="lg:mt-8 mt-4 text-sm">
         <h2 className="font-semibold lowercase">about me.</h2>
-        <motion.p
-          className="mt-4 lowercase"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
+        <p className="mt-4 lowercase">
           i&apos;m a passionate full-stack developer who learns and transforms
           complex problems into simple, beautiful, and intuitive solutions
           through development and design.
-        </motion.p>
-      </motion.div>
+        </p>
+      </div>
 
       <Journey />
 
       {/* Animated Projects Section */}
-      <motion.div
-        className="mt-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-      >
+      <div className="mt-8">
         <h2 className="font-semibold lowercase">projects.</h2>
 
         <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
           {projectData.map((project, idx) => (
-            <motion.div
-              className="group flex gap-4"
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 + idx * 0.2 }}
-            >
+            <div className="group flex gap-4" key={idx}>
               <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
               <div className="w-full">
@@ -92,56 +71,49 @@ export function AnimatedContent() {
                     ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Animated Skills Section */}
-      <motion.div
-        className="mt-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-      >
+      <div className="mt-8">
         <h2 className="font-semibold lowercase">skills</h2>
 
         <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
           {skills.map((skill, idx) => (
-            <motion.div
+            <div
               key={idx}
               className="bg-zinc-900 hover:bg-zinc-800 text-white dark:hover:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs transition-colors duration-500 ease-in-out lowercase"
-              initial={{ opacity: 0, scale: 0.8, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.8 + idx * 0.05 }}
-              whileHover={{ scale: 1.1, y: -2 }}
             >
               {skill.toLowerCase()}
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Animated Contact Section */}
-      <motion.div
-        className="mt-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
-      >
+      <div className="mt-8">
         <h2 className="font-semibold lowercase">contact</h2>
-        <motion.p
-          className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
+        <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
           interested in a conversation? drop dm&apos;s over{" "}
-          <motion.span whileHover={{ scale: 1.05 }}>linkedin</motion.span> or{" "}
-          <motion.span whileHover={{ scale: 1.05 }}>email</motion.span>. ask me
-          anything about my work, projects, or anything else.
-        </motion.p>
-      </motion.div>
+          <a
+            href="/linkedin"
+            className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+            target="_blank"
+          >
+            linkedin
+          </a>{" "}
+          or{" "}
+          <a
+            href="mailto:hey@yagyaraj.com"
+            className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+          >
+            email
+          </a>
+          . ask me anything about my work, projects, or anything else.
+        </p>
+      </div>
     </div>
   );
 }
