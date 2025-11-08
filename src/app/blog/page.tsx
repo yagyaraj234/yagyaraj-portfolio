@@ -17,11 +17,6 @@ type PostIndexItem = {
   metadata: PostMeta;
 };
 
-console.log(
-  "content directory",
-  path.join(process.cwd(), "content"),
-  process.cwd()
-);
 const POSTS_DIR = path.join(process.cwd(), "src", "content");
 
 // Utility: get all .mdx files as slugs

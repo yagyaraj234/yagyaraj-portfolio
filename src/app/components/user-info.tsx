@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { social_links } from "./static-content";
 import Link from "next/link";
+import { social_links } from "./static-content";
 
 export function UserInfo() {
   return (
@@ -30,8 +30,10 @@ export function UserInfo() {
               href={link.url}
               target="_blank"
               className="rounded-full p-1"
+              aria-label={link.name}
             >
               <link.icon
+                aria-hidden="true"
                 size={16}
                 className="text-zinc-900 dark:text-zinc-300"
               />

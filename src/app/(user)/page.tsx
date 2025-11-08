@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Journey } from "./_components/journey";
 import OpenToWork from "./_components/open-to-work";
 import { Projects } from "./_components/projects";
@@ -39,20 +40,21 @@ export default function Home() {
         <h2 className="font-semibold lowercase">contact</h2>
         <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
           interested in a conversation? drop dm&apos;s over{" "}
-          <a
+          <Link
             href="/linkedin"
             className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
             target="_blank"
           >
             linkedin
-          </a>{" "}
+          </Link>{" "}
           or{" "}
-          <a
+          <Link
             href="mailto:hey@yagyaraj.com"
             className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+            target="_blank"
           >
             email
-          </a>
+          </Link>
           . ask me anything about my work, projects, or anything else.
         </p>
       </div>

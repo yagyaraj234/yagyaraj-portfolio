@@ -113,17 +113,19 @@ export function StaticContent() {
 
           <div className="flex gap-x-2">
             {social_links.map((link, idx) => (
-              <a
+              <Link
                 key={idx}
                 href={link.url}
                 target="_blank"
                 className="rounded-full p-1"
+                aria-label={link.name}
               >
                 <link.icon
+                  aria-hidden="true"
                   size={16}
                   className="text-zinc-900 dark:text-zinc-300"
                 />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
