@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import Image from "next/image";
 
 type PostMeta = {
   title: string;
@@ -59,39 +60,53 @@ export default async function BlogIndexPage() {
   console.log("posts --->", posts);
 
   return (
-    <div>
+    <div className="mt-8">
       {posts.length === 0 ? (
         <p>No posts yet.</p>
       ) : (
         <ul className="not-prose space-y-6">
           {posts.map(({ slug, metadata }) => (
-            <li key={slug} className="border-b pb-6">
-              <h2 className="text-xl font-semibold">
-                <Link href={`/blog/${slug}`} className="hover:underline">
-                  {metadata.title}
-                </Link>
-              </h2>
-              <div className="mt-1 text-sm text-muted-foreground">
-                {metadata.author ? <span>By {metadata.author}</span> : null}
-                {metadata.date ? (
-                  <span> • {new Date(metadata.date).toLocaleDateString()}</span>
+            <li key={slug} className=" pb-6 flex justify-between gap-2">
+              <div>
+                <h2 className="text-xl font-semibold">
+                  <Link href={`/blog/${slug}`} className="hover:underline">
+                    {metadata.title}
+                  </Link>
+                </h2>
+                <div className="mt-1 text-sm text-muted-foreground">
+                  {metadata.author ? <span>By {metadata.author}</span> : null}
+                  {metadata.date ? (
+                    <span>
+                      {" "}
+                      • {new Date(metadata.date).toLocaleDateString()}
+                    </span>
+                  ) : null}
+                </div>
+                {metadata.summary ? (
+                  <p className="mt-2">{metadata.summary}</p>
+                ) : null}
+                {metadata.tags && metadata.tags.length > 0 ? (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {metadata.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded bg-muted px-2 py-1 text-xs text-muted-foreground"
+                      >
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
                 ) : null}
               </div>
-              {metadata.summary ? (
-                <p className="mt-2">{metadata.summary}</p>
-              ) : null}
-              {metadata.tags && metadata.tags.length > 0 ? (
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {metadata.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded bg-muted px-2 py-1 text-xs text-muted-foreground"
-                    >
-                      #{t}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
+              <Image
+                src={`/post/${slug}.webp`}
+                alt={metadata.title}
+                width={300}
+                height={100}
+                className="rounded-md bg-white"
+                loading="lazy"
+                priority={false}
+              />
             </li>
           ))}
         </ul>

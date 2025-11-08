@@ -33,7 +33,7 @@ const components = {
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="text-gray-800 dark:text-zinc-300 leading-snug text-base"
+      className="text-gray-800 dark:text-zinc-300 leading-snug text-base mb-0.5"
       {...props}
     />
   ),
