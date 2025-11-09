@@ -87,6 +87,18 @@ const components = {
       </a>
     );
   },
+  video: ({ src, ...props }: ComponentPropsWithoutRef<"video">) => (
+    <video
+      controls={false}
+      className="max-w-full h-auto"
+      src={typeof src === "string" ? src : undefined}
+      {...props}
+      poster={typeof src === "string" ? src : undefined}
+    >
+      {typeof src === "string" && <source src={src} />}
+      <p>Your browser does not support the video.</p>
+    </video>
+  ),
   code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
     const codeHTML = highlight(children as string);
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
