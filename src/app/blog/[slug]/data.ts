@@ -1,5 +1,4 @@
-export const blogData: string[] = [
-  "decoding-the-complex-world-of-llms",
-  "setting-up-supabase-in-nextjs-a-comprehensive-guide",
-  "nextjs-16",
-];
+import { getAllPostsMetadata } from "@/lib/mdx-utils";
+
+// Get all post slugs from the content directory
+export const blogData: string[] = getAllPostsMetadata().map(post => post.slug);

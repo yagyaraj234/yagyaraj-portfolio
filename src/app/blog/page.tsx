@@ -53,6 +53,8 @@ export const dynamic = "force-static"; // list can be built at build-time; adjus
 export default async function BlogIndexPage() {
   const posts = await readPosts();
 
+  return <div>No post Yet;</div>;
+
   return (
     <div className="mt-8 flex-1">
       {posts.length === 0 ? (

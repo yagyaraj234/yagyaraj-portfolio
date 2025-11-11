@@ -7,14 +7,10 @@ export const metadata = {
   summary: "Why this blog exists and how posts are organized.",
 };
 
-# next.js 16 — new compiler tricks, faster builds, and why “use” matters
+# next.js 16 — new compiler tricks, faster builds, and why "use" matters
 
----
-
-next.js 16 is here, and it’s not just another version bump.
-this one’s a real shift — turbo builds, partial pre-rendering, compiler directives, and even durable ai workflows.
-
----
+next.js 16 is here, and it's not just another version bump.
+this one's a real shift — turbo builds, partial pre-rendering, compiler directives, and even durable ai workflows.
 
 ## ⚡️ turbo by default
 
@@ -23,9 +19,7 @@ next.js finally makes **turbopack** the default bundler.
 - **2–5x faster** production builds
 - **up to 10x faster** fast refresh
 
-it’s built to replace webpack and give you instant feedback loops while developing.
-
----
+it's built to replace webpack and give you instant feedback loops while developing.
 
 ## 🧩 partial pre-rendering (ppr)
 
@@ -47,8 +41,6 @@ think: _ssg + streaming + suspense_, all at once.
 
 you get fast time-to-first-paint, with async parts that fill in when ready.
 
----
-
 ## 🧠 cache components
 
 a new directive appears — `'use cache'`.
@@ -68,8 +60,6 @@ export async function getProduct(id: string) {
 no config, no api — just one line, and your function becomes cache-aware.
 the goal: **deterministic caching** and reuse across requests.
 
----
-
 ## 💬 the directive debate
 
 some devs don’t love these `"use something"` strings —
@@ -80,11 +70,9 @@ directives act as **compiler signals**, not runtime flags.
 they let the compiler apply rules, caching, or async orchestration
 that plain imports or hooks just can’t achieve.
 
-it’s not about string hacks — it’s about **creating boundaries the compiler understands**.
+it's not about string hacks — it's about **creating boundaries the compiler understands**.
 
----
-
-## 🤖 ‘use workflow’ — durable ai orchestration
+## 🤖 'use workflow' — durable ai orchestration
 
 another wild addition: `'use workflow'`.
 
@@ -107,8 +95,6 @@ export async function agentWorkflow(prompt: string) {
 this directive gives next.js **durable, resumable, and observable workflows** —
 basically, _stateful async tasks for ai agents_.
 
----
-
 ## 🧭 the bigger picture
 
 these “use” directives aren’t about adding syntax sugar.
@@ -118,9 +104,7 @@ they’re **compiler switches** — a way to tell next.js how to handle code at 
 - `'use workflow'` → durable ai execution
 - plus, all of this ties into **ppr + streaming + compiler-driven tooling**
 
-it’s a tradeoff — less about ergonomics, more about performance and predictability.
-
----
+it's a tradeoff — less about ergonomics, more about performance and predictability.
 
 ## 🧵 takeaway
 
@@ -131,7 +115,5 @@ from caching to ai workflows.
 yes, the memes about `'use magic'` are funny.
 but behind the jokes, these directives are paving the way
 for **resumable execution, smarter caching, and a more deterministic runtime**.
-
----
 
 want me to make it **twitter-thread ready** (10–12 tweet breakdown) or **LinkedIn post version** next?

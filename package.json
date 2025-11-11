@@ -17,6 +17,7 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.7.2",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "lenis": "^1.1.19",
     "lucide-react": "^0.453.0",
     "next": "16.0.1",
@@ -30,7 +31,7 @@
     "tailwind-scrollbar": "^4.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^20",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
@@ -38,7 +39,7 @@
     "eslint-config-next": "^16.0.1",
     "postcss": "^8",
     "tailwindcss": "^4.1.16",
-    "typescript": "^5"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "@types/react": "19.2.2",
