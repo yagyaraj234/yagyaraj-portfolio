@@ -1,0 +1,207 @@
+export const metadata = {
+  title: "Next.Js 16",
+  author: "Yagyaraj Lodhi",
+  date: "2025-10-19",
+  tags: ["nextjs", "react", "nextjs16"],
+  summary:
+    "Explore the stable release of Next.js 16. We break down game-changing features like Partial Pre-Rendering (PPR), 'use cache' for Cache Components, and the new stable React Compiler support. Learn how to upgrade and optimize your Next.js application today.",
+};
+
+# NEXT.JS 16
+
+hey, 👋 developer’s today we’re diving into NextJS version 16, recently launched what are new features and improvement was in this release and how this can benefit you nextjs application
+
+<br />
+there are multiple releases happened in version 16. some of the features that are
+in experimental now move to stable release and some of them are new features
+
+<br />
+key changes
+
+- Partial Pre-Rendering: Serve static HTML instantly, stream dynamic parts behind the React Suspense boundaries
+- Cache Component
+- React Compiler support
+
+## Partial Pre-Rendering
+
+Partial Pre-Rendering is a technique where we can put some part of page to render after some for dynamic data and serve as a HTML directly from the server
+
+<br />
+
+for example i have one product page there are some data that is dynamic and some are static for example a product page
+
+where some products are top 1 hour purchase that is dynamic and products those will
+be static ( changes once -twice a week )
+
+<br />
+in this page we can implement PPR so to achieve this we have to wrap my dynamic component
+with React Suspense boundary as pass one fallback that can be used to show loading
+Skeleton ui until the dynamic data loaded
+
+Example — Partial Pre-Rendering in action
+
+let’s break down what’s happening in this video
+
+<video
+  controls
+  width="720"
+  poster="https://res.cloudinary.com/dif39heof/image/upload/v1762686482/blogs/image_mexuke.png"
+>
+  <source
+    src="https://res.cloudinary.com/dif39heof/video/upload/v1762677431/blogs/Partial-Pre-Rendering_goai5f.mp4"
+    type="video/mp4"
+  />
+  Sorry, your browser doesn't support embedded videos.
+  <a href="https://res.cloudinary.com/dif39heof/video/upload/v1762677431/blogs/Partial-Pre-Rendering_goai5f.mp4">
+    Download the video
+  </a>{" "}
+  instead.
+</video>
+
+let’s break down what’s happening in this video
+
+at the top, you see the **static content** section — this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching — just fast render straight from the cache or CDN.
+
+below that, you’ll find the **dynamic content** section — wrapped inside a React `Suspense` boundary.
+
+```tsx
+export default function ProductCart({ type = "clothing" }: { type: string }) {
+  return (
+    <Suspense fallback={<ProductListSkeleton />}>
+      <ProductsList type={type} />
+    </Suspense>
+  );
+}
+```
+
+this part waits for live data (like prices, ratings, or top-selling items) and **streams in once ready**. until it’s loaded, the fallback (loading state) is shown.
+
+so effectively:
+
+- **static content** → rendered instantly (HTML from server)
+- **dynamic content** → rendered later (streamed async when data arrives)
+
+this is the core idea behind **Partial Pre-Rendering (PPR)**
+
+_next.js serves your static shell instantly while keeping dynamic sections truly dynamic._
+
+## Cache Components
+
+cache components are features provide to cache the component for faster loading the component by using `use cache` directive at the top of component like below:
+
+```
+'use cache';
+
+export default function ProductCart({ type = "clothing" }: { type: string }) {
+  return (
+    <Suspense fallback={<ProductListSkeleton />}>
+      <ProductsList type={type} />
+    </Suspense>
+  );
+}
+```
+
+by adding `use cache` directive at the top of component this will be cached in the server and serve the same data to the all the user’s whenever you are using this component
+
+it provide some method which can tell when to revalidate the data how long we have to cache the component
+
+- `cacheLife`: Configure the cache entry lifetime. like ( seconds, minutes, hours, days, max)
+- `cacheTag`: Create tags for on-demand revalidation.
+- `revalidateTag` : Revalidate the component
+
+### CacheLife
+
+CacheLife can be configured in client side as well by using ( state, revalidate, expire )
+
+```tsx
+"use cache";
+CacheLife({
+  stale: 300, // 5 minutes
+  revalidate: 1800, // 30 minutes
+  expire: 3600, //  60 minutes
+});
+```
+
+### CacheTag
+
+allow us to create a tag for specific components as well as API so if later if user want to revalidate he can revalidate the using tagname
+
+```tsx
+export const getSkinCareProducts = async () => {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("skin-care-products");
+  return skinCareProducts;
+};
+```
+
+### RevalidateTag
+
+as name sound it used to Revalidate/Refresh the component or data of it at client side.
+
+```tsx
+export function AddNewProduct({ product }: { product: any }) {
+  "use server";
+  async function handleAddToCart() {
+    await addNewProduct(product);
+    // it will clear the cache from the server so
+    // when client request the same page he will get updated data
+    revalidateTag("skin-care-products");
+  }
+
+  return (
+    <button
+      onClick={handleAddToCart}
+      className="bg-blue-500 text-white px-4 py-2 rounded-md"
+    >
+      Add to Cart
+    </button>
+  );
+}
+```
+
+### **To Enable Cache Components:**
+
+this feature is enabled by default, but you can explicitly configure it in your `next.config.ts`
+
+```tsx
+const nextConfig: NextConfig = {
+  cacheComponents: true,
+};
+```
+
+`use cache` directive can be in server actions as well as this is not only specific to component example below:
+
+```tsx
+export async function getProducts() {
+  "use cache";
+  const response = await axios.get("https://fakestoreapi.com/products");
+  return response;
+}
+```
+
+## **React Compiler Support**
+
+React Compiler is a tool from the React team designed to automatically optimize your components, reducing the need for manual memoization with `useMemo` and `useCallback`.
+
+In simple terms: **it makes your app faster without you having to do the work.**
+
+Next.js 16 includes a custom-built integration for this compiler. It uses **SWC** (Speedy Web Compiler) to analyze your project and *only* applies the React Compiler to the files that will benefit from it.
+
+to enable in nextjs is straight simple just add `reactCompiler` flag in `next.config.ts` file.
+
+```tsx
+const nextConfig = {
+  reactCompiler: true,
+};
+```
+
+## **Conclusion: Why This Matters for Your Next.js App**
+
+Next.js 16 is a significant step forward, moving key performance features from experimental to stable.
+
+- **PPR** gives you the best of both worlds: the instant load of static sites with the dynamism of server-side rendering.
+- **Cache Components** give you granular, server-side control over your data's freshness.
+- **The React Compiler** automatically does the performance tuning (memoization) that we all used to do manually.
+
+These features combined mean you can build faster, more complex, and more efficient applications with less boilerplate code. It's time to upgrade!
