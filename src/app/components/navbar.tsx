@@ -34,7 +34,7 @@ export const Navbar = () => {
             <Link
               key={idx}
               href={item.link}
-              className={`lg:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer  max-lg:hidden`}
+              className={`sm:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer  max-sm:hidden`}
             >
               {item.name}
             </Link>
