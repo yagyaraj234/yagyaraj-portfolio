@@ -6,7 +6,7 @@ import { skills } from "@/app/components/static-content";
 
 export default function Home() {
   return (
-    <div className="box-border mb-8">
+    <div className="box-border sm:mb-16 mb-20">
       <div className="lg:mt-8 mt-4 text-sm">
         <h2 className="font-semibold lowercase">about me.</h2>
         <p className="mt-4 lowercase">
@@ -42,7 +42,7 @@ export default function Home() {
           interested in a conversation? drop dm&apos;s over{" "}
           <Link
             href="/linkedin"
-            className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
             target="_blank"
           >
             linkedin
@@ -50,7 +50,7 @@ export default function Home() {
           or{" "}
           <Link
             href="mailto:hey@yagyaraj.com"
-            className="hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
             target="_blank"
           >
             email
