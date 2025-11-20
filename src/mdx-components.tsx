@@ -57,7 +57,7 @@ const components = {
     <strong className="font-medium text-base" {...props} />
   ),
   br: () => <br />,
-  hr: () => <hr className="my-4 invisible" />,
+  hr: () => <hr className="my-2 invisible" />,
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
       "text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800";
