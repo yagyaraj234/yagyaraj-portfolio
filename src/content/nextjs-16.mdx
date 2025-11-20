@@ -38,7 +38,7 @@ in this page we can implement PPR so to achieve this we have to wrap my dynamic 
 with React Suspense boundary as pass one fallback that can be used to show loading
 Skeleton ui until the dynamic data loaded
 
-Example — Partial Pre-Rendering in action
+Example  Partial Pre-Rendering in action
 
 let’s break down what’s happening in this video
 
@@ -60,9 +60,9 @@ let’s break down what’s happening in this video
 
 let’s break down what’s happening in this video
 
-at the top, you see the **static content** section — this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching — just fast render straight from the cache or CDN.
+at the top, you see the **static content** section  this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching  just fast render straight from the cache or CDN.
 
-below that, you’ll find the **dynamic content** section — wrapped inside a React `Suspense` boundary.
+below that, you’ll find the **dynamic content** section  wrapped inside a React `Suspense` boundary.
 
 ```tsx
 export default function ProductCart({ type = "clothing" }: { type: string }) {
