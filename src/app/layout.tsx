@@ -6,29 +6,32 @@ import { ThemeProvider } from "@/app/components/theme-provider";
 import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/app/components/footer";
+import { USER } from "@/data/user.data";
+
 // Font settings
 const outfit = Outfit({
   subsets: ["latin"],
 });
 
 // Page metadata
+const siteTitle = `${USER.displayName} | ${USER.jobTitle}`;
+const siteDescription = USER.bio;
+
 export const metadata: Metadata = {
-  title: "Yagyaraj | Full-Stack Developer",
-  description:
-    "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-  metadataBase: new URL("https://yagyaraj.com"),
+  title: siteTitle,
+  description: siteDescription,
+  metadataBase: new URL(USER.website),
   openGraph: {
-    title: "Yagyaraj | Full-Stack Developer",
-    description:
-      "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-    url: "https://yagyaraj.com",
-    siteName: "Yagyaraj Portfolio",
+    title: siteTitle,
+    description: siteDescription,
+    url: USER.website,
+    siteName: `${USER.displayName} Portfolio`,
     images: [
       {
-        url: "https://yagyaraj.com/api/og",
+        url: USER.ogImage,
         width: 1200,
         height: 630,
-        alt: "Yagyaraj | Full-Stack Developer",
+        alt: siteTitle,
       },
     ],
     locale: "en_IN",
@@ -36,24 +39,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yagyaraj | Full-Stack Developer",
-    description:
-      "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-    creator: "@yagyaraj234",
-    images: ["https://yagyaraj.com/api/og"],
+    title: siteTitle,
+    description: siteDescription,
+    creator: `@${USER.username}`,
+    images: [USER.ogImage],
   },
   alternates: {
-    canonical: "https://yagyaraj.com",
+    canonical: USER.website,
   },
-  keywords: [
-    "Yagyaraj",
-    "Full Stack Developer",
-    "React Developer",
-    "Next.js Portfolio",
-    "Software Engineer India",
-    "Firebase Developer",
-    "GCP Projects",
-  ],
+  keywords: USER.keywords,
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { social_links } from "./static-content";
+import { USER } from "@/data/user.data";
 
 export function UserInfo() {
   return (
@@ -8,11 +9,11 @@ export function UserInfo() {
       <div className="relative">
         <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
           <Image
-            src="/notion.png"
+            src={USER.avatar}
             height={96}
             width={96}
             sizes="(max-width: 768px) 64px, 96px"
-            alt="user"
+            alt={`${USER.displayName} profile picture`}
             className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
           />
         </div>
@@ -20,8 +21,8 @@ export function UserInfo() {
 
       {/* Animated About */}
       <div className="flex flex-col gap-2">
-        <h1 className="lg:text-xl">Hey👋, I&apos;m Yagyaraj</h1>
-        <h2 className="max-lg:text-sm">Full-Stack Software Engineer | India</h2>
+        <h1 className="lg:text-xl">Hey👋, I&apos;m {USER.displayName}</h1>
+        <h2 className="max-lg:text-sm">{USER.jobTitle} | {USER.address}</h2>
 
         <div className="flex gap-x-2">
           {social_links.map((link, idx) => (
