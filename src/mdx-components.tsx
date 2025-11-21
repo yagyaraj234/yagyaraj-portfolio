@@ -1,140 +1,107 @@
-import { ComponentPropsWithoutRef } from "react";
+
+import type { MDXComponents } from "mdx/types";
+import { Annotation } from "@/app/components/mdx/annotation";
+import { InlineNote, Note } from "@/app/components/mdx/note";
+import { CodeBlock } from "@/app/components/mdx/code-block";
+import { OrderedList } from "@/app/components/OrderedList";
+import {
+  ScrollGroup,
+  ScrollFigure,
+  ScrollGroupSection,
+} from "@/app/components/mdx/scroll-group";
+import { FullWidth } from "@/app/components/mdx/full-width";
+import { Columns, ColumnRight } from "@/app/components/mdx/columns";
+import { Heading } from "@/app/components/mdx/heading";
+import { SkipLink } from "@/app/components/mdx/skip-link";
+import { Wide } from "@/app/components/mdx/Wide";
+import { Aside } from "@/app/components/mdx/aside";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { highlight } from "sugar-high";
 
-type HeadingProps = ComponentPropsWithoutRef<"h1">;
-type ParagraphProps = ComponentPropsWithoutRef<"p">;
-type ListProps = ComponentPropsWithoutRef<"ul">;
-type ListItemProps = ComponentPropsWithoutRef<"li">;
-type AnchorProps = ComponentPropsWithoutRef<"a">;
-type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+    h1: (props) => (
+      <Heading level="h1" className="text-3xl font-medium my-4" {...props} />
+    ),
 
-const components = {
-  h1: (props: HeadingProps) => (
-    <h1
-      className="font-medium mt-8 mb-4 text-2xl uppercase tracking-wide"
-      {...props}
-    />
-  ),
-  h2: (props: HeadingProps) => (
-    <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 text-xl"
-      {...props}
-    />
-  ),
-  h3: (props: HeadingProps) => (
-    <h3
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3 text-lg"
-      {...props}
-    />
-  ),
-  h4: (props: HeadingProps) => (
-    <h4 className="font-medium text-base" {...props} />
-  ),
-  p: (props: ParagraphProps) => (
-    <p
-      className="text-gray-800 dark:text-zinc-300 leading-snug text-base mb-0.5"
-      {...props}
-    />
-  ),
-  ol: (props: ListProps) => (
-    <ol
-      className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2 text-base"
-      {...props}
-    />
-  ),
-  ul: (props: ListProps) => (
-    <ul
-      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1 text-base"
-      {...props}
-    />
-  ),
-  li: (props: ListItemProps) => <li className="pl-1" {...props} />,
-  em: (props: ComponentPropsWithoutRef<"em">) => (
-    <em className="font-medium text-base" {...props} />
-  ),
-  strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium text-base" {...props} />
-  ),
-  br: () => <br />,
-  hr: () => <hr className="my-2 invisible" />,
-  a: ({ href, children, ...props }: AnchorProps) => {
-    const className =
-      "text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800";
-    if (href?.startsWith("/")) {
-      return (
-        <Link href={href} className={className} {...props}>
-          {children}
-        </Link>
-      );
-    }
-    if (href?.startsWith("#")) {
-      return (
-        <a href={href} className={className} {...props}>
-          {children}
-        </a>
-      );
-    }
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
+    h2: (props) => (
+      <Heading level="h2" className="text-2xl font-medium my-3" {...props} />
+    ),
+    h3: (props) => (
+      <Heading level="h3" className="text-xl font-medium my-2" {...props} />
+    ),
+    p: (props) => (
+      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans text-base" {...props} />
+    ),
+    strong: (props) => <strong className="font-medium" {...props} />,
+    code: (props) => <code className="inline-code" {...props} />,
+    pre: CodeBlock,
+    ul: (props) => (
+      <ul
+        className="list-disc list-outside ml-6 space-y-2 text-zinc-700 dark:text-zinc-300 font-sans text-base my-4"
         {...props}
-      >
-        {children}
-      </a>
-    );
-  },
-  video: ({ src, ...props }: ComponentPropsWithoutRef<"video">) => (
-    <video
-      controls={false}
-      className="max-w-full h-auto"
-      src={typeof src === "string" ? src : undefined}
-      {...props}
-      poster={typeof src === "string" ? src : undefined}
-    >
-      {typeof src === "string" && <source src={src} />}
-      <p>Your browser does not support the video.</p>
-    </video>
-  ),
-  code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
-    const codeHTML = highlight(children as string);
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
-  },
-  Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
-    <table>
-      <thead>
-        <tr>
-          {data.headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.rows.map((row, index) => (
-          <tr key={index}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  ),
-  blockquote: (props: BlockquoteProps) => (
-    <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
-      {...props}
-    />
-  ),
-};
-
-declare global {
-  type MDXProvidedComponents = typeof components;
-}
-
-export function useMDXComponents(): MDXProvidedComponents {
-  return components;
+      />
+    ),
+    ol: OrderedList,
+    hr: () => (
+      <hr className="opacity-60 dark:border-zinc-800/80 border-dashed md:-mx-10 my-5 col-span-3! !w-max-[calc(100%+80px)]" />
+    ),
+    a: ({ href, ...props }) => {
+      const isExternal = href?.startsWith("http");
+      if (isExternal) {
+        return (
+          <a
+            className="text-gray11 underline underline-offset-2 hover:text-green9"
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            {...props}
+          />
+        );
+      }
+      return (
+        <Link
+          href={href}
+          className="text-gray11 underline underline-offset-2 hover:text-green9"
+          {...props}
+        />
+      );
+    },
+    InlineNote,
+    Note,
+    Annotation,
+    Callout: (props) => (
+      <div
+        className="bg-gray3 border border-borderStrong border-dashed rounded-lg px-4 py-3.5 relative"
+        {...props}
+      />
+    ),
+    ProblemStatement: (props) => {
+      return (
+        <div className="rounded-t-lg my-4">
+          <header>
+            <h4 className="w-max dark:text-white dark:bg-neutral-700 bg-black  font-medium text-gray-100 text-sm px-4 py-1 rounded-t-lg dark:border-gray-700 border border-gray-700 border-b-0 -mx-px -mb-1.5 pb-2.5">
+              Problem
+            </h4>
+          </header>
+          <div className="z-10 ring-1 dark:ring-neutral-800 dark:bg-neutral-900 bg-white shadow ring-neutral-950/15 rounded-lg px-4 py-3 relative">
+            {props.children}
+          </div>
+        </div>
+      );
+    },
+    Aside,
+    SmallOnly: ({ className, ...props }) => (
+      <div className={cn("lg:hidden", className)} {...props} />
+    ),
+    FullWidth,
+    ScrollGroup,
+    ScrollGroupSection,
+    ScrollFigure,
+    Columns,
+    ColumnRight,
+    SkipLink,
+    Wide,
+  };
 }
