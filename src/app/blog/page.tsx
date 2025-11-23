@@ -65,6 +65,27 @@ async function readPosts(): Promise<PostIndexItem[]> {
 
 export const dynamic = "force-static"; // list can be built at build-time; adjust if posts change often
 
+export const metadata = {
+  title: "Blog | Yagyaraj",
+  description: "Thoughts on software engineering, web development, and building products.",
+  openGraph: {
+    title: "Blog | Yagyaraj",
+    description: "Thoughts on software engineering, web development, and building products.",
+    url: "https://yagyaraj.com/blog",
+    siteName: "Yagyaraj",
+    images: [
+      {
+        url: "https://yagyaraj.com/api/og", // Default site OG or specific blog OG
+        width: 1200,
+        height: 630,
+        alt: "Blog | Yagyaraj",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 export default async function BlogIndexPage() {
   const posts = await readPosts();
 
