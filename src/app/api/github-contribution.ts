@@ -5,12 +5,20 @@ type GitHubContributionsResponse = {
 };
 
 export async function getGitHubContributions() {
-  const res = await fetch(
-    `https://github-contributions-api.jogruber.de/v4/${"yagyaraj234"}?y=last`,
-    {
-      next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+  try {
+    const res = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${"yagyaraj234"}?y=last`,
+      {
+        next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`Failed to fetch contributions: ${res.statusText}`);
     }
-  );
-  const data = (await res.json()) as GitHubContributionsResponse;
-  return data.contributions;
+    const data = (await res.json()) as GitHubContributionsResponse;
+    return data.contributions;
+  } catch (error) {
+    console.error("Error fetching GitHub contributions:", error);
+    return [];
+  }
 }
