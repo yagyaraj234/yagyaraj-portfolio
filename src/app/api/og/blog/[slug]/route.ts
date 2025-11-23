@@ -2,6 +2,8 @@ import { ImageResponse } from 'next/og';
 import React from 'react';
 import { getPostMetadata } from '@/lib/mdx-utils';
 
+export const runtime = 'nodejs';
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }

@@ -1,4 +1,5 @@
 import { blogData } from "./data";
+import { USER } from "@/data/user.data";
 import { getPostMetadata } from "@/lib/mdx-utils";
 import { Metadata } from "next";
 import {
@@ -22,7 +23,11 @@ export async function generateMetadata({
   }
 
   const { title, summary, author = "Yagyaraj", tags = [], ogImage = "" } = postMetadata;
-  const ogImageUrl = ogImage ? ogImage : `/api/og/blog/${slug}`;
+  const ogImageUrl = ogImage
+    ? ogImage.startsWith("http")
+      ? ogImage
+      : `${USER.website}${ogImage}`
+    : `${USER.website}/api/og/blog/${slug}`;
 
   return {
     title: `${title} | Yagyaraj`,
