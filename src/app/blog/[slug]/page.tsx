@@ -1,7 +1,11 @@
 import { blogData } from "./data";
 import { getPostMetadata } from "@/lib/mdx-utils";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import {
+  PostTitle,
+  PostDescription,
+  PostUpdatedText,
+} from "@/app/components/Post";
 
 export async function generateMetadata({
   params,
@@ -17,8 +21,8 @@ export async function generateMetadata({
     };
   }
 
-  const { title, summary, author = "Yagyaraj", tags = [] } = postMetadata;
-  const ogImageUrl = `/api/og/blog/${slug}`;
+  const { title, summary, author = "Yagyaraj", tags = [], ogImage = "" } = postMetadata;
+  const ogImageUrl = ogImage ? ogImage : `/api/og/blog/${slug}`;
 
   return {
     title: `${title} | Yagyaraj`,
@@ -61,21 +65,37 @@ export default async function Page({
   const postMetadata = getPostMetadata(slug);
   const publishDate = postMetadata?.date
     ? new Date(postMetadata.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
     : new Date().toLocaleDateString();
 
   return (
-    <>
-      <Post />
+    <div className="font-sans mt-8 pb-16">
+      <PostTitle
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-4"
+      >
+        {postMetadata?.title}
+      </PostTitle>
 
-      <div className="flex flex-col text-sm font-normal text-zinc-400 mt-4">
-        <p>Written by {postMetadata?.author || "Yagyaraj"}</p>
-        <p>Published on {publishDate}</p>
+      <PostDescription className="mb-4 text-xl ">
+        {postMetadata?.summary}
+      </PostDescription>
+
+      <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
+        <PostUpdatedText>
+          Published on {publishDate} by {postMetadata?.author || "Yagyaraj"}
+        </PostUpdatedText>
       </div>
-    </>
+
+      <article className="prose prose-zinc dark:prose-invert max-w-none">
+        <Post />
+      </article>
+    </div>
   );
 }
 

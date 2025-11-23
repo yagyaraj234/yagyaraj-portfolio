@@ -43,12 +43,12 @@ async function readPosts(): Promise<PostIndexItem[]> {
     slugs.map(async (slug) => {
       const mod = await import(`@/content/${slug}.mdx`);
       const metadata: PostMeta = mod.metadata ?? { title: slug };
-      
+
       // Read file content for reading time calculation
       const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
       const content = fs.readFileSync(filePath, "utf-8");
       const readingTime = calculateReadTime(content);
-      
+
       return { slug, metadata, readingTime };
     })
   );
@@ -75,7 +75,7 @@ export default async function BlogIndexPage() {
       {posts.length === 0 ? (
         <p>No posts yet.</p>
       ) : (
-        <ul className="not-prose space-y-6">
+        <ul className="not-prose space-y-4">
           {posts.map(({ slug, metadata, readingTime }) => (
             <li
               key={slug}
@@ -87,11 +87,11 @@ export default async function BlogIndexPage() {
                     {metadata.title}
                   </Link>
                 </h2>
-               
+
                 {metadata.summary ? (
-                  <p>{metadata.summary}</p>
+                  <p className="text-gray-800 dark:text-gray-300 mt-2">{metadata.summary}</p>
                 ) : null}
-                
+
                 {/* published date and read time */}
                 <div className="flex gap-2 items-center text-xs font-medium mt-4">
                   {metadata.date && (
@@ -102,7 +102,7 @@ export default async function BlogIndexPage() {
                   {readingTime && <div className="flex gap-2 items-center ">
                     <div className="h-1 w-1 rounded-full bg-black/50"></div>
                     <span>{readingTime}</span>
-                    </div>}
+                  </div>}
                 </div>
               </div>
             </li>
