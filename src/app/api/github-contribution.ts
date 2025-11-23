@@ -1,0 +1,24 @@
+import type { Activity } from "@/app/components/kibo-ui/contribution-graph";
+
+type GitHubContributionsResponse = {
+  contributions: Activity[];
+};
+
+export async function getGitHubContributions() {
+  try {
+    const res = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${"yagyaraj234"}?y=last`,
+      {
+        next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`Failed to fetch contributions: ${res.statusText}`);
+    }
+    const data = (await res.json()) as GitHubContributionsResponse;
+    return data.contributions;
+  } catch (error) {
+    console.error("Error fetching GitHub contributions:", error);
+    return [];
+  }
+}

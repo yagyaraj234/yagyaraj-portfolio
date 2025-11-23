@@ -1,0 +1,420 @@
+export const metadata = {
+  title: "Setting Up Supabase in Next.js: A Comprehensive Guide",
+  author: "Yagyaraj Lodhi",
+  date: "2025-10-19",
+  tags: ["nextjs", "react", "supabase"],
+  summary: "Why this blog exists and how posts are organized.",
+};
+
+# Setting Up Supabase in Next.js: A Comprehensive Guide
+
+---
+
+## Introduction to Supabase and Why Choose It
+
+Hey 👋 developers!
+Today we're diving into **Supabase**, an open-source alternative to Firebase that’s taking the developer community by storm.
+
+Think of Supabase as your **hosted backend-as-a-service**  it handles authentication, PostgreSQL database, file storage, vector embeddings, and more.
+
+### Why use Supabase?
+
+Here are some strong reasons:
+
+- **Powered by PostgreSQL:** Reliable, scalable, and full SQL support.
+- **Built-in Authentication:** Supports email, magic links, phone, and OAuth providers (Google, GitHub, etc.).
+- **Realtime Updates:** Perfect for live chats, dashboards, and notifications.
+- **File Storage with CDN:** Store and deliver media globally with caching.
+- **Automated Backups & Security:** Includes CAPTCHA and DDoS protection.
+- **Instant APIs:** Auto-generated RESTful APIs from your tables.
+- **Edge Functions:** Deploy serverless logic globally.
+- **Open Source:** Transparent, flexible, and community-driven.
+
+---
+
+## Creating a Supabase Account and Setting Up Your First Project
+
+1. Head over to **[supabase.com](https://supabase.com)** and sign up (Google, GitHub, or email).
+2. In the dashboard, click **New Project** to create your first project.
+3. Save your generated database password securely.
+4. Once the project is ready, copy your API keys from the **Project Settings → API** page.
+
+Add these credentials to your `.env.local` file:
+
+```bash
+# Supabase Credentials
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_ADMIN_KEY=your-service-role-secret
+```
+
+### Key Explanation
+
+- **Supabase URL:** The unique endpoint for your project (database, auth, storage, etc.)
+- **Anon Key:** Limited-access client-side key for public operations.
+- **Service Role Key:** Full-access key for secure server-side use only.
+
+---
+
+## Creating Tables in Supabase
+
+You can create tables in two ways:
+
+### 1. Using the Supabase UI
+
+1. Go to **Table Editor → Create New Table**.
+2. Add fields like `name` and `email`.
+3. Define relationships using foreign keys if needed.
+4. Click **Save** to create the table.
+
+> Great for quick setup or non-technical users.
+
+---
+
+### 2. Using SQL Commands
+
+Go to the **SQL Editor** in the Supabase dashboard and run the following:
+
+```sql
+-- Users Table
+create table users (
+  id uuid default uuid_generate_v4() primary key,
+  name text not null,
+  email text not null unique,
+  password text,
+  profile_pic text,
+  created_at timestamp with time zone default timezone('utc'::text, now())
+);
+
+-- Posts Table
+create table posts (
+  id uuid default uuid_generate_v4() primary key,
+  title text not null,
+  content text,
+  user_id uuid references users(id),
+  created_at timestamp with time zone default timezone('utc'::text, now())
+);
+```
+
+The `posts` table is linked to the `users` table with a foreign key.
+
+---
+
+## Setting Up Browser and Server Clients in Next.js
+
+First, create a new Next.js project:
+
+```bash
+npx create-next-app@latest
+```
+
+Then install the required dependencies:
+
+```bash
+npm install @supabase/ssr @supabase/supabase-js
+```
+
+Inside your project, create a `lib/` folder and add two files:
+
+### 1. `lib/browser-client.ts`
+
+```ts
+import { createBrowserClient } from "@supabase/ssr";
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+```
+
+### 2. `lib/server-client.ts`
+
+```ts
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+
+export async function createClient() {
+  const cookieStore = await cookies();
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            throw new Error("Cookies are not available");
+          }
+        },
+      },
+    }
+  );
+}
+```
+
+---
+
+## Adding Authentication and Middleware for Protected Routes
+
+You’ll need two middlewares:
+
+1. **App Middleware** – Protects all routes.
+2. **Session Update Middleware** – Refreshes user sessions.
+
+### 1. `middleware.ts`
+
+```ts
+import { type NextRequest, NextResponse } from "next/server";
+import { updateSession } from "@/lib/supabase/middleware";
+
+const public_routes = ["/sign-in", "/sign-up"];
+
+export function isPublicRoute(request: NextRequest) {
+  return public_routes.includes(request.nextUrl.pathname);
+}
+
+export async function middleware(request: NextRequest) {
+  const { user, response } = await updateSession(request);
+
+  if (!isPublicRoute(request) && !user) {
+    return NextResponse.redirect(new URL("/sign-in", request.url));
+  }
+
+  if (user) {
+    const path = request.nextUrl.pathname;
+    if (public_routes.includes(path)) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
+};
+```
+
+### 2. `lib/supabase/middleware.ts`
+
+```ts
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+
+export async function updateSession(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({ request });
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            request.cookies.set(name, value)
+          );
+          supabaseResponse = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  return { response: supabaseResponse, user };
+}
+```
+
+---
+
+## Adding Authentication in Your Application
+
+### 1. Create Actions for Sign Up and Sign In
+
+`actions/auth/auth.ts`
+
+```ts
+import { createClient } from "@/lib/supabase/browser-client";
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+export async function signup(data: FormData) {
+  const supabase = await createClient();
+  const { data: user, error } = await supabase.auth.signUp({
+    email: data.email,
+    password: data.password,
+  });
+
+  if (user) return { status: 200, data: user };
+  return { status: 400, data: null, error: error?.message };
+}
+
+export async function signin(data: FormData) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.signInWithPassword({
+    email: data.email,
+    password: data.password,
+  });
+
+  if (user) return { status: 200, data: user };
+  return { status: 400, data: null, error: error?.message };
+}
+```
+
+### 2. Insert User Data into the Users Table
+
+```ts
+const { data: user, error } = await supabase.auth.signUp({
+  email: data.email,
+  password: data.password,
+});
+
+if (user) {
+  supabase.from("users").insert({
+    email: data.email,
+    password: data.password,
+  });
+}
+```
+
+If this fails, it’s likely due to **Row-Level Security (RLS)** being enabled.
+
+---
+
+## Understanding Row Level Security (RLS) Policies
+
+RLS allows fine-grained access control for each row in your tables.
+
+### Example RLS for `users` Table
+
+```sql
+CREATE POLICY "Allow create and update access to authenticated users"
+ON users
+FOR INSERT, UPDATE, READ
+USING (auth.role() = id);
+```
+
+### Example RLS for `posts` Table
+
+```sql
+CREATE POLICY "Allow read access on posts table"
+ON posts
+FOR READ
+USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Allow delete access on posts table"
+ON posts
+FOR DELETE
+USING (auth.role() = 'admin' OR auth.uid() = user_id);
+```
+
+---
+
+## Performing CRUD Operations Using Next.js Actions
+
+### 1. Create a Post
+
+```ts
+export async function createPost(data) {
+  const supabase = createClient();
+  const { data: post, error } = await supabase.from("posts").insert([data]);
+
+  if (error) throw error;
+  return post;
+}
+```
+
+**Usage:**
+
+```ts
+await createPost({
+  title: "My First Post",
+  content: "This is the content of my first post.",
+  user_id: "user-uuid-here",
+});
+```
+
+---
+
+### 2. Read Posts
+
+```ts
+export async function getPosts() {
+  const supabase = createClient();
+  const { data: posts, error } = await supabase.from("posts").select("*");
+  if (error) throw error;
+  return posts;
+}
+```
+
+---
+
+### 3. Update a Post
+
+```ts
+export async function updatePost(postId, data) {
+  const { data: post, error } = await supabase
+    .from("posts")
+    .update(data)
+    .match({ id: postId });
+
+  if (error) throw error;
+  return post;
+}
+```
+
+---
+
+### 4. Delete a Post
+
+```ts
+export async function deletePost(postId) {
+  const { data, error } = await supabase
+    .from("posts")
+    .delete()
+    .match({ id: postId });
+
+  if (error) throw error;
+  return data;
+}
+```
+
+---
+
+## What’s Next
+
+Supabase offers much more:
+
+- Storage and CDN integration
+- Vector databases
+- Edge Functions
+- Serverless analytics
+
+This guide covered CRUD and authentication basics  but in upcoming articles, we’ll explore **advanced Supabase features** like vector embeddings, edge functions, and AI integrations.
+
+---

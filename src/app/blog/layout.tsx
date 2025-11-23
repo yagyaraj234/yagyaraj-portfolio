@@ -3,8 +3,36 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "../components/navbar";
-// If using Tailwind + typography, ensure plugin installed and configured:
-// className="prose dark:prose-invert prose-headings:mt-8"
+import { Metadata } from "next";
+import { userBlog } from "./constant";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Yagyaraj Lodhi's Blog",
+  openGraph: {
+    title: userBlog.siteTitle,
+    description: userBlog.siteDescription,
+    url: userBlog.website,
+    siteName: `${userBlog.displayName} Portfolio`,
+    images: [
+      {
+        url: userBlog.ogImage,
+        width: 1200,
+        height: 630,
+        alt: userBlog.siteTitle,
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: userBlog.siteTitle,
+    description: userBlog.siteDescription,
+    creator: `@${userBlog.username}`,
+    images: [userBlog.ogImage],
+  },
+};
 
 export default function BlogLayout({
   children,

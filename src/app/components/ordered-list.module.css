@@ -1,0 +1,23 @@
+.wrapper {
+  list-style: none;
+  counter-reset: counts 0;
+}
+
+.wrapper > :not([hidden]) ~ :not([hidden]),
+.wrapper ol {
+  margin-top: 4px;
+}
+
+.item {
+  counter-increment: counts 1;
+  display: flex;
+}
+
+.item::before {
+  content: counter(counts) ". ";
+  padding-right: 12px;
+  color: var(--colors-gray10);
+  width: 26px;
+  font-weight: 500;
+  flex-shrink: 0;
+}

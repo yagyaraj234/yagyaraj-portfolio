@@ -1,34 +1,115 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Outfit } from "next/font/google";
+import { Outfit, Shantell_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/app/components/theme-provider";
 import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/app/components/footer";
+import { USER } from "@/data/user.data";
+import localFont from "next/font/local";
+
 // Font settings
 const outfit = Outfit({
   subsets: ["latin"],
 });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter', // Defines a CSS variable named --font-inter
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
+const handwriting = Shantell_Sans({
+  weight: ["500"],
+  variable: "--font-handwriting",
+  subsets: ["latin"],
+});
+
+const sans = localFont({
+  src: [
+    {
+      path: "./fonts/sans/regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/sans/regular-italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/sans/bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/sans/bold-italic.woff2",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "./fonts/sans/medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/sans/medium-italic.woff2",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "./fonts/sans/semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/sans/semibold-italic.woff2",
+      weight: "600",
+      style: "italic",
+    },
+  ],
+  variable: "--font-sans",
+});
+
+const serif = localFont({
+  src: [
+    {
+      path: "./fonts/pp-editorial-new/regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/pp-editorial-new/bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-serif",
+});
 
 // Page metadata
+const siteTitle = `${USER.displayName} | ${USER.jobTitle}`;
+const siteDescription = USER.bio;
+
 export const metadata: Metadata = {
-  title: "Yagyaraj | Full-Stack Developer",
-  description:
-    "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-  metadataBase: new URL("https://yagyaraj.com"),
+  title: siteTitle,
+  description: siteDescription,
+  metadataBase: new URL(USER.website),
   openGraph: {
-    title: "Yagyaraj | Full-Stack Developer",
-    description:
-      "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-    url: "https://yagyaraj.com",
-    siteName: "Yagyaraj Portfolio",
+    title: siteTitle,
+    description: siteDescription,
+    url: USER.website,
+    siteName: `${USER.displayName} Portfolio`,
     images: [
       {
-        url: "https://yagyaraj.com/api/og",
+        url: USER.ogImage,
         width: 1200,
         height: 630,
-        alt: "Yagyaraj | Full-Stack Developer",
+        alt: siteTitle,
       },
     ],
     locale: "en_IN",
@@ -36,25 +117,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yagyaraj | Full-Stack Developer",
-    description:
-      "Passionate full-stack developer building elegant, performant solutions using React, Node.js, Firebase, and more.",
-    creator: "@yagyaraj234",
-    images: ["https://yagyaraj.com/api/og"],
+    title: siteTitle,
+    description: siteDescription,
+    creator: `@${USER.username}`,
+    images: [USER.ogImage],
   },
   alternates: {
-    canonical: "https://yagyaraj.com",
+    canonical: USER.website,
   },
-  keywords: [
-    "Yagyaraj",
-    "Full Stack Developer",
-    "React Developer",
-    "Next.js Portfolio",
-    "Software Engineer India",
-    "Firebase Developer",
-    "GCP Projects",
-  ],
+  keywords: USER.keywords,
 };
+
+
 
 export default function RootLayout({
   children,
@@ -70,8 +144,13 @@ export default function RootLayout({
       <ReactLenis root>
         <body
           className={cn(
+            handwriting.variable,
+            serif.variable,
+            sans.variable,
             outfit.className,
-            "antialiased min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4 selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
+            inter.variable,
+            jetbrainsMono.variable,
+            "antialiased  min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4 selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
           )}
         >
           <ThemeProvider
