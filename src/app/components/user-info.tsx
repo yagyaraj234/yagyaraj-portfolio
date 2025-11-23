@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { social_links } from "./static-content";
 import { USER } from "@/data/user.data";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/app/components/ui/tooltip"
 
 export function UserInfo() {
   return (
@@ -26,19 +31,27 @@ export function UserInfo() {
 
         <div className="flex gap-x-2">
           {social_links.map((link, idx) => (
-            <Link
-              key={idx}
-              href={link.url}
-              target="_blank"
-              className="rounded-full p-1"
-              aria-label={link.name}
-            >
-              <link.icon
-                aria-hidden="true"
-                size={16}
-                className="text-zinc-900 dark:text-zinc-300"
-              />
-            </Link>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  className="rounded-full p-1"
+                  aria-label={link.name}
+                >
+                  <link.icon
+                    aria-hidden="true"
+                    size={16}
+                    className="text-zinc-900 dark:text-zinc-300"
+                  />
+                </Link>
+              </TooltipTrigger>
+
+              <TooltipContent>
+                <p>{link.name}</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
         </div>
       </div>
