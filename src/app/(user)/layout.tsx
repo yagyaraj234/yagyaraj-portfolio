@@ -7,7 +7,7 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="mx-auto max-w-3xl">
       <Navbar />
       <UserInfo />
       {children}
