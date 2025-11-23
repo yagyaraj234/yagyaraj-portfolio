@@ -1,4 +1,5 @@
-
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 import { Annotation } from "@/app/components/mdx/annotation";
 import { InlineNote, Note } from "@/app/components/mdx/note";
@@ -16,7 +17,6 @@ import { SkipLink } from "@/app/components/mdx/skip-link";
 import { Wide } from "@/app/components/mdx/Wide";
 import { Aside } from "@/app/components/mdx/aside";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -44,26 +44,33 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     ol: OrderedList,
+    img: (props) => <div className="flex flex-col items-center justify-center my-2">
+      <img {...props} className=" select-none" />
+      <span className="text-xs text-gray-800 font-normal dark:text-gray-300">{props.alt}</span>
+    </div>,
     hr: () => (
-      <hr className="opacity-60 dark:border-zinc-800/80 border-dashed md:-mx-10 my-5 col-span-3! !w-max-[calc(100%+80px)]" />
+      <hr className="opacity-30 dark:border-zinc-800/80 border-dashed md:-mx-10 my-2 col-span-3! !w-max-[calc(100%+80px)]" />
     ),
     a: ({ href, ...props }) => {
       const isExternal = href?.startsWith("http");
       if (isExternal) {
         return (
-          <a
-            className="text-gray11 underline underline-offset-2 hover:text-green9"
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            {...props}
-          />
+          <div className="flex gap-2 items-center">
+            <a
+              className="underline text-blue-400 hover:text-blue-500 flex"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              {...props}
+            />
+            <ArrowRight className="size-4 -rotate-45" />
+          </div>
         );
       }
       return (
         <Link
           href={href}
-          className="text-gray11 underline underline-offset-2 hover:text-green9"
+          className="underline text-blue-300 hover:text-blue-400"
           {...props}
         />
       );

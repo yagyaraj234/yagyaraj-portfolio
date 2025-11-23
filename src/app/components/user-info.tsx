@@ -31,10 +31,11 @@ export function UserInfo() {
 
         <div className="flex gap-x-2">
           {social_links.map((link, idx) => (
-            <Tooltip>
+            <Tooltip
+              key={idx}
+            >
               <TooltipTrigger asChild>
                 <Link
-                  key={idx}
                   href={link.url}
                   target="_blank"
                   className="rounded-full p-1"

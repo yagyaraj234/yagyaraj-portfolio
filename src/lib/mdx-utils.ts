@@ -9,6 +9,7 @@ export interface PostMetadata {
   tags?: string[];
   summary?: string;
   slug: string;
+  ogImage?: string;
 }
 
 export function getPostMetadata(slug: string): PostMetadata | null {
