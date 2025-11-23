@@ -82,13 +82,13 @@ export default async function Page({
         {postMetadata?.title}
       </PostTitle>
 
-      <PostDescription className="mb-4 text-xl ">
+      {/* <PostDescription className="mb-4 text-lg ">
         {postMetadata?.summary}
-      </PostDescription>
+      </PostDescription> */}
 
       <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
         <PostUpdatedText>
-          Published on {publishDate} by {postMetadata?.author || "Yagyaraj"}
+          Published on {publishDate}
         </PostUpdatedText>
       </div>
 
