@@ -1,15 +1,14 @@
 export const metadata = {
   title: "Next.Js 16",
   author: "Yagyaraj Lodhi",
-  date: "2025-10-19",
+  date: "2025-11-22",
   tags: ["nextjs", "react", "nextjs16"],
+  ogImage: "https://yagyaraj.com/post/nextjs-16/og.png",
   summary:
-    "Explore the stable release of Next.js 16. We break down game-changing features like Partial Pre-Rendering (PPR), 'use cache' for Cache Components, and the new stable React Compiler support. Learn how to upgrade and optimize your Next.js application today.",
+    "Explore the stable release of Next.js 16. We break down game-changing features like Partial Pre-Rendering (PPR)",
 };
 
-# NEXT.JS 16
-
-hey, 👋 developer’s today we’re diving into NextJS version 16, recently launched what are new features and improvement was in this release and how this can benefit you nextjs application
+hey, 👋 developer’s today we’re diving into NextJS version 16, recently launched what are new features and improvement was in this release and how this can benefit you nextjs application
 
 <br />
 there are multiple releases happened in version 16. some of the features that are
@@ -22,6 +21,7 @@ key changes
 - Cache Component
 - React Compiler support
 
+---
 ## Partial Pre-Rendering
 
 Partial Pre-Rendering is a technique where we can put some part of page to render after some for dynamic data and serve as a HTML directly from the server
@@ -29,18 +29,22 @@ Partial Pre-Rendering is a technique where we can put some part of page to rende
 <br />
 
 for example i have one product page there are some data that is dynamic and some are static for example a product page
-
 where some products are top 1 hour purchase that is dynamic and products those will
-be static ( changes once -twice a week )
+be static ( changes once/twice a week )
 
-<br />
+<ProblemStatement>
+Even for same data we have to fetch from the server and render the page
+</ProblemStatement>
+
 in this page we can implement PPR so to achieve this we have to wrap my dynamic component
 with React Suspense boundary as pass one fallback that can be used to show loading
 Skeleton ui until the dynamic data loaded
 
-Example  Partial Pre-Rendering in action
+<br/>
 
-let’s break down what’s happening in this video
+Example  Partial Pre-Rendering in action:
+<br/>
+
 
 <video
   controls
@@ -58,9 +62,15 @@ let’s break down what’s happening in this video
   instead.
 </video>
 
+<br/>
+
 let’s break down what’s happening in this video
 
+<br/>
+
 at the top, you see the **static content** section  this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching  just fast render straight from the cache or CDN.
+
+<br/>
 
 below that, you’ll find the **dynamic content** section  wrapped inside a React `Suspense` boundary.
 
@@ -85,11 +95,13 @@ this is the core idea behind **Partial Pre-Rendering (PPR)**
 
 _next.js serves your static shell instantly while keeping dynamic sections truly dynamic._
 
+---
+
 ## Cache Components
 
 cache components are features provide to cache the component for faster loading the component by using `use cache` directive at the top of component like below:
 
-```
+```tsx
 'use cache';
 
 export default function ProductCart({ type = "clothing" }: { type: string }) {
@@ -180,6 +192,8 @@ export async function getProducts() {
 }
 ```
 
+---
+
 ## **React Compiler Support**
 
 React Compiler is a tool from the React team designed to automatically optimize your components, reducing the need for manual memoization with `useMemo` and `useCallback`.
@@ -205,3 +219,5 @@ Next.js 16 is a significant step forward, moving key performance features from e
 - **The React Compiler** automatically does the performance tuning (memoization) that we all used to do manually.
 
 These features combined mean you can build faster, more complex, and more efficient applications with less boilerplate code. It's time to upgrade!
+
+---
