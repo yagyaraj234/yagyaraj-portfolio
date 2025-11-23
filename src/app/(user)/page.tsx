@@ -3,6 +3,7 @@ import { Journey } from "./_components/journey";
 import OpenToWork from "./_components/open-to-work";
 import { Projects } from "./_components/projects";
 import { skills } from "@/app/components/static-content";
+import { GitHubContributions } from "@/app/components/github-contributions";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
         </div>
       </div>
 
+      <GitHubContributions />
       <div className="mt-8">
         <h2 className="font-semibold lowercase">contact</h2>
         <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
