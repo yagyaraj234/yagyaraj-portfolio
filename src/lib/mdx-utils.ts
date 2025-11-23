@@ -33,6 +33,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
           /summary:\s*["']([^"']+)["']/
         );
         const tagsMatch = metadataString.match(/tags:\s*\[([^\]]*)\]/);
+        const ogImageMatch = metadataString.match(/ogImage:\s*["']([^"']+)["']/);
 
         const metadata = {
           title: titleMatch ? titleMatch[1] : "Untitled Post",
@@ -45,6 +46,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
                 .map((tag) => tag.trim().replace(/["']/g, ""))
             : [],
           slug,
+          ogImage: ogImageMatch ? ogImageMatch[1] : undefined,
         };
 
         return metadata;
