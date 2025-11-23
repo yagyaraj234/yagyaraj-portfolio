@@ -55,16 +55,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const isExternal = href?.startsWith("http");
       if (isExternal) {
         return (
-          <div className="flex gap-2 items-center">
-            <a
-              className="underline text-blue-400 hover:text-blue-500 flex"
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              {...props}
-            />
-            <ArrowRight className="size-4 -rotate-45" />
-          </div>
+          <a
+            className="hover:underline text-blue-500 inline-flex underline-offset-4 decoration-wavy decoration-blue-500"
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            {...props}
+          />
         );
       }
       return (

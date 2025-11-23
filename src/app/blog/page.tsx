@@ -69,46 +69,48 @@ export default async function BlogIndexPage() {
   const posts = await readPosts();
 
   return (
-    <div className="mt-8 flex-1">
-      <div className="text-2xl font-semibold mb-4">Writing. 👻</div>
+    <div className="mt-4 flex-1">
+      <div className="text-2xl font-semibold mb-8 underline decoration-wavy decoration-blue-500 underline-offset-4">Writing. 👻</div>
 
-      {posts.length === 0 ? (
-        <p>No posts yet.</p>
-      ) : (
-        <ul className="not-prose space-y-4">
-          {posts.map(({ slug, metadata, readingTime }) => (
-            <li
-              key={slug}
-              className="md:pb-6 pb-2 flex justify-between gap-2 max-md:flex-col"
-            >
-              <div>
-                <h2 className="text-xl max-md:text-lg font-semibold cursor-pointer">
-                  <Link href={`/blog/${slug}`} className="hover:underline cursor-pointer">
-                    {metadata.title}
-                  </Link>
-                </h2>
+      {
+        posts.length === 0 ? (
+          <p>No posts yet.</p>
+        ) : (
+          <ul className="not-prose space-y-4">
+            {posts.map(({ slug, metadata, readingTime }) => (
+              <li
+                key={slug}
+                className="md:pb-6 pb-2 flex justify-between gap-2 max-md:flex-col"
+              >
+                <div>
+                  <h2 className="text-xl max-md:text-lg font-semibold cursor-pointer">
+                    <Link href={`/blog/${slug}`} className="hover:underline cursor-pointer">
+                      {metadata.title}
+                    </Link>
+                  </h2>
 
-                {metadata.summary ? (
-                  <p className="text-gray-800 dark:text-gray-300 mt-2">{metadata.summary}</p>
-                ) : null}
+                  {metadata.summary ? (
+                    <p className="text-gray-800 dark:text-gray-300 mt-2">{metadata.summary}</p>
+                  ) : null}
 
-                {/* published date and read time */}
-                <div className="flex gap-2 items-center text-xs font-medium mt-4">
-                  {metadata.date && (
-                    <span>
-                      {new Date(metadata.date).toLocaleDateString()}
-                    </span>
-                  )}
-                  {readingTime && <div className="flex gap-2 items-center ">
-                    <div className="h-1 w-1 rounded-full bg-black/50"></div>
-                    <span>{readingTime}</span>
-                  </div>}
+                  {/* published date and read time */}
+                  <div className="flex gap-2 items-center text-xs font-medium mt-4">
+                    {metadata.date && (
+                      <span>
+                        {new Date(metadata.date).toLocaleDateString()}
+                      </span>
+                    )}
+                    {readingTime && <div className="flex gap-2 items-center ">
+                      <div className="h-1 w-1 rounded-full bg-black/50"></div>
+                      <span>{readingTime}</span>
+                    </div>}
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div >
   );
 }
