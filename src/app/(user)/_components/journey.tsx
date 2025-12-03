@@ -15,6 +15,52 @@ const RavaAICard = () => {
         priority
         unoptimized
       />
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 normal-case mt-4">
+        Rava AI is an agentic AI-powered go-to-market (GTM) platform for
+        startups, automating strategy, marketing content, and investor pitch
+        decks.
+      </p>
+    </div>
+  );
+};
+const SkillRazrCard = () => {
+  return (
+    <div>
+      <Image
+        src="/tooltip/skillrazr2.png"
+        alt="SkillRazr"
+        width={100}
+        height={360}
+        className="rounded-md w-full h-max"
+        loading="eager"
+        priority
+        unoptimized
+      />
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 normal-case mt-4">
+        SkillRazr offers online tech training, internships, and skill
+        development programs designed to prepare students for jobs.
+      </p>
+    </div>
+  );
+};
+
+const WavemakerCard = () => {
+  return (
+    <div>
+      <Image
+        src="/tooltip/skillrazr2.png"
+        alt="SkillRazr"
+        width={100}
+        height={360}
+        className="rounded-md w-full h-max"
+        loading="eager"
+        priority
+        unoptimized
+      />
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 normal-case mt-4">
+        WaveMaker offers a low-code development platform for professional
+        developers to build web and mobile applications using open standards
+      </p>
     </div>
   );
 };
@@ -76,7 +122,15 @@ export function Journey() {
                     target="_blank"
                     className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
                   >
-                    skillrazr
+                    <Preview
+                      containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+                      content={<SkillRazrCard />}
+                    >
+                      {" "}
+                      <span className="cursor-pointer font-bold">
+                        SkillRazr
+                      </span>
+                    </Preview>
                   </Link>
                 </div>
               </div>
