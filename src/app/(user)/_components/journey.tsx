@@ -1,4 +1,23 @@
+import { Preview } from "@/app/components/ui/preview";
 import Link from "next/link";
+import Image from "next/image";
+
+const RavaAICard = () => {
+  return (
+    <div>
+      <Image
+        src="/tooltip/ravaai.png"
+        alt="Rava AI"
+        width={100}
+        height={360}
+        className="rounded-md w-full h-max"
+        loading="eager"
+        priority
+        unoptimized
+      />
+    </div>
+  );
+};
 
 export function Journey() {
   return (
@@ -20,7 +39,13 @@ export function Journey() {
                     target="_blank"
                     className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
                   >
-                    rava ai
+                    <Preview
+                      containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+                      content={<RavaAICard />}
+                    >
+                      {" "}
+                      <span className="cursor-pointer font-bold">Rava AI</span>
+                    </Preview>
                   </Link>
                 </div>
               </div>
