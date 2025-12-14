@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^2.0.46",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.0.1",
@@ -19,6 +20,7 @@
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.7.2",
+    "ai": "^5.0.113",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.19",
