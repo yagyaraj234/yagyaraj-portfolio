@@ -14,9 +14,9 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter', // Defines a CSS variable named --font-inter
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter", // Defines a CSS variable named --font-inter
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -128,8 +128,6 @@ export const metadata: Metadata = {
   keywords: USER.keywords,
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -150,7 +148,7 @@ export default function RootLayout({
             outfit.className,
             inter.variable,
             jetbrainsMono.variable,
-            "antialiased  min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4 selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
+            "antialiased  min-h-screen relative scrollbar-none bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl p-4 selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
           )}
         >
           <ThemeProvider
@@ -160,7 +158,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </ThemeProvider>
           <Analytics />
         </body>

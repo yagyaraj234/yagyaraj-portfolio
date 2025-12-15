@@ -1,10 +1,60 @@
-import { ChatHeader } from "./_components/header";
+"use client";
 
-export default function GeneratePRD() {
+import AI_Input_Search from "@/components/kokonutui/ai-input-search";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
+import { useState } from "react";
+import { Streamdown } from "streamdown";
+
+export default function Chat() {
+  const [input, setInput] = useState("");
+  const { messages, sendMessage, isLoading } = useChat({
+    transport: new DefaultChatTransport({
+      api: "/api/generate",
+    }),
+  });
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (input.trim() !== "") {
+      sendMessage({ text: input });
+      setInput("");
+    }
+  }
   return (
-    <main className="flex flex-col gap-4">
-      <ChatHeader />
-      <h1>Generate PRD</h1>
-    </main>
+    <div className="flex flex-col w-full  py-4 mx-auto stretch h-full scrollbar-thin scrollbar-none relative font-inter ">
+      <div className="flex-1 overflow-y-auto  space-y-4 mb-40 ">
+        {messages.map((message) => (
+          <div key={message.id} className="whitespace-pre-wrap">
+            {message.role === "user" ? "User: " : "AI: "}
+            <br />
+            {message.parts.map((part, i) => {
+              switch (part.type) {
+                case "text":
+                  return (
+                    <Streamdown
+                      key={`${message.id}-${i}`}
+                      isAnimating={isLoading && message.role === "assistant"}
+                    >
+                      {part.text}
+                    </Streamdown>
+                  );
+              }
+            })}
+          </div>
+        ))}
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="fixed bottom-0 left-0 right-0 z-10"
+      >
+        <AI_Input_Search
+          value={input}
+          setValue={setInput}
+          submit={handleSubmit}
+        />
+      </form>
+    </div>
   );
 }

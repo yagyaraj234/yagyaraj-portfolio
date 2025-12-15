@@ -1,15 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateText } from "ai";
+import {
+  generateText,
+  convertToModelMessages,
+  streamText,
+  UIMessage,
+} from "ai";
 import { google } from "@ai-sdk/google";
 import { SYSTEM_PROMPT } from "./constant";
 
 export async function POST(req: NextRequest) {
-  const { query } = await req.json();
-  const { text } = await generateText({
-    model: google("gemini-2.0-flash-exp"),
+  const { messages }: { messages: UIMessage[] } = await req.json();
+
+  const result = streamText({
+    model: google("gemini-2.5-flash"),
     system: SYSTEM_PROMPT,
-    prompt: query,
+    messages: convertToModelMessages(messages),
   });
 
-  return NextResponse.json({ text });
+  return result.toUIMessageStreamResponse();
 }
