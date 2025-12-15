@@ -1,7 +1,7 @@
-import { Check, Copy, Pen, Pencil } from "lucide-react";
 import { useState } from "react";
-
 import { Streamdown } from "streamdown";
+import { Check, Copy, Pencil } from "lucide-react";
+import ToolTip from "@/app/components/tool-tip";
 
 export default function UserMessage({ message }: { message: string }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,11 +23,17 @@ export default function UserMessage({ message }: { message: string }) {
       <div className="group-hover:visible invisible mt-2 transition-all duration-500 ease-in-out">
         <div className="flex gap-4 items-center justify-end">
           {copied ? (
-            <Check size={16} className="cursor-pointer" />
+            <ToolTip content="Copied">
+              <Check size={16} className="cursor-pointer" />
+            </ToolTip>
           ) : (
-            <Copy size={16} className="cursor-pointer" onClick={copy} />
+            <ToolTip content="Copy">
+              <Copy size={16} className="cursor-pointer" onClick={copy} />
+            </ToolTip>
           )}
-          <Pencil size={16} className="cursor-pointer" />
+          <ToolTip content="Edit">
+            <Pencil size={16} className="cursor-pointer" />
+          </ToolTip>
         </div>
       </div>
     </div>
