@@ -78,7 +78,7 @@ h4 {
 
 /* Pre/Code block styles */
 .inline-code:not(pre > code) {
-  @apply bg-gray-200 dark:bg-zinc-800 px-1 text-sm;
+  @apply bg-gray-200 dark:bg-zinc-800 px-1 text-sm dark:text-zinc-50;
 }
 /*
   ---break---

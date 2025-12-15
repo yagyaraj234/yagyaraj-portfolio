@@ -5,6 +5,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useState } from "react";
 import { Streamdown } from "streamdown";
+import UserMessage from "./_components/user-message";
 
 export default function Chat() {
   const [input, setInput] = useState("");
@@ -26,21 +27,28 @@ export default function Chat() {
       <div className="flex-1 overflow-y-auto  space-y-4 mb-40 ">
         {messages.map((message) => (
           <div key={message.id} className="whitespace-pre-wrap">
-            {message.role === "user" ? "User: " : "AI: "}
+            {/* {message.role === "user" ? "User: " : "AI: "} */}
             <br />
-            {message.parts.map((part, i) => {
-              switch (part.type) {
-                case "text":
-                  return (
-                    <Streamdown
-                      key={`${message.id}-${i}`}
-                      isAnimating={isLoading && message.role === "assistant"}
-                    >
-                      {part.text}
-                    </Streamdown>
-                  );
-              }
-            })}
+            <div
+              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            >
+              {message.parts.map((part, i) => {
+                switch (part.type) {
+                  case "text":
+                    if (message.role === "user") {
+                      return <UserMessage message={part.text} />;
+                    }
+                    return (
+                      <Streamdown
+                        key={`${message.id}-${i}`}
+                        isAnimating={isLoading && message.role === "assistant"}
+                      >
+                        {part.text}
+                      </Streamdown>
+                    );
+                }
+              })}
+            </div>
           </div>
         ))}
       </div>

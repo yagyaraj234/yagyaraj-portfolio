@@ -43,8 +43,8 @@ export default function AI_Input_Search({
   };
 
   return (
-    <div className="w-full py-4 dark:bg-[#121212]">
-      <div className="relative max-w-xl w-full mx-auto">
+    <div className="w-full py-4 dark:bg-[#121212] bg-white">
+      <div className="relative max-w-2xl w-full mx-auto">
         <div
           role="textbox"
           tabIndex={0}
