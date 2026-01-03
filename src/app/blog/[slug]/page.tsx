@@ -93,7 +93,7 @@ export default async function Page({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-4 text-"
+        className="mb-4"
       >
         {postMetadata?.title}
       </PostTitle>
