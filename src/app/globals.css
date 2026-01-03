@@ -2,7 +2,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -67,14 +66,11 @@ body {
   }
 }
 
-h1,
 h2,
 h3,
 h4 {
   text-wrap: balance;
 }
-
-
 
 /* Pre/Code block styles */
 .inline-code:not(pre > code) {

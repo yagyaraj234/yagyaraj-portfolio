@@ -22,7 +22,13 @@ export async function generateMetadata({
     };
   }
 
-  const { title, summary, author = "Yagyaraj", tags = [], ogImage = "" } = postMetadata;
+  const {
+    title,
+    summary,
+    author = "Yagyaraj",
+    tags = [],
+    ogImage = "",
+  } = postMetadata;
   const ogImageUrl = ogImage
     ? ogImage.startsWith("http")
       ? ogImage
@@ -70,10 +76,10 @@ export default async function Page({
   const postMetadata = getPostMetadata(slug);
   const publishDate = postMetadata?.date
     ? new Date(postMetadata.date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
     : new Date().toLocaleDateString();
 
   return (
@@ -82,7 +88,7 @@ export default async function Page({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-4"
+        className="mb-4 text-"
       >
         {postMetadata?.title}
       </PostTitle>
@@ -92,9 +98,7 @@ export default async function Page({
       </PostDescription> */}
 
       <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
-        <PostUpdatedText>
-          Published on {publishDate}
-        </PostUpdatedText>
+        <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
       </div>
 
       <article className="prose prose-zinc dark:prose-invert max-w-none">
