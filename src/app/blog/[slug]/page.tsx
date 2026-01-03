@@ -7,6 +7,11 @@ import {
   PostDescription,
   PostUpdatedText,
 } from "@/app/components/Post";
+import { Callout } from "@/app/components/mdx/callout";
+import { Aside } from "@/app/components/mdx/aside";
+import { Annotation } from "@/app/components/mdx/annotation";
+import { Columns, ColumnRight } from "@/app/components/mdx/columns";
+import { Note, InlineNote } from "@/app/components/mdx/note";
 
 export async function generateMetadata({
   params,
@@ -102,7 +107,17 @@ export default async function Page({
       </div>
 
       <article className="prose prose-zinc dark:prose-invert max-w-none">
-        <Post />
+        <Post
+          components={{
+            Callout,
+            Aside,
+            Annotation,
+            Columns,
+            ColumnRight,
+            Note,
+            InlineNote,
+          }}
+        />
       </article>
     </div>
   );

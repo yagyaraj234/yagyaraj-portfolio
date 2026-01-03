@@ -10,125 +10,141 @@ export const metadata = {
     "Learn how to run cron jobs in Next.js using serverless and serverful deployments. Understand why node-cron fails on Vercel and what works instead.",
 };
 
-Before diving into how to set up cron jobs, let me explain what cron jobs are and how they are useful in building systems.
+Before diving into how to setup cron jobs. let me explain you what are **cron-jobs** are how they are useful in building in systems.
+A cron job is some kind of <Annotation type="underline">**schedular**</Annotation> which will run automatically at specific interval like hourly, daily, weekly, or at custom schedules.
 
-A **cron job** is a scheduler that runs automatically at specific intervals—such as hourly, daily, weekly, or at custom schedules.
+<Aside label="Real-world Use Cases">
+  - Sending daily emails - Charging subscriptions - Syncing data between systems
+  - Running backups - Cleaning expired data - Triggering long-running workflows
+</Aside>
 
-### Real-world Use Cases:
+In simple terms any repeative task we want to do in specific interval we run setup cron job for it.
 
-- Sending daily emails
-- Charging subscriptions
-- Syncing data between systems
-- Running backups
-- Cleaning expired data
-- Triggering long-running workflows
+![](/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/og.png)
 
-In simple terms, any repetitive task you want to perform at specific intervals can be handled by a cron job. Cron is not just about _when_ something runs; it's about guaranteeing that it eventually does, even when things fail.
+<br />
 
-## Why Can't Next.js Run Cron Jobs by Default?
+> Cron is not about when something runs
+> it's about **_guaranteeing that it eventually does_**, even when things fail.
 
-It's a common misconception that Next.js "can't" run cron jobs. In reality, it entirely depends on **where and how** your Next.js application is deployed.
+## Why Nextjs Can't run Cron-jobs by default?
 
-The confusion exists because people often mix up the Next.js framework with the infrastructure it runs on. Next.js itself doesn't decide whether cron jobs work; the deployment model does.
+It's not true that we can't run cron-jobs in nextjs it's entirely depends on where and how your next.js application is deployed. Most confusion around cron jobs exists because people mix up next.js with the infrastructure it runs on. Nextjs itself does not decide whether cron jobs work or not. the deployment model does. To understand this, you first need to know the difference between Serverless and a Serverful servers.
 
-To understand this, you first need to know the difference between **Serverless** and **Serverful** architectures.
+<Columns>
+<div>
+### What is Serverless architecture
+In a serverless architecture your app is not running all the time like our serverful servers. The server starts only when request received to server will be up and down once request is served. this means there is no long-running process that stay alive in background to run cron-jobs. 
+Platforms like Vercel, Netlify, AWS lambda, and Cloudflare workers work this way.
+</div>
 
-### What is Serverless Architecture?
+<div>
+### What are Serverful Server
+A serverful server is a server that runs continuously, twenty-four by seven. it does not shut down when there are no users. the node.js process stays alive, memory is preserved, and background tasks keep running.
+</div>
+</Columns>
 
-In a serverless architecture (like Vercel, Netlify, AWS Lambda, or Cloudflare Workers), your app isn't running all the time. The server starts only when a request is received and shuts down immediately after the request is served. This means there is no long-running process that stays alive in the background to monitor and execute schedules.
+<Callout type="warning">
+  **Why node-cron does not work in serverless Next.js** Cron jobs need a process
+  that stays alive and keeps checking the current time. node-cron works by
+  attaching itself to the node.js event loop and running tasks when the time
+  matches a schedule. this works only if the process never stops.
+</Callout>
 
-### Why `node-cron` Doesn't Work in Serverless Next.js
+In serverless environments, the process starts, handles one request, and then gets destroyed. so even if you register a cron job using node-cron, it runs only once during that request and then disappears. there is no error and no warning, which makes it confusing for beginners. the cron job does not fail it simply never had a chance to run.
+this is reason why using node-cron inside a next.js app deployed on Vercel, Netlify, or AWS Lambda does not work.
 
-Cron jobs need a process that stays alive and continuously checks the current time. `node-cron` works by attaching itself to the Node.js event loop.
+<Callout type="tip">
+  **Serverful Examples:** Running next.js on a virtual machine, inside a docker
+  container, or using a process manager like pm2. In these setups, the
+  application behaves like a traditional backend server because the process
+  never stops.
+</Callout>
 
-In serverless environments, the process starts, handles one request, and is then destroyed. Even if you register a cron job using `node-cron`, it only exists for the duration of that single request. It doesn't "fail"; it simply never gets a chance to run.
+### So can next.js run cron jobs or not?
 
-### What is a Serverful Server?
+**Short Answer:** Yes next.js can run cron jobs, but only when it is deployed on a serverful server. Next.js running on serverless platforms cannot
+run cron jobs by itself because there is no always-running process.
 
-A serverful server (like a Virtual Machine, Docker container, or a process managed by PM2) runs 24/7. It doesn't shut down when there are no users. The Node.js process stays alive, memory is preserved, and background tasks can run continuously. In this environment, `node-cron` works perfectly.
+<br />
+Now that it's clear why Next.js behaves differently based on deployment, let's
+look at working code examples for both cases. The core idea is simple: in
+serverless, cron jobs are triggered from outside your app, while in a serverful
+server, cron jobs run inside your Node.js process.
 
-## So, Can Next.js Run Cron Jobs?
+## Running cron jobs in Serverless NextJs App
 
-**Yes**, but with a caveat:
+When you are deploying your app in serverless architecture you need some kind of scheduler which can hit some endpoint at specific time in your application like Vercel. We have options like AWS Lambda and Amazon EventBridge Scheduler, or for Google cloud platforms like Cloud Functions or Pub/Sub.
 
-- **Serverful:** Next.js can run native cron jobs (like `node-cron`) because the process stays alive.
-- **Serverless:** Next.js cannot run native cron jobs internally. You must use an external trigger.
-
----
-
-## 1. Running Cron Jobs in a Serverless Next.js App
-
-When deploying to a serverless architecture, you need an external scheduler to "ping" an endpoint in your application at specific times.
-
-### Step 1: Create an API Route
-
-Create an endpoint that performs the task you want to schedule.
+Below example covers running cron job using Next.js API route + Vercel config file. To create a job we need to create an endpoint in our Next.js application:
 
 ```ts
 // app/api/daily/route.ts
-import { RefillUserCredits } from "@/api/user/credits";
+
+import { RefilUserCredits } from "@/api/user/credits";
 
 export function GET(request: Request) {
   console.log("CRON RAN AT:", new Date().toISOString());
 
-  // Perform the task (e.g., refilling tokens)
-  RefillUserCredits();
+  RefilUserCredits(); // a task which needs to perform like refilling tokens
 
-  return new Response("Cron job running successfully");
+  return new Response("Cron job running");
 }
 ```
 
-### Step 2: Configure Vercel Crons
-
-If you are using Vercel, you can create a `vercel.json` file at the root of your project to trigger this route.
+and create one `vercel.json` file at root of application
 
 ```json
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
-      "path": "/api/daily",
-      "schedule": "0 0 * * *"
+      "path": "/api/daily", // specify the api route you created
+      "schedule": "0 0 * * *" // when you want to run this route
     }
   ]
 }
 ```
 
-Now, when you deploy, Vercel will automatically hit that endpoint according to your cron schedule.
+now you are good to go just deploy you app this cron job will run in your application and perform action at specific time.
 
----
+## Logs of running cron job with time
 
-## 2. Running Cron Jobs in a Serverful Environment
+![logs from vercel schedular](/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/api-log.png)
 
-If your app is on a dedicated server or VPS, you can use `node-cron` directly.
+## Serverful Server using node-cron
 
-### Step 1: Install Dependency
+When your next.js app is deployed on a <Annotation type="underline">serverful</Annotation> server, the node.js process runs continuously. because the process never shuts down, you can safely register cron jobs using node-cron.
+the first step is to install the dependency.
 
 ```bash
 npm install node-cron
 ```
 
-### Step 2: Register the Jobs
-
-You need to ensure the cron jobs start when the server starts. You can use the `instrumentation.ts` file (or a custom `server.ts`) to initialize them.
+now create a place where all cron jobs live. this code must run once when the server starts, not on every request. Create server.ts file in root directory of your application
 
 ```ts
-// server.ts (at the root)
 export async function register() {
-  // Ensure this only runs in the Node.js runtime
+  // only run the the runtime is nodejs
   if (process.env.NEXT_RUNTIME === "nodejs") {
     const { initCronJobs } = await import("./app/server");
+    // start cron jobs / server
     initCronJobs();
   }
 }
 ```
 
-### Step 3: Define the Cron Logic
+**Environment** check ensures that cron jobs start only when your app is running as a node.js server and not in edge or serverless runtimes.
 
-Create a dedicated file to manage your tasks.
+<InlineNote>
+  <Note>
+    This check is crucial to prevent cron jobs from trying to run in the Edge
+    runtime where node-cron isn't supported.
+  </Note>
+</InlineNote>
+inside app directory create `server/index.ts` file
 
 ```ts
-// app/server/index.ts
 import cron from "node-cron";
 import { createRoom } from "./room";
 
@@ -137,8 +153,8 @@ const tasks: ReturnType<typeof cron.schedule>[] = [];
 export async function registerReportCron() {
   console.log("[Cron] Registering Report Cron...");
 
-  // Schedule to run every day at midnight (00:00)
-  const task = cron.schedule("0 0 * * *", async () => {
+  // Original (Every minute): "0 \* \* \* \* "
+  const task = cron.schedule("0 0 \* \* \*", async () => {
     console.log("[Cron] Report Job Triggered");
     try {
       await createRoom("anon-lion-gxn");
@@ -148,7 +164,7 @@ export async function registerReportCron() {
   });
 
   tasks.push(task);
-  console.log("[Cron] Report Job Scheduled");
+  console.log("[Cron] Report Job Scheduled (Runs every day at 00:00)");
 }
 
 export function initCronJobs() {
@@ -156,17 +172,15 @@ export function initCronJobs() {
 }
 ```
 
-In this setup, your Next.js app behaves like a traditional backend. As long as the server is running, your cron jobs will execute as scheduled.
+in this setup, next.js behaves like a traditional backend. as long as the server is up, cron jobs keep running in the background.
 
 ### References:
 
 - [https://vercel.com/docs/cron-jobs](https://vercel.com/docs/cron-jobs)
 - [https://www.locofy.ai/blog/serverful-vs-serverless](https://www.locofy.ai/blog/serverful-vs-serverless)
 
-Thank you for reading till the end. if you find this useful drop a comment and like a post.
-📩 mail: hey@yagyaraj.com
-linkedin: https://linkedin.com/in/yagyaraj234
-github: https://github.com/yagyaraj234
-twitter: https://x.com/yagyaraj234
+Thank you for reading till the end.
 
-learn more about me here: https://yagyaraj.com
+<br />
+
+[linkedin](https://linkedin.com/in/yagyaraj234) [github](https://github.com/yagyaraj234) [twitter](https://x.com/yagyaraj234)

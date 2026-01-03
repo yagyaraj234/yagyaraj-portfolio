@@ -16,6 +16,7 @@ import { Heading } from "@/app/components/mdx/heading";
 import { SkipLink } from "@/app/components/mdx/skip-link";
 import { Wide } from "@/app/components/mdx/Wide";
 import { Aside } from "@/app/components/mdx/aside";
+import { Callout } from "@/app/components/mdx/callout";
 import { cn } from "@/lib/utils";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -32,9 +33,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <Heading level="h3" className="text-xl font-medium my-2" {...props} />
     ),
     p: (props) => (
-      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans text-base" {...props} />
+      <p
+        className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans text-base"
+        {...props}
+      />
     ),
     strong: (props) => <strong className="font-medium" {...props} />,
+    blockquote: (props) => (
+      <blockquote
+        className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 my-4 italic text-zinc-700 dark:text-zinc-300"
+        {...props}
+      />
+    ),
     code: (props) => <code className="inline-code" {...props} />,
     pre: CodeBlock,
     ul: (props) => (
@@ -44,10 +54,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     ol: OrderedList,
-    img: (props) => <div className="flex flex-col items-center justify-center my-2">
-      <img {...props} className=" select-none" />
-      <span className="text-xs text-gray-800 font-normal dark:text-gray-300">{props.alt}</span>
-    </div>,
+    img: (props) => (
+      <div className="flex flex-col items-center justify-center my-2">
+        <img {...props} className=" select-none" />
+        <span className="text-xs text-gray-500 pt-1  font-normal dark:text-gray-300">
+          {props.alt}
+        </span>
+      </div>
+    ),
     hr: () => (
       <hr className="opacity-30 dark:border-zinc-800/80 border-dashed md:-mx-10 my-2 col-span-3! !w-max-[calc(100%+80px)]" />
     ),
@@ -75,12 +89,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     InlineNote,
     Note,
     Annotation,
-    Callout: (props) => (
-      <div
-        className="bg-gray3 border border-borderStrong border-dashed rounded-lg px-4 py-3.5 relative"
-        {...props}
-      />
-    ),
+    Callout,
     ProblemStatement: (props) => {
       return (
         <div className="rounded-t-lg my-4">

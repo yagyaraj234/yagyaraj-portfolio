@@ -3,14 +3,19 @@
 import { useRef, useEffect } from "react";
 import { useInView } from "motion/react";
 import { annotate } from "rough-notation";
-import type { RoughAnnotationType, RoughAnnotation } from "rough-notation/lib/model";
+import type {
+  RoughAnnotationType,
+  RoughAnnotation,
+} from "rough-notation/lib/model";
 
 export function Annotation({
   children,
   type,
+  color,
 }: {
   children: React.ReactNode;
   type: RoughAnnotationType;
+  color?: string;
 }) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const inView = useInView(ref, { once: true });
@@ -18,7 +23,10 @@ export function Annotation({
 
   useEffect(() => {
     if (!ref.current) return;
-    annotationRef.current = annotate(ref.current, { type, color: "#30A46C" });
+    annotationRef.current = annotate(ref.current, {
+      type,
+      color: color || "#30A46C",
+    });
   }, [type]);
 
   useEffect(() => {

@@ -1,33 +1,23 @@
+import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
+
 export function Aside({
   label,
   children,
-}: { label: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
-    <details className="!col-start-1 !col-span-3 !max-w-[initial] -m-4 rounded-xl bg-gray5 group">
-      <summary className="p-4 md:p-6 list-none">
-        <div className="flex items-center gap-2 w-[min(60ch,100%)] lg:w-[min(900px,100%)] mx-auto">
-          <svg
-            aria-hidden="true"
-            width="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="group-open:rotate-45 transition-transform"
-          >
-            <circle cx="12" cy="12" r="10" className="fill-gray12" />
-            <path
-              d="M16 11.9999L8 12.0001M12 16V8.00012"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <h3 className="text-xl font-medium">{label}</h3>
-        </div>
+    <details className="group my-8 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <summary className="flex cursor-pointer items-center gap-3 px-4 py-3 font-medium text-zinc-900 dark:text-zinc-100 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/50 list-none [&::-webkit-details-marker]:hidden">
+        <ChevronRight className="h-4 w-4 text-zinc-500 transition-transform duration-200 group-open:rotate-90" />
+        <span>{label}</span>
       </summary>
-      <div className="grid auto-rows-min gap-y-5 grid-cols-[1fr_min(60ch,100%)_1fr] lg:grid-cols-[1fr_min(900px,100%)_1fr] leading-relaxed [&>*]:col-start-2 [&>*]:max-w-[60ch] -mt-1 mb-6 px-4 md:px-6">
-        {children}
+      <div className="border-t border-zinc-200 dark:border-zinc-800 px-4 py-4 text-zinc-600 dark:text-zinc-400">
+        <div className="prose prose-sm dark:prose-invert max-w-none">
+          {children}
+        </div>
       </div>
     </details>
   );
