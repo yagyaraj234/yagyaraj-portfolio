@@ -1,0 +1,172 @@
+export const metadata = {
+  title:
+    "Running Cron Jobs in NextJS. Guide for Serverful and Stateless Server",
+  author: "Yagyaraj Lodhi",
+  date: "2026-01-03",
+  tags: ["nextjs", "cron", "serverful", "stateless"],
+  ogImage:
+    "https://yagyaraj.com/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/og.png",
+  summary:
+    "Learn how to run cron jobs in Next.js using serverless and serverful deployments. Understand why node-cron fails on Vercel and what works instead.",
+};
+
+Before diving into how to set up cron jobs, let me explain what cron jobs are and how they are useful in building systems.
+
+A **cron job** is a scheduler that runs automatically at specific intervals—such as hourly, daily, weekly, or at custom schedules.
+
+### Real-world Use Cases:
+
+- Sending daily emails
+- Charging subscriptions
+- Syncing data between systems
+- Running backups
+- Cleaning expired data
+- Triggering long-running workflows
+
+In simple terms, any repetitive task you want to perform at specific intervals can be handled by a cron job. Cron is not just about _when_ something runs; it's about guaranteeing that it eventually does, even when things fail.
+
+## Why Can't Next.js Run Cron Jobs by Default?
+
+It's a common misconception that Next.js "can't" run cron jobs. In reality, it entirely depends on **where and how** your Next.js application is deployed.
+
+The confusion exists because people often mix up the Next.js framework with the infrastructure it runs on. Next.js itself doesn't decide whether cron jobs work; the deployment model does.
+
+To understand this, you first need to know the difference between **Serverless** and **Serverful** architectures.
+
+### What is Serverless Architecture?
+
+In a serverless architecture (like Vercel, Netlify, AWS Lambda, or Cloudflare Workers), your app isn't running all the time. The server starts only when a request is received and shuts down immediately after the request is served. This means there is no long-running process that stays alive in the background to monitor and execute schedules.
+
+### Why `node-cron` Doesn't Work in Serverless Next.js
+
+Cron jobs need a process that stays alive and continuously checks the current time. `node-cron` works by attaching itself to the Node.js event loop.
+
+In serverless environments, the process starts, handles one request, and is then destroyed. Even if you register a cron job using `node-cron`, it only exists for the duration of that single request. It doesn't "fail"; it simply never gets a chance to run.
+
+### What is a Serverful Server?
+
+A serverful server (like a Virtual Machine, Docker container, or a process managed by PM2) runs 24/7. It doesn't shut down when there are no users. The Node.js process stays alive, memory is preserved, and background tasks can run continuously. In this environment, `node-cron` works perfectly.
+
+## So, Can Next.js Run Cron Jobs?
+
+**Yes**, but with a caveat:
+
+- **Serverful:** Next.js can run native cron jobs (like `node-cron`) because the process stays alive.
+- **Serverless:** Next.js cannot run native cron jobs internally. You must use an external trigger.
+
+---
+
+## 1. Running Cron Jobs in a Serverless Next.js App
+
+When deploying to a serverless architecture, you need an external scheduler to "ping" an endpoint in your application at specific times.
+
+### Step 1: Create an API Route
+
+Create an endpoint that performs the task you want to schedule.
+
+```ts
+// app/api/daily/route.ts
+import { RefillUserCredits } from "@/api/user/credits";
+
+export function GET(request: Request) {
+  console.log("CRON RAN AT:", new Date().toISOString());
+
+  // Perform the task (e.g., refilling tokens)
+  RefillUserCredits();
+
+  return new Response("Cron job running successfully");
+}
+```
+
+### Step 2: Configure Vercel Crons
+
+If you are using Vercel, you can create a `vercel.json` file at the root of your project to trigger this route.
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/daily",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
+```
+
+Now, when you deploy, Vercel will automatically hit that endpoint according to your cron schedule.
+
+---
+
+## 2. Running Cron Jobs in a Serverful Environment
+
+If your app is on a dedicated server or VPS, you can use `node-cron` directly.
+
+### Step 1: Install Dependency
+
+```bash
+npm install node-cron
+```
+
+### Step 2: Register the Jobs
+
+You need to ensure the cron jobs start when the server starts. You can use the `instrumentation.ts` file (or a custom `server.ts`) to initialize them.
+
+```ts
+// server.ts (at the root)
+export async function register() {
+  // Ensure this only runs in the Node.js runtime
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    const { initCronJobs } = await import("./app/server");
+    initCronJobs();
+  }
+}
+```
+
+### Step 3: Define the Cron Logic
+
+Create a dedicated file to manage your tasks.
+
+```ts
+// app/server/index.ts
+import cron from "node-cron";
+import { createRoom } from "./room";
+
+const tasks: ReturnType<typeof cron.schedule>[] = [];
+
+export async function registerReportCron() {
+  console.log("[Cron] Registering Report Cron...");
+
+  // Schedule to run every day at midnight (00:00)
+  const task = cron.schedule("0 0 * * *", async () => {
+    console.log("[Cron] Report Job Triggered");
+    try {
+      await createRoom("anon-lion-gxn");
+    } catch (error) {
+      console.error("[Cron] Job execution failed:", error);
+    }
+  });
+
+  tasks.push(task);
+  console.log("[Cron] Report Job Scheduled");
+}
+
+export function initCronJobs() {
+  registerReportCron();
+}
+```
+
+In this setup, your Next.js app behaves like a traditional backend. As long as the server is running, your cron jobs will execute as scheduled.
+
+### References:
+
+- [https://vercel.com/docs/cron-jobs](https://vercel.com/docs/cron-jobs)
+- [https://www.locofy.ai/blog/serverful-vs-serverless](https://www.locofy.ai/blog/serverful-vs-serverless)
+
+Thank you for reading till the end. if you find this useful drop a comment and like a post.
+📩 mail: hey@yagyaraj.com
+linkedin: https://linkedin.com/in/yagyaraj234
+github: https://github.com/yagyaraj234
+twitter: https://x.com/yagyaraj234
+
+learn more about me here: https://yagyaraj.com
