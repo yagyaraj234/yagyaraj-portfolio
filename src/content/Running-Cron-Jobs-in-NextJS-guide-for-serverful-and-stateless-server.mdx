@@ -11,14 +11,14 @@ export const metadata = {
 };
 
 Before diving into how to setup cron jobs. let me explain you what are **cron-jobs** are how they are useful in building in systems.
-A cron job is some kind of <Annotation type="underline">**schedular**</Annotation> which will run automatically at specific interval like hourly, daily, weekly, or at custom schedules.
+A cron job is some kind of <Annotation type="underline">**scheduler**</Annotation> which will run automatically at specific interval like hourly, daily, weekly, or at custom schedules.
 
 <Aside label="Real-world Use Cases">
   - Sending daily emails - Charging subscriptions - Syncing data between systems
   - Running backups - Cleaning expired data - Triggering long-running workflows
 </Aside>
 
-In simple terms any repeative task we want to do in specific interval we run setup cron job for it.
+In simple terms any repeatative task we want to do in specific interval we run setup cron job for it.
 
 ![](/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/og.png)
 
@@ -110,7 +110,7 @@ now you are good to go just deploy you app this cron job will run in your applic
 
 ## Logs of running cron job with time
 
-![logs from vercel schedular](/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/api-log.png)
+![logs from vercel scheduler](/post/running-cron-jobs-in-nextjs-guide-for-serverful-and-stateless-server/api-log.png)
 
 ## Serverful Server using node-cron
 
