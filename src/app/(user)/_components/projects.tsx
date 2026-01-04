@@ -5,7 +5,7 @@ export function Projects({ show = 10 }: { show?: number }) {
   const projects = projectData.slice(0, show);
   return (
     <div className="mt-8">
-      <h2 className="font-semibold lowercase">projects.</h2>
+      <h2 className="font-semibold text-lg">projects.</h2>
 
       <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
         {projects.map((project, idx) => (
@@ -15,7 +15,7 @@ export function Projects({ show = 10 }: { show?: number }) {
             <div className="w-full">
               <div className="flex justify-start min-w-full text-sm">
                 <div className="w-full">
-                  <div className="text-lg flex gap-4 items-center">
+                  <div className="text-lg flex gap-4 items-center font-medium">
                     {project.name}{" "}
                     <span className="text-xs uppercase dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
                       {project.status}
