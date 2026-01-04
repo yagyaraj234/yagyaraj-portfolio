@@ -1,10 +1,7 @@
-import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { ArrowUpRight } from "lucide-react";
 import { PiReadCvLogoFill } from "react-icons/pi";
-import Link from "next/link";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaMedium } from "react-icons/fa6";
 
 export const social_links = [
   {
@@ -27,9 +24,10 @@ export const social_links = [
     url: "https://twitter.com/yagyaraj234",
     icon: FaXTwitter,
   },
+  { name: "Medium", url: "https://medium.com/@yagyaraj234", icon: FaMedium },
   {
     name: "Resume",
-    url: "https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing",
+    url: "https://drive.google.com/file/d/1nNQ-E0X8CAjEZ-wUyZvoiXG64TGVtyn9/view?usp=sharing",
     icon: PiReadCvLogoFill,
   },
 ];
@@ -75,5 +73,3 @@ export const projectData = [
     ],
   },
 ];
-
-

@@ -7,8 +7,8 @@ import { GitHubContributions } from "@/app/components/github-contributions";
 
 export default function Home() {
   return (
-    <div className="box-border sm:mb-16 mb-20">
-      <div className="lg:mt-8 mt-4 text-sm">
+    <div className="box-border sm:mb-16 mb-20 text-base">
+      <div className="lg:mt-8 mt-4 text-base">
         <h2 className="font-semibold lowercase">about me.</h2>
         <p className="mt-4 lowercase">
           i&apos;m a passionate full-stack developer who learns and transforms
@@ -16,10 +16,11 @@ export default function Home() {
           through development and design.
         </p>
       </div>
-
+      {/* I'm a Full Stack Web Developer from Mohali, India, with 6+ years of coding
+      and 4+ years of professional experience, trying to make the internet a bit
+      cooler one website at a time. */}
       {/* <OpenToWork /> */}
       <Journey />
-
       <Projects show={1} />
       {/* Animated Skills Section */}
       <div className="mt-8">
@@ -29,14 +30,13 @@ export default function Home() {
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="bg-zinc-900 hover:bg-zinc-800 text-white dark:hover:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-xs transition-colors duration-500 ease-in-out lowercase"
+              className="bg-zinc-900 hover:bg-zinc-800 text-white dark:hover:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-sm transition-colors duration-500 ease-in-out lowercase"
             >
               {skill.toLowerCase()}
             </div>
           ))}
         </div>
       </div>
-
       <GitHubContributions />
       <div className="mt-8">
         <h2 className="font-semibold lowercase">contact</h2>
