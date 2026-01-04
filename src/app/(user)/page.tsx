@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="box-border sm:mb-16 mb-20 text-base">
       <div className="lg:mt-8 mt-4 text-base">
-        <h2 className="font-semibold lowercase">about me.</h2>
+        <h2 className="font-semibold text-lg">about me.</h2>
         <p className="mt-4 lowercase">
           i&apos;m a passionate full-stack developer who learns and transforms
           complex problems into simple, beautiful, and intuitive solutions
@@ -24,7 +24,7 @@ export default function Home() {
       <Projects show={1} />
       {/* Animated Skills Section */}
       <div className="mt-8">
-        <h2 className="font-semibold lowercase">skills</h2>
+        <h2 className="font-semibold text-lg">skills.</h2>
 
         <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
           {skills.map((skill, idx) => (
@@ -38,9 +38,24 @@ export default function Home() {
         </div>
       </div>
       <GitHubContributions />
+
       <div className="mt-8">
-        <h2 className="font-semibold lowercase">contact</h2>
-        <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-sm">
+        <h2 className="font-semibold text-lg">writing.</h2>
+        <div className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
+          I've started writing{" "}
+          <Link
+            href="/blog"
+            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
+          >
+            blogs
+          </Link>{" "}
+          to help others improve their engineering skills. Stay tuned for more
+          content!
+        </div>
+      </div>
+      <div className="mt-8">
+        <h2 className="font-semibold text-lg">contact.</h2>
+        <p className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
           interested in a conversation? drop dm&apos;s over{" "}
           <Link
             href="/linkedin"
