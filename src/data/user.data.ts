@@ -38,7 +38,7 @@ export const USER: User = {
   - **Jina AI** for robust data extraction
   - Workspace system for different content types (chat, code reviews, video analysis)
 `,
-  avatar: "/notion.png",
+  avatar: "/user.jpg",
   ogImage: "https://yagyaraj.com/api/og",
   namePronunciationUrl: "",
   timeZone: "Asia/Kolkata",

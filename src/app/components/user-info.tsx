@@ -6,7 +6,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/app/components/ui/tooltip"
+} from "@/app/components/ui/tooltip";
 
 export function UserInfo() {
   return (
@@ -27,13 +27,13 @@ export function UserInfo() {
       {/* Animated About */}
       <div className="flex flex-col gap-2">
         <h1 className="lg:text-xl">Hey👋, I&apos;m {USER.displayName}</h1>
-        <h2 className="max-lg:text-sm">{USER.jobTitle} | {USER.address}</h2>
+        <h2 className="max-lg:text-sm">
+          {USER.jobTitle} | {USER.address}
+        </h2>
 
         <div className="flex gap-x-2">
           {social_links.map((link, idx) => (
-            <Tooltip
-              key={idx}
-            >
+            <Tooltip key={idx}>
               <TooltipTrigger asChild>
                 <Link
                   href={link.url}
