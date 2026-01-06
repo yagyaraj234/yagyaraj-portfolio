@@ -16,9 +16,7 @@ export default function Home() {
           through development and design.
         </p>
       </div>
-      {/* I'm a Full Stack Web Developer from Mohali, India, with 6+ years of coding
-      and 4+ years of professional experience, trying to make the internet a bit
-      cooler one website at a time. */}
+
       {/* <OpenToWork /> */}
       <Journey />
       <Projects show={1} />

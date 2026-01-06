@@ -48,8 +48,8 @@ const WavemakerCard = () => {
   return (
     <div>
       <Image
-        src="/tooltip/skillrazr2.png"
-        alt="SkillRazr"
+        src="/tooltip/wavemaker.png"
+        alt="WaveMaker"
         width={100}
         height={360}
         className="rounded-md w-full h-max"
@@ -71,6 +71,51 @@ export function Journey() {
       <h2 className="font-semibold text-lg">journey.</h2>
 
       <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
+        <div className="group flex gap-4">
+          <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+
+          <div className="w-full">
+            <div className="flex justify-between min-w-full text-sm">
+              <div className="text-sm">
+                <div className="text-lg font-medium">Development Engineer,</div>
+                <div className="lowercase">
+                  at,{" "}
+                  <Link
+                    href="https://wavemaker.com"
+                    target="_blank"
+                    className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+                  >
+                    <Preview
+                      containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+                      content={<WavemakerCard />}
+                    >
+                      {" "}
+                      <span className="cursor-pointer font-bold">
+                        WaveMaker
+                      </span>
+                    </Preview>
+                  </Link>
+                </div>
+              </div>
+              <div className="text-base font-medium">jan,2025 - present </div>
+            </div>
+
+            <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base">
+              <span className="font-medium">
+                architected a codegen transpiler
+              </span>
+              converting proprietary markup into production-ready next.js/react.
+              <span className="font-medium">automated spa conversion</span>
+              using next.js routing, abstracting navigation complexity from
+              users.
+              <span className="font-medium">
+                enabled custom react components
+              </span>
+              to inherit wavemaker data binding, styling, and runtime behavior
+              at build time.
+            </p>
+          </div>
+        </div>
         <div className="group flex gap-4">
           <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
@@ -99,12 +144,18 @@ export function Journey() {
             </div>
 
             <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base">
-              as a core engineer, developed automated content workflows and
-              embedding systems for diverse content types. implemented browser
-              caching optimizations reducing server load by 40%. established
-              ci/cd pipelines improving deployment speed by 70%. built
-              personalized content generation features serving 1000+ customers
-              based on user personas.
+              <span className="font-medium">
+                built automated content workflows + embeddings
+              </span>
+              across diverse content types.
+              <span className="font-medium">reduced server load by 40%</span>
+              via browser caching optimizations, and{" "}
+              <span className="font-medium">improved deploy speed by 70%</span>
+              with ci/cd. shipped{" "}
+              <span className="font-medium">
+                personalized content generation
+              </span>
+              for 1000+ customers using persona-based targeting.
             </p>
           </div>
         </div>
@@ -138,10 +189,14 @@ export function Journey() {
             </div>
 
             <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base">
-              engineered interactive git and sql learning platforms utilizing
-              gcp and firebase, while implementing responsive design principles
-              to optimize cross-device functionality and user experience. led
-              ui/ux improvements across the platform ecosystem.
+              <span className="font-medium">
+                built interactive git + sql learning platforms
+              </span>
+              using gcp and firebase.
+              <span className="font-medium">improved cross-device ux</span>
+              with responsive design and led{" "}
+              <span className="font-medium">ui/ux upgrades</span> across the
+              platform.
             </p>
           </div>
         </div>
