@@ -10,8 +10,8 @@ import {
 
 export function UserInfo() {
   return (
-    <div className="flex gap-4 lg:mt-6">
-      <div className="relative">
+    <div className="flex gap-4 lg:mt-6 select-none selection-none">
+      <div className="relative select-none">
         <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
           <Image
             src={USER.avatar}
