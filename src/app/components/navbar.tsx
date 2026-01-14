@@ -27,8 +27,8 @@ export const navItems: NavItem[] = [
 
 export const Navbar = () => {
   return (
-    <header role="header" className="flex justify-end items-center pt-4">
-      <div className="flex lg:gap-2">
+    <div role="header" className="flex justify-end items-center pt-4">
+      <nav className="flex lg:gap-2" role="navigation">
         {navItems.map((item: NavItem, idx: number) => {
           return (
             <Link
@@ -41,7 +41,7 @@ export const Navbar = () => {
           );
         })}
         <ThemeButton />
-      </div>
-    </header>
+      </nav>
+    </div>
   );
 };
