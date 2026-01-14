@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "You Don’t Know useRef Hook Yet (ReactJS)",
+  author: "Yagyaraj Lodhi",
+  date: "2026-01-03",
+  tags: ["nextjs", "reactjs", "hooks", "react-hook"],
+  ogImage:
+    "https://yagyaraj.com/post/you-dont-know-useref-hook-yet(reactjs)/og.webp",
+  summary:
+    "Understanding useRef in React: Beyond DOM Access to Managing Mutable Data",
+};
+
+For a long time, I know **useRef**.
+
+<br />
+If you had asked me month ago, I would have said it's just for accessing DOM
+elements. And honestly, that's what most of us believe. We reach for useRef when
+we need to focus an input or scroll to a section, and then we move on.
+<br />
+That understanding isn't wrong. It's just incomplete.
+<br />
+**useRef** is not a weaker version of useState, and it's not limited to DOM
+access. It exists for a very specific class of problems the kind that state and
+effects struggle with. Things like imperative logic, timing issues, browser
+APIs, and stale closures.
+
+---
+
+## What useRef Actually Gives You
+
+At its core, useRef is very simple.
+
+```ts
+const ref = useRef<HTMLDivElement | null>(null);
+```
+
+This returns an object with a single property:
+
+```ts
+{
+  current: initialValue;
+}
+```
+
+That object stays the same across every re-render of the component. You can change ref.current as much as you want, and React will not re-render the component because of it.
+
+<br />
+That's the whole point.
+<br />
+
+**useRef** gives you a place to store mutable data that belongs to a component instance but has nothing to do with rendering.
+
+---
+
+## Why DOM Access Is the Most Common Use Case
+
+Most people first encounter useRef through DOM access, and for good reason.
+
+```jsx
+function Search() {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  return <input ref={inputRef} />;
+}
+```
+
+This works because focus is not a UI state. It's a browser action. React doesn't control focus the browser does.
+
+<br />
+
+Trying to represent things like focus, scroll position, or cursor location with state usually creates more problems than it solves. React is declarative, but the browser is fundamentally imperative. Some things need to be told what to do, not described.
+
+<br />
+
+That's where using useRef for DOM access makes sense.
+
+<br />
+
+Trying to model these with state is a mistake. React is declarative, but the browser is not.
+
+---
+
+### Declarative Programming (React's World)
+
+Example:
+
+```jsx
+{
+  isOpen && <Modal />;
+}
+```
+
+In React, you don't write step-by-step instructions for the DOM. You simply describe what the UI should look like for a given state, and React handles the rest. You never manually create elements, insert them, or wire events that's React's job.
+
+This is why React is called declarative: you focus on the result, not the process.
+
+---
+
+### Imperative Programming (Browser's World)
+
+Imperative code answers a different question:
+
+<br />
+
+**"Do this specific action right now."**
+
+Example:
+
+```js
+element.focus();
+element.scrollIntoView();
+element.getBoundingClientRect();
+```
+
+You are issuing commands to an already-existing object.
+
+<br />
+
+Why this matters: React only controls rendering part of the ui but your browser is responsible for controlling physical behavior of it e.g: window height-width, focus element, modifying dom attributes directly.
+
+---
+
+## Storing Non-React Values That Should Persist Without Re-Rendering
+
+This is where useRef already becomes more powerful than most people realize.
+
+Some values need to survive re-renders, change over time and not cause UI updates. few examples are like **timer's, observers, websocket connections**.
+
+```jsx
+function Ticker() {
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      console.log("tick");
+    }, 1000);
+
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  return null;
+}
+```
+
+This is exactly what useRef is meant for: mutable instance data.
+
+---
+
+<br />
+## Why useEffect Starts Causing Problems With DOM Measurements
+
+Sooner or later, you hit this situation:
+
+> "I need to render something, measure it, then adjust layout."
+
+You try useEffect.
+
+### What Actually Happens With useEffect
+
+![react-lifecycle](</post/you-dont-know-useref-hook-yet(reactjs)/life-cycle.webp>)
+
+![useEffecct-lifecycle](</post/you-dont-know-useref-hook-yet(reactjs)/use-effect.webp>)
+
+This means the user already saw the UI. Any DOM measurement happens after UI painting is done. if we are manupulating anything after that paint we see visible layout shift in UI ( this create bad User Experience ).
+
+<br />
+The flicker you see that moment ( when layout shift happen ) is not because
+react is slow in measuring. it's upto us how we are measuring and updating the
+dom.
+
+<br />
+One solution to prevent this is to use useLayoutEffect hook which runs before
+painting the ui in browser. But it's not always the right way to fix these
+flicker issue. let me explain in detail and how to it in better way.
+
+---
+
+## Why useLayoutEffect Is Not Always the Right Fix
+
+useLayoutEffect runs before paint, so it avoids flicker.
+
+But it also:
+
+- blocks rendering
+- can hurt performance
+- should not be abused
+
+This is where callback refs become the cleaner solution.
+
+---
+
+## Callback Refs: Accessing the DOM at the Exact Right Time
+
+![callback-ref-lifecycle](</post/you-dont-know-useref-hook-yet(reactjs)/callback-ref.webp>)
+
+Instead of passing a ref object, you pass a function.
+
+```jsx
+function Box() {
+  const setNode = (node) => {
+    if (!node) return;
+
+    const rect = node.getBoundingClientRect();
+    console.log(rect);
+  };
+
+  return <div ref={setNode}>box</div>;
+}
+```
+
+What's a difference between passing callback or ref object?
+![combine-ref-with-callback-and-without-callback](</post/you-dont-know-useref-hook-yet(reactjs)/useffect-with-callback.webp>)
+
+<br />
+In both above scenarios the work will be same only the difference will be how
+lifecycle of painting and doing side effect will change the overall experience.
+
+---
+
+## The Problem: State Closures in React
+
+Every developer face issue called "State Closures" in React state. This to overcome with this we can use useRef hook to get latest data always.
+
+```jsx
+import { useEffect, useState } from "react";
+
+function Editor() {
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      // content is always old here
+      saveDraft(content);
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <textarea
+      value={content}
+      onChange={(e) => setContent(e.target.value)}
+      placeholder="start typing..."
+    />
+  );
+}
+```
+
+This logs old state forever.
+
+This is not a React bug.
+This is how JavaScript closures work.
+
+---
+
+## The Fix: use Refs as "Latest Value Holders"
+
+```jsx
+import { useEffect, useRef, useState } from "react";
+
+function Editor() {
+  const [content, setContent] = useState("");
+  const contentRef = useRef(content);
+
+  // keep ref in sync with latest state
+  useEffect(() => {
+    contentRef.current = content;
+  }, [content]);
+
+  // stable interval
+  useEffect(() => {
+    const id = setInterval(() => {
+      // ✅ always latest value
+      saveDraft(contentRef.current);
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, []); // interval created once
+
+  return (
+    <textarea
+      value={content}
+      onChange={(e) => setContent(e.target.value)}
+      placeholder="start typing..."
+    />
+  );
+}
+```
+
+### Why This Fix Works (Step by Step)
+
+State updates trigger re-render (normal)
+Ref is updated with the latest value
+Interval callback always reads ref.current
+Interval never restarts
+Latest data is always saved
+
+---
+
+## Common Misconceptions
+
+Common misconceptions that cause bugs in your application and can reduce application performance.
+
+Updating a refs does not update UI.
+Refs are not only for the DOM access/manipulation.
+
+---
+
+## Final Takeaway
+
+useRef is not a state. it's not an effect also it not a DOM shortcut.
+
+It is stable escape hatch for imperative logic, external systems, timing-sensitive code and stale clousures.
+
+## <br/>
+
+<br />
+
+[linkedin](https://linkedin.com/in/yagyaraj234) [github](https://github.com/yagyaraj234) [twitter](https://x.com/yagyaraj234)
