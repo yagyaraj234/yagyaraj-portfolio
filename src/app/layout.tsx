@@ -148,7 +148,7 @@ export default function RootLayout({
             outfit.className,
             inter.variable,
             jetbrainsMono.variable,
-            "antialiased  min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl  selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700"
+            "antialiased  min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl  selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 grid grid-rows-[1fr_auto]"
           )}
         >
           <ThemeProvider
