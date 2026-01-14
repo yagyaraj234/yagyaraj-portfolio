@@ -70,9 +70,9 @@ export function Journey() {
     <div className="mt-8 ">
       <h2 className="font-semibold text-lg">journey.</h2>
 
-      <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4">
-        <div className="group flex gap-4">
-          <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+      <div className="flex flex-col gap-4 w-full space-y-4 mt-4">
+        {/* <div className="group flex gap-4">
+          <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
           <div className="w-full">
             <div className="flex justify-between min-w-full text-sm">
@@ -115,9 +115,9 @@ export function Journey() {
               at build time.
             </p>
           </div>
-        </div>
+        </div> */}
         <div className="group flex gap-4">
-          <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+          <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
           <div className="w-full">
             <div className="flex justify-between min-w-full text-sm">
@@ -160,7 +160,7 @@ export function Journey() {
           </div>
         </div>
         <div className="group flex gap-4">
-          <div className="min-h-full min-w-[2px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+          <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
           <div className="w-full">
             <div className="flex justify-between min-w-full">

@@ -43,7 +43,7 @@ body {
 }
 
 @utility text-balance {
-  text-wrap: balance;
+  text-wrap: normal;
 }
 
 @layer utilities {

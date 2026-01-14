@@ -88,7 +88,7 @@ export default async function Page({
     : new Date().toLocaleDateString();
 
   return (
-    <div className="font-sans mt-8 pb-16">
+    <div className="font-sans mt-8 ">
       <PostTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

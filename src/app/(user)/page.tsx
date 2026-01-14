@@ -7,7 +7,7 @@ import { GitHubContributions } from "@/app/components/github-contributions";
 
 export default function Home() {
   return (
-    <div className="box-border sm:mb-16 mb-20 text-base">
+    <main className="box-border  text-base" role="main">
       <div className="lg:mt-8 mt-4 text-base">
         <h2 className="font-semibold text-lg">about me.</h2>
         <p className="mt-4 lowercase">
@@ -73,6 +73,6 @@ export default function Home() {
           . ask me anything about my work, projects, or anything else.
         </p>
       </div>
-    </div>
+    </main>
   );
 }
