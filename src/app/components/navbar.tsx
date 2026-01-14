@@ -27,14 +27,14 @@ export const navItems: NavItem[] = [
 
 export const Navbar = () => {
   return (
-    <div className="flex justify-end items-center">
+    <header role="header" className="flex justify-end items-center pt-4">
       <div className="flex lg:gap-2">
         {navItems.map((item: NavItem, idx: number) => {
           return (
             <Link
               key={idx}
               href={item.link}
-              className={`sm:p-2 transition-colors ease-in-out duration-700 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer  max-sm:hidden`}
+              className={`sm:p-2 transition-colors ease-in-out duration-700 dark:text-gray-400 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer  max-sm:hidden`}
             >
               {item.name}
             </Link>
@@ -42,6 +42,6 @@ export const Navbar = () => {
         })}
         <ThemeButton />
       </div>
-    </div>
+    </header>
   );
 };

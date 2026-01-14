@@ -57,7 +57,10 @@ export default function BlogLayout({
         </div>
         <Navbar />
       </div>
-      <main className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-6">
+      <main
+        className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-6"
+        role="main"
+      >
         {children}
       </main>
     </>

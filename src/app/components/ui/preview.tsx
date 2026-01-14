@@ -25,7 +25,8 @@ export const Preview = ({
 
   useEffect(() => {
     if (isVisible && contentRef.current) {
-      setHeight(contentRef.current.scrollHeight);
+      const maxHeight = window.innerHeight * 0.48; // 48vh
+      setHeight(Math.min(contentRef.current.scrollHeight, maxHeight));
     }
   }, [isVisible, content]);
 
@@ -148,7 +149,7 @@ export const Preview = ({
   return (
     <div
       ref={containerRef}
-      className={cn("relative inline-block", containerClassName)}
+      className={cn("relative inline-block ", containerClassName)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
@@ -177,7 +178,7 @@ export const Preview = ({
           >
             <div
               ref={contentRef}
-              className=" text-sm text-neutral-600 p-2 dark:text-neutral-400"
+              className="text-sm text-neutral-600 p-2 dark:text-neutral-400 overflow-y-auto h-max"
             >
               {content}
             </div>
