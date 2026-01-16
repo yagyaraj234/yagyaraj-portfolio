@@ -73,7 +73,7 @@ const [show, setShow] = useState<boolean>(false);
 `useState` returns two values:
 
 1. The current state value
-2. A setter function to update the state
+2. A setter function to update the state value
 
 ### Example: Toggle UI using useState
 
@@ -99,27 +99,27 @@ function ToggleButton() {
 - State can store string, number, boolean, object, or array
 - Updating state <Annotation type="highlight" color="#FFD700">triggers a re-render</Annotation>
 - State updates are asynchronous
-- Never mutate state directly
+- Never update state directly (always use the updater function)
 
 <Columns>
   <div>
-      **❌ Wrong way**
+    **❌ Wrong way**
 
-      ```ts
-      show = true;
-      ```
+    ```ts
+    show = true;
+    ```
 
-      This updates the variable but does **not** re-render the component.
+    This updates the variable but does **not** re-render the component.
 
   </div>
   <ColumnRight>
     **✅ Correct way**
 
-      ```ts
-      setShow(true);
-      ```
+    ```ts
+    setShow(true);
+    ```
 
-      This notifies React to update the UI.
+    This notifies React to update the UI.
 
   </ColumnRight>
 </Columns>
@@ -128,7 +128,7 @@ function ToggleButton() {
 
 ## useRef
 
-`useRef` is a hook that helps store values that remain the same across re-renders. It also allows direct access to DOM elements.
+`useRef` is a hook which helps to hold the same values across all re-renders of a component. It also allows us to access the DOM for more manipulation.
 
 <br />
 
@@ -165,24 +165,24 @@ function FocusInput() {
 ### Why useRef Is Important
 
 - Value stays the same across re-renders
-- Updating `.current` does **not** cause re-render
-- Perfect for values that should not affect UI
+- Updating `.current` does **NOT** cause re-render
+- Perfect for storing values that should not affect UI
 
-> **Note:** `useRef` is not just for DOM access. Use it whenever you need a stable, mutable value.
+> **Note:** `useRef` is not just for DOM access. Want to learn more about useRef hook in detail? [Check it out here](/blog/you-dont-know-useref-hook-yet-reactjs).
 
 ---
 
 ## useEffect
 
-`useEffect` helps run code based on the lifecycle of a component.
+`useEffect` is a hook that helps us run code based on the lifecycle of a component.
 
 <br />
 
-You can use it when:
+Using `useEffect`, we can perform actions when:
 
-- a component mounts
-- a component unmounts
-- a value changes
+- A component is mounted (added to the UI)
+- A component is unmounted (removed from the UI)
+- A value changes and we want to react to that change
 
 Common use cases include API calls, logging, timers, subscriptions, and validations.
 
@@ -194,30 +194,43 @@ useEffect(() => {
 }, []);
 ```
 
-- Runs only once
-- Empty dependency array means no dependencies
-- Runs after the first render
+In this example:
+
+- The callback function runs only once
+- The empty array `[]` means the effect has no dependencies
+- This runs after the component is rendered for the first time
 
 <Callout type="info">
-  **Important:** `useEffect` runs **after** the UI is painted on the DOM.
+  **Important:** `useEffect` always runs **after** the UI is painted on the DOM.
+  That means the user sees the UI first, then this code runs.
 </Callout>
 
 ---
 
 ### Dependency Array Explained
 
-```tsx
-const [username, setUsername] = useState("");
-```
+`useEffect` accepts two parameters:
+
+1. A callback function
+2. A dependency array
+
+The dependency array tells React when the effect should run.
 
 ```tsx
+const [username, setUsername] = useState("");
+
 useEffect(() => {
   checkUserNameAvailable(username);
 }, [username]);
 ```
 
-- Runs on mount
-- Runs again when `username` changes
+In this example:
+
+- The effect runs when the component mounts
+- The effect runs again every time `username` changes
+- If `username` does not change, the effect does not run
+
+This is useful when you want to perform checks or actions based on value changes.
 
 ### Different Dependency Behaviours
 
@@ -229,7 +242,7 @@ useEffect(() => {
 
 ```tsx
 useEffect(() => {
-  // runs once
+  // runs only once (on mount)
 }, []);
 ```
 
@@ -240,33 +253,35 @@ useEffect(() => {
 ```
 
 <Callout type="warning">
-  If you don’t understand these dependencies, your app will not be optimized and
-  might enter infinite loops.
+  The above part is the most important thing to understand about `useEffect`. If
+  you don't understand these, your app may not be performant and optimized.
 </Callout>
 
 ---
 
-### Cleanup in useEffect
+### Cleanup in useEffect (Very Important)
 
-Some effects must be cleaned up:
+Some effects create things that must be cleaned up later, such as:
 
 - `setInterval`
 - `setTimeout`
 - Event listeners
 - Subscriptions
 
-<br />
+If you don't clean them up, you will cause **memory leaks**.
 
-Example with interval:
+### Example: Using Cleanup with Interval
 
 ```tsx
 const timerRef = useRef<number | null>(null);
 
 useEffect(() => {
+  // store interval id in ref so it stays the same across renders
   timerRef.current = window.setInterval(() => {
     console.log("performing some action every second");
   }, 1000);
 
+  // cleanup function
   return () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -275,29 +290,63 @@ useEffect(() => {
 }, []);
 ```
 
+What is happening here:
+
+- The interval starts when the component mounts
+- The interval runs every second
+- When the component unmounts, the cleanup function runs
+- The interval is cleared to avoid memory leaks
+
 <Callout type="tip">
-  The function returned by `useEffect` is the **cleanup function**. It runs when
-  the component unmounts or before the effect runs again.
+  The function returned inside `useEffect` is called the **cleanup function**.
 </Callout>
 
----
+### Why useRef Is Used Here
+
+- We store the interval ID in `useRef`
+- `useRef` does not cause re-render
+- The value stays the same across renders
+- This makes cleanup safe and predictable
+
+> Using `useState` here would be wrong.
+
+### Common Mistakes with useEffect
+
+- Running effects without dependency array
+- Adding unnecessary dependencies
+- Forgetting cleanup
+- Using `useEffect` for things that don't need side effects
 
 ---
 
 ## useLayoutEffect
 
-`useLayoutEffect` works like `useEffect` but runs **before the browser paints the UI**.
+It works almost the same way as `useEffect`, but there is one critical difference.
 
-**Execution Flow:**
+👉 `useLayoutEffect` runs **before** the browser paints the UI on the screen.
+
+### How useLayoutEffect Works
+
+The flow looks like this:
 
 1. React renders the component
-2. `useLayoutEffect` runs synchronously
+2. `useLayoutEffect` runs
 3. Browser paints the UI
-4. User sees the updated UI
+4. User sees the UI
 
-<br />
+In comparison, `useEffect` runs after step 3.
 
-This means it can block rendering if the logic inside is heavy or complex.
+This means `useLayoutEffect` can **block** the UI paint until it finishes.
+
+### Why Does This Matter?
+
+Because sometimes you need to:
+
+- Measure DOM size
+- Read layout values
+- Adjust UI before the user sees it
+
+If you do this in `useEffect`, the user might see a flash, jump, or broken layout.
 
 ### Example: Measuring DOM Size
 
@@ -314,22 +363,32 @@ function Box() {
 }
 ```
 
+Here:
+
+- The DOM element already exists
+- Layout is measured before paint
+- The user never sees incorrect UI
+
 <Callout type="warning">
-  `useLayoutEffect` should be used sparingly. If `useEffect` works for your use
-  case, always prefer that to avoid blocking the UI.
+  `useLayoutEffect` runs before the browser paints the UI, which makes it useful
+  for layout-related logic like measuring elements or fixing UI flicker. Since
+  it blocks rendering, it should be used carefully. If `useEffect` works, prefer
+  that.
 </Callout>
 
 ---
 
 ## useMemo
 
-`useMemo` caches computed values and avoids expensive recalculations.
+`useMemo` is used to cache computed values. It avoids running expensive calculations on every render.
 
 ```tsx
 const result = useMemo(() => {
   return heavyCalculation(value);
 }, [value]);
 ```
+
+The calculation runs only when `value` changes.
 
 <br />
 
@@ -338,28 +397,29 @@ const result = useMemo(() => {
     <strong>✅ When to Use</strong>
     <ul style={{ listStyle: "none", padding: 0, marginTop: "0.5rem" }}>
       <li>• Expensive calculations</li>
-      <li>• Derived values from large sets</li>
+      <li>• Derived values</li>
       <li>• Performance-sensitive components</li>
     </ul>
   </div>
   <ColumnRight>
     <strong>❌ When NOT to Use</strong>
     <ul style={{ listStyle: "none", padding: 0, marginTop: "0.5rem" }}>
-      <li>• Simple arithmetic or logic</li>
-      <li>• Small, lightweight components</li>
-      <li>• "Just in case" optimization</li>
+      <li>• Simple calculations</li>
+      <li>• Small components</li>
+      <li>• Just because you saw it in a tutorial</li>
     </ul>
   </ColumnRight>
 </Columns>
+
 <br />
 
-> **Pro Tip:** In React 19, the compiler often handles memoization automatically.
+> `useMemo` exists to avoid expensive recalculations, not to make code look optimized. In React 19, the compiler often handles this for you, so manual memoization is less common. If a calculation is cheap or easy to read, caching it only adds noise.
 
 ---
 
 ## useCallback
 
-`useCallback` caches function references.
+`useCallback` is used to cache functions. By default, functions are recreated on every render.
 
 ```tsx
 const handleClick = useCallback(() => {
@@ -367,19 +427,30 @@ const handleClick = useCallback(() => {
 }, []);
 ```
 
-It is useful when passing functions to memoized child components to prevent unnecessary re-renders.
+### Why useCallback Exists
 
-> **Note:** If `useCallback` does not fix a real, measurable re-render issue, it is usually unnecessary overhead.
+When passing functions to child components, unnecessary re-renders can happen. `useCallback` helps avoid that.
+
+### Use It When
+
+- Passing callbacks to memoized components
+- Working with dependency-heavy effects
+
+> `useCallback` is useful only when function identity actually matters, such as with memoized child components. With React 19 and the compiler, many cases no longer need manual wrapping. If adding `useCallback` doesn't fix a real re-render problem, it's doing nothing.
 
 ---
 
 ## Important Note (React 19)
 
-With the **React Compiler**, React can automatically memoize functions and values. You usually do **not** need `useCallback` or `useMemo` manually anymore.
+In React 19, when you use the **React Compiler**, React can automatically optimize your code by memoizing functions and values for you.
+
+This means in many cases you do **not** need to manually use `useCallback` or `useMemo`.
+
+React analyzes your code and applies memoization at build time.
 
 <br />
 
-To disable it for a specific file or function:
+If you do not want React to memoize a specific function or value, you can disable it using a directive. Add the following line at the top of your function or file:
 
 ```ts
 "use no memo";
@@ -397,8 +468,7 @@ Normally in React, data flows from parent to child using props.
 
 <br />
 
-When your component tree grows deep, this leads to prop drilling. `useContext`
-solves this problem.
+When your component tree grows deep, this leads to **prop drilling**. `useContext` solves this problem.
 
 <br />
 
@@ -406,21 +476,36 @@ solves this problem.
 
 ![Prop drilling](/post/react-hook-simplified/prop-drilling.png)
 
-Data is passed through components that don’t need it just to reach a deep child. This creates unnecessary complexity and makes components hard to reuse.
+In the diagram above:
+
+- **Component A** owns the data (for example, user details)
+- That data is passed to **Component B**
+- **Component B** passes the same data again to **Component C** and **Component D**
+
+Only Component C or Component D actually needs the data. Component B does not use it at all.
+
+This is called **prop drilling**.
 
 ---
 
 ### How useContext Helps
 
-- Store shared data in one place
-- Access it anywhere in the tree
-- Avoid tedious prop drilling
+With `useContext`, you can:
 
-> **Common use cases:** Auth state, Theme (Dark/Light), Language settings, and Global configurations.
+- Store shared data in one place
+- Access it from any component
+- Avoid passing props through every layer
+
+This is useful for:
+
+- Authentication data
+- Theme (dark / light)
+- Language settings
+- Global configuration
 
 ---
 
-### Step 1: Create Context
+### Step 1: Create a Context
 
 ```ts
 import { createContext } from "react";
@@ -428,7 +513,11 @@ import { createContext } from "react";
 const UserContext = createContext(null);
 ```
 
-### Step 2: Provide Context
+This creates a context object.
+
+### Step 2: Provide the Context
+
+Wrap your component tree using a Provider.
 
 ```tsx
 function App() {
@@ -442,7 +531,9 @@ function App() {
 }
 ```
 
-### Step 3: Consume Context
+Now, every component inside `Layout` can access `user`.
+
+### Step 3: Consume the Context Using useContext
 
 ```tsx
 import { useContext } from "react";
@@ -453,16 +544,62 @@ function UserProfile() {
 }
 ```
 
+No props. No drilling. Direct access.
+
 ---
 
+### Important Rule About useContext
+
 <Callout type="warning">
-  **Important Rule:** Whenever the context value changes, all components
-  consuming that context will re-render.
+  Whenever the context value changes, **all components using that context
+  re-render**. This is critical. If you put frequently changing data in context,
+  you can hurt performance.
 </Callout>
 
-<br />
+---
 
-For complex or frequently changing state, tools like **Redux** or **Zustand** are often a better choice to avoid performance bottlenecks.
+### When useContext Is a Good Choice
+
+Use `useContext` when:
+
+- Data is truly global (like selected theme, logged-in user details)
+- Many pages or components need the same data across the app
+- Prop drilling is becoming painful
+
+If only one or two components need the value, use props.
+
+---
+
+### Combining useContext With useState
+
+Most real apps use them together.
+
+```tsx
+const ThemeContext = createContext(null);
+
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("light");
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+```
+
+Now you have global state with controlled updates.
+
+---
+
+### Common Mistakes With useContext
+
+- Using context for everything
+- Putting large objects in context
+- Updating context too often
+- Forgetting that it causes re-renders
+
+> `useContext` removes prop drilling for shared data, but it should be used only for truly global data. For complex or frequently changing state, tools like **Redux** or **Zustand** are usually a better choice.
 
 ---
 
