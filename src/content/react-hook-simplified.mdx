@@ -1,0 +1,468 @@
+export const metadata = {
+  title: "React Hooks Simplified",
+  author: "Yagyaraj Lodhi",
+  date: "2026-01-17",
+  tags: [
+    "react",
+    "react-hooks",
+    "javascript",
+    "typescript",
+    "frontend",
+    "nextjs",
+  ],
+  ogImage: "https://yagyaraj.com/post/react-hooks-simplified/og.png",
+  summary:
+    "A beginner-friendly breakdown of React Hooks including useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback, and useContext. Learn how hooks work, when to use them, and common mistakes to avoid.",
+};
+
+# Hooks Explained (ReactJS)
+
+React hooks are some usable methods which help in building applications faster by managing state and controlling the lifecycle of components.
+
+Hooks were introduced in **React 16.8**. Before that, developers mostly used class-based components to manage state and lifecycle events. That approach worked, but it made code harder to read, reuse, and maintain.
+
+---
+
+## What are hooks?
+
+Hooks are utility functions which help users to create state and manage component lifecycle without writing much code.
+
+<br />
+
+With hooks, you can:
+
+- Store and update state
+- Run logic when a component mounts or updates
+- Clean up resources when a component unmounts
+- Reuse logic across components
+
+<br />
+
+In simple words, hooks let you control the lifecycle of a component and its data using
+
+<Annotation type="underline">small, readable functions</Annotation>.
+
+---
+
+## Commonly Used Hooks
+
+We are going to learn about the most commonly used hooks:
+
+- `useState`
+- `useRef`
+- `useEffect`
+- `useLayoutEffect`
+- `useMemo`
+- `useCallback`
+- `useContext`
+
+<br />
+
+There are more hooks provided by React, but they are either used rarely or only in special scenarios.
+
+---
+
+## useState
+
+`useState` is used to manage dynamic data inside a component. When the state value changes, React automatically re-renders the component to reflect the UI changes.
+
+```ts
+const [show, setShow] = useState<boolean>(false);
+```
+
+`useState` returns two values:
+
+1. The current state value
+2. A setter function to update the state
+
+### Example: Toggle UI using useState
+
+```tsx
+function ToggleButton() {
+  const [show, setShow] = useState<boolean>(false);
+
+  function toggleShow() {
+    setShow((prev) => !prev);
+  }
+
+  return (
+    <>
+      <button onClick={toggleShow}>Toggle Show</button>
+      {show ? <div>Show is ON</div> : null}
+    </>
+  );
+}
+```
+
+### Important Things to Understand About State
+
+- State can store string, number, boolean, object, or array
+- Updating state <Annotation type="highlight" color="#FFD700">triggers a re-render</Annotation>
+- State updates are asynchronous
+- Never mutate state directly
+
+<Columns>
+  <div>
+      **❌ Wrong way**
+
+      ```ts
+      show = true;
+      ```
+
+      This updates the variable but does **not** re-render the component.
+
+  </div>
+  <ColumnRight>
+    **✅ Correct way**
+
+      ```ts
+      setShow(true);
+      ```
+
+      This notifies React to update the UI.
+
+  </ColumnRight>
+</Columns>
+
+---
+
+## useRef
+
+`useRef` is a hook that helps store values that remain the same across re-renders. It also allows direct access to DOM elements.
+
+<br />
+
+Common use cases:
+
+- Access DOM elements
+- Store timers or intervals
+- Keep previous values
+- Hold mutable values across renders
+
+```ts
+const inputRef = useRef<HTMLInputElement>(null);
+```
+
+### Accessing DOM Using useRef
+
+```tsx
+function FocusInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function focusInput() {
+    inputRef.current?.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  );
+}
+```
+
+### Why useRef Is Important
+
+- Value stays the same across re-renders
+- Updating `.current` does **not** cause re-render
+- Perfect for values that should not affect UI
+
+> **Note:** `useRef` is not just for DOM access. Use it whenever you need a stable, mutable value.
+
+---
+
+## useEffect
+
+`useEffect` helps run code based on the lifecycle of a component.
+
+<br />
+
+You can use it when:
+
+- a component mounts
+- a component unmounts
+- a value changes
+
+Common use cases include API calls, logging, timers, subscriptions, and validations.
+
+### Basic Example: Component Mount
+
+```tsx
+useEffect(() => {
+  console.log("My component mounted");
+}, []);
+```
+
+- Runs only once
+- Empty dependency array means no dependencies
+- Runs after the first render
+
+<Callout type="info">
+  **Important:** `useEffect` runs **after** the UI is painted on the DOM.
+</Callout>
+
+---
+
+### Dependency Array Explained
+
+```tsx
+const [username, setUsername] = useState("");
+```
+
+```tsx
+useEffect(() => {
+  checkUserNameAvailable(username);
+}, [username]);
+```
+
+- Runs on mount
+- Runs again when `username` changes
+
+### Different Dependency Behaviours
+
+```tsx
+useEffect(() => {
+  // runs on every render
+});
+```
+
+```tsx
+useEffect(() => {
+  // runs once
+}, []);
+```
+
+```tsx
+useEffect(() => {
+  // runs when value changes
+}, [value]);
+```
+
+<Callout type="warning">
+  If you don’t understand these dependencies, your app will not be optimized and
+  might enter infinite loops.
+</Callout>
+
+---
+
+### Cleanup in useEffect
+
+Some effects must be cleaned up:
+
+- `setInterval`
+- `setTimeout`
+- Event listeners
+- Subscriptions
+
+<br />
+
+Example with interval:
+
+```tsx
+const timerRef = useRef<number | null>(null);
+
+useEffect(() => {
+  timerRef.current = window.setInterval(() => {
+    console.log("performing some action every second");
+  }, 1000);
+
+  return () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
+}, []);
+```
+
+<Callout type="tip">
+  The function returned by `useEffect` is the **cleanup function**. It runs when
+  the component unmounts or before the effect runs again.
+</Callout>
+
+---
+
+---
+
+## useLayoutEffect
+
+`useLayoutEffect` works like `useEffect` but runs **before the browser paints the UI**.
+
+**Execution Flow:**
+
+1. React renders the component
+2. `useLayoutEffect` runs synchronously
+3. Browser paints the UI
+4. User sees the updated UI
+
+<br />
+
+This means it can block rendering if the logic inside is heavy or complex.
+
+### Example: Measuring DOM Size
+
+```tsx
+function Box() {
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const height = boxRef.current?.getBoundingClientRect().height;
+    console.log("box height:", height);
+  }, []);
+
+  return <div ref={boxRef}>Hello</div>;
+}
+```
+
+<Callout type="warning">
+  `useLayoutEffect` should be used sparingly. If `useEffect` works for your use
+  case, always prefer that to avoid blocking the UI.
+</Callout>
+
+---
+
+## useMemo
+
+`useMemo` caches computed values and avoids expensive recalculations.
+
+```tsx
+const result = useMemo(() => {
+  return heavyCalculation(value);
+}, [value]);
+```
+
+<br />
+
+<Columns>
+  <div>
+    <strong>✅ When to Use</strong>
+    <ul style={{ listStyle: "none", padding: 0, marginTop: "0.5rem" }}>
+      <li>• Expensive calculations</li>
+      <li>• Derived values from large sets</li>
+      <li>• Performance-sensitive components</li>
+    </ul>
+  </div>
+  <ColumnRight>
+    <strong>❌ When NOT to Use</strong>
+    <ul style={{ listStyle: "none", padding: 0, marginTop: "0.5rem" }}>
+      <li>• Simple arithmetic or logic</li>
+      <li>• Small, lightweight components</li>
+      <li>• "Just in case" optimization</li>
+    </ul>
+  </ColumnRight>
+</Columns>
+<br />
+
+> **Pro Tip:** In React 19, the compiler often handles memoization automatically.
+
+---
+
+## useCallback
+
+`useCallback` caches function references.
+
+```tsx
+const handleClick = useCallback(() => {
+  doSomething();
+}, []);
+```
+
+It is useful when passing functions to memoized child components to prevent unnecessary re-renders.
+
+> **Note:** If `useCallback` does not fix a real, measurable re-render issue, it is usually unnecessary overhead.
+
+---
+
+## Important Note (React 19)
+
+With the **React Compiler**, React can automatically memoize functions and values. You usually do **not** need `useCallback` or `useMemo` manually anymore.
+
+<br />
+
+To disable it for a specific file or function:
+
+```ts
+"use no memo";
+```
+
+---
+
+## useContext
+
+`useContext` shares data without prop drilling.
+
+### What Is Prop Drilling?
+
+Data is passed through components that don’t need it just to reach a deep child. This creates unnecessary complexity and makes components hard to reuse.
+
+---
+
+### How useContext Helps
+
+- Store shared data in one place
+- Access it anywhere in the tree
+- Avoid tedious prop drilling
+
+> **Common use cases:** Auth state, Theme (Dark/Light), Language settings, and Global configurations.
+
+---
+
+### Step 1: Create Context
+
+```ts
+import { createContext } from "react";
+
+const UserContext = createContext(null);
+```
+
+### Step 2: Provide Context
+
+```tsx
+function App() {
+  const user = { name: "Yagyaraj" };
+
+  return (
+    <UserContext.Provider value={user}>
+      <Layout />
+    </UserContext.Provider>
+  );
+}
+```
+
+### Step 3: Consume Context
+
+```tsx
+import { useContext } from "react";
+
+function UserProfile() {
+  const user = useContext(UserContext);
+  return <div>Hello {user.name}</div>;
+}
+```
+
+---
+
+<Callout type="warning">
+  **Important Rule:** Whenever the context value changes, all components
+  consuming that context will re-render.
+</Callout>
+
+<br />
+
+For complex or frequently changing state, tools like **Redux** or **Zustand** are often a better choice to avoid performance bottlenecks.
+
+---
+
+## Learn More
+
+- React Hook Rules: [https://react.dev/reference/rules/rules-of-hooks](https://react.dev/reference/rules/rules-of-hooks)
+
+---
+
+## Final Thoughts
+
+React hooks are powerful, but misuse causes bugs and performance issues. Understand them first, trust the compiler, and keep your code simple.
+
+<br />
+
+[linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234)
