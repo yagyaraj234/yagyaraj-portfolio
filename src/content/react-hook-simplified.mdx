@@ -389,9 +389,22 @@ To disable it for a specific file or function:
 
 ## useContext
 
-`useContext` shares data without prop drilling.
+`useContext` is used to share data between components without passing props manually at every level.
+
+<br />
+
+Normally in React, data flows from parent to child using props.
+
+<br />
+
+When your component tree grows deep, this leads to prop drilling. `useContext`
+solves this problem.
+
+<br />
 
 ### What Is Prop Drilling?
+
+![Prop drilling](/post/react-hook-simplified/prop-drilling.png)
 
 Data is passed through components that don’t need it just to reach a deep child. This creates unnecessary complexity and makes components hard to reuse.
 
