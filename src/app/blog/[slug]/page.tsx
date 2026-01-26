@@ -87,6 +87,8 @@ export default async function Page({
       })
     : new Date().toLocaleDateString();
 
+  console.log("postMetadata", postMetadata?.title);
+
   return (
     <div className="font-sans mt-8 ">
       <PostTitle
