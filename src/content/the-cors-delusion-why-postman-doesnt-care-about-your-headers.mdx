@@ -1,0 +1,220 @@
+export const metadata = {
+  title: "The CORS Delusion: Why Postman Doesn't Care About Your Headers",
+  author: "Yagyaraj Lodhi",
+  date: "2026-01-26",
+  tags: ["nextjs", "reactjs", "cors", "backend", "securities"],
+  ogImage:
+    "https://yagyaraj.com/post/the-cors-delusion-why-postman-doesnt-care-about-your-headers/og.webp",
+  summary:
+    "CORS only protects browsers, not your backend. Tools like Postman and cURL bypass it completely. Secure APIs with authentication, rate…",
+};
+
+If you've built even one web application you have definitely seen a big red error in the console screaming CORS error.
+
+![](/post/the-cors-delusion-why-postman-doesnt-care-about-your-headers/error.webp)
+You tweak headers, refresh the page, pray a little and finally it works. And somewhere in your brain you think:
+
+<br />
+
+**"Okay, my APIs are safe now."**
+
+<br />
+
+No. That thought is wrong and very dangerous for your application.
+
+<br />
+
+**CORS does not protect your server.**
+**CORS only protects the browser user.**
+
+<br />
+If you believe your API is secured because you allowed only
+`https://yagyaraj.com` in CORS, your data is already exposed to anyone with a
+bash script or any API testing tool like Postman/Datadog.
+
+---
+
+## The Browser's Real Job (Same-Origin Policy)
+
+CORS exists because of the Same-Origin Policy (SOP).
+Browsers follow SOP to stop this situation:
+
+- You are logged into `bank.com`
+- You open `fakekert.com`
+- That site tries to silently call your bank API using your cookies
+
+<br />
+
+The browser steps in and says:
+**"Hold on. Are you allowed to read this data?"**
+
+<br />
+
+The browser is your middleman/gatekeeper, not your server.
+Your server just answers requests.
+The browser decides whether JavaScript is allowed to see the response.
+
+---
+
+## Postman & cURL Reality Check
+
+If there is no browser it means **No Middleman, No rules.**
+Tools like: Postman, cURL, Scripts, Bots, Scrapers
+
+- They don't care about CORS.
+- They don't block responses.
+- They don't run preflight checks.
+- They can fake the Origin header easily.
+
+<br />
+
+Run this:
+
+```bash
+curl -H "Origin: https://myapp.com" https://api.yoursite.com
+```
+
+<br />
+
+If your API relies only on CORS, it will happily return data.
+CORS never stopped the request. It only hid the response from JavaScript.
+
+---
+
+## Zero-Trust Backend (This Is the Only Way)
+
+In 2026, assume every request is hostile.
+It doesn't matter if it comes from your frontend, a script, a bot farm or your own machine.
+Your backend must verify everything.
+
+<br />
+
+### A. Authentication (JWT / OAuth)
+
+Implement middleware in all your sensitive APIs to verify tokens before proceeding to perform operations.
+**No token? No access.**
+Authentication is a must-have feature in your application.
+
+<br />
+
+### B. Rate Limiting (Non-Negotiable)
+
+Without rate limiting, you are vulnerable to:
+
+- Brute force attacks
+- API abuse
+- Database overload
+
+<br />
+
+Use Redis / Upstash / Build your own limiter to limit requests by IP address, user_id, or auth-token.
+
+---
+
+## Implementation: Securing Next.js API Routes
+
+Implement middleware in your Next.js application. The Vercel team renamed middleware to proxy in version NextJS 16.
+Here's a simple but real approach using Next.js middleware (v16+ proxy).
+
+<br />
+
+```tsx
+// proxy.ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { verifyJWT } from "@/lib/auth";
+
+export async function middleware(req: NextRequest) {
+  const token = req.headers.get("authorization")?.split(" ")[1];
+
+  if (!token) {
+    return new NextResponse(
+      JSON.stringify({ error: "Unauthorized: No token provided" }),
+      { status: 401, headers: { "content-type": "application/json" } },
+    );
+  }
+
+  const payload = await verifyJWT(token);
+
+  if (!payload) {
+    return new NextResponse(
+      JSON.stringify({ error: "Unauthorized: Invalid token" }),
+      { status: 401 },
+    );
+  }
+
+  // Optional: rate limiting logic here
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: "/api/:path*",
+};
+```
+
+<br />
+
+Now: **Browser, Postman, and Bots** are all treated the same.
+
+---
+
+## Production-Level Checklist (Before Code Runs)
+
+If your app is real, you need more than just middleware.
+
+### Web Application Firewall (WAF)
+
+Use Cloudflare or AWS WAF. They:
+
+- Block bot traffic
+- Detect attack patterns
+- Stop bad requests before your server runs
+
+<br />
+
+### API Keys (Server-to-Server)
+
+If no user is involved:
+
+- Issue API keys
+- Rotate them often
+- Allow revocation
+- **Never** expose them in your frontend
+
+<br />
+
+### Payload Validation
+
+Always validate input. Use something like **Zod** to check:
+
+- Types
+- Required fields
+- Unexpected data
+
+This stops garbage and injection attempts.
+
+---
+
+## Final Takeaway
+
+**If you remember nothing else from this article, remember this:**
+
+- CORS is **not** backend security.
+- Browsers enforce CORS, servers don't.
+- Postman, cURL, and bots ignore your headers.
+- Authenticate every sensitive API.
+- Rate limit everything.
+- Use a WAF for real traffic.
+- Validate all inputs.
+
+<br />
+
+CORS is just a polite handshake between browser and server.
+
+---
+
+<br />
+
+Thank you for reading till the end. If you find this useful, drop a comment and like the post.
+
+[mail](mailto:hey@yagyaraj.com) | [linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234) | [website](https://yagyaraj.com)

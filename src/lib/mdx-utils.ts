@@ -19,27 +19,31 @@ export function getPostMetadata(slug: string): PostMetadata | null {
 
     // First try to extract metadata from JavaScript export
     const jsMetadataMatch = fileContents.match(
-      /export const metadata\s*=\s*({[\s\S]*?});/
+      /export const metadata\s*=\s*({[\s\S]*?});/,
     );
     if (jsMetadataMatch) {
       try {
         // Extract the object and evaluate it safely
         const metadataString = jsMetadataMatch[1];
         // Simple regex to extract key-value pairs (basic implementation)
-        const titleMatch = metadataString.match(/title:\s*["']([^"']+)["']/);
-        const authorMatch = metadataString.match(/author:\s*["']([^"']+)["']/);
-        const dateMatch = metadataString.match(/date:\s*["']([^"']+)["']/);
+        const titleMatch = metadataString.match(/title:\s*(["'])([\s\S]*?)\1/);
+        const authorMatch = metadataString.match(
+          /author:\s*(["'])([\s\S]*?)\1/,
+        );
+        const dateMatch = metadataString.match(/date:\s*(["'])([\s\S]*?)\1/);
         const summaryMatch = metadataString.match(
-          /summary:\s*["']([^"']+)["']/
+          /summary:\s*(["'])([\s\S]*?)\1/,
         );
         const tagsMatch = metadataString.match(/tags:\s*\[([^\]]*)\]/);
-        const ogImageMatch = metadataString.match(/ogImage:\s*["']([^"']+)["']/);
+        const ogImageMatch = metadataString.match(
+          /ogImage:\s*(["'])([\s\S]*?)\1/,
+        );
 
         const metadata = {
-          title: titleMatch ? titleMatch[1] : "Untitled Post",
-          author: authorMatch ? authorMatch[1] : undefined,
-          date: dateMatch ? dateMatch[1] : undefined,
-          summary: summaryMatch ? summaryMatch[1] : undefined,
+          title: titleMatch ? titleMatch[2] : "Untitled Post",
+          author: authorMatch ? authorMatch[2] : undefined,
+          date: dateMatch ? dateMatch[2] : undefined,
+          summary: summaryMatch ? summaryMatch[2] : undefined,
           tags: tagsMatch
             ? tagsMatch[1]
                 .split(",")
@@ -52,7 +56,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
         return metadata;
       } catch (jsError) {
         console.warn(
-          `Failed to parse JS metadata for ${slug}, falling back to gray-matter`
+          `Failed to parse JS metadata for ${slug}, falling back to gray-matter`,
         );
       }
     }
