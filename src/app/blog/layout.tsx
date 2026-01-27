@@ -41,19 +41,21 @@ export default function BlogLayout({
 }) {
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-end pb-2">
         <div className="flex gap-2 items-center">
-          <Link href="/">
+          <Link href="/" className="max-sm:hidden">
             <Image
               src="/notion.png"
-              height={24}
-              width={24}
-              sizes="(max-width: 768px) 64px, 96px"
+              height={40}
+              width={40}
+              sizes="(max-width: 768px) 80px, 96px"
               alt="user"
               className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
             />
           </Link>
-          <Link href={"/blog"}>Yagyaraj.</Link>
+          <Link href={"/blog"} className="text-md">
+            Yagyaraj.
+          </Link>
         </div>
         <Navbar />
       </div>

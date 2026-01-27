@@ -138,6 +138,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0f172a" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <ReactLenis root>
         <body
@@ -148,7 +149,7 @@ export default function RootLayout({
             outfit.className,
             inter.variable,
             jetbrainsMono.variable,
-            "antialiased  min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212]  dark:text-white text-black mx-auto max-w-3xl  selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 grid grid-rows-[1fr_auto]"
+            "antialiased min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212] dark:text-white text-black selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 overflow-x-hidden",
           )}
         >
           <ThemeProvider
@@ -157,8 +158,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
-            <Footer />
+            <div className="mx-auto max-w-3xl min-h-screen flex flex-col px-4 sm:px-6 lg:px-0">
+              {children}
+              <Footer />
+            </div>
           </ThemeProvider>
           <Analytics />
         </body>

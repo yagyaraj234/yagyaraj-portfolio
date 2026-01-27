@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 export default function ThemeButton() {
   const { setTheme } = useTheme();
   return (
-    <div className="flex mt-3 cursor-pointer">
+    <div className="flex mt-1 cursor-pointer">
       <SunIcon
         className="size-[16px] hidden dark:block"
         onClick={() => setTheme("light")}
