@@ -2,7 +2,7 @@
 
 import dayjs from "dayjs";
 import { LoaderIcon } from "lucide-react";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 
 import type { Activity } from "@/app/components/kibo-ui/contribution-graph";
 import {
@@ -18,6 +18,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/app/components/ui/tooltip";
+import { filterLastSixMonths } from "@/app/api/github-contribution";
 
 export function GitHubContributionGraph({
   contributions,
@@ -25,18 +26,37 @@ export function GitHubContributionGraph({
   contributions: Promise<Activity[]>;
 }) {
   const data = use(contributions);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Filter data for mobile (last 6 months)
+  const filteredData = isMobile ? filterLastSixMonths(data) : data;
 
   return (
     <ContributionGraph
-      className="mx-auto py-2"
-      data={data}
+      className="mx-auto py-2 w-full"
+      data={filteredData}
       blockSize={11}
       blockMargin={3}
       blockRadius={0}
     >
       <ContributionGraphCalendar
-        className="no-scrollbar px-2"
-        title="GitHub Contributions"
+        className="no-scrollbar px-2 overflow-x-auto"
+        title={
+          isMobile
+            ? "GitHub Contributions (Last 6 Months)"
+            : "GitHub Contributions"
+        }
       >
         {({ activity, dayIndex, weekIndex }) => (
           <Tooltip>
