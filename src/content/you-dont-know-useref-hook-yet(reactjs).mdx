@@ -1,12 +1,19 @@
 export const metadata = {
-  title: "You Don’t Know useRef Hook Yet (ReactJS)",
+  title: "You Don't Know useRef Hook Yet: Beyond DOM Access in React",
   author: "Yagyaraj Lodhi",
   date: "2026-01-11",
-  tags: ["nextjs", "reactjs", "hooks", "react-hook"],
+  tags: [
+    "react",
+    "useref",
+    "react-hooks",
+    "dom-manipulation",
+    "stale-closures",
+    "callback-refs",
+  ],
   ogImage:
     "https://yagyaraj.com/post/you-dont-know-useref-hook-yet(reactjs)/og.webp",
   summary:
-    "Understanding useRef in React: Beyond DOM Access to Managing Mutable Data",
+    "useRef is more than DOM access. Learn how to use useRef for managing mutable data, preventing stale closures, handling callback refs, and storing timers without triggering re-renders.",
 };
 
 For a long time, I know **useRef**.
@@ -27,7 +34,7 @@ APIs, and stale closures.
 
 ## What useRef Actually Gives You
 
-At its core, useRef is very simple.
+useRef is simple.
 
 ```ts
 const ref = useRef<HTMLDivElement | null>(null);
@@ -71,7 +78,7 @@ This works because focus is not a UI state. It's a browser action. React doesn't
 
 <br />
 
-Trying to represent things like focus, scroll position, or cursor location with state usually creates more problems than it solves. React is declarative, but the browser is fundamentally imperative. Some things need to be told what to do, not described.
+Trying to represent things like focus, scroll position, or cursor location with state usually creates more problems than it solves. React is declarative, but the browser is imperative. Some things need to be told what to do, not described.
 
 <br />
 
@@ -125,7 +132,7 @@ Why this matters: React only controls rendering part of the ui but your browser 
 
 ## Storing Non-React Values That Should Persist Without Re-Rendering
 
-This is where useRef already becomes more powerful than most people realize.
+This is where useRef shows its real value.
 
 Some values need to survive re-renders, change over time and not cause UI updates. few examples are like **timer's, observers, websocket connections**.
 
