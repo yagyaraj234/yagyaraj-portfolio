@@ -105,7 +105,8 @@ export async function CodeBlockRaw({
                 aria-hidden
                 className={cn(
                   "absolute -left-[20px] pl-[6px] w-[20px] block border-r select-none",
-                  isAddition && "bg-blue-500/10 text-blue-400 border-blue-500/20",
+                  isAddition &&
+                    "bg-blue-500/10 text-blue-400 border-blue-500/20",
                   isDeletion && "bg-red-500/10 text-red-400 border-red-500/20",
                 )}
               >
@@ -157,7 +158,7 @@ export function CodeBlockMain({
             <div className="w-3 h-3 rounded-full bg-green-500/80 border border-green-500/50" />
           </div>
           {lang && (
-            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider opacity-70">
+            <span className="text-xs font-medium text-zinc-600 dark:text-zinc-300 uppercase tracking-wider opacity-70">
               {lang}
             </span>
           )}
@@ -205,11 +206,7 @@ export async function CodeBlock(props: {
   const lang = props.children.props.className?.replaceAll("language-", "");
   const formattedCode = await formatCode(code, lang || "");
   return (
-    <CodeBlockMain
-      lang={lang}
-      diff={props.diff}
-      highlight={props.highlight}
-    >
+    <CodeBlockMain lang={lang} diff={props.diff} highlight={props.highlight}>
       {formattedCode}
     </CodeBlockMain>
   );
