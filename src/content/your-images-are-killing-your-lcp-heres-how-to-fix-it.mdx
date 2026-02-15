@@ -18,15 +18,14 @@ export const metadata = {
     "Image optimization techniques that actually fix LCP LQIP, responsive images, pixel density, modern formats, and the mistakes most developers make.",
 };
 
+<ProblemStatement>
 If you've ever run Lighthouse and seen your LCP score in red there's a good chance the problem is an image.
-
-<br />
 
 You optimized your JavaScript. You split your bundles. You added CDN caching. But your hero image is still 2MB and the browser is stuck waiting for it. **Your LCP is gone.**
 
-<br />
+</ProblemStatement>
 
-And here's the thing most developers don't realize in 70–80% of web apps, the LCP element **is** an image. Hero banners, product shots, blog covers. That one image decides whether your Core Web Vitals pass or fail.
+And here's the thing most developers don't realize in **70–80%** of web apps, the LCP element **is** an image. Hero banners, product shots, blog covers. That one image decides whether your Core Web Vitals pass or fail.
 
 <br />
 
@@ -36,11 +35,13 @@ Bad LCP means lower rankings. Lower rankings means fewer users. Fewer users mean
 
 This post is everything I know about fixing that.
 
----
+<br />
 
 ## What Is LCP and Why Images Break It
 
-![LCP waterfall breakdown showing resource load timing in Chrome DevTools](https://images.openai.com/static-rsc-3/wQWUWuNR_0f0FshT5VmizytiBsU2NNX7CrLgy6OUGHR5_C7PgRJ3QQ13dz_NbtDWaa5SGtFYZrMda9dFP9eOHNwJFIpvHHWgKBRo5_sHqLI?purpose=fullsize&v=1)
+![LCP waterfall breakdown showing resource load timing in Chrome DevTools](https://res.cloudinary.com/dif39heof/image/upload/v1771150834/lcp_vkoz9o.png)
+
+![Chrome DevTools highlighting the LCP element on a Shopify product page](https://performance.shopify.com/cdn/shop/files/devtools-lcp-element.png?width=760)
 
 ![LCP badge in Chrome Performance Insights](https://developer.chrome.com/static/docs/devtools/performance-insights/image/the-lcp-badge-3d27cefbb1f8f.png)
 
@@ -52,21 +53,18 @@ In 70–80% of web apps, that element is an image hero banner, product image, fe
 
 <br />
 
-Google considers LCP good if it's under **2.5 seconds**.
+Google considers LCP good if it's under <Annotation type="box" color="#30A46C">**2.5 seconds**</Annotation>.
 
 <br />
 
 But most developers think LCP is just about download speed. It's not.
 
-LCP includes:
-
-- TTFB (Time to First Byte)
-- Resource discovery
-- Download time
-- Decoding
-- Rendering
-
-So even if your image is compressed, if it's loaded through JavaScript or blocked behind heavy scripts, LCP will still be bad.
+<Callout type="info">
+  LCP isn't just download time. It includes **TTFB** (Time to First Byte),
+  **resource discovery**, **download time**, **decoding**, and **rendering**. So
+  even if your image is compressed, if it's loaded through JavaScript or blocked
+  behind heavy scripts, LCP will still be bad.
+</Callout>
 
 ---
 
@@ -74,20 +72,29 @@ So even if your image is compressed, if it's loaded through JavaScript or blocke
 
 If your above-the-fold image has `loading="lazy"`, you already have a problem.
 
-### ❌ Don't do this
+<Columns>
+  <div>
+    **❌ Don't do this**
 
-```html
-<img src="/hero.jpg" loading="lazy" />
-```
+    ```html
+    <img src="/hero.jpg" loading="lazy" />
+    ```
 
-Lazy loading delays LCP. It's meant for images below the fold not for your hero image.
+    Lazy loading delays LCP. It's meant for images below the fold not for your hero image.
 
-### ✅ Do this instead
+  </div>
+  <ColumnRight>
+    **✅ Do this instead**
 
-```html
-<link rel="preload" as="image" href="/hero.jpg" />
-<img src="/hero.jpg" fetchpriority="high" alt="Hero" />
-```
+    ```html
+    <link rel="preload" as="image" href="/hero.jpg" />
+    <img src="/hero.jpg" fetchpriority="high" alt="Hero" />
+    ```
+
+    This tells the browser to load that image **first**.
+
+  </ColumnRight>
+</Columns>
 
 In NextJS, pass the `priority` prop on the `Image` component:
 
@@ -95,9 +102,9 @@ In NextJS, pass the `priority` prop on the `Image` component:
 <Image src="/hero.jpg" priority alt="Hero" />
 ```
 
-<br />
-
-This tells the browser to load that image first. That one change alone can drop LCP by 300–800ms.
+<Callout type="success">
+  That one change alone can drop LCP by **300–800ms**.
+</Callout>
 
 ---
 
@@ -105,7 +112,7 @@ This tells the browser to load that image first. That one change alone can drop 
 
 ![LQIP blurred placeholder vs full image](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/Mlb3C96uo4KLWgNe835l2/31ccbe118c20ce15f4c35c5ceb0cd377/image6.jpg)
 
-LQIP = **Low Quality Image Placeholder**.
+LQIP = <Annotation type="underline">**Low Quality Image Placeholder**</Annotation>.
 
 Instead of showing a blank space while the image loads, you show a tiny blurred version usually 10–20px wide, or a base64-encoded thumbnail. Then swap it once the full image is ready.
 
@@ -113,34 +120,42 @@ Instead of showing a blank space while the image loads, you show a tiny blurred 
 
 Even if the real image takes 1.8 seconds, the user sees something right away. That changes the feel of the entire page.
 
-### Basic version
+<Columns>
+  <div>
+    **Basic HTML version**
 
-```html
-<img
-  src="data:image/jpeg;base64,/9j/4AAQSk..."
-  data-src="/real-image.jpg"
-  class="blur"
-/>
-```
+    ```html
+    <img
+      src="data:image/jpeg;base64,/9j/4AAQSk..."
+      data-src="/real-image.jpg"
+      class="blur"
+    />
+    ```
 
-### NextJS version
+  </div>
+  <ColumnRight>
+    **NextJS version**
 
-```jsx
-<Image
-  src="/hero.jpg"
-  placeholder="blur"
-  blurDataURL="data:image/jpeg;base64,..."
-/>
-```
+    ```jsx
+    <Image
+      src="/hero.jpg"
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,..."
+    />
+    ```
 
-### When to skip LQIP
+  </ColumnRight>
+</Columns>
 
-- Small icons
-- Images under 10kb
-- Below-the-fold content
-- Already compressed thumbnails
+<Aside label="When to skip LQIP">
+  - Small icons
+  - Images under 10kb
+  - Below-the-fold content
+  - Already compressed thumbnails
 
 No point adding complexity for images that load instantly anyway.
+
+</Aside>
 
 ---
 
@@ -152,7 +167,11 @@ Mobile: 375px.
 Tablet: 768px.
 Desktop: 1440px+.
 
-Sending a 2000px image to a mobile phone is just wasted bandwidth.
+<Callout type="warning">
+  Sending a 2000px image to a mobile phone is just wasted bandwidth. Without
+  `srcset`, a phone downloads the same oversized image meant for a 27-inch
+  monitor. That's bad for performance and bad for users on slow connections.
+</Callout>
 
 ### `srcset` and `sizes`
 
@@ -166,10 +185,6 @@ Sending a 2000px image to a mobile phone is just wasted bandwidth.
 ```
 
 The browser picks the smallest image that fits. Less data, faster load, lower LCP.
-
-<br />
-
-Without this, a phone downloads the same oversized image meant for a 27-inch monitor. That's bad for performance and bad for users on slow connections.
 
 ---
 
@@ -191,9 +206,10 @@ If you only serve 1x images on a 2x screen, everything looks blurry.
 
 The browser picks the right version based on the screen.
 
-<br />
-
-Don't force 2x images on everyone that doubles file size for users who don't need it. Let the browser decide.
+<Callout type="tip">
+  Don't force 2x images on everyone that doubles file size for users who don't
+  need it. Let the browser decide.
+</Callout>
 
 ---
 
@@ -211,15 +227,21 @@ Use `<picture>` for this:
 </picture>
 ```
 
-Only use this when the design actually needs different crops. Don't add it everywhere it's extra work for minimal gain in most cases.
+<InlineNote>
+  <Note>
+    Only use orientation switching when the design actually needs different
+    crops. Don't add it everywhere it's extra work for minimal gain in most
+    cases.
+  </Note>
+</InlineNote>
 
 ---
 
 ## Step 6: Use WebP and AVIF
 
-JPEG and PNG are old and heavy.
+- JPEG and PNG are old and heavy.
 
-WebP and AVIF give you 25–50% smaller files with the same visual quality.
+- WebP and AVIF give you 25–50% smaller files with the same visual quality.
 
 ### Fallback structure
 
@@ -233,15 +255,16 @@ WebP and AVIF give you 25–50% smaller files with the same visual quality.
 
 The browser picks the best format it supports. If it can handle AVIF, it uses that. Otherwise WebP. Otherwise JPEG.
 
-<br />
-
-CDNs like Cloudinary, ImageKit, and Fastly can auto-convert formats for you. The NextJS `Image` component does this too.
+<Callout type="info">
+  CDNs like **Cloudinary**, **ImageKit**, and **Fastly** can auto-convert
+  formats for you. The NextJS `Image` component does this too.
+</Callout>
 
 ---
 
 ## Step 7: Set Width and Height
 
-If you don't set `width` and `height` on your images, the browser doesn't know how much space to reserve. That causes layout shift your CLS score goes up, and the page feels jumpy.
+If you don't set `width` and `height` on your images, the browser doesn't know how much space to reserve. That causes layout shift your <Annotation type="underline" color="#EF4444">CLS score goes up</Annotation>, and the page feels jumpy.
 
 ```html
 <img src="image.jpg" width="800" height="600" alt="Product" />
@@ -253,6 +276,7 @@ Or use `aspect-ratio` in CSS. Either way, tell the browser the dimensions upfron
 
 ## Step 8: Don't Use CSS Background for LCP Images
 
+<ProblemStatement>
 If your hero image looks like this:
 
 ```css
@@ -263,7 +287,7 @@ If your hero image looks like this:
 
 The browser might not prioritize it. CSS backgrounds are treated differently they're discovered later in the rendering pipeline.
 
-<br />
+</ProblemStatement>
 
 Use `<img>` tags for anything that needs to load fast. Save `background-image` for decorative stuff.
 
@@ -283,13 +307,16 @@ Remove `loading="lazy"` from that image. Add `<link rel="preload">`. Set `fetchp
 
 ### 3. Generate image variants
 
-For your key images, create multiple versions:
+<Aside label="Image variant checklist">
+  For your key images, create multiple versions:
 
-- Widths: 400w, 800w, 1200w, 1600w
-- Densities: 1x, 2x
-- Formats: WebP, AVIF
+- **Widths:** 400w, 800w, 1200w, 1600w
+- **Densities:** 1x, 2x
+- **Formats:** WebP, AVIF
 
 Automate this with your build pipeline or CDN.
+
+</Aside>
 
 ### 4. Add LQIP only where it matters
 
@@ -303,43 +330,42 @@ Lab scores are just lab scores. Track real LCP, CLS, and FCP through analytics o
 
 ## Mistakes I Keep Seeing
 
-1. Lazy loading the hero image
-2. Loading images after a large JS bundle finishes
-3. Sending desktop-size images to all devices
-4. No width/height causing layout shift
-5. Ignoring pixel density
-6. Adding LQIP to every single image
-7. Using `background-image` for the main content image
+<Callout type="warning">
+  1. Lazy loading the hero image 2. Loading images after a large JS bundle
+  finishes 3. Sending desktop-size images to all devices 4. No width/height
+  causing layout shift 5. Ignoring pixel density 6. Adding LQIP to every single
+  image 7. Using `background-image` for the main content image
+</Callout>
 
 If your LCP image gets injected via JavaScript after hydration, you're adding delay for no reason.
 
----
-
 ## When to Stop Optimizing
 
-Don't go overboard:
+<Aside label="Don't go overboard">
 
 - Don't generate 12 variants for a 24px icon
 - Don't use orientation switching for simple layouts
 - Don't add LQIP for 5kb images
 - Don't force AVIF if your users are on browsers that don't support it
 
-The goal is better performance, not more complexity.
+</Aside>
 
----
+The goal is <Annotation type="underline">better performance, not more complexity</Annotation>.
 
 ## Wrapping Up
 
 Image optimization isn't just about compression.
 
-It's about sending the right size, in the right format, at the right time, to the right device.
+<br />
+It's about sending the right size, in the right format, at the right time, to
+the right device.
 
 <br />
 
 If your LCP image loads fast, the whole app feels fast. And when the app feels fast, people stay.
 
----
-
-Thank you for reading. If you found this useful, share it with someone who needs it.
+<br />
+Thank you for reading. If you found this useful, share it with someone who needs
+it.
 
 [linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234)
