@@ -40,6 +40,9 @@ export async function generateMetadata({
       : `${USER.website}${ogImage}`
     : `${USER.website}/api/og/blog/${slug}`;
 
+  const postMetadataFull = getPostMetadata(slug);
+  const lastUpdated = postMetadataFull?.lastUpdated;
+
   return {
     title: `${title} | Yagyaraj`,
     description: summary || `${title} - Blog post by ${author}`,
@@ -60,12 +63,17 @@ export async function generateMetadata({
       ],
       locale: "en_US",
       type: "article",
+      ...(postMetadata.date && { publishedTime: postMetadata.date }),
+      ...(lastUpdated && { modifiedTime: lastUpdated }),
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Yagyaraj`,
       description: summary || `${title} - Blog post by ${author}`,
       images: [ogImageUrl],
+    },
+    alternates: {
+      canonical: `${USER.website}/blog/${slug}`,
     },
   };
 }
@@ -87,10 +95,74 @@ export default async function Page({
       })
     : new Date().toLocaleDateString();
 
-  console.log("postMetadata", postMetadata?.title);
+  const lastUpdatedDate = postMetadata?.lastUpdated
+    ? new Date(postMetadata.lastUpdated).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
+
+  // Article JSON-LD structured data for SEO & AEO
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: postMetadata?.title,
+      description: postMetadata?.summary,
+      author: {
+        "@type": "Person",
+        name: postMetadata?.author || "Yagyaraj Lodhi",
+        url: USER.website,
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Yagyaraj Lodhi",
+        url: USER.website,
+      },
+      url: `${USER.website}/blog/${slug}`,
+      ...(postMetadata?.date && { datePublished: postMetadata.date }),
+      ...(postMetadata?.lastUpdated && {
+        dateModified: postMetadata.lastUpdated,
+      }),
+      ...(postMetadata?.ogImage && { image: postMetadata.ogImage }),
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${USER.website}/blog/${slug}`,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: USER.website,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: `${USER.website}/blog`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: postMetadata?.title,
+        },
+      ],
+    },
+  ];
 
   return (
     <div className="font-sans mt-8 ">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PostTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -99,10 +171,6 @@ export default async function Page({
       >
         {postMetadata?.title}
       </PostTitle>
-
-      {/* <PostDescription className="mb-4 text-lg ">
-        {postMetadata?.summary}
-      </PostDescription> */}
 
       <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
         <PostUpdatedText>Published on {publishDate}</PostUpdatedText>

@@ -54,4 +54,5 @@ export const USER: User = {
     "firebase developer",
   ],
   dateCreated: "2023-01-01", // YYYY-MM-DD
+  lastUpdated: "2026-02-17", // YYYY-MM-DD
 };
