@@ -6,6 +6,7 @@ export interface PostMetadata {
   title: string;
   author?: string;
   date?: string;
+  lastUpdated?: string;
   tags?: string[];
   summary?: string;
   slug: string;
@@ -38,11 +39,15 @@ export function getPostMetadata(slug: string): PostMetadata | null {
         const ogImageMatch = metadataString.match(
           /ogImage:\s*(["'])([\s\S]*?)\1/,
         );
+        const lastUpdatedMatch = metadataString.match(
+          /lastUpdated:\s*(["'])([\s\S]*?)\1/,
+        );
 
         const metadata = {
           title: titleMatch ? titleMatch[2] : "Untitled Post",
           author: authorMatch ? authorMatch[2] : undefined,
           date: dateMatch ? dateMatch[2] : undefined,
+          lastUpdated: lastUpdatedMatch ? lastUpdatedMatch[2] : undefined,
           summary: summaryMatch ? summaryMatch[2] : undefined,
           tags: tagsMatch
             ? tagsMatch[1]
@@ -68,6 +73,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
       title: data.title || "Untitled Post",
       author: data.author,
       date: data.date,
+      lastUpdated: data.lastUpdated,
       tags: data.tags || [],
       summary: data.summary,
       slug,

@@ -126,6 +126,9 @@ export const metadata: Metadata = {
     canonical: USER.website,
   },
   keywords: USER.keywords,
+  other: {
+    "article:modified_time": USER.lastUpdated,
+  },
 };
 
 export default function RootLayout({
@@ -158,6 +161,37 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  name: `${USER.displayName} Portfolio`,
+                  url: USER.website,
+                  description: USER.bio,
+                  author: {
+                    "@type": "Person",
+                    name: `${USER.firstName} ${USER.lastName}`,
+                    url: USER.website,
+                    jobTitle: USER.jobTitle,
+                    image: `${USER.website}${USER.avatar}`,
+                    sameAs: [
+                      `https://github.com/${USER.username}`,
+                      `https://linkedin.com/in/${USER.username}`,
+                      `https://x.com/${USER.username}`,
+                    ],
+                  },
+                  dateCreated: USER.dateCreated,
+                  dateModified: USER.lastUpdated,
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: `${USER.website}/blog?q={search_term_string}`,
+                    "query-input": "required name=search_term_string",
+                  },
+                }),
+              }}
+            />
             <div className="mx-auto max-w-3xl min-h-screen flex flex-col px-4 sm:px-6 lg:px-0">
               {children}
               <Footer />

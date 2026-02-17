@@ -41,4 +41,5 @@ export interface User {
   timeZone: string;
   keywords: string[];
   dateCreated: string; // YYYY-MM-DD format
+  lastUpdated: string; // YYYY-MM-DD format
 }

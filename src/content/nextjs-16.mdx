@@ -2,6 +2,7 @@ export const metadata = {
   title: "Next.js 16: PPR, Cache Components, and React Compiler Explained",
   author: "Yagyaraj Lodhi",
   date: "2025-11-22",
+  lastUpdated: "2025-11-22",
   tags: [
     "nextjs",
     "react",
@@ -19,8 +20,8 @@ export const metadata = {
 hey, 👋 developer’s today we’re diving into NextJS version 16, recently launched what are new features and improvement was in this release and how this can benefit you nextjs application
 
 <br />
-there are multiple releases happened in version 16. some of the features that are
-in experimental now move to stable release and some of them are new features
+there are multiple releases happened in version 16. some of the features that
+are in experimental now move to stable release and some of them are new features
 
 <br />
 key changes
@@ -30,6 +31,7 @@ key changes
 - React Compiler support
 
 ---
+
 ## Partial Pre-Rendering
 
 Partial Pre-Rendering is a technique where we can put some part of page to render after some for dynamic data and serve as a HTML directly from the server
@@ -41,18 +43,18 @@ where some products are top 1 hour purchase that is dynamic and products those w
 be static ( changes once/twice a week )
 
 <ProblemStatement>
-Even for same data we have to fetch from the server and render the page
+  Even for same data we have to fetch from the server and render the page
 </ProblemStatement>
 
 in this page we can implement PPR so to achieve this we have to wrap my dynamic component
 with React Suspense boundary as pass one fallback that can be used to show loading
 Skeleton ui until the dynamic data loaded
 
-<br/>
+<br />
 
-Example  Partial Pre-Rendering in action:
-<br/>
+Example Partial Pre-Rendering in action:
 
+<br />
 
 <video
   controls
@@ -70,17 +72,17 @@ Example  Partial Pre-Rendering in action:
   instead.
 </video>
 
-<br/>
+<br />
 
 let’s break down what’s happening in this video
 
-<br/>
+<br />
 
-at the top, you see the **static content** section  this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching  just fast render straight from the cache or CDN.
+at the top, you see the **static content** section this part is pre-rendered as plain HTML on the server. it’s instantly available to the user, meaning no network delay, no client fetching just fast render straight from the cache or CDN.
 
-<br/>
+<br />
 
-below that, you’ll find the **dynamic content** section  wrapped inside a React `Suspense` boundary.
+below that, you’ll find the **dynamic content** section wrapped inside a React `Suspense` boundary.
 
 ```tsx
 export default function ProductCart({ type = "clothing" }: { type: string }) {
@@ -110,7 +112,7 @@ _next.js serves your static shell instantly while keeping dynamic sections truly
 cache components are features provide to cache the component for faster loading the component by using `use cache` directive at the top of component like below:
 
 ```tsx
-'use cache';
+"use cache";
 
 export default function ProductCart({ type = "clothing" }: { type: string }) {
   return (
