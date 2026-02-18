@@ -1,6 +1,7 @@
 import { blogData } from "./data";
 import { USER } from "@/data/user.data";
 import { getPostMetadata } from "@/lib/mdx-utils";
+import { getAllPostSlugs } from "@/lib/blog.utils";
 import { Metadata } from "next";
 import {
   PostTitle,
@@ -12,6 +13,11 @@ import { Aside } from "@/app/components/mdx/aside";
 import { Annotation } from "@/app/components/mdx/annotation";
 import { Columns, ColumnRight } from "@/app/components/mdx/columns";
 import { Note, InlineNote } from "@/app/components/mdx/note";
+
+export async function generateStaticParams() {
+  const slugs = getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -36,8 +42,8 @@ export async function generateMetadata({
   } = postMetadata;
   const ogImageUrl = ogImage
     ? ogImage.startsWith("http")
-      ? ogImage
-      : `${USER.website}${ogImage}`
+    ? ogImage
+    : `${USER.website}${ogImage}`
     : `${USER.website}/api/og/blog/${slug}`;
 
   const postMetadataFull = getPostMetadata(slug);
@@ -103,80 +109,31 @@ export default async function Page({
       })
     : null;
 
-  // Article JSON-LD structured data for SEO & AEO
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: postMetadata?.title,
-      description: postMetadata?.summary,
-      author: {
-        "@type": "Person",
-        name: postMetadata?.author || "Yagyaraj Lodhi",
-        url: USER.website,
-      },
-      publisher: {
-        "@type": "Person",
-        name: "Yagyaraj Lodhi",
-        url: USER.website,
-      },
-      url: `${USER.website}/blog/${slug}`,
-      ...(postMetadata?.date && { datePublished: postMetadata.date }),
-      ...(postMetadata?.lastUpdated && {
-        dateModified: postMetadata.lastUpdated,
-      }),
-      ...(postMetadata?.ogImage && { image: postMetadata.ogImage }),
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${USER.website}/blog/${slug}`,
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: USER.website,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Blog",
-          item: `${USER.website}/blog`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: postMetadata?.title,
-        },
-      ],
-    },
-  ];
-
   return (
-    <div className="font-sans mt-8 ">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <article className="mt-8 flex flex-col gap-8 pb-16">
+      <header className="flex flex-col gap-4">
+        <PostTitle>{postMetadata?.title || ""}</PostTitle>
+        <div className="flex flex-col gap-2">
+          <PostDescription>{postMetadata?.summary || ""}</PostDescription>
+          <div className="flex gap-4 items-center text-sm text-gray-500 dark:text-gray-400">
+            <time dateTime={postMetadata?.date}>{publishDate}</time>
+            {lastUpdatedDate && (
+              <>
+                <span>•</span>
+                <PostUpdatedText>Updated {lastUpdatedDate}</PostUpdatedText>
+              </>
+            )}
+            {postMetadata?.author && (
+              <>
+                <span>•</span>
+                <span>{postMetadata.author}</span>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
 
-      <PostTitle
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-4 max-sm:text-4xl"
-      >
-        {postMetadata?.title}
-      </PostTitle>
-
-      <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
-        <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
-      </div>
-
-      <article className="prose prose-zinc dark:prose-invert max-w-none">
+      <div className="prose dark:prose-invert max-w-none">
         <Post
           components={{
             Callout,
@@ -188,13 +145,7 @@ export default async function Page({
             InlineNote,
           }}
         />
-      </article>
-    </div>
+      </div>
+    </article>
   );
 }
-
-export function generateStaticParams() {
-  return blogData.map((slug) => ({ slug }));
-}
-
-export const dynamicParams = false;
