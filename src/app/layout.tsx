@@ -7,6 +7,7 @@ import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/app/components/footer";
 import { USER } from "@/data/user.data";
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import localFont from "next/font/local";
 
 // Font settings
@@ -161,6 +162,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <NuqsAdapter>
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
@@ -196,6 +198,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </div>
+            </NuqsAdapter>
           </ThemeProvider>
           <Analytics />
         </body>
