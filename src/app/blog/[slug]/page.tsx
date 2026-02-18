@@ -1,7 +1,6 @@
 import { blogData } from "./data";
 import { USER } from "@/data/user.data";
 import { getPostMetadata } from "@/lib/mdx-utils";
-import { getAllPostSlugs } from "@/lib/blog.utils";
 import { Metadata } from "next";
 import {
   PostTitle,
@@ -13,11 +12,6 @@ import { Aside } from "@/app/components/mdx/aside";
 import { Annotation } from "@/app/components/mdx/annotation";
 import { Columns, ColumnRight } from "@/app/components/mdx/columns";
 import { Note, InlineNote } from "@/app/components/mdx/note";
-
-export async function generateStaticParams() {
-  const slugs = getAllPostSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
 
 export async function generateMetadata({
   params,
@@ -42,12 +36,9 @@ export async function generateMetadata({
   } = postMetadata;
   const ogImageUrl = ogImage
     ? ogImage.startsWith("http")
-    ? ogImage
-    : `${USER.website}${ogImage}`
+      ? ogImage
+      : `${USER.website}${ogImage}`
     : `${USER.website}/api/og/blog/${slug}`;
-
-  const postMetadataFull = getPostMetadata(slug);
-  const lastUpdated = postMetadataFull?.lastUpdated;
 
   return {
     title: `${title} | Yagyaraj`,
@@ -69,17 +60,12 @@ export async function generateMetadata({
       ],
       locale: "en_US",
       type: "article",
-      ...(postMetadata.date && { publishedTime: postMetadata.date }),
-      ...(lastUpdated && { modifiedTime: lastUpdated }),
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Yagyaraj`,
       description: summary || `${title} - Blog post by ${author}`,
       images: [ogImageUrl],
-    },
-    alternates: {
-      canonical: `${USER.website}/blog/${slug}`,
     },
   };
 }
@@ -101,39 +87,28 @@ export default async function Page({
       })
     : new Date().toLocaleDateString();
 
-  const lastUpdatedDate = postMetadata?.lastUpdated
-    ? new Date(postMetadata.lastUpdated).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
+  console.log("postMetadata", postMetadata?.title);
 
   return (
-    <article className="mt-8 flex flex-col gap-8 pb-16">
-      <header className="flex flex-col gap-4">
-        <PostTitle>{postMetadata?.title || ""}</PostTitle>
-        <div className="flex flex-col gap-2">
-          <PostDescription>{postMetadata?.summary || ""}</PostDescription>
-          <div className="flex gap-4 items-center text-sm text-gray-500 dark:text-gray-400">
-            <time dateTime={postMetadata?.date}>{publishDate}</time>
-            {lastUpdatedDate && (
-              <>
-                <span>•</span>
-                <PostUpdatedText>Updated {lastUpdatedDate}</PostUpdatedText>
-              </>
-            )}
-            {postMetadata?.author && (
-              <>
-                <span>•</span>
-                <span>{postMetadata.author}</span>
-              </>
-            )}
-          </div>
-        </div>
-      </header>
+    <div className="font-sans mt-8 ">
+      <PostTitle
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-4 max-sm:text-4xl"
+      >
+        {postMetadata?.title}
+      </PostTitle>
 
-      <div className="prose dark:prose-invert max-w-none">
+      {/* <PostDescription className="mb-4 text-lg ">
+        {postMetadata?.summary}
+      </PostDescription> */}
+
+      <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
+        <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
+      </div>
+
+      <article className="prose prose-zinc dark:prose-invert max-w-none">
         <Post
           components={{
             Callout,
@@ -145,7 +120,13 @@ export default async function Page({
             InlineNote,
           }}
         />
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }
+
+export function generateStaticParams() {
+  return blogData.map((slug) => ({ slug }));
+}
+
+export const dynamicParams = false;
