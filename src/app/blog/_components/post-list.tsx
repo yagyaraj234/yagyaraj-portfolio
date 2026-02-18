@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { useQueryState, parseAsString } from "nuqs";
@@ -9,17 +9,28 @@ import { ArrowDownWideNarrow, ArrowUpWideNarrow } from "lucide-react";
 import { POPULAR_TAGS } from "@/lib/blog.constants";
 
 export default function PostList({ posts }: { posts: PostIndexItem[] }) {
-  const [search] = useQueryState('q', parseAsString.withDefault('').withOptions({ shallow: true }));
-  const [selectedTag, setSelectedTag] = useQueryState('tag', parseAsString.withDefault('').withOptions({ shallow: true }));
-  const [sortOrder, setSortOrder] = useQueryState('sort', parseAsString.withDefault('desc').withOptions({ shallow: true }));
+  const [search] = useQueryState(
+    "q",
+    parseAsString.withDefault("").withOptions({ shallow: true }),
+  );
+  const [selectedTag, setSelectedTag] = useQueryState(
+    "tag",
+    parseAsString.withDefault("").withOptions({ shallow: true }),
+  );
+  const [sortOrder, setSortOrder] = useQueryState(
+    "sort",
+    parseAsString.withDefault("desc").withOptions({ shallow: true }),
+  );
 
   const filteredPosts = posts.filter((post) => {
     const term = search.toLowerCase();
-    const matchesSearch = 
+    const matchesSearch =
       post.metadata.title.toLowerCase().includes(term) ||
       post.metadata.summary?.toLowerCase().includes(term);
-    
-    const matchesTag = selectedTag ? post.metadata.tags?.includes(selectedTag) : true;
+
+    const matchesTag = selectedTag
+      ? post.metadata.tags?.includes(selectedTag)
+      : true;
 
     return matchesSearch && matchesTag;
   });
@@ -27,8 +38,8 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
   const sortedPosts = [...filteredPosts].sort((a, b) => {
     const dateA = a.metadata.date ? new Date(a.metadata.date).getTime() : 0;
     const dateB = b.metadata.date ? new Date(b.metadata.date).getTime() : 0;
-    
-    if (sortOrder === 'asc') {
+
+    if (sortOrder === "asc") {
       return dateA - dateB;
     }
     return dateB - dateA;
@@ -43,25 +54,25 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
   };
 
   const toggleSort = () => {
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
   return (
     <>
       <Search />
-      
+
       {/* Popular Tags Filter & Sort */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div className="flex flex-wrap gap-2">
-          {POPULAR_TAGS.map(tag => (
+          {POPULAR_TAGS.map((tag) => (
             <button
               key={tag}
               onClick={() => toggleTag(tag)}
               className={cn(
                 "px-3 py-1 text-xs rounded-full border transition-colors",
-                selectedTag === tag 
-                  ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white" 
-                  : "bg-transparent border-gray-200 text-gray-600 hover:border-gray-400 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-600"
+                selectedTag === tag
+                  ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white"
+                  : "bg-transparent border-gray-200 text-gray-600 hover:border-gray-400 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-600",
               )}
             >
               #{tag}
@@ -72,9 +83,9 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
         <button
           onClick={toggleSort}
           className="flex items-center gap-2 px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors whitespace-nowrap"
-          title={`Sort by date ${sortOrder === 'asc' ? 'ascending' : 'descending'}`}
+          title={`Sort by date ${sortOrder === "asc" ? "ascending" : "descending"}`}
         >
-          {sortOrder === 'asc' ? (
+          {sortOrder === "asc" ? (
             <>
               <ArrowUpWideNarrow className="w-4 h-4" />
               <span>Oldest First</span>
@@ -101,7 +112,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
               className="md:pb-6 pb-2 flex justify-between gap-2 max-md:flex-col"
             >
               <div>
-                <h2 className="text-xl max-md:text-lg font-semibold cursor-pointer">
+                <h2 className="text-xl max-md:text-lg font-semibold max-sm:text-lg">
                   <Link
                     href={`/blog/${slug}`}
                     className="hover:underline cursor-pointer"
@@ -112,7 +123,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 </h2>
 
                 {metadata.summary ? (
-                  <p className="text-gray-800 dark:text-gray-300 mt-2">
+                  <p className="text-gray-800 dark:text-gray-300 mt-2 max-sm:text-sm">
                     {metadata.summary}
                   </p>
                 ) : null}
@@ -121,7 +132,9 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 <div className="flex flex-wrap gap-y-2 gap-x-4 items-center text-xs font-medium mt-4 text-gray-600 dark:text-gray-400">
                   <div className="flex gap-2 items-center">
                     {metadata.date && (
-                      <span>{new Date(metadata.date).toLocaleDateString()}</span>
+                      <span>
+                        {new Date(metadata.date).toLocaleDateString()}
+                      </span>
                     )}
                     {readingTime && (
                       <div className="flex gap-2 items-center">
@@ -130,16 +143,18 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                       </div>
                     )}
                   </div>
-                  
+
                   {metadata.tags && metadata.tags.length > 0 && (
                     <div className="flex gap-2">
-                      {metadata.tags.map(tag => (
-                        <button 
+                      {metadata.tags.map((tag) => (
+                        <button
                           key={tag}
                           onClick={() => toggleTag(tag)}
                           className={cn(
-                            "hover:underline",
-                            selectedTag === tag ? "font-bold text-black dark:text-white" : ""
+                            "hover:underline hidden",
+                            selectedTag === tag
+                              ? "font-bold text-black dark:text-white"
+                              : "",
                           )}
                         >
                           #{tag}
