@@ -1,0 +1,164 @@
+export const metadata = {
+  title: "Core Web Vitals Explained: LCP, CLS, and INP Complete Guide",
+  author: "Yagyaraj Lodhi",
+  date: "2026-02-23",
+  lastUpdated: "2026-02-23",
+  tags: [
+    "core web vitals",
+    "web performance",
+    "seo",
+    "user experience",
+    "lcp",
+    "cls",
+    "inp",
+    "page speed",
+  ],
+  ogImage: "https://yagyaraj.com/post/core-web-vitals-for-beginners/og.png",
+  summary:
+    "Master Core Web Vitals with simple explanations of LCP, CLS, and INP. Improve speed, stability, and responsiveness today.",
+};
+
+Complete Guide to Core Web Vitals: LCP, CLS, and INP Explained Simply
+If you've ever opened Google PageSpeed Insights or Google Lighthouse and saw red warnings like:
+Largest Contentful Paint (LCP)is too high
+Cumulative Layout Shift (CLS) needs improvement
+Interaction to Next Paint (INP) is poor
+
+You probably optimize an image removed one script from your header and refreshed again and expected for better performance or score turned into green.
+If you don't understand what these metrics actually measure, you're just guessing.
+Core Web Vitals are not random numbers. They represent how real users experience your website. and this changes everything for your business
+
+Understanding the "Why": Beyond SEO
+Most developers first hear about Core Web Vitals because of rankings.
+Yes, they affect SEO.
+But if your only motivation is ranking, you're missing the bigger picture.
+Core Web Vitals directly impact:
+
+1. Real User Experience
+   Users do not measure milliseconds. They feel friction.
+   If your hero section takes 4 seconds to appear:
+   They think your site is slow.
+   They assume your product is not professional.
+   They leave.
+
+If layout keeps shifting:
+They lose trust.
+They get frustrated.
+They stop interacting.
+
+If buttons respond late:
+They click twice.
+They think site is frozen.
+They abandon checkout.
+
+Core Web Vitals measure experience, not performance vanity. 2. Conversion Rate Impact
+Imagine this:
+Product page loads slowly → bounce increases
+Add to cart button lags → duplicate clicks
+Checkout layout shifts → wrong input tapped 
+
+Small delays at scale = massive revenue loss.
+Even 100–200ms delay can affect conversions.
+Performance is directly tied to business. 3. Accessibility and Inclusion
+Users with:
+Low-end Android phones
+2g/3g networks
+Older browsers
+Motor impairments
+
+Are more sensitive to: layout shifts, input delays, heavy scripts
+Core Web Vitals help make your site usable for everyone.
+
+---
+
+How Core Web Vitals Work: The User Experience Perspective
+Before jumping into technical definitions let's understand with some example.
+Instead of thinking in terms of milliseconds and paint events think in terms of how a user feels while using your website.
+To make this simple, imagine this: 
+Website = Restaurant Experience
+
+When someone visits your website, it's similar to entering a restaurant. The experience happens in stages.
+Step 1: You enter the restaurent → LCP 
+Main dish arrives.
+If food comes fast, you feel good.
+ If it takes too long, you get irritated.
+On a website:
+The "main dish" is the largest visible element like hero image, healines ( heading) or product images.
+If that appears within 2–2.5 seconds → good LCP.
+If it appears late → users feel the site is slow.
+LCP == how fast users see the main content.
+Step 2: You grab your glass
+Table suddenly moves. Glass spills. that feels annoying.
+In a website: You try to click a button, and suddenly you see content shifts, ads loaded in place of add to cart button, layout flickered due to render of some element.
+You click the wrong thing that is CLS.
+CLS == How stable your layout is while loading.
+if there is no unexpected movement in ui == good experience
+Step 3: You call the waiter
+You raise your hand. If waiter responds instantly → great service.
+If they ignore you for 3 seconds → bad experience.
+On a website:
+You click: Add to cart, Submit form, Open menu
+If nothing happens for half a second, users think it's frozen.
+INP == How fast your site responds to user interaction.
+
+let's deep dive into each one in detail
+Largest Contentful Paint ( LCP )
+LCP measures how long it takes for the largest element to visible element in screen. usually these are hero images, larges heading ( headline, sub-headline ), Banner section, features images on website.
+under 2.5 seconds considered as good lcp score. 2.5 – 4 seconds are need improvement and greater then 4 second consider is very poor.
+if your main content appears too late in your app users feels the page is slow event tough other background stuffs loaded earlier.
+Why LCP fails ?
+Common reason: 
+Large unoptimized images ( learn how to fix here )
+Slow server response
+Renderring blocking CSS
+loading too many blocking script in initial load
+slow fonts
+
+Cumulative Layout Shift ( CLS ) 
+CLS measures how much element is moving unexpectedly while loading content. it can be due to api response also.
+
+> not smooth transitions
+> not user-triggered changes
+> unexpected movement
+> Why CLS Happens
+> Image without height and width
+> If you don't define image dimensions then browser doesn't know how much space to reserve for image.
+> fix: always define height and width or use aspect-ratios
+> Ads injected in between content ( e.g. like in blog articles )
+> Fonts swapping late
+> custom fonts loads after default system/browser fonts. because of this text reflows new fonts load this change the line height and spacing.
+> fix: use font-display:swap and preload fonts
+> Dynamic content injected above exiting content
+> examples:
+
+- Cookie banner
+- Promo banners
+- Announcement bars
+  if inserted at the top without reserved space. every thing shift top-bottom or left-right.
+  fix: always reserve space or overlay instead of appending content
+
+Interaction to Next Paint ( INP )
+Earlier, we had FID ( First Input Delay )
+Now google has replaced FID with INP ( Interaction to Next Paint )
+Why? because FID only measures first interaction. but user interact many times in same website.
+INP measures the overall responsiveness of you page during the entire visit.
+What INP Actually Measures
+INP. checks: how long it takes your page to visually respond after a user interact with it.
+Interactions like: clicking button, typing in input field, opening dropdown or submitting a form.
+It tracks the slowest interaction delay during the users visit. 
+It is not the average, not the first one only the worst one. 
+INP score classified into 3 section like if it's under 200ms its good. 200ms-500ms need improvement and if it's > 500ms it's very poor.
+Reasons why INP fails
+Heavy Javascript: if your page loads massive js bundles, the browser has to process everything before reacting.
+Long Main - Thread Task: the browser has something called a main thread. Think of it like a single worker handling all task if one task is taking 800ms other task will be in pause mode.
+Too Many Event Listeners: sometimes user attach too many event handler like scroll listener, resize, multiple click listener. each one runs some task.
+More listener == more processing == delay
+Third Party Script: like analytics, ads networks, tracking scripts. these scripts often run on main thread, execute heavy logic and block interaction. and they block INP in some cases.
+
+Final thoughts
+Core Web Vitals are not about SEO only. it's about how good experience you are providing to end users.
+LCP : How fast they see content
+CLS : How stable layout feels.
+INP : How responsive interaction are
+
+if you are fix above things properly your Conversion rate increases, bounce rate drops, User experience also improved and SEO will improve automatically.
