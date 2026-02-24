@@ -18,6 +18,7 @@ import { Wide } from "@/app/components/mdx/Wide";
 import { Aside } from "@/app/components/mdx/aside";
 import { Callout } from "@/app/components/mdx/callout";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -55,12 +56,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     ol: OrderedList,
     img: (props) => (
-      <div className="flex flex-col items-center justify-center my-2">
-        <img {...props} className=" select-none" />
-        <span className="text-xs text-gray-500 pt-1  font-normal dark:text-gray-300">
+      <figure className="flex flex-col items-center justify-center my-4">
+        <img {...props} className="select-none" alt={props.alt} />
+        <figcaption className="text-xs text-gray-500  font-normal dark:text-gray-300">
           {props.alt}
-        </span>
-      </div>
+        </figcaption>
+      </figure>
     ),
     hr: () => (
       <hr className="opacity-30 dark:border-zinc-800/80 border-dashed md:-mx-10 my-2 col-span-3! !w-max-[calc(100%+80px)]" />
