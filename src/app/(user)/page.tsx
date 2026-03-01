@@ -5,6 +5,7 @@ import { Projects } from "./_components/projects";
 import { skills } from "@/app/components/static-content";
 import { GitHubContributions } from "@/app/components/github-contributions";
 import { USER } from "@/data/user.data";
+import UmamiAnalytics from "../components/analytics/umami";
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -91,6 +92,7 @@ export default function Home() {
           content!
         </div>
       </div>
+      <UmamiAnalytics />
       <div className="mt-8">
         <h2 className="font-semibold text-lg">contact.</h2>
         <p className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
