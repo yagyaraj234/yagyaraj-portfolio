@@ -7,8 +7,10 @@ import { ReactLenis } from "lenis/react";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/app/components/footer";
 import { USER } from "@/data/user.data";
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import localFont from "next/font/local";
+import Script from "next/script";
+import UmamiAnalytics from "./components/analytics/umami";
 
 // Font settings
 const outfit = Outfit({
@@ -156,6 +158,7 @@ export default function RootLayout({
             "antialiased min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212] dark:text-white text-black selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 overflow-x-hidden",
           )}
         >
+          <UmamiAnalytics />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -163,41 +166,41 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NuqsAdapter>
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "WebSite",
-                  name: `${USER.displayName} Portfolio`,
-                  url: USER.website,
-                  description: USER.bio,
-                  author: {
-                    "@type": "Person",
-                    name: `${USER.firstName} ${USER.lastName}`,
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    name: `${USER.displayName} Portfolio`,
                     url: USER.website,
-                    jobTitle: USER.jobTitle,
-                    image: `${USER.website}${USER.avatar}`,
-                    sameAs: [
-                      `https://github.com/${USER.username}`,
-                      `https://linkedin.com/in/${USER.username}`,
-                      `https://x.com/${USER.username}`,
-                    ],
-                  },
-                  dateCreated: USER.dateCreated,
-                  dateModified: USER.lastUpdated,
-                  potentialAction: {
-                    "@type": "SearchAction",
-                    target: `${USER.website}/blog?q={search_term_string}`,
-                    "query-input": "required name=search_term_string",
-                  },
-                }),
-              }}
-            />
-            <div className="mx-auto max-w-3xl min-h-screen flex flex-col px-4 sm:px-6 lg:px-0">
-              {children}
-              <Footer />
-            </div>
+                    description: USER.bio,
+                    author: {
+                      "@type": "Person",
+                      name: `${USER.firstName} ${USER.lastName}`,
+                      url: USER.website,
+                      jobTitle: USER.jobTitle,
+                      image: `${USER.website}${USER.avatar}`,
+                      sameAs: [
+                        `https://github.com/${USER.username}`,
+                        `https://linkedin.com/in/${USER.username}`,
+                        `https://x.com/${USER.username}`,
+                      ],
+                    },
+                    dateCreated: USER.dateCreated,
+                    dateModified: USER.lastUpdated,
+                    potentialAction: {
+                      "@type": "SearchAction",
+                      target: `${USER.website}/blog?q={search_term_string}`,
+                      "query-input": "required name=search_term_string",
+                    },
+                  }),
+                }}
+              />
+              <div className="mx-auto max-w-3xl min-h-screen flex flex-col px-4 sm:px-6 lg:px-0">
+                {children}
+                <Footer />
+              </div>
             </NuqsAdapter>
           </ThemeProvider>
           <Analytics />
