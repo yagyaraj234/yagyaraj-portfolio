@@ -92,7 +92,6 @@ export default function Home() {
           content!
         </div>
       </div>
-      <UmamiAnalytics />
       <div className="mt-8">
         <h2 className="font-semibold text-lg">contact.</h2>
         <p className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
