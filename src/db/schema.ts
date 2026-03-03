@@ -38,15 +38,10 @@ export const users = pgTable("users", {
 
 export const blog = pgTable("blog", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-
   slug: text("slug").notNull().unique(),
-
   title: text("title").notNull(),
-
-  content: text("content").notNull(),
-
+  content: text("content"),
   published: boolean("published").default(false).notNull(),
-
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
