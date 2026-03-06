@@ -83,27 +83,21 @@ export const blogComments = pgTable("blog_comments", {
 |--------------------------------------------------------------------------
 */
 
-export const blogLikes = pgTable(
-  "blog_likes",
-  {
-    id: serial("id").primaryKey(),
+export const blogLikes = pgTable("blog_likes", {
+  id: serial("id").primaryKey(),
 
-    blogId: integer("blog_id")
-      .notNull()
-      .references(() => blog.id, { onDelete: "cascade" }),
+  blogId: integer("blog_id")
+    .notNull()
+    .references(() => blog.id, { onDelete: "cascade" }),
 
-    userId: integer("user_id")
-      .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
 
-    // max 25 claps per user per blog
-    clapCount: integer("like_count").default(1).notNull(),
+  // max 25 claps per user per blog
+  clapCount: integer("like_count").default(1).notNull(),
 
-    createdAt: timestamp("created_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 
-    updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  },
-  (table) => ({
-    uniqueUserBlog: unique().on(table.blogId, table.userId),
-  }),
-);
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
