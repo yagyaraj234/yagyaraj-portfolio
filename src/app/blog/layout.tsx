@@ -45,7 +45,7 @@ export default function BlogLayout({
         <div className="flex gap-2 items-center">
           <Link href="/" className="max-sm:hidden">
             <Image
-              src="/notion.png"
+              src="/notion.webp"
               height={40}
               width={40}
               sizes="(max-width: 768px) 80px, 96px"
