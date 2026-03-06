@@ -12,6 +12,7 @@ import { Aside } from "@/app/components/mdx/aside";
 import { Annotation } from "@/app/components/mdx/annotation";
 import { Columns, ColumnRight } from "@/app/components/mdx/columns";
 import { Note, InlineNote } from "@/app/components/mdx/note";
+import PostActions from "../_components/post-actions";
 
 export async function generateMetadata({
   params,
@@ -87,10 +88,8 @@ export default async function Page({
       })
     : new Date().toLocaleDateString();
 
-  console.log("postMetadata", postMetadata?.title);
-
   return (
-    <div className="font-sans mt-8 ">
+    <div className="font-sans mt-8  ">
       <PostTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -121,6 +120,8 @@ export default async function Page({
           }}
         />
       </article>
+
+      <PostActions title={postMetadata?.title || ""} />
     </div>
   );
 }

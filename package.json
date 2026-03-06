@@ -7,11 +7,15 @@
     "postbuild": "next-sitemap",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
+    "db:publish": "npx drizzle-kit push"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
+    "@neondatabase/serverless": "^1.0.2",
     "@next/mdx": "^16.0.1",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-tooltip": "^1.2.8",
@@ -22,6 +26,8 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.19",
+    "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.45.1",
     "gray-matter": "^4.0.3",
     "immer": "9.0.21",
     "lenis": "^1.1.19",
@@ -48,6 +54,7 @@
     "@types/node": "^20",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "drizzle-kit": "^0.31.9",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.1",
     "postcss": "^8",
