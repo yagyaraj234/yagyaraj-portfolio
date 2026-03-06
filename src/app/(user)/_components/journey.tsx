@@ -6,7 +6,7 @@ const RavaAICard = () => {
   return (
     <div>
       <Image
-        src="/tooltip/ravaai.png"
+        src="/tooltip/ravaai.webp"
         alt="Rava AI"
         width={100}
         height={360}
@@ -27,7 +27,7 @@ const SkillRazrCard = () => {
   return (
     <div>
       <Image
-        src="/tooltip/skillrazr2.png"
+        src="/tooltip/skillrazr.webp"
         alt="SkillRazr"
         width={100}
         height={360}
@@ -48,7 +48,7 @@ const WavemakerCard = () => {
   return (
     <div>
       <Image
-        src="/tooltip/wavemaker.png"
+        src="/tooltip/wavemaker.webp"
         alt="WaveMaker"
         width={100}
         height={360}

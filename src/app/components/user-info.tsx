@@ -20,6 +20,7 @@ export function UserInfo() {
             sizes="(max-width: 768px) 64px, 96px"
             alt={`${USER.displayName} profile picture`}
             className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
+            priority
           />
         </div>
       </div>

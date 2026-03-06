@@ -38,14 +38,14 @@ export const USER: User = {
   - **Jina AI** for robust data extraction
   - Workspace system for different content types (chat, code reviews, video analysis)
 `,
-  avatar: "/user.jpg",
+  avatar: "/user.webp",
   ogImage: "https://yagyaraj.com/api/og",
   namePronunciationUrl: "",
   timeZone: "Asia/Kolkata",
   keywords: [
     "yagyaraj",
     "yagyaraj234",
-    "yagyaraj lamichhane",
+    "yagyaraj lodhi",
     "full stack developer",
     "react developer",
     "next.js developer",
