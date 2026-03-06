@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getGitHubContributions } from "@/app/api/github-contribution";
 import { GitHubContributionFallback, GitHubContributionGraph } from "./graph";
 
-export default function GitHubContributions() {
+export function GitHubContributions() {
   const contributions = getGitHubContributions();
 
   return (
