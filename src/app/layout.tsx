@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Outfit, Shantell_Sans, Inter, JetBrains_Mono } from "next/font/google";
+import { Outfit, Shantell_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/app/components/theme-provider";
 import { ReactLenis } from "lenis/react";
@@ -15,21 +15,16 @@ import UmamiAnalytics from "./components/analytics/umami";
 // Font settings
 const outfit = Outfit({
   subsets: ["latin"],
-});
-const inter = Inter({
-  subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter", // Defines a CSS variable named --font-inter
+  preload: false,
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
 const handwriting = Shantell_Sans({
   weight: ["500"],
   variable: "--font-handwriting",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const sans = localFont({
@@ -76,6 +71,8 @@ const sans = localFont({
     },
   ],
   variable: "--font-sans",
+  display: "swap",
+  preload: false,
 });
 
 const serif = localFont({
@@ -92,6 +89,8 @@ const serif = localFont({
     },
   ],
   variable: "--font-serif",
+  display: "swap",
+  preload: false,
 });
 
 // Page metadata
@@ -153,8 +152,6 @@ export default function RootLayout({
             serif.variable,
             sans.variable,
             outfit.className,
-            inter.variable,
-            jetbrainsMono.variable,
             "antialiased min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212] dark:text-white text-black selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 overflow-x-hidden",
           )}
         >
