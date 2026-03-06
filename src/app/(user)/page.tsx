@@ -1,11 +1,17 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Journey } from "./_components/journey";
 import OpenToWork from "./_components/open-to-work";
 import { Projects } from "./_components/projects";
 import { skills } from "@/app/components/static-content";
-import { GitHubContributions } from "@/app/components/github-contributions";
+const GitHubContributions = dynamic(
+  () => import("@/app/components/github-contributions"),
+  {
+    loading: () => <p></p>,
+    ssr: true,
+  },
+);
 import { USER } from "@/data/user.data";
-import UmamiAnalytics from "../components/analytics/umami";
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
