@@ -119,7 +119,7 @@ export function Journey() {
         <div className="group flex gap-4">
           <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
-          <div className="w-full flex flex-col gap-2 min-h-[100px] ">
+          <div className="w-full flex flex-col gap-2">
             <div className="flex justify-between min-w-full text-sm">
               <div className="text-sm">
                 <div className="text-lg font-medium">Software engineer,</div>
@@ -143,16 +143,14 @@ export function Journey() {
               <div className="text-base font-medium">jan - dec, 2024</div>
             </div>
 
-            <p className="lowercase  dark:text-zinc-200 text-zinc-800 text-base  min-h-[50px]">
+            <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base text-balance">
               <span className="font-medium">
-                built automated content workflows + embeddings{" "}
+                built automated content workflows + embeddings
               </span>
               across diverse content types.
-              <span className="font-medium">
-                reduced server load by 40%{" "}
-              </span>{" "}
+              <span className="font-medium">reduced server load by 40%</span>
               via browser caching optimizations, and{" "}
-              <span className="font-medium">improved deploy speed by 70% </span>{" "}
+              <span className="font-medium">improved deploy speed by 70%</span>
               with ci/cd. shipped{" "}
               <span className="font-medium">
                 personalized content generation
@@ -161,10 +159,10 @@ export function Journey() {
             </p>
           </div>
         </div>
-        <div className="group flex gap-2">
+        <div className="group flex gap-4">
           <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
 
-          <div className="w-full flex flex-col gap-2 min-h-[100px]">
+          <div className="w-full flex flex-col gap-2">
             <div className="flex justify-between min-w-full">
               <div className="text-sm">
                 <div className="text-lg font-medium">Full stack developer,</div>
@@ -190,14 +188,14 @@ export function Journey() {
               <div className="text-base font-medium">oct - dec, 2023</div>
             </div>
 
-            <p className="lowercase dark:text-zinc-200 text-zinc-800 text-base min-h-[50px]  ">
+            <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base  text-balance">
               <span className="font-medium">
-                built interactive git + sql learning platforms{" "}
+                built interactive git + sql learning platforms
               </span>
-              using gcp and firebase.{" "}
-              <span className="font-medium">improved cross-device ux </span>{" "}
+              using gcp and firebase.
+              <span className="font-medium">improved cross-device ux</span>
               with responsive design and led{" "}
-              <span className="font-medium">ui/ux upgrades </span> across the
+              <span className="font-medium">ui/ux upgrades</span> across the
               platform.
             </p>
           </div>
