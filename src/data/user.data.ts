@@ -1,4 +1,4 @@
-import type { User } from "@/types/user.types";
+import type { User } from "@/types/user.types"
 
 export const USER: User = {
   firstName: "Yagyaraj",
@@ -55,4 +55,4 @@ export const USER: User = {
   ],
   dateCreated: "2023-01-01", // YYYY-MM-DD
   lastUpdated: "2026-02-17", // YYYY-MM-DD
-};
+}

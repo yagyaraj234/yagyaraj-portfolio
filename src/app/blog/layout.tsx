@@ -1,10 +1,10 @@
 // app/blog/layout.tsx
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Navbar } from "../components/navbar";
-import { Metadata } from "next";
-import { userBlog } from "./constant";
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { Navbar } from "../components/navbar"
+import { Metadata } from "next"
+import { userBlog } from "./constant"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -32,17 +32,17 @@ export const metadata: Metadata = {
     creator: `@${userBlog.username}`,
     images: [userBlog.ogImage],
   },
-};
+}
 
 export default function BlogLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
-      <div className="flex justify-between items-end pb-2">
-        <div className="flex gap-2 items-center">
+      <div className="flex items-end justify-between pb-2">
+        <div className="flex items-center gap-2">
           <Link href="/" className="max-sm:hidden">
             <Image
               src="/notion.webp"
@@ -50,7 +50,7 @@ export default function BlogLayout({
               width={40}
               sizes="(max-width: 768px) 80px, 96px"
               alt="user"
-              className="rounded-full hover:transition-transform scale-110 hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
+              className="scale-110 cursor-pointer rounded-full bg-slate-500 duration-300 ease-in-out hover:scale-125 hover:transition-transform"
             />
           </Link>
           <Link href={"/blog"} className="text-md">
@@ -66,5 +66,5 @@ export default function BlogLayout({
         {children}
       </main>
     </>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import Link from "next/link";
-import ThemeButton from "./theme-button";
+import Link from "next/link"
+import ThemeButton from "./theme-button"
 
 export interface NavItem {
-  name: string;
-  link: string;
+  name: string
+  link: string
 }
 
 export const navItems: NavItem[] = [
@@ -23,25 +23,25 @@ export const navItems: NavItem[] = [
     name: "blogs",
     link: "/blog",
   },
-];
+]
 
 export const Navbar = () => {
   return (
-    <header className="flex justify-end items-center pt-4 w-full">
-      <nav className="flex lg:gap-6 gap-4 items-center" role="navigation">
+    <header className="flex w-full items-center justify-end pt-4">
+      <nav className="flex items-center gap-4 lg:gap-6" role="navigation">
         {navItems.map((item: NavItem, idx: number) => {
           return (
             <Link
               key={idx}
               href={item.link}
-              className={`transition-colors ease-in-out duration-700 dark:text-gray-400 text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer whitespace-nowrap text-sm sm:text-base max-sm:hidden`}
+              className={`cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 max-sm:hidden sm:text-base dark:text-gray-400 dark:hover:text-white`}
             >
               {item.name}
             </Link>
-          );
+          )
         })}
         {/* <ThemeButton /> */}
       </nav>
     </header>
-  );
-};
+  )
+}

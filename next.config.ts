@@ -1,5 +1,5 @@
-import { NextConfig } from "next";
-import createMDX from "@next/mdx";
+import { NextConfig } from "next"
+import createMDX from "@next/mdx"
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
@@ -22,15 +22,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        
       },
     ],
   },
-};
+}
 
 const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
-});
+})
 
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig);
+export default withMDX(nextConfig)

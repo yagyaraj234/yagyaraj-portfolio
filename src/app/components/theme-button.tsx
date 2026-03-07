@@ -1,13 +1,13 @@
-"use client";
-import { MoonIcon, SunIcon } from "lucide-react";
-import { useTheme } from "next-themes";
+"use client"
+import { MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export default function ThemeButton() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
   return (
-    <div className="flex mt-1 cursor-pointer">
+    <div className="mt-1 flex cursor-pointer">
       <SunIcon
-        className="size-[16px] hidden dark:block"
+        className="hidden size-[16px] dark:block"
         onClick={() => setTheme("light")}
       />
       <MoonIcon
@@ -15,5 +15,5 @@ export default function ThemeButton() {
         onClick={() => setTheme("dark")}
       />
     </div>
-  );
+  )
 }

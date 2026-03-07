@@ -1,7 +1,7 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
-import { PiReadCvLogoFill } from "react-icons/pi";
-import { FaXTwitter, FaMedium } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { IoMdMail } from "react-icons/io"
+import { PiReadCvLogoFill } from "react-icons/pi"
+import { FaXTwitter, FaMedium } from "react-icons/fa6"
 
 export const social_links = [
   {
@@ -30,7 +30,7 @@ export const social_links = [
     url: "https://drive.google.com/file/d/1nNQ-E0X8CAjEZ-wUyZvoiXG64TGVtyn9/view?usp=sharing",
     icon: PiReadCvLogoFill,
   },
-];
+]
 
 export const skills = [
   "React",
@@ -46,7 +46,7 @@ export const skills = [
   "C++",
   "Python",
   "FastAPI",
-];
+]
 
 export const projectData = [
   {
@@ -72,4 +72,4 @@ export const projectData = [
       "Engineered persistent chat history and similarity search functionality, enabling contextual conversations and intelligent information retrieval across different file types and previous interactions.",
     ],
   },
-];
+]

@@ -1,53 +1,53 @@
-import { ArrowUpRight } from "lucide-react";
-import { projectData } from "@/app/components/static-content";
+import { ArrowUpRight } from "lucide-react"
+import { projectData } from "@/app/components/static-content"
 
 export function Projects({ show = 10 }: { show?: number }) {
-  const projects = projectData.slice(0, show);
+  const projects = projectData.slice(0, show)
   return (
     <div className="mt-8">
-      <h2 className="font-semibold text-lg">projects.</h2>
+      <h2 className="text-lg font-semibold">projects.</h2>
 
-      <div className="flex flex-col gap-[16px] w-full space-y-4 mt-4 text-sm">
+      <div className="mt-4 flex w-full flex-col gap-[16px] space-y-4 text-sm">
         {projects.map((project, idx) => (
           <div className="group flex gap-4" key={idx}>
-            <div className="min-h-full min-w-[1.5px] bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+            <div className="min-h-full min-w-[1.5px] rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
 
             <div className="w-full">
-              <div className="flex justify-start min-w-full text-sm">
+              <div className="flex min-w-full justify-start text-sm">
                 <div className="w-full">
-                  <div className="text-lg flex gap-4 items-center font-medium">
+                  <div className="flex items-center gap-4 text-lg font-medium">
                     {project.name}{" "}
-                    <span className="text-xs uppercase dark:bg-zinc-700 bg-zinc-600 hover:bg-zinc-800 text-white rounded-[4px] p-1 my-1 transition-colors duration-500 ease-in-out delay-75">
+                    <span className="my-1 rounded-[4px] bg-zinc-600 p-1 text-xs text-white uppercase transition-colors delay-75 duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700">
                       {project.status}
                     </span>
                   </div>
                   <div className="flex gap-4">
-                    <div className="flex gap-1 items-center group/live lowercase">
+                    <div className="group/live flex items-center gap-1 lowercase">
                       <a href={project.live} target="_blank">
                         live preview
                       </a>
                       <ArrowUpRight
-                        className="group-hover/live:translate-x-1 transition-all duration-300 ease-in-out"
+                        className="transition-all duration-300 ease-in-out group-hover/live:translate-x-1"
                         size={16}
                       />
                     </div>
-                    <div className="flex gap-1 items-center group/github lowercase">
+                    <div className="group/github flex items-center gap-1 lowercase">
                       <a href={project.git} target="_blank">
                         source code
                       </a>
                       <ArrowUpRight
-                        className="group-hover/github:translate-x-1 transition-all duration-300 ease-in-out"
+                        className="transition-all duration-300 ease-in-out group-hover/github:translate-x-1"
                         size={16}
                       />
                     </div>
                   </div>
                 </div>
               </div>
-              <ul className="list-disc pl-4 mt-2 space-y-1">
+              <ul className="mt-2 list-disc space-y-1 pl-4">
                 {project?.about &&
                   project?.about?.map((about: string, idx: number) => (
                     <li
-                      className="text-base dark:text-zinc-200 text-zinc-800 lowercase"
+                      className="text-base text-zinc-800 lowercase dark:text-zinc-200"
                       key={idx}
                     >
                       {about}
@@ -59,5 +59,5 @@ export function Projects({ show = 10 }: { show?: number }) {
         ))}
       </div>
     </div>
-  );
+  )
 }

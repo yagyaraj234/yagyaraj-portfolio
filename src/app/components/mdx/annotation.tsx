@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import { useRef, useEffect } from "react";
-import { useInView } from "motion/react";
-import { annotate } from "rough-notation";
+import { useRef, useEffect } from "react"
+import { useInView } from "motion/react"
+import { annotate } from "rough-notation"
 import type {
   RoughAnnotationType,
   RoughAnnotation,
-} from "rough-notation/lib/model";
+} from "rough-notation/lib/model"
 
 export function Annotation({
   children,
   type,
   color,
 }: {
-  children: React.ReactNode;
-  type: RoughAnnotationType;
-  color?: string;
+  children: React.ReactNode
+  type: RoughAnnotationType
+  color?: string
 }) {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const inView = useInView(ref, { once: true });
-  const annotationRef = useRef<null | RoughAnnotation>(null);
+  const ref = useRef<HTMLSpanElement | null>(null)
+  const inView = useInView(ref, { once: true })
+  const annotationRef = useRef<null | RoughAnnotation>(null)
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return
     annotationRef.current = annotate(ref.current, {
       type,
       color: color || "#30A46C",
-    });
-  }, [type]);
+    })
+  }, [type])
 
   useEffect(() => {
     if (inView && annotationRef.current) {
       setTimeout(() => {
         if (annotationRef.current) {
-          annotationRef.current.show();
+          annotationRef.current.show()
         }
-      }, 1000);
+      }, 1000)
     }
-  }, [inView]);
+  }, [inView])
 
-  return <span ref={ref}>{children}</span>;
+  return <span ref={ref}>{children}</span>
 }

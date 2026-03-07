@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./ordered-list.module.css";
+import React from "react"
+import styles from "./ordered-list.module.css"
 
 export function OrderedList({ children }: { children: React.ReactNode }) {
   return (
@@ -14,5 +14,5 @@ export function OrderedList({ children }: { children: React.ReactNode }) {
           ) : null
         )}
     </ol>
-  );
+  )
 }

@@ -1,48 +1,48 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import type { MDXComponents } from "mdx/types";
-import { Annotation } from "@/app/components/mdx/annotation";
-import { InlineNote, Note } from "@/app/components/mdx/note";
-import { CodeBlock } from "@/app/components/mdx/code-block";
-import { OrderedList } from "@/app/components/OrderedList";
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import type { MDXComponents } from "mdx/types"
+import { Annotation } from "@/app/components/mdx/annotation"
+import { InlineNote, Note } from "@/app/components/mdx/note"
+import { CodeBlock } from "@/app/components/mdx/code-block"
+import { OrderedList } from "@/app/components/OrderedList"
 import {
   ScrollGroup,
   ScrollFigure,
   ScrollGroupSection,
-} from "@/app/components/mdx/scroll-group";
-import { FullWidth } from "@/app/components/mdx/full-width";
-import { Columns, ColumnRight } from "@/app/components/mdx/columns";
-import { Heading } from "@/app/components/mdx/heading";
-import { SkipLink } from "@/app/components/mdx/skip-link";
-import { Wide } from "@/app/components/mdx/Wide";
-import { Aside } from "@/app/components/mdx/aside";
-import { Callout } from "@/app/components/mdx/callout";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+} from "@/app/components/mdx/scroll-group"
+import { FullWidth } from "@/app/components/mdx/full-width"
+import { Columns, ColumnRight } from "@/app/components/mdx/columns"
+import { Heading } from "@/app/components/mdx/heading"
+import { SkipLink } from "@/app/components/mdx/skip-link"
+import { Wide } from "@/app/components/mdx/Wide"
+import { Aside } from "@/app/components/mdx/aside"
+import { Callout } from "@/app/components/mdx/callout"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     h1: (props) => (
-      <Heading level="h1" className="text-3xl font-medium my-4" {...props} />
+      <Heading level="h1" className="my-4 text-3xl font-medium" {...props} />
     ),
 
     h2: (props) => (
-      <Heading level="h2" className="text-2xl font-medium my-3" {...props} />
+      <Heading level="h2" className="my-3 text-2xl font-medium" {...props} />
     ),
     h3: (props) => (
-      <Heading level="h3" className="text-xl font-medium my-2" {...props} />
+      <Heading level="h3" className="my-2 text-xl font-medium" {...props} />
     ),
     p: (props) => (
       <p
-        className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans text-base"
+        className="font-sans text-base leading-relaxed text-zinc-700 dark:text-zinc-300"
         {...props}
       />
     ),
     strong: (props) => <strong className="font-medium" {...props} />,
     blockquote: (props) => (
       <blockquote
-        className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 my-4 italic text-zinc-700 dark:text-zinc-300"
+        className="my-4 border-l-2 border-zinc-300 pl-4 text-zinc-700 italic dark:border-zinc-700 dark:text-zinc-300"
         {...props}
       />
     ),
@@ -50,42 +50,42 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: CodeBlock,
     ul: (props) => (
       <ul
-        className="list-disc list-outside ml-6 space-y-2 text-zinc-700 dark:text-zinc-300 font-sans text-base my-4"
+        className="my-4 ml-6 list-outside list-disc space-y-2 font-sans text-base text-zinc-700 dark:text-zinc-300"
         {...props}
       />
     ),
     ol: OrderedList,
     img: (props) => (
-      <figure className="flex flex-col items-center justify-center my-4">
+      <figure className="my-4 flex flex-col items-center justify-center">
         <img {...props} className="select-none" alt={props.alt} />
-        <figcaption className="text-xs text-gray-500  font-normal dark:text-gray-300">
+        <figcaption className="text-xs font-normal text-gray-500 dark:text-gray-300">
           {props.alt}
         </figcaption>
       </figure>
     ),
     hr: () => (
-      <hr className="opacity-30 dark:border-zinc-800/80 border-dashed md:-mx-10 my-2 col-span-3! !w-max-[calc(100%+80px)]" />
+      <hr className="!w-max-[calc(100%+80px)] col-span-3! my-2 border-dashed opacity-30 md:-mx-10 dark:border-zinc-800/80" />
     ),
     a: ({ href, ...props }) => {
-      const isExternal = href?.startsWith("http");
+      const isExternal = href?.startsWith("http")
       if (isExternal) {
         return (
           <a
-            className="hover:underline text-blue-500 inline-flex underline-offset-4 decoration-wavy decoration-blue-500"
+            className="inline-flex text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 hover:underline"
             href={href}
             target="_blank"
             rel="noreferrer"
             {...props}
           />
-        );
+        )
       }
       return (
         <Link
           href={href}
-          className="underline text-blue-300 hover:text-blue-400"
+          className="text-blue-300 underline hover:text-blue-400"
           {...props}
         />
-      );
+      )
     },
     InlineNote,
     Note,
@@ -93,17 +93,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Callout,
     ProblemStatement: (props) => {
       return (
-        <div className="rounded-t-lg my-4">
+        <div className="my-4 rounded-t-lg">
           <header>
-            <h4 className="w-max dark:text-white dark:bg-neutral-700 bg-black  font-medium text-gray-100 text-sm px-4 py-1 rounded-t-lg dark:border-gray-700 border border-gray-700 border-b-0 -mx-px -mb-1.5 pb-2.5">
+            <h4 className="-mx-px -mb-1.5 w-max rounded-t-lg border border-b-0 border-gray-700 bg-black px-4 py-1 pb-2.5 text-sm font-medium text-gray-100 dark:border-gray-700 dark:bg-neutral-700 dark:text-white">
               Problem
             </h4>
           </header>
-          <div className="z-10 ring-1 dark:ring-neutral-800 dark:bg-neutral-900 bg-white shadow ring-neutral-950/15 rounded-lg px-4 py-3 relative">
+          <div className="relative z-10 rounded-lg bg-white px-4 py-3 shadow ring-1 ring-neutral-950/15 dark:bg-neutral-900 dark:ring-neutral-800">
             {props.children}
           </div>
         </div>
-      );
+      )
     },
     Aside,
     SmallOnly: ({ className, ...props }) => (
@@ -117,5 +117,5 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ColumnRight,
     SkipLink,
     Wide,
-  };
+  }
 }

@@ -1,8 +1,8 @@
 export const POPULAR_TAGS = [
-  'react',
-  'typescript',
-  'frontend',
-  'javascript',
-  'llms',
-  'nextjs'
-];
+  "react",
+  "typescript",
+  "frontend",
+  "javascript",
+  "llms",
+  "nextjs",
+]

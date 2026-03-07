@@ -1,17 +1,17 @@
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Journey } from "./_components/journey";
-import OpenToWork from "./_components/open-to-work";
-import { Projects } from "./_components/projects";
-import { skills } from "@/app/components/static-content";
+import dynamic from "next/dynamic"
+import Link from "next/link"
+import { Journey } from "./_components/journey"
+import OpenToWork from "./_components/open-to-work"
+import { Projects } from "./_components/projects"
+import { skills } from "@/app/components/static-content"
 const GitHubContributions = dynamic(
   () => import("@/app/components/github-contributions"),
   {
     loading: () => <p></p>,
     ssr: true,
-  },
-);
-import { USER } from "@/data/user.data";
+  }
+)
+import { USER } from "@/data/user.data"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -30,7 +30,7 @@ const faqData = [
     answer:
       "Yagyaraj follows a user-first development approach. He focuses on building performant, accessible, and maintainable applications using modern web standards. Every project starts with understanding the problem, followed by clean architecture design and iterative development.",
   },
-];
+]
 
 export default function Home() {
   // FAQPage JSON-LD for AEO — invisible to users, picked up by bots
@@ -45,18 +45,18 @@ export default function Home() {
         text: faq.answer,
       },
     })),
-  };
+  }
 
   return (
-    <main className="box-border  text-base" role="main">
+    <main className="box-border text-base" role="main">
       {/* Invisible structured data for SEO/AEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="lg:mt-8 mt-4 text-base">
-        <h2 className="font-semibold text-lg">about me.</h2>
+      <div className="mt-4 text-base lg:mt-8">
+        <h2 className="text-lg font-semibold">about me.</h2>
         <p className="mt-4 lowercase">
           i&apos;m a passionate full-stack developer who learns and transforms
           complex problems into simple, beautiful, and intuitive solutions
@@ -69,13 +69,13 @@ export default function Home() {
       <Projects show={1} />
       {/* Animated Skills Section */}
       <div className="mt-8">
-        <h2 className="font-semibold text-lg">skills.</h2>
+        <h2 className="text-lg font-semibold">skills.</h2>
 
         <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="bg-zinc-900 hover:bg-zinc-800 text-white dark:hover:bg-zinc-800 dark:bg-zinc-700 rounded-md px-2 py-1 text-sm transition-colors duration-500 ease-in-out lowercase"
+              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white lowercase transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
             >
               {skill.toLowerCase()}
             </div>
@@ -85,12 +85,12 @@ export default function Home() {
       <GitHubContributions />
 
       <div className="mt-8">
-        <h2 className="font-semibold text-lg">writing.</h2>
-        <div className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
+        <h2 className="text-lg font-semibold">writing.</h2>
+        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
           I've started writing{" "}
           <Link
             href="/blog"
-            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
+            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
           >
             blogs
           </Link>{" "}
@@ -99,12 +99,12 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-8">
-        <h2 className="font-semibold text-lg">contact.</h2>
-        <p className="mt-2 dark:text-zinc-200 text-zinc-800 text-base">
+        <h2 className="text-lg font-semibold">contact.</h2>
+        <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
           interested in a conversation? drop dm&apos;s over{" "}
           <Link
             href="/linkedin"
-            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
+            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
             linkedin
@@ -112,7 +112,7 @@ export default function Home() {
           or{" "}
           <Link
             href="mailto:hey@yagyaraj.com"
-            className="hover:text-yellow-500 underline transition-colors duration-300 ease-in-out"
+            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
             email
@@ -121,5 +121,5 @@ export default function Home() {
         </p>
       </div>
     </main>
-  );
+  )
 }
