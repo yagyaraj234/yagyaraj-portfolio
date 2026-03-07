@@ -1,10 +1,10 @@
-import { Suspense } from "react";
+import { Suspense } from "react"
 
-import { getGitHubContributions } from "@/app/api/github-contribution";
-import { GitHubContributionFallback, GitHubContributionGraph } from "./graph";
+import { getGitHubContributions } from "@/app/api/github-contribution"
+import { GitHubContributionFallback, GitHubContributionGraph } from "./graph"
 
 export default function GitHubContributions() {
-  const contributions = getGitHubContributions();
+  const contributions = getGitHubContributions()
 
   return (
     <div className="my-8">
@@ -14,5 +14,5 @@ export default function GitHubContributions() {
         <GitHubContributionGraph contributions={contributions} />
       </Suspense>
     </div>
-  );
+  )
 }

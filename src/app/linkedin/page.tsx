@@ -1,5 +1,5 @@
-import {redirect} from 'next/navigation'
+import { redirect } from "next/navigation"
 
 export default function LinkedinPage() {
-  redirect("https://www.linkedin.com/in/yagyaraj234");
+  redirect("https://www.linkedin.com/in/yagyaraj234")
 }

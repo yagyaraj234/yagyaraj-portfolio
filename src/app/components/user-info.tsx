@@ -1,25 +1,25 @@
-import Image from "next/image";
-import Link from "next/link";
-import { social_links } from "./static-content";
-import { USER } from "@/data/user.data";
+import Image from "next/image"
+import Link from "next/link"
+import { social_links } from "./static-content"
+import { USER } from "@/data/user.data"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/app/components/ui/tooltip";
+} from "@/app/components/ui/tooltip"
 
 export function UserInfo() {
   return (
-    <div className="flex gap-4 lg:mt-6 select-none selection-none">
+    <div className="selection-none flex gap-4 select-none lg:mt-6">
       <div className="relative select-none">
-        <div className="rounded-full border-none max-h-[96px] max-w-[96px] overflow-hidden">
+        <div className="max-h-[96px] max-w-[96px] overflow-hidden rounded-full border-none">
           <Image
             src={USER.avatar}
             height={96}
             width={96}
             sizes="(max-width: 768px) 64px, 96px"
             alt={`${USER.displayName} profile picture`}
-            className="rounded-full hover:transition-transform  hover:scale-125 duration-300 ease-in-out cursor-pointer bg-slate-500"
+            className="cursor-pointer rounded-full bg-slate-500 duration-300 ease-in-out hover:scale-125 hover:transition-transform"
             priority
           />
         </div>
@@ -58,5 +58,5 @@ export function UserInfo() {
         </div>
       </div>
     </div>
-  );
+  )
 }

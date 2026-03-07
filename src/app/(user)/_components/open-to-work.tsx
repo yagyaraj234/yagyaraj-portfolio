@@ -1,18 +1,18 @@
-"use client";
-import { ArrowUpRight } from "lucide-react";
+"use client"
+import { ArrowUpRight } from "lucide-react"
 
 export default function OpenToWork() {
   return (
-    <div className=" p-4 space-y-4 bg-neutral-100 rounded-md mt-6 dark:bg-zinc-800 text-sm">
+    <div className="mt-6 space-y-4 rounded-md bg-neutral-100 p-4 text-sm dark:bg-zinc-800">
       <div>
         I&apos;m open to collaborate with talented individuals and contribute to
         impactful projects. If you&apos;d like to learn more about my work or
         discuss potential opportunities, feel free to reach out!
       </div>
 
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <button
-          className="bg-black rounded-md p-3 text-white text-sm hover:bg-black/80 cursor-pointer  transition-colors duration-300 ease-in-out"
+          className="cursor-pointer rounded-md bg-black p-3 text-sm text-white transition-colors duration-300 ease-in-out hover:bg-black/80"
           onClick={() => window.open("https://x.com/yagyaraj234")}
         >
           Drop message on X
@@ -26,15 +26,15 @@ export default function OpenToWork() {
             )
           }
         >
-          <div className="flex justify-between items-center text-sm dark:text-white">
+          <div className="flex items-center justify-between text-sm dark:text-white">
             Resume
             <ArrowUpRight
-              className=" group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+              className="transition-all duration-300 ease-in-out group-hover:translate-x-1"
               size={16}
             />
           </div>
         </button>
       </div>
     </div>
-  );
+  )
 }

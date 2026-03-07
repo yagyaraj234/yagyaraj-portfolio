@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import dayjs from "dayjs";
-import { LoaderIcon } from "lucide-react";
-import { use, useEffect, useState } from "react";
+import dayjs from "dayjs"
+import { LoaderIcon } from "lucide-react"
+import { use, useEffect, useState } from "react"
 
-import type { Activity } from "@/app/components/kibo-ui/contribution-graph";
+import type { Activity } from "@/app/components/kibo-ui/contribution-graph"
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -12,46 +12,46 @@ import {
   ContributionGraphFooter,
   ContributionGraphLegend,
   ContributionGraphTotalCount,
-} from "@/app/components/kibo-ui/contribution-graph";
+} from "@/app/components/kibo-ui/contribution-graph"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/app/components/ui/tooltip";
-import { filterLastSixMonths } from "@/app/api/github-contribution";
+} from "@/app/components/ui/tooltip"
+import { filterLastSixMonths } from "@/app/api/github-contribution"
 
 export function GitHubContributionGraph({
   contributions,
 }: {
-  contributions: Promise<Activity[]>;
+  contributions: Promise<Activity[]>
 }) {
-  const data = use(contributions);
-  const [isMobile, setIsMobile] = useState(false);
+  const data = use(contributions)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+      setIsMobile(window.innerWidth < 768)
+    }
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
 
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Filter data for mobile (last 6 months)
-  const filteredData = isMobile ? filterLastSixMonths(data) : data;
+  const filteredData = isMobile ? filterLastSixMonths(data) : data
 
   return (
     <ContributionGraph
-      className="mx-auto py-2 w-full"
+      className="mx-auto w-full py-2"
       data={filteredData}
       blockSize={11}
       blockMargin={3}
       blockRadius={0}
     >
       <ContributionGraphCalendar
-        className="no-scrollbar px-2 overflow-x-auto"
+        className="no-scrollbar overflow-x-auto px-2"
         title={
           isMobile
             ? "GitHub Contributions (Last 6 Months)"
@@ -101,13 +101,13 @@ export function GitHubContributionGraph({
         <ContributionGraphLegend />
       </ContributionGraphFooter>
     </ContributionGraph>
-  );
+  )
 }
 
 export function GitHubContributionFallback() {
   return (
     <div className="flex h-[162px] w-full items-center justify-center">
-      <LoaderIcon className="animate-spin text-muted-foreground" />
+      <LoaderIcon className="text-muted-foreground animate-spin" />
     </div>
-  );
+  )
 }

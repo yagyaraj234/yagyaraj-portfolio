@@ -2,12 +2,16 @@ export function SkipLink({
   to,
   label,
   children,
-}: { to: string; label: string; children: React.ReactNode }) {
+}: {
+  to: string
+  label: string
+  children: React.ReactNode
+}) {
   return (
     <div>
       {children}
       <a
-        className="text-sm text-gray11 hover:underline underline-offset-2 flex gap-0.5"
+        className="text-gray11 flex gap-0.5 text-sm underline-offset-2 hover:underline"
         href={to}
       >
         {label}
@@ -29,5 +33,5 @@ export function SkipLink({
         </svg>
       </a>
     </div>
-  );
+  )
 }

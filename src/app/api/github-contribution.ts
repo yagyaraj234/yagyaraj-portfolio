@@ -1,20 +1,20 @@
-import type { Activity } from "@/app/components/kibo-ui/contribution-graph";
+import type { Activity } from "@/app/components/kibo-ui/contribution-graph"
 
 type GitHubContributionsResponse = {
-  contributions: Activity[];
-};
+  contributions: Activity[]
+}
 
 // Filter contributions to show only last 6 months
 export function filterLastSixMonths(contributions: Activity[]): Activity[] {
-  if (contributions.length === 0) return [];
+  if (contributions.length === 0) return []
 
-  const sixMonthsAgo = new Date();
-  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  const sixMonthsAgo = new Date()
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
 
   return contributions.filter((activity) => {
-    const activityDate = new Date(activity.date);
-    return activityDate >= sixMonthsAgo;
-  });
+    const activityDate = new Date(activity.date)
+    return activityDate >= sixMonthsAgo
+  })
 }
 
 export async function getGitHubContributions() {
@@ -23,15 +23,15 @@ export async function getGitHubContributions() {
       `https://github-contributions-api.jogruber.de/v4/${"yagyaraj234"}?y=last`,
       {
         next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
-      },
-    );
+      }
+    )
     if (!res.ok) {
-      throw new Error(`Failed to fetch contributions: ${res.statusText}`);
+      throw new Error(`Failed to fetch contributions: ${res.statusText}`)
     }
-    const data = (await res.json()) as GitHubContributionsResponse;
-    return data.contributions;
+    const data = (await res.json()) as GitHubContributionsResponse
+    return data.contributions
   } catch (error) {
-    console.error("Error fetching GitHub contributions:", error);
-    return [];
+    console.error("Error fetching GitHub contributions:", error)
+    return []
   }
 }

@@ -1,28 +1,28 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { BsArrowRight } from "react-icons/bs";
-import { titleCase } from "title-case";
-import Balancer from "react-wrap-balancer";
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { BsArrowRight } from "react-icons/bs"
+import { titleCase } from "title-case"
+import Balancer from "react-wrap-balancer"
 
-import { styled } from "@/stitches.config";
+import { styled } from "@/stitches.config"
 
 export interface IPost {
-  slug: string;
-  title: string;
-  description: string;
-  editedAt: string;
+  slug: string
+  title: string
+  description: string
+  editedAt: string
 }
 
 export type PostProps = {
-  post: IPost;
-  children?: React.ReactNode;
-  direction?: "left" | "right";
-};
+  post: IPost
+  children?: React.ReactNode
+  direction?: "left" | "right"
+}
 
 export function Post({ post, children, direction = "left" }: PostProps) {
-  const isExternal = post?.slug?.startsWith("http") || false;
+  const isExternal = post?.slug?.startsWith("http") || false
 
   return (
     <PostWrapper direction={direction}>
@@ -56,12 +56,12 @@ export function Post({ post, children, direction = "left" }: PostProps) {
       </PostContent>
       <Figure>{children}</Figure>
     </PostWrapper>
-  );
+  )
 }
 
 const Figure = styled("div", {
   flex: 1,
-});
+})
 
 const TitleAnchor = styled(motion.a, {
   color: "inherit",
@@ -93,7 +93,7 @@ const TitleAnchor = styled(motion.a, {
       },
     },
   },
-});
+})
 
 const PostWrapper = styled(motion.li, {
   $$spacing: "$space$16",
@@ -154,7 +154,7 @@ const PostWrapper = styled(motion.li, {
       left: {},
     },
   },
-});
+})
 
 export const PostTitle = styled(motion.h1, {
   fontSize: "3.5rem",
@@ -162,18 +162,18 @@ export const PostTitle = styled(motion.h1, {
   lineHeight: 1.1,
   fontWeight: 500,
   display: "flex",
-});
+})
 
 export const PostDescription = styled("p", {
   color: "$gray14",
   lineHeight: "$body",
-});
+})
 
 export const PostUpdatedText = styled("p", {
   fontSize: "$sm",
   color: "$gray11",
   fontFamily: "$mono",
-});
+})
 
 export const PostContent = styled("div", {
   flex: 1,
@@ -181,4 +181,4 @@ export const PostContent = styled("div", {
   "> :not(:last-child)": {
     marginBottom: "$10",
   },
-});
+})

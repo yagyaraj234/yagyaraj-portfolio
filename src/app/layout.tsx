@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Outfit, Shantell_Sans } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/app/components/theme-provider";
-import { ReactLenis } from "lenis/react";
-import { Analytics } from "@vercel/analytics/next";
-import Footer from "@/app/components/footer";
-import { USER } from "@/data/user.data";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
-import localFont from "next/font/local";
-import Script from "next/script";
-import UmamiAnalytics from "./components/analytics/umami";
+import type { Metadata } from "next"
+import "./globals.css"
+import { Outfit, Shantell_Sans } from "next/font/google"
+import { cn } from "@/lib/utils"
+import { ThemeProvider } from "@/app/components/theme-provider"
+import { ReactLenis } from "lenis/react"
+import { Analytics } from "@vercel/analytics/next"
+import Footer from "@/app/components/footer"
+import { USER } from "@/data/user.data"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
+import localFont from "next/font/local"
+import Script from "next/script"
+import UmamiAnalytics from "./components/analytics/umami"
 
 // Font settings
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   preload: false,
-});
+})
 
 const handwriting = Shantell_Sans({
   weight: ["500"],
@@ -25,7 +25,7 @@ const handwriting = Shantell_Sans({
   subsets: ["latin"],
   display: "swap",
   preload: false,
-});
+})
 
 const sans = localFont({
   src: [
@@ -73,7 +73,7 @@ const sans = localFont({
   variable: "--font-sans",
   display: "swap",
   preload: false,
-});
+})
 
 const serif = localFont({
   src: [
@@ -91,11 +91,11 @@ const serif = localFont({
   variable: "--font-serif",
   display: "swap",
   preload: false,
-});
+})
 
 // Page metadata
-const siteTitle = `${USER.displayName} | ${USER.jobTitle}`;
-const siteDescription = USER.bio;
+const siteTitle = `${USER.displayName} | ${USER.jobTitle}`
+const siteDescription = USER.bio
 
 export const metadata: Metadata = {
   title: siteTitle,
@@ -131,12 +131,12 @@ export const metadata: Metadata = {
   other: {
     "article:modified_time": USER.lastUpdated,
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -152,7 +152,7 @@ export default function RootLayout({
             serif.variable,
             sans.variable,
             outfit.className,
-            "antialiased min-h-screen relative scrollbar-thin bg-white dark:bg-[#121212] dark:text-white text-black selection:bg-zinc-700 selection:text-white dark:selection:bg-zinc-700 overflow-x-hidden  scrollbar-none overflow-y-auto",
+            "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#121212] dark:text-white dark:selection:bg-zinc-700"
           )}
         >
           <UmamiAnalytics />
@@ -194,7 +194,7 @@ export default function RootLayout({
                   }),
                 }}
               />
-              <div className="mx-auto max-w-3xl min-h-screen flex flex-col px-4 sm:px-6 lg:px-0">
+              <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 sm:px-6 lg:px-0">
                 {children}
                 <Footer />
               </div>
@@ -204,5 +204,5 @@ export default function RootLayout({
         </body>
       </ReactLenis>
     </html>
-  );
+  )
 }

@@ -9,6 +9,6 @@ module.exports = {
       changefreq: path.startsWith("/blog/") ? "weekly" : "monthly",
       priority: path === "/" ? 1.0 : path.startsWith("/blog") ? 0.8 : 0.6,
       lastmod: new Date().toISOString(),
-    };
+    }
   },
-};
+}

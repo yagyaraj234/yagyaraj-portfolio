@@ -1,33 +1,33 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 import {
   BsInfoCircleFill,
   BsExclamationTriangleFill,
   BsLightningFill,
   BsCheckCircleFill,
-} from "react-icons/bs";
+} from "react-icons/bs"
 
 const icons = {
-  info: <BsInfoCircleFill className="w-5 h-5 text-blue-500/80" />,
-  warning: <BsExclamationTriangleFill className="w-5 h-5 text-orange-500/80" />,
-  success: <BsCheckCircleFill className="w-5 h-5 text-emerald-500/80" />,
-  tip: <BsLightningFill className="w-5 h-5 text-zinc-500/80" />,
-};
+  info: <BsInfoCircleFill className="h-5 w-5 text-blue-500/80" />,
+  warning: <BsExclamationTriangleFill className="h-5 w-5 text-orange-500/80" />,
+  success: <BsCheckCircleFill className="h-5 w-5 text-emerald-500/80" />,
+  tip: <BsLightningFill className="h-5 w-5 text-zinc-500/80" />,
+}
 
-type CalloutType = keyof typeof icons;
+type CalloutType = keyof typeof icons
 
 export function Callout({
   children,
   type = "info",
   className,
 }: {
-  children: React.ReactNode;
-  type?: CalloutType;
-  className?: string;
+  children: React.ReactNode
+  type?: CalloutType
+  className?: string
 }) {
   return (
     <div
       className={cn(
-        "my-6 flex items-start gap-4 rounded-xl border p-4 text-sm leading-relaxed shadow-[0_2px_10px_-3px_rgba(0,0,0,0.07)] dark:shadow-none transition-colors",
+        "my-6 flex items-start gap-4 rounded-xl border p-4 text-sm leading-relaxed shadow-[0_2px_10px_-3px_rgba(0,0,0,0.07)] transition-colors dark:shadow-none",
         {
           "border-blue-100 bg-blue-50/50 text-blue-900 dark:border-blue-900/30 dark:bg-blue-950/20 dark:text-blue-200":
             type === "info",
@@ -41,10 +41,10 @@ export function Callout({
         className
       )}
     >
-      <div className="select-none text-xl">{icons[type]}</div>
+      <div className="text-xl select-none">{icons[type]}</div>
       <div className="flex-1 [&>p:first-child]:mt-0 [&>p:last-child]:mb-0">
         {children}
       </div>
     </div>
-  );
+  )
 }

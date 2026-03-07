@@ -1,4 +1,4 @@
-import { createStitches } from "@stitches/react";
+import { createStitches } from "@stitches/react"
 import {
   gray,
   blue,
@@ -8,7 +8,7 @@ import {
   grayDark,
   blueDark,
   yellowDark,
-} from "@radix-ui/colors";
+} from "@radix-ui/colors"
 
 const SPACING = {
   px: "1px",
@@ -46,16 +46,16 @@ const SPACING = {
   72: "18rem",
   80: "20rem",
   96: "24rem",
-} as const;
+} as const
 
 const rename = (from: string, to: string, obj: Record<string, any>) => {
-  const newObj: Record<string, any> = {};
+  const newObj: Record<string, any> = {}
   for (const key in obj) {
-    const [, num] = key.split(from);
-    newObj[`${to}${num}`] = obj[key];
+    const [, num] = key.split(from)
+    newObj[`${to}${num}`] = obj[key]
   }
-  return newObj;
-};
+  return newObj
+}
 
 export const baseTheme = {
   colors: {
@@ -91,7 +91,7 @@ export const baseTheme = {
     base: "6px",
     lg: "12px",
   },
-};
+}
 
 export const { styled, getCssText, globalCss, createTheme, css, keyframes } =
   createStitches({
@@ -102,7 +102,7 @@ export const { styled, getCssText, globalCss, createTheme, css, keyframes } =
       xl: `(min-width: 80em)`,
     },
     theme: baseTheme,
-  });
+  })
 
 export const darkTheme = createTheme({
   colors: {
@@ -110,7 +110,7 @@ export const darkTheme = createTheme({
     ...rename("blue", "blueDark", blueDark),
     ...rename("yellow", "yellowDark", yellowDark),
   },
-});
+})
 
 export const globalStyles = globalCss({
   "*": {
@@ -140,4 +140,4 @@ export const globalStyles = globalCss({
   code: {
     fontFamily: "$mono",
   },
-});
+})

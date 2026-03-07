@@ -1,30 +1,30 @@
-import { blogData } from "./data";
-import { USER } from "@/data/user.data";
-import { getPostMetadata } from "@/lib/mdx-utils";
-import { Metadata } from "next";
+import { blogData } from "./data"
+import { USER } from "@/data/user.data"
+import { getPostMetadata } from "@/lib/mdx-utils"
+import { Metadata } from "next"
 import {
   PostTitle,
   PostDescription,
   PostUpdatedText,
-} from "@/app/components/Post";
-import { Callout } from "@/app/components/mdx/callout";
-import { Aside } from "@/app/components/mdx/aside";
-import { Annotation } from "@/app/components/mdx/annotation";
-import { Columns, ColumnRight } from "@/app/components/mdx/columns";
-import { Note, InlineNote } from "@/app/components/mdx/note";
+} from "@/app/components/Post"
+import { Callout } from "@/app/components/mdx/callout"
+import { Aside } from "@/app/components/mdx/aside"
+import { Annotation } from "@/app/components/mdx/annotation"
+import { Columns, ColumnRight } from "@/app/components/mdx/columns"
+import { Note, InlineNote } from "@/app/components/mdx/note"
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const postMetadata = getPostMetadata(slug);
+  const { slug } = await params
+  const postMetadata = getPostMetadata(slug)
 
   if (!postMetadata) {
     return {
       title: "Post not found",
-    };
+    }
   }
 
   const {
@@ -33,12 +33,12 @@ export async function generateMetadata({
     author = "Yagyaraj",
     tags = [],
     ogImage = "",
-  } = postMetadata;
+  } = postMetadata
   const ogImageUrl = ogImage
     ? ogImage.startsWith("http")
       ? ogImage
       : `${USER.website}${ogImage}`
-    : `${USER.website}/api/og/blog/${slug}`;
+    : `${USER.website}/api/og/blog/${slug}`
 
   return {
     title: `${title} | Yagyaraj`,
@@ -67,30 +67,30 @@ export async function generateMetadata({
       description: summary || `${title} - Blog post by ${author}`,
       images: [ogImageUrl],
     },
-  };
+  }
 }
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
 }) {
-  const { slug } = await params;
-  const { default: Post } = await import(`@/content/${slug}.mdx`);
+  const { slug } = await params
+  const { default: Post } = await import(`@/content/${slug}.mdx`)
 
-  const postMetadata = getPostMetadata(slug);
+  const postMetadata = getPostMetadata(slug)
   const publishDate = postMetadata?.date
     ? new Date(postMetadata.date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       })
-    : new Date().toLocaleDateString();
+    : new Date().toLocaleDateString()
 
-  console.log("postMetadata", postMetadata?.title);
+  console.log("postMetadata", postMetadata?.title)
 
   return (
-    <div className="font-sans mt-8 ">
+    <div className="mt-8 font-sans">
       <PostTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default async function Page({
         {postMetadata?.summary}
       </PostDescription> */}
 
-      <div className="flex flex-col text-sm font-normal text-zinc-400 mb-12">
+      <div className="mb-12 flex flex-col text-sm font-normal text-zinc-400">
         <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
       </div>
 
@@ -122,11 +122,11 @@ export default async function Page({
         />
       </article>
     </div>
-  );
+  )
 }
 
 export function generateStaticParams() {
-  return blogData.map((slug) => ({ slug }));
+  return blogData.map((slug) => ({ slug }))
 }
 
-export const dynamicParams = false;
+export const dynamicParams = false
