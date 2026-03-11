@@ -77,11 +77,11 @@ export function Journey() {
       <h2 className="text-lg font-semibold">journey.</h2>
 
       <div className="mt-4 flex w-full flex-col gap-4 space-y-4">
-        {/* <div className="group flex gap-4">
-          <div className="min-h-full min-w-0.5 bg-neutral-200 group-hover:bg-yellow-500 transition-colors ease-in-out delay-0 duration-700 rounded-md" />
+        <div className="group flex gap-4">
+          <div className="min-h-full min-w-0.5 rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
 
           <div className="w-full">
-            <div className="flex justify-between min-w-full text-sm">
+            <div className="flex min-w-full justify-between text-sm">
               <div className="text-sm">
                 <div className="text-lg font-medium">Development Engineer,</div>
                 <div className="lowercase">
@@ -89,7 +89,7 @@ export function Journey() {
                   <Link
                     href="https://wavemaker.com"
                     target="_blank"
-                    className="underline hover:text-yellow-500 transition-colors duration-300 ease-in-out"
+                    className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
                   >
                     <Preview
                       containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
@@ -103,25 +103,24 @@ export function Journey() {
                   </Link>
                 </div>
               </div>
-              <div className="text-base font-medium">jan,2025 - present </div>
+              <div className="text-base font-medium">jan, 2025 - present </div>
             </div>
 
-            <p className="lowercase mt-2 dark:text-zinc-200 text-zinc-800 text-base">
+            <p className="mt-2 text-base text-zinc-800 lowercase dark:text-zinc-200">
               <span className="font-medium">
-                architected a codegen transpiler
-              </span>
-              converting proprietary markup into production-ready next.js/react.
-              <span className="font-medium">automated spa conversion</span>
-              using next.js routing, abstracting navigation complexity from
-              users.
+                contributed to the react runtime and code generation
+                architecture
+              </span>{" "}
+              used to export scalable applications from wavemaker studio.{" "}
               <span className="font-medium">
-                enabled custom react components
-              </span>
-              to inherit wavemaker data binding, styling, and runtime behavior
-              at build time.
+                designed mechanisms for managing complex application state using
+                javascript proxy
+              </span>{" "}
+              and coordinating runtime behavior across dynamically generated
+              react components.{" "}
             </p>
           </div>
-        </div> */}
+        </div>
         <div className="group flex gap-4">
           <div className="min-h-full min-w-0.5 rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
 
