@@ -24,10 +24,7 @@ export default async function BlogList() {
   return (
     <div className="flex flex-col">
       {posts?.slice(0, 3)?.map((pt, idx) => (
-        <BlogItem
-          title={pt.metadata.title}
-          url={`https://yagyaraj.com/blog/${pt.slug}`}
-        />
+        <BlogItem title={pt.metadata.title} url={`/blog/${pt.slug}`} />
       ))}
     </div>
   )
