@@ -65,6 +65,30 @@ export default function Home() {
       </div>
 
       {/* <OpenToWork /> */}
+
+      <div className="mt-8">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">
+            recent{" "}
+            <Link href="/blog" className="underline">
+              blog
+            </Link>{" "}
+            posts.{" "}
+          </h2>
+        </div>
+        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
+          {/* I've started writing{" "}
+          <Link
+            href="/blog"
+            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
+          >
+            blogs
+          </Link>{" "}
+          to help others improve their engineering skills. Stay tuned for more
+          content! */}
+          <BlogList />
+        </div>
+      </div>
       <Journey />
       <Projects show={1} />
       {/* Animated Skills Section */}
@@ -84,20 +108,6 @@ export default function Home() {
       </div>
       <GitHubContributions />
 
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold">writing.</h2>
-        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          I've started writing{" "}
-          <Link
-            href="/blog"
-            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
-          >
-            blogs
-          </Link>{" "}
-          to help others improve their engineering skills. Stay tuned for more
-          content!
-        </div>
-      </div>
       <div className="mt-8">
         <h2 className="text-lg font-semibold">contact.</h2>
         <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
