@@ -53,14 +53,14 @@ export default function BlogLayout({
               className="scale-110 cursor-pointer rounded-full bg-slate-500 duration-300 ease-in-out hover:scale-125 hover:transition-transform"
             />
           </Link>
-          <Link href={"/blog"} className="text-md">
+          <Link href={"/blog"} className="text-md max-sm:py-4">
             Yagyaraj.
           </Link>
         </div>
         <Navbar />
       </div>
       <main
-        className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-6"
+        className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-4"
         role="main"
       >
         {children}

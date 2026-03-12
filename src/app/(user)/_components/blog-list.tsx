@@ -11,7 +11,7 @@ function BlogItem(props: BlogItemProps) {
   return (
     <Link
       href={props.url}
-      className="group flex w-full items-center justify-between border-b border-gray-200 py-3 transition-all duration-700 ease-in-out hover:border-gray-400"
+      className="group flex w-full items-start justify-between border-b border-gray-200 py-3 transition-all duration-700 ease-in-out hover:border-gray-400 sm:items-center"
     >
       <h3 className="text-base font-normal font-stretch-125%">{props.title}</h3>
       <ArrowRightIcon className="h-5 w-5 -rotate-45 opacity-50 transition-all duration-300 ease-in-out group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:opacity-100" />
@@ -24,7 +24,11 @@ export default async function BlogList() {
   return (
     <div className="flex flex-col">
       {posts?.slice(0, 3)?.map((pt, idx) => (
-        <BlogItem title={pt.metadata.title} url={`/blog/${pt.slug}`} />
+        <BlogItem
+          key={idx}
+          title={pt.metadata.title}
+          url={`/blog/${pt.slug}`}
+        />
       ))}
     </div>
   )
