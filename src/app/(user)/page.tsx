@@ -12,6 +12,7 @@ const GitHubContributions = dynamic(
   }
 )
 import { USER } from "@/data/user.data"
+import BlogList from "./_components/blog-list"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
