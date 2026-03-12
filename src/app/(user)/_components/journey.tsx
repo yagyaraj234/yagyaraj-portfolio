@@ -3,12 +3,11 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import Image from "next/image"
-
 const Preview = dynamic(() => import("@/app/components/ui/preview"), {
   ssr: false,
 })
 
-const RavaAICard = () => {
+export const RavaAICard = () => {
   return (
     <div>
       <Image
@@ -21,7 +20,7 @@ const RavaAICard = () => {
         priority
         unoptimized
       />
-      <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
+      <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
         Rava AI is an agentic AI-powered go-to-market (GTM) platform for
         startups, automating strategy, marketing content, and investor pitch
         decks.
@@ -42,7 +41,7 @@ const SkillRazrCard = () => {
         priority
         unoptimized
       />
-      <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
+      <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
         SkillRazr offers online tech training, internships, and skill
         development programs designed to prepare students for jobs.
       </p>
@@ -50,7 +49,7 @@ const SkillRazrCard = () => {
   )
 }
 
-const WavemakerCard = () => {
+export const WavemakerCard = () => {
   return (
     <div>
       <Image
@@ -63,7 +62,7 @@ const WavemakerCard = () => {
         priority
         unoptimized
       />
-      <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
+      <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
         WaveMaker offers a low-code development platform for professional
         developers to build web and mobile applications using open standards
       </p>
@@ -81,8 +80,8 @@ export function Journey() {
           <div className="min-h-full min-w-0.5 rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
 
           <div className="w-full">
-            <div className="flex min-w-full justify-between text-sm">
-              <div className="text-sm">
+            <div className="flex min-w-full justify-between text-base">
+              <div className="text-base">
                 <div className="text-lg font-medium">Development Engineer,</div>
                 <div className="lowercase">
                   at,{" "}
@@ -106,7 +105,7 @@ export function Journey() {
               <div className="text-base font-medium">jan, 2025 - present </div>
             </div>
 
-            <p className="mt-2 text-base text-zinc-800 lowercase dark:text-zinc-200">
+            <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
               <span className="font-medium">
                 contributed to the react runtime and code generation
                 architecture
@@ -125,8 +124,8 @@ export function Journey() {
           <div className="min-h-full min-w-0.5 rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
 
           <div className="flex min-h-[100px] w-full flex-col gap-2">
-            <div className="flex min-w-full justify-between text-sm">
-              <div className="text-sm">
+            <div className="flex min-w-full justify-between text-base">
+              <div className="text-base">
                 <div className="text-lg font-medium">Software engineer,</div>
                 <div className="lowercase">
                   at,{" "}
@@ -148,7 +147,7 @@ export function Journey() {
               <div className="text-base font-medium">jan - dec, 2024</div>
             </div>
 
-            <p className="min-h-[50px] text-base text-zinc-800 lowercase dark:text-zinc-200">
+            <p className="min-h-[50px] text-base text-zinc-800 dark:text-zinc-200">
               <span className="font-medium">
                 built automated content workflows + embeddings{" "}
               </span>
@@ -171,7 +170,7 @@ export function Journey() {
 
           <div className="flex min-h-[100px] w-full flex-col gap-2">
             <div className="flex min-w-full justify-between">
-              <div className="text-sm">
+              <div className="text-base">
                 <div className="text-lg font-medium">Full stack developer,</div>
                 <div className="lowercase">
                   at,{" "}
@@ -195,7 +194,7 @@ export function Journey() {
               <div className="text-base font-medium">oct - dec, 2023</div>
             </div>
 
-            <p className="min-h-[50px] text-base text-zinc-800 lowercase dark:text-zinc-200">
+            <p className="min-h-[50px] text-base text-zinc-800 dark:text-zinc-200">
               <span className="font-medium">
                 built interactive git + sql learning platforms{" "}
               </span>
