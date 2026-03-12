@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { Journey } from "./_components/journey"
+import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import OpenToWork from "./_components/open-to-work"
 import { Projects } from "./_components/projects"
 import { skills } from "@/app/components/static-content"
@@ -13,6 +13,7 @@ const GitHubContributions = dynamic(
 )
 import { USER } from "@/data/user.data"
 import BlogList from "./_components/blog-list"
+import { Preview } from "../components/ui/preview"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -57,12 +58,36 @@ export default function Home() {
       />
 
       <div className="mt-4 text-base lg:mt-8">
-        <h2 className="text-lg font-semibold">about me.</h2>
-        <p className="mt-4 lowercase">
-          i&apos;m a passionate full-stack developer who learns and transforms
-          complex problems into simple, beautiful, and intuitive solutions
-          through development and design.
-        </p>
+        <h2 className="font-inter text-lg font-semibold">about me.</h2>
+        <div className="font-inter mt-4 text-base tracking-wide normal-case">
+          Building the platform engine at{" "}
+          <Preview
+            containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+            content={<WavemakerCard />}
+          >
+            {" "}
+            <span className="cursor-pointer font-bold text-zinc-800 dark:text-zinc-200">
+              WaveMaker
+            </span>
+          </Preview>{" "}
+          that powers React application generation. Previously at{" "}
+          <Preview
+            containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+            content={<RavaAICard />}
+          >
+            {" "}
+            <span className="cursor-pointer font-bold text-zinc-800 dark:text-zinc-200">
+              Rava AI
+            </span>
+          </Preview>
+          , where I took the product from zero to production. handling frontend,
+          backend, DevOps, and AI integrations end-to-end.{" "}
+          <br className="h-3" />{" "}
+          <div className="mt-4">
+            I’m passionate about platform engineering, scalable web systems, and
+            building tools that make developers more productive.
+          </div>
+        </div>
       </div>
 
       {/* <OpenToWork /> */}
@@ -100,7 +125,7 @@ export default function Home() {
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white lowercase transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
+              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
             >
               {skill.toLowerCase()}
             </div>
@@ -109,6 +134,12 @@ export default function Home() {
       </div>
       <GitHubContributions />
 
+      <div className="mt-8">
+        <h2 className="text-lg font-semibold">writing.</h2>
+        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
+          <BlogList />
+        </div>
+      </div>
       <div className="mt-8">
         <h2 className="text-lg font-semibold">contact.</h2>
         <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">

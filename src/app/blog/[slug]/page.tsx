@@ -95,7 +95,7 @@ export default async function Page({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-4 max-sm:text-4xl"
+        className="mb-4 max-sm:text-4xl!"
       >
         {postMetadata?.title}
       </PostTitle>
@@ -104,7 +104,7 @@ export default async function Page({
         {postMetadata?.summary}
       </PostDescription> */}
 
-      <div className="mb-12 flex flex-col text-sm font-normal text-zinc-400">
+      <div className="mb-12 flex flex-col text-xs font-normal text-zinc-400 sm:text-sm">
         <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
       </div>
 

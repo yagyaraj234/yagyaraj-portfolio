@@ -152,7 +152,7 @@ export default function RootLayout({
             serif.variable,
             sans.variable,
             outfit.className,
-            "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#121212] dark:text-white dark:selection:bg-zinc-700"
+            "scrollbar-thin font-inter scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
           )}
         >
           <UmamiAnalytics />

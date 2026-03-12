@@ -47,7 +47,7 @@ export function Projects({ show = 10 }: { show?: number }) {
                 {project?.about &&
                   project?.about?.map((about: string, idx: number) => (
                     <li
-                      className="text-base text-zinc-800 lowercase dark:text-zinc-200"
+                      className="text-base text-zinc-800 dark:text-zinc-200"
                       key={idx}
                     >
                       {about}
