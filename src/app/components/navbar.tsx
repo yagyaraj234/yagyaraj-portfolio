@@ -1,5 +1,7 @@
+"use client"
 import Link from "next/link"
 import ThemeButton from "./theme-button"
+import { usePathname } from "next/navigation"
 
 export interface NavItem {
   name: string
@@ -8,16 +10,8 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    name: "about",
+    name: "home",
     link: "/",
-  },
-  {
-    name: "journey",
-    link: "/journey",
-  },
-  {
-    name: "projects",
-    link: "/projects",
   },
   {
     name: "blogs",
@@ -26,6 +20,7 @@ export const navItems: NavItem[] = [
 ]
 
 export const Navbar = () => {
+  const pathname = usePathname()
   return (
     <header className="flex w-full items-center justify-end pt-4">
       <nav className="flex items-center gap-4 lg:gap-6" role="navigation">
@@ -34,13 +29,13 @@ export const Navbar = () => {
             <Link
               key={idx}
               href={item.link}
-              className={`cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 max-sm:hidden sm:text-base dark:text-gray-400 dark:hover:text-white`}
+              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 max-sm:hidden sm:text-base dark:text-gray-400 dark:hover:text-white`}
             >
               {item.name}
             </Link>
           )
         })}
-        {/* <ThemeButton /> */}
+        <ThemeButton />
       </nav>
     </header>
   )
