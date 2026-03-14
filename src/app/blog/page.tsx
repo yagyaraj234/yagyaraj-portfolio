@@ -33,10 +33,10 @@ export default async function BlogIndexPage() {
 
   return (
     <main
-      className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-4"
+      className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-4 sm:min-w-3xl"
       role="main"
     >
-      <div className="mt-4 flex-1">
+      <div className="mt-4 flex-1 sm:min-w-3xl">
         <div className="mb-12 text-2xl font-semibold underline decoration-blue-500 decoration-wavy underline-offset-4">
           Writing. 👻
         </div>
