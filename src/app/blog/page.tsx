@@ -32,16 +32,21 @@ export default async function BlogIndexPage() {
   const posts = await readPosts()
 
   return (
-    <div className="mt-4 flex-1">
-      <div className="mb-12 text-2xl font-semibold underline decoration-blue-500 decoration-wavy underline-offset-4">
-        Writing. 👻
-      </div>
+    <main
+      className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-4"
+      role="main"
+    >
+      <div className="mt-4 flex-1">
+        <div className="mb-12 text-2xl font-semibold underline decoration-blue-500 decoration-wavy underline-offset-4">
+          Writing. 👻
+        </div>
 
-      <Suspense
-        fallback={<div className="text-gray-500">Loading posts...</div>}
-      >
-        <PostList posts={posts} />
-      </Suspense>
-    </div>
+        <Suspense
+          fallback={<div className="text-gray-500">Loading posts...</div>}
+        >
+          <PostList posts={posts} />
+        </Suspense>
+      </div>
+    </main>
   )
 }

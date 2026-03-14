@@ -24,7 +24,7 @@ export const social_links = [
     url: "https://twitter.com/yagyaraj234",
     icon: FaXTwitter,
   },
-  { name: "Medium", url: "https://medium.com/@yagyaraj234", icon: FaMedium },
+  { name: "Medium", url: "https://blog.yagyaraj.com", icon: FaMedium },
   {
     name: "Resume",
     url: "https://drive.google.com/file/d/1nNQ-E0X8CAjEZ-wUyZvoiXG64TGVtyn9/view?usp=sharing",
@@ -46,6 +46,7 @@ export const skills = [
   "C++",
   "Python",
   "FastAPI",
+  "Golang",
 ]
 
 export const projectData = [
