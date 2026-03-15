@@ -22,14 +22,14 @@ export const navItems: NavItem[] = [
 export const Navbar = () => {
   const pathname = usePathname()
   return (
-    <header className="flex w-full items-center justify-end pt-4">
+    <header className="flex w-full items-center justify-end pt-4 max-sm:mb-8">
       <nav className="flex items-center gap-4 lg:gap-6" role="navigation">
         {navItems.map((item: NavItem, idx: number) => {
           return (
             <Link
               key={idx}
               href={item.link}
-              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 max-sm:hidden sm:text-base dark:text-gray-400 dark:hover:text-white`}
+              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900  text-base dark:text-gray-400 dark:hover:text-white`}
             >
               {item.name}
             </Link>
