@@ -2,6 +2,7 @@
 import Link from "next/link"
 import ThemeButton from "./theme-button"
 import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 export interface NavItem {
   name: string
@@ -10,23 +11,29 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    name: "home",
+    name: "Home",
     link: "/",
   },
   {
-    name: "blogs",
+    name: "Blogs",
     link: "/blog",
   },
   {
-    name: "craft",
-    link: "/craft",
+    name: "Lab",
+    link: "/lab",
   },
 ]
 
-export const Navbar = () => {
+export const Navbar = ({ className }: { className?: string }) => {
   const pathname = usePathname()
   return (
-    <header className="flex w-full items-center justify-end pt-4 max-sm:mb-8">
+    <header
+      className={cn(
+        `mb-8 flex w-full items-center justify-between pt-4`,
+        className
+      )}
+      role="navigation"
+    >
       <nav className="flex items-center gap-4 lg:gap-6" role="navigation">
         {navItems.map((item: NavItem, idx: number) => {
           return (
@@ -39,8 +46,8 @@ export const Navbar = () => {
             </Link>
           )
         })}
-        <ThemeButton />
       </nav>
+      <ThemeButton />
     </header>
   )
 }
