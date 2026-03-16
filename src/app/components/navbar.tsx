@@ -2,6 +2,7 @@
 import Link from "next/link"
 import ThemeButton from "./theme-button"
 import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 export interface NavItem {
   name: string
@@ -23,10 +24,16 @@ export const navItems: NavItem[] = [
   },
 ]
 
-export const Navbar = () => {
+export const Navbar = ({ className }: { className?: string }) => {
   const pathname = usePathname()
   return (
-    <header className="flex w-full items-center justify-end pt-4 max-sm:mb-8">
+    <header
+      className={cn(
+        `flex w-full items-center justify-end pt-4 max-sm:mb-8`,
+        className
+      )}
+      role="navigation"
+    >
       <nav className="flex items-center gap-4 lg:gap-6" role="navigation">
         {navItems.map((item: NavItem, idx: number) => {
           return (
