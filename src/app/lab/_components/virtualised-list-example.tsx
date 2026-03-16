@@ -10,7 +10,7 @@ type ListItemProps = {
 }
 
 type ListProps = {
-  height: number
+  height?: number
   width?: number
   className?: string
 }
@@ -111,7 +111,7 @@ export default function VirtualizedListExample({
       <VirtualizedList
         data={data}
         renderItem={(item, idx) => <ListItem key={idx} item={item} />}
-        minHeight={height || 500}
+        height={height || 500}
         buffer={12}
         className="overflow-y-auto rounded-xl border border-zinc-200 dark:border-zinc-700"
       />

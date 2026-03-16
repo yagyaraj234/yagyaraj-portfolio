@@ -11,16 +11,16 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    name: "home",
+    name: "Home",
     link: "/",
   },
   {
-    name: "blogs",
+    name: "Blogs",
     link: "/blog",
   },
   {
-    name: "craft",
-    link: "/craft",
+    name: "Lab",
+    link: "/lab",
   },
 ]
 
@@ -29,7 +29,7 @@ export const Navbar = ({ className }: { className?: string }) => {
   return (
     <header
       className={cn(
-        `flex w-full items-center justify-end pt-4 max-sm:mb-8`,
+        `mb-8 flex w-full items-center justify-between pt-4`,
         className
       )}
       role="navigation"
@@ -46,8 +46,8 @@ export const Navbar = ({ className }: { className?: string }) => {
             </Link>
           )
         })}
-        <ThemeButton />
       </nav>
+      <ThemeButton />
     </header>
   )
 }

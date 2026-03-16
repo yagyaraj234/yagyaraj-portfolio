@@ -5,12 +5,15 @@ import { cn } from "@/lib/utils"
 const Card = ({
   children,
   className,
+  onClick,
 }: {
   children: ReactNode
   className?: string
+  onClick?: () => void
 }) => {
   return (
     <div
+      onClick={onClick}
       className={cn(
         "group grid gap-4 max-sm:grid-rows-2 sm:grid-cols-2 sm:gap-6",
         className
@@ -91,4 +94,14 @@ const CardListItem = ({
   return <li className={cn("flex flex-col gap-4", className)}>{children}</li>
 }
 
-export { Card, CardDescription, CardImage, CardList, CardListItem }
+const CardContent = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
+  return <div className={cn("grid gap-4", className)}>{children}</div>
+}
+
+export { Card, CardDescription, CardImage, CardList, CardListItem, CardContent }

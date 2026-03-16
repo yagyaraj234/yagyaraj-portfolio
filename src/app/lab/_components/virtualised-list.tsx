@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 type VirtualizedListProps<T> = {
   data: T[]
   renderItem: (item: T, index: number, list: T[]) => ReactNode
-  minHeight: number // required min height of the list
   className?: string
   height?: number // list container height default 100%
   rowHeight?: number // if not provided, will be calculated from the first item
@@ -16,8 +15,7 @@ export default function VirtualizedList<T>({
   data,
   renderItem,
   className,
-  minHeight,
-  height,
+  height = 500,
   rowHeight: defaultRowHeight,
   buffer = 20,
 }: VirtualizedListProps<T>) {
@@ -123,9 +121,9 @@ export default function VirtualizedList<T>({
       ref={containerRef}
       style={{
         position: "relative",
-        height: height || "100%",
-        minHeight,
-        maxHeight: height || 500,
+        height: height,
+        maxHeight: height,
+        minHeight: height,
       }}
       className={cn("overflow-y-auto scroll-smooth", className)}
     >
