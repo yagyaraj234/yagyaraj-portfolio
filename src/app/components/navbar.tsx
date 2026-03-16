@@ -17,10 +17,6 @@ export const navItems: NavItem[] = [
     name: "blogs",
     link: "/blog",
   },
-  {
-    name: "craft",
-    link: "/craft",
-  },
 ]
 
 export const Navbar = () => {
