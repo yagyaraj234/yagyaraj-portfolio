@@ -11,7 +11,7 @@ export default function Container({
   return (
     <div
       className={cn(
-        "min-h-[calc(100vh-180px)] max-w-3xl sm:mx-auto sm:min-w-3xl",
+        "min-h-[calc(100vh-180px)] sm:mx-auto sm:max-w-3xl sm:min-w-3xl",
         className
       )}
     >

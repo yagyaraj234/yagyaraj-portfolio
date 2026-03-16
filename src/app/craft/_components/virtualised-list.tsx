@@ -1,10 +1,12 @@
 "use client"
 import { useEffect, useRef, useState, type ReactNode } from "react"
+import { cn } from "@/lib/utils"
 
 type VirtualizedListProps<T> = {
   data: T[]
   renderItem: (item: T, index: number, list: T[]) => ReactNode
   minHeight: number // required min height of the list
+  className?: string
   height?: number // list container height default 100%
   rowHeight?: number // if not provided, will be calculated from the first item
   buffer?: number // buffer items to render before and after the visible items default 20
@@ -13,6 +15,7 @@ type VirtualizedListProps<T> = {
 export default function VirtualizedList<T>({
   data,
   renderItem,
+  className,
   minHeight,
   height,
   rowHeight: defaultRowHeight,
@@ -24,7 +27,10 @@ export default function VirtualizedList<T>({
   const [rowHeight, setRowHeight] = useState<number | undefined>(
     defaultRowHeight
   )
-  const [range, setRange] = useState({ start: 0, end: 2 })
+  const [range, setRange] = useState({
+    start: 0,
+    end: 10 + (defaultRowHeight || 0),
+  })
 
   // Measure row height
   useEffect(() => {
@@ -34,7 +40,7 @@ export default function VirtualizedList<T>({
     if (h > 0) {
       setRowHeight(h)
     }
-  }, [])
+  }, [defaultRowHeight])
 
   // Attach scroll logic after height known
   useEffect(() => {
@@ -76,33 +82,23 @@ export default function VirtualizedList<T>({
   }, [rowHeight])
 
   // if rowHeight is not there render few items and calculate the height
-  if (!rowHeight) {
+  function renderFallbackItems() {
     return (
-      <div ref={containerRef} style={{ overflow: "auto" }}>
+      <>
         {data.slice(0, 20).map((item, i) => (
           <div key={i} ref={i === 0 ? measureRef : undefined}>
             {renderItem(item, i, data)}
           </div>
         ))}
-      </div>
+      </>
     )
   }
 
   const visibleItems = data.slice(range.start, range.end)
 
-  console.log({ range, visibleItems: visibleItems.length })
-
-  return (
-    <div
-      ref={containerRef}
-      style={{
-        overflowY: "auto",
-        position: "relative",
-        height: height || "100%",
-        minHeight,
-      }}
-      className="container"
-    >
+  function renderVisibleItems() {
+    if (!rowHeight) return null
+    return (
       <div
         style={{
           height: data.length * (rowHeight || 0),
@@ -119,6 +115,21 @@ export default function VirtualizedList<T>({
           )}
         </div>
       </div>
+    )
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        position: "relative",
+        height: height || "100%",
+        minHeight,
+        maxHeight: height || 500,
+      }}
+      className={cn("overflow-y-auto scroll-smooth", className)}
+    >
+      {!rowHeight ? renderFallbackItems() : renderVisibleItems()}
     </div>
   )
 }
