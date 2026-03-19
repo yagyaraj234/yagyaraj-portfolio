@@ -1,12 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import Link from "next/link"
-import { BsArrowRight } from "react-icons/bs"
+import { ArrowRight } from "lucide-react"
 import { titleCase } from "title-case"
 import Balancer from "react-wrap-balancer"
-
-import { styled } from "@/stitches.config"
+import { cn } from "@/lib/utils"
 
 export interface IPost {
   slug: string
@@ -46,12 +45,12 @@ export function Post({ post, children, direction = "left" }: PostProps) {
         <PostDescription>{post.description}</PostDescription>
         <TitleAnchor
           as={isExternal ? undefined : Link}
-          small
           href={post.slug}
           direction={direction}
+          small
         >
           Read now
-          <BsArrowRight width="12" height="12" />
+          <ArrowRight width={12} height={12} />
         </TitleAnchor>
       </PostContent>
       <Figure>{children}</Figure>
@@ -59,126 +58,108 @@ export function Post({ post, children, direction = "left" }: PostProps) {
   )
 }
 
-const Figure = styled("div", {
-  flex: 1,
-})
+// Figure
+function Figure({ children }: { children?: React.ReactNode }) {
+  return <div className="flex-1">{children}</div>
+}
 
-const TitleAnchor = styled(motion.a, {
-  color: "inherit",
-  textDecoration: "none",
-  display: "flex",
-  cursor: "pointer",
-  alignItems: "center",
-  gap: "$4",
-  width: "100%",
+// TitleAnchor
+function TitleAnchor({
+  children,
+  href,
+  direction,
+  small,
+  as: Component,
+}: {
+  children: React.ReactNode
+  href: string
+  direction?: "left" | "right"
+  small?: boolean
+  as?: any
+}) {
+  const Comp = Component ?? motion.a
 
-  "&:hover": {
-    color: "$blue9",
-  },
+  return (
+    <Comp
+      href={href}
+      className={cn(
+        "flex w-full cursor-pointer items-center gap-4 text-inherit no-underline transition-colors hover:text-blue-600",
+        small && "gap-2 font-bold text-neutral-500",
+        direction === "left" && "md:justify-end"
+      )}
+    >
+      {children}
+    </Comp>
+  )
+}
 
-  variants: {
-    small: {
-      true: {
-        color: "$gray11",
-        gap: "$2",
-        fontWeight: "bold",
-      },
-    },
-    direction: {
-      right: {},
-      left: {
-        "@md": {
-          justifyContent: "flex-end",
-        },
-      },
-    },
-  },
-})
+// PostWrapper
+function PostWrapper({
+  children,
+  direction,
+}: {
+  children: React.ReactNode
+  direction?: "left" | "right"
+}) {
+  return (
+    <motion.li
+      className={cn(
+        "flex max-w-[400px] list-none flex-col-reverse gap-16 p-0",
+        "not-last:border-b not-last:border-dashed not-last:border-neutral-300 not-last:pb-[var(--gap)]",
+        "md:max-w-[60rem] md:flex-row md:items-center md:gap-0",
+        "md:[&>:first-child]:border-r md:[&>:first-child]:border-dashed md:[&>:first-child]:border-neutral-300 md:[&>:first-child]:pr-10 md:[&>:first-child]:text-right",
+        "md:[&>:last-child]:pl-10",
+        "lg:[&>:first-child]:pr-16 lg:[&>:last-child]:pl-16",
+        direction === "right" && [
+          "md:flex-row-reverse",
+          "md:[&>:first-child]:border-r-0 md:[&>:first-child]:border-l md:[&>:first-child]:border-dashed md:[&>:first-child]:border-neutral-300 md:[&>:first-child]:pr-0 md:[&>:first-child]:pl-10 md:[&>:first-child]:text-left",
+          "md:[&>:last-child]:pr-10 md:[&>:last-child]:pl-0",
+          "lg:[&>:first-child]:pl-16 lg:[&>:last-child]:pr-16",
+        ]
+      )}
+    >
+      {children}
+    </motion.li>
+  )
+}
 
-const PostWrapper = styled(motion.li, {
-  $$spacing: "$space$16",
-  listStyle: "none",
-  padding: 0,
-  display: "flex",
-  flexDirection: "column-reverse",
-  gap: "$$spacing",
-  maxWidth: 400,
+// PostTitle
+export function PostTitle({
+  children,
+  className,
+  ...motionProps
+}: {
+  children: React.ReactNode
+  className?: string
+} & React.ComponentProps<typeof motion.h1>) {
+  return (
+    <motion.h1
+      className={cn(
+        "flex font-serif text-[3.5rem] leading-[1.1] font-medium",
+        className
+      )}
+      {...motionProps}
+    >
+      {children}
+    </motion.h1>
+  )
+}
 
-  "&:not(:last-child)": {
-    paddingBottom: "$$gap",
-    borderBottom: "1px dashed $gray8",
-  },
+// PostDescription
+export function PostDescription({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="leading-relaxed text-neutral-700 dark:text-neutral-300">
+      {children}
+    </p>
+  )
+}
 
-  "@md": {
-    $$spacing: "$space$10",
-    flexDirection: "row",
-    gap: 0,
-    alignItems: "center",
-    maxWidth: "60rem",
+// PostUpdatedText
+export function PostUpdatedText({ children }: { children: React.ReactNode }) {
+  return <p className="font-mono text-sm text-neutral-500">{children}</p>
+}
 
-    "> :first-child": {
-      paddingRight: "$$spacing",
-      textAlign: "right",
-      borderRight: "1px dashed $gray8",
-    },
-
-    "> :last-child": {
-      paddingLeft: "$$spacing",
-    },
-  },
-
-  "@lg": {
-    $$spacing: "$space$16",
-  },
-
-  variants: {
-    direction: {
-      right: {
-        "@md": {
-          flexDirection: "row-reverse",
-
-          "> :first-child": {
-            paddingRight: 0,
-            paddingLeft: "$$spacing",
-            textAlign: "left",
-            borderLeft: "1px dashed $gray8",
-            borderRight: "none",
-          },
-
-          "> :last-child": {
-            paddingRight: "$$spacing",
-            paddingLeft: 0,
-          },
-        },
-      },
-      left: {},
-    },
-  },
-})
-
-export const PostTitle = styled(motion.h1, {
-  fontSize: "3.5rem",
-  fontFamily: "var(--font-serif)",
-  lineHeight: 1.1,
-  fontWeight: 500,
-  display: "flex",
-})
-
-export const PostDescription = styled("p", {
-  color: "$gray14",
-  lineHeight: "$body",
-})
-
-export const PostUpdatedText = styled("p", {
-  fontSize: "$sm",
-  color: "$gray11",
-  fontFamily: "$mono",
-})
-
-export const PostContent = styled("div", {
-  flex: 1,
-
-  "> :not(:last-child)": {
-    marginBottom: "$10",
-  },
-})
+// PostContent
+export function PostContent({ children }: { children: React.ReactNode }) {
+  return <div className="flex-1 [&>:not(:last-child)]:mb-10">{children}</div>
+}

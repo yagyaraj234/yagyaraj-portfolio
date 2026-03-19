@@ -188,3 +188,5 @@ export const Preview = ({
     </div>
   )
 }
+
+export default Preview

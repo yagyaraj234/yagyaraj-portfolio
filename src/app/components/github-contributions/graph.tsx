@@ -1,6 +1,6 @@
 "use client"
 
-import dayjs from "dayjs"
+import { format, parseISO } from "date-fns"
 import { LoaderIcon } from "lucide-react"
 import { use, useEffect, useState } from "react"
 
@@ -73,7 +73,7 @@ export function GitHubContributionGraph({
             <TooltipContent className="font-sans" sideOffset={0}>
               <p>
                 {activity.count} contribution{activity.count > 1 ? "s" : null}{" "}
-                on {dayjs(activity.date).format("DD.MM.YYYY")}
+                on {format(parseISO(activity.date), "dd.MM.yyyy")}
               </p>
             </TooltipContent>
           </Tooltip>
