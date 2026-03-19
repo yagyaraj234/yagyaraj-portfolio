@@ -10,9 +10,7 @@ const nextConfig: NextConfig = {
     cssChunking: true,
     optimizeCss: true,
     optimizePackageImports: [
-      "motion", // Optimizes the new 'motion' (formerly framer-motion) package
       "@radix-ui/react-tooltip", // Optimizes Radix primitive barrel files
-      "@stitches/react", // Helps with Stitches' internal module resolution
       "shiki",
     ],
   },
@@ -31,5 +29,9 @@ const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
 })
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+})
+
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig)
+export default withBundleAnalyzer(withMDX(nextConfig))
