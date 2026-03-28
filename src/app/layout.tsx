@@ -98,9 +98,15 @@ const siteTitle = `${USER.displayName} | ${USER.jobTitle}`
 const siteDescription = USER.bio
 
 export const metadata: Metadata = {
+  applicationName: `${USER.displayName} Portfolio`,
   title: siteTitle,
   description: siteDescription,
   metadataBase: new URL(USER.website),
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: `${USER.displayName} Portfolio`,
+  },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
@@ -128,6 +134,9 @@ export const metadata: Metadata = {
     canonical: USER.website,
   },
   keywords: USER.keywords,
+  formatDetection: {
+    telephone: false,
+  },
   other: {
     "article:modified_time": USER.lastUpdated,
   },
@@ -143,6 +152,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0f172a" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <ReactLenis root>

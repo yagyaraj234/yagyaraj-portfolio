@@ -1,5 +1,20 @@
 import { NextConfig } from "next"
 import createMDX from "@next/mdx"
+const runtimeCaching = require("next-pwa/cache")
+
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+  register: true,
+  skipWaiting: true,
+  cacheOnFrontEndNav: true,
+  cacheStartUrl: true,
+  dynamicStartUrl: false,
+  runtimeCaching,
+  fallbacks: {
+    document: "/offline",
+  },
+})
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
@@ -34,4 +49,4 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 
 // Merge MDX config with Next.js config
-export default withBundleAnalyzer(withMDX(nextConfig))
+export default withBundleAnalyzer(withPWA(withMDX(nextConfig)))
