@@ -1,0 +1,1363 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "category": "JavaScript Core",
+      "title": "Explain the event loop and how JavaScript handles async operations",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "1-1",
+          "title": "What's the difference between microtasks and macrotasks?"
+        },
+        {
+          "id": "1-2",
+          "title": "Why do Promise callbacks run before setTimeout?"
+        },
+        { "id": "1-3", "title": "What is event-loop starvation?" }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "JavaScript Core",
+      "title": "What are closures and how do they work?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "2-1", "title": "Do closures store values or references?" },
+        { "id": "2-2", "title": "How can closures cause memory leaks?" },
+        { "id": "2-3", "title": "What happens during garbage collection?" }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "JavaScript Core",
+      "title": "Explain prototypal inheritance in JavaScript",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "3-1",
+          "title": "What's the difference between [[Prototype]] and .prototype?"
+        },
+        { "id": "3-2", "title": "How does the prototype chain work?" },
+        { "id": "3-3", "title": "What is Object.create and when to use it?" }
+      ]
+    },
+    {
+      "id": 4,
+      "category": "JavaScript Core",
+      "title": "What are the 4 rules of this binding?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "4-1", "title": "What is default binding?" },
+        { "id": "4-2", "title": "What is implicit binding?" },
+        { "id": "4-3", "title": "What is new binding?" },
+        { "id": "4-4", "title": "How do arrow functions differ?" }
+      ]
+    },
+    {
+      "id": 5,
+      "category": "JavaScript Core",
+      "title": "Explain shallow vs deep copy",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "5-1",
+          "title": "What are the limitations of JSON-based deep copy?"
+        },
+        {
+          "id": "5-2",
+          "title": "What is structuredClone and how is it different?"
+        },
+        { "id": "5-3", "title": "How do you handle circular references?" }
+      ]
+    },
+    {
+      "id": 6,
+      "category": "JavaScript Core",
+      "title": "Explain var, let, const differences and hoisting",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "6-1", "title": "What is the Temporal Dead Zone (TDZ)?" },
+        {
+          "id": "6-2",
+          "title": "How does hoisting work for functions vs variables?"
+        },
+        { "id": "6-3", "title": "What's variable shadowing?" }
+      ]
+    },
+    {
+      "id": 7,
+      "category": "JavaScript Core",
+      "title": "What are call, apply, and bind?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "7-1", "title": "How do call and apply differ?" },
+        { "id": "7-2", "title": "What does bind do?" },
+        {
+          "id": "7-3",
+          "title": "How do you borrow methods from other objects?"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "category": "JavaScript Core",
+      "title": "What are Promises and how do they work?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "8-1", "title": "How does Promise chaining work?" },
+        { "id": "8-2", "title": "What's Promise.all vs Promise.allSettled?" },
+        {
+          "id": "8-3",
+          "title": "How does error handling differ from async/await?"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "category": "JavaScript Core",
+      "title": "Explain async/await and error handling",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "9-1", "title": "How does async/await work internally?" },
+        {
+          "id": "9-2",
+          "title": "Why are async functions problematic in useEffect?"
+        },
+        { "id": "9-3", "title": "How do you handle errors in async/await?" }
+      ]
+    },
+    {
+      "id": 10,
+      "category": "JavaScript Core",
+      "title": "What is garbage collection and mark-and-sweep?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "10-1",
+          "title": "Why doesn't JavaScript need reference counting?"
+        },
+        { "id": "10-2", "title": "How does mark-and-sweep work?" },
+        { "id": "10-3", "title": "What are common memory leaks?" }
+      ]
+    },
+    {
+      "id": 11,
+      "category": "React Fundamentals",
+      "title": "What is the difference between render phase and commit phase?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "11-1",
+          "title": "Why can render phase be interrupted but commit phase cannot?"
+        },
+        { "id": "11-2", "title": "How does React use Fiber for interruption?" },
+        {
+          "id": "11-3",
+          "title": "What happens to state during a failed commit?"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "category": "React Fundamentals",
+      "title": "How does useState work internally?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "12-1", "title": "What is functional update in useState?" },
+        { "id": "12-2", "title": "What is lazy initialization?" },
+        { "id": "12-3", "title": "How does React map hook calls to state?" }
+      ]
+    },
+    {
+      "id": 13,
+      "category": "React Fundamentals",
+      "title": "Explain useEffect lifecycle and pitfalls",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "13-1",
+          "title": "How does the dependency array work with Object.is?"
+        },
+        {
+          "id": "13-2",
+          "title": "How do effect cleanups prevent memory leaks?"
+        },
+        {
+          "id": "13-3",
+          "title": "Why are async functions problematic in useEffect?"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "category": "React Fundamentals",
+      "title": "What are stale closures and how do you fix them?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "14-1", "title": "Why do stale closures happen?" },
+        { "id": "14-2", "title": "How do you identify them in code?" },
+        { "id": "14-3", "title": "What are the solutions?" }
+      ]
+    },
+    {
+      "id": 15,
+      "category": "React Fundamentals",
+      "title": "Explain keys in React lists and reconciliation",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "15-1",
+          "title": "What are the 3 consequences of using array index as key?"
+        },
+        { "id": "15-2", "title": "When is it safe to use index as key?" },
+        {
+          "id": "15-3",
+          "title": "How does React use keys during reconciliation?"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "category": "React Fundamentals",
+      "title": "What are controlled vs uncontrolled components?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "16-1", "title": "When should you use each approach?" },
+        {
+          "id": "16-2",
+          "title": "How do you convert between controlled and uncontrolled?"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "category": "React Fundamentals",
+      "title": "Explain React.memo and memoization pitfalls",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "17-1", "title": "Why does React.memo sometimes fail?" },
+        { "id": "17-2", "title": "What's the unstable props trap?" },
+        { "id": "17-3", "title": "How do object literals break memoization?" }
+      ]
+    },
+    {
+      "id": 18,
+      "category": "React Fundamentals",
+      "title": "What are useMemo and useCallback hooks?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "18-1", "title": "When should you use useMemo?" },
+        { "id": "18-2", "title": "When should you use useCallback?" },
+        {
+          "id": "18-3",
+          "title": "Does memoization always improve performance?"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "category": "React Fundamentals",
+      "title": "How does Context API work and what are pitfalls?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "19-1",
+          "title": "What are performance pitfalls with Context?"
+        },
+        { "id": "19-2", "title": "How do you prevent unnecessary re-renders?" },
+        {
+          "id": "19-3",
+          "title": "When should you use Context vs other solutions?"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "category": "React Fundamentals",
+      "title": "What is Strict Mode and why does it double-render?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "20-1", "title": "What issues does Strict Mode help catch?" },
+        { "id": "20-2", "title": "Why double-render in development?" }
+      ]
+    },
+    {
+      "id": 21,
+      "category": "Machine Coding",
+      "title": "Design a reusable Dropdown component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "21-1", "title": "How do you handle open/close state?" },
+        { "id": "21-2", "title": "How do you position the dropdown menu?" },
+        { "id": "21-3", "title": "How do you handle keyboard navigation?" },
+        {
+          "id": "21-4",
+          "title": "How do you implement click-outside detection?"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "category": "Machine Coding",
+      "title": "Design a Modal component with focus trap",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "22-1", "title": "How do you implement focus trap?" },
+        { "id": "22-2", "title": "How do you handle keyboard navigation?" },
+        { "id": "22-3", "title": "How do you manage scroll locking?" },
+        { "id": "22-4", "title": "How do you animate modal entrance/exit?" }
+      ]
+    },
+    {
+      "id": 23,
+      "category": "Machine Coding",
+      "title": "Design a Pagination component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "23-1", "title": "How do you handle different page counts?" },
+        {
+          "id": "23-2",
+          "title": "How do you optimize for very large page counts?"
+        },
+        { "id": "23-3", "title": "How do you prevent invalid page access?" }
+      ]
+    },
+    {
+      "id": 24,
+      "category": "Machine Coding",
+      "title": "Design a search box with debounced API calls",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "24-1", "title": "How do you prevent race conditions?" },
+        { "id": "24-2", "title": "How do you handle cancelled requests?" },
+        { "id": "24-3", "title": "How do you cache results?" }
+      ]
+    },
+    {
+      "id": 25,
+      "category": "Machine Coding",
+      "title": "Design a file upload component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "25-1", "title": "How do you show upload progress?" },
+        { "id": "25-2", "title": "How do you handle multiple uploads?" },
+        { "id": "25-3", "title": "How do you implement retry logic?" },
+        { "id": "25-4", "title": "How do you handle drag and drop?" }
+      ]
+    },
+    {
+      "id": 26,
+      "category": "Machine Coding",
+      "title": "Design a Data Table with sorting, filtering, pagination",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "26-1", "title": "How do you implement sorting?" },
+        { "id": "26-2", "title": "How do you implement filtering?" },
+        { "id": "26-3", "title": "How do you handle large datasets?" }
+      ]
+    },
+    {
+      "id": 27,
+      "category": "Machine Coding",
+      "title": "Design a Virtualized/Windowed List",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "27-1", "title": "How do you calculate visible items?" },
+        { "id": "27-2", "title": "How do you handle dynamic item sizes?" },
+        { "id": "27-3", "title": "How do you implement scrolling efficiently?" }
+      ]
+    },
+    {
+      "id": 28,
+      "category": "Machine Coding",
+      "title": "Design a Toast/Notification system",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "28-1", "title": "How do you handle stacked notifications?" },
+        { "id": "28-2", "title": "How do you implement auto-dismiss?" },
+        { "id": "28-3", "title": "How do you prevent notification spam?" }
+      ]
+    },
+    {
+      "id": 29,
+      "category": "Machine Coding",
+      "title": "Design a Form Engine with validation",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "29-1", "title": "How do you handle conditional fields?" },
+        { "id": "29-2", "title": "How do you manage field dependencies?" },
+        { "id": "29-3", "title": "How do you implement multi-step forms?" }
+      ]
+    },
+    {
+      "id": 30,
+      "category": "Machine Coding",
+      "title": "Design an Infinite Scroll feed",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "30-1", "title": "How do you handle race conditions?" },
+        { "id": "30-2", "title": "How do you prevent duplicate items?" },
+        { "id": "30-3", "title": "How do you handle stale data?" }
+      ]
+    },
+    {
+      "id": 31,
+      "category": "Machine Coding",
+      "title": "Design a Tabs component",
+      "type": "machine-coding",
+      "subQuestions": [
+        {
+          "id": "31-1",
+          "title": "How do you handle controlled vs uncontrolled?"
+        },
+        { "id": "31-2", "title": "How do you manage keyboard navigation?" }
+      ]
+    },
+    {
+      "id": 32,
+      "category": "Machine Coding",
+      "title": "Design a Global Search box",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "32-1", "title": "How do you handle categorized results?" },
+        { "id": "32-2", "title": "How do you implement caching?" },
+        { "id": "32-3", "title": "How do you optimize search performance?" }
+      ]
+    },
+    {
+      "id": 33,
+      "category": "Machine Coding",
+      "title": "Design an Autocomplete/Typeahead component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "33-1", "title": "How do you handle debouncing?" },
+        { "id": "33-2", "title": "How do you handle race conditions?" },
+        { "id": "33-3", "title": "How do you cache results?" }
+      ]
+    },
+    {
+      "id": 34,
+      "category": "Machine Coding",
+      "title": "Design a Calendar component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "34-1", "title": "How do you handle date range selection?" },
+        { "id": "34-2", "title": "How do you implement date validation?" }
+      ]
+    },
+    {
+      "id": 35,
+      "category": "Machine Coding",
+      "title": "Design an Image Gallery/Carousel",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "35-1", "title": "How do you preload adjacent images?" },
+        { "id": "35-2", "title": "How do you implement touch gestures?" }
+      ]
+    },
+    {
+      "id": 36,
+      "category": "Machine Coding",
+      "title": "Design a Rich Text Editor",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "36-1", "title": "How do you implement text formatting?" },
+        { "id": "36-2", "title": "How do you handle undo/redo?" }
+      ]
+    },
+    {
+      "id": 37,
+      "category": "Machine Coding",
+      "title": "Design a Split View with resizable panes",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "37-1", "title": "How do you handle dragging?" },
+        { "id": "37-2", "title": "How do you persist size preferences?" }
+      ]
+    },
+    {
+      "id": 38,
+      "category": "Machine Coding",
+      "title": "Design a Tree View component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "38-1", "title": "How do you handle expand/collapse?" },
+        { "id": "38-2", "title": "How do you implement virtualization?" }
+      ]
+    },
+    {
+      "id": 39,
+      "category": "Machine Coding",
+      "title": "Design a Slider/Range Slider component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "39-1", "title": "How do you handle value updates?" },
+        { "id": "39-2", "title": "How do you implement range selection?" }
+      ]
+    },
+    {
+      "id": 40,
+      "category": "Machine Coding",
+      "title": "Design an Accordion component",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "40-1", "title": "How do you handle single vs multiple open?" },
+        { "id": "40-2", "title": "How do you handle animations?" }
+      ]
+    },
+    {
+      "id": 41,
+      "category": "Performance",
+      "title": "What is the critical rendering path?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "41-1", "title": "What blocks rendering?" },
+        { "id": "41-2", "title": "How do you optimize the critical path?" }
+      ]
+    },
+    {
+      "id": 42,
+      "category": "Performance",
+      "title": "Explain reflow vs repaint",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "42-1", "title": "What triggers each one?" },
+        { "id": "42-2", "title": "How do you avoid layout thrashing?" },
+        { "id": "42-3", "title": "Which properties trigger reflow vs repaint?" }
+      ]
+    },
+    {
+      "id": 43,
+      "category": "Performance",
+      "title": "What are Core Web Vitals?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "43-1", "title": "What is LCP and how do you optimize it?" },
+        { "id": "43-2", "title": "What is CLS and how do you prevent it?" },
+        { "id": "43-3", "title": "What is FID/INP?" }
+      ]
+    },
+    {
+      "id": 44,
+      "category": "Performance",
+      "title": "How do you implement code splitting and lazy loading?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "44-1", "title": "What are dynamic imports?" },
+        { "id": "44-2", "title": "How does webpack handle code splitting?" }
+      ]
+    },
+    {
+      "id": 45,
+      "category": "Performance",
+      "title": "How do you optimize images for the web?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "45-1", "title": "What are modern image formats?" },
+        { "id": "45-2", "title": "How do you serve responsive images?" }
+      ]
+    },
+    {
+      "id": 46,
+      "category": "Performance",
+      "title": "How do you optimize font loading?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "46-1", "title": "What is FOUT vs FOIT?" },
+        { "id": "46-2", "title": "How do you use font-display?" }
+      ]
+    },
+    {
+      "id": 47,
+      "category": "Performance",
+      "title": "How do you profile React apps effectively?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "47-1", "title": "What are profiling metrics?" },
+        { "id": "47-2", "title": "How do you identify bottlenecks?" }
+      ]
+    },
+    {
+      "id": 48,
+      "category": "Performance",
+      "title": "How do you handle bundle analysis?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "48-1", "title": "What tools help analyze bundles?" },
+        { "id": "48-2", "title": "How do you identify unused code?" }
+      ]
+    },
+    {
+      "id": 49,
+      "category": "Performance",
+      "title": "How do you optimize for slow networks?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "49-1", "title": "What's the timeout strategy?" },
+        { "id": "49-2", "title": "How do you show loading states?" }
+      ]
+    },
+    {
+      "id": 50,
+      "category": "Browser Fundamentals",
+      "title": "Explain event bubbling, capturing, and target phase",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "50-1", "title": "How does bubbling differ from capturing?" },
+        { "id": "50-2", "title": "What does stopPropagation do?" },
+        { "id": "50-3", "title": "What does preventDefault do?" }
+      ]
+    },
+    {
+      "id": 51,
+      "category": "Browser Fundamentals",
+      "title": "What is event delegation and how does it work?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "51-1", "title": "Why is it useful?" },
+        { "id": "51-2", "title": "When does it fail?" },
+        { "id": "51-3", "title": "How do you implement it safely?" }
+      ]
+    },
+    {
+      "id": 52,
+      "category": "Browser Fundamentals",
+      "title": "Explain CORS and preflight requests",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "52-1", "title": "What are simple requests vs preflight?" },
+        { "id": "52-2", "title": "How do you enable CORS?" },
+        { "id": "52-3", "title": "What can frontend control vs what it can't?" }
+      ]
+    },
+    {
+      "id": 53,
+      "category": "Browser Fundamentals",
+      "title": "What are localStorage, sessionStorage, and cookies?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "53-1", "title": "When should you use each?" },
+        {
+          "id": "53-2",
+          "title": "What are the size and security implications?"
+        },
+        { "id": "53-3", "title": "How do you handle storage across tabs?" }
+      ]
+    },
+    {
+      "id": 54,
+      "category": "Browser Fundamentals",
+      "title": "Explain Web Storage APIs vs cookies security",
+      "type": "blog-worthy",
+      "subQuestions": [
+        {
+          "id": "54-1",
+          "title": "What are SameSite, Secure, HttpOnly attributes?"
+        },
+        { "id": "54-2", "title": "How do they protect against attacks?" }
+      ]
+    },
+    {
+      "id": 55,
+      "category": "Browser Fundamentals",
+      "title": "How do Service Workers work?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "55-1", "title": "What caching strategies exist?" },
+        { "id": "55-2", "title": "How do you implement offline functionality?" }
+      ]
+    },
+    {
+      "id": 56,
+      "category": "Browser Fundamentals",
+      "title": "How does IntersectionObserver API work?",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "56-1", "title": "How do you use it for lazy loading?" },
+        { "id": "56-2", "title": "How do you use it for infinite scroll?" }
+      ]
+    },
+    {
+      "id": 57,
+      "category": "Browser Fundamentals",
+      "title": "Explain requestAnimationFrame and optimization",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "57-1", "title": "How does it differ from setTimeout?" },
+        { "id": "57-2", "title": "How does it optimize animations?" }
+      ]
+    },
+    {
+      "id": 58,
+      "category": "Browser Fundamentals",
+      "title": "How do you handle DNS resolution and TCP handshake?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "58-1", "title": "What happens during TLS negotiation?" },
+        { "id": "58-2", "title": "How do these contribute to latency?" }
+      ]
+    },
+    {
+      "id": 59,
+      "category": "Browser Fundamentals",
+      "title": "How do you implement Websockets vs Polling vs SSE?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "59-1", "title": "When should you use each?" },
+        { "id": "59-2", "title": "How do you handle reconnection?" }
+      ]
+    },
+    {
+      "id": 60,
+      "category": "TypeScript",
+      "title": "What are union and intersection types?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "60-1", "title": "When should you use each?" },
+        { "id": "60-2", "title": "What are type guards?" }
+      ]
+    },
+    {
+      "id": 61,
+      "category": "TypeScript",
+      "title": "Explain generics in TypeScript",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "61-1", "title": "How do you constrain generic types?" },
+        { "id": "61-2", "title": "What are common generic patterns?" }
+      ]
+    },
+    {
+      "id": 62,
+      "category": "TypeScript",
+      "title": "What are utility types in TypeScript?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "62-1", "title": "How do Partial, Required, Readonly work?" },
+        { "id": "62-2", "title": "What are Pick, Omit, Record used for?" }
+      ]
+    },
+    {
+      "id": 63,
+      "category": "TypeScript",
+      "title": "Explain type guards and type predicates",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "63-1", "title": "How do type guards work?" },
+        { "id": "63-2", "title": "How do you use is keyword?" }
+      ]
+    },
+    {
+      "id": 64,
+      "category": "State Management",
+      "title": "When should you use local vs global state?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "64-1", "title": "What are the tradeoffs?" },
+        { "id": "64-2", "title": "How do you identify what should be global?" }
+      ]
+    },
+    {
+      "id": 65,
+      "category": "State Management",
+      "title": "How do you use Context API for state management?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "65-1", "title": "What are performance pitfalls?" },
+        { "id": "65-2", "title": "How do you prevent unnecessary re-renders?" }
+      ]
+    },
+    {
+      "id": 66,
+      "category": "State Management",
+      "title": "Explain Redux fundamentals",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "66-1", "title": "What are actions, reducers, and store?" },
+        { "id": "66-2", "title": "When should you use Redux?" }
+      ]
+    },
+    {
+      "id": 67,
+      "category": "State Management",
+      "title": "How does TanStack Query manage server state?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "67-1", "title": "What problems does it solve?" },
+        { "id": "67-2", "title": "How do you handle caching and invalidation?" }
+      ]
+    },
+    {
+      "id": 68,
+      "category": "State Management",
+      "title": "What are state machines and XState?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "68-1", "title": "How do state machines work?" },
+        { "id": "68-2", "title": "When should you use XState?" }
+      ]
+    },
+    {
+      "id": 69,
+      "category": "Advanced JavaScript",
+      "title": "How do hidden classes and inline caching improve performance?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "69-1", "title": "How does V8 create hidden classes?" },
+        { "id": "69-2", "title": "Why can property order affect performance?" }
+      ]
+    },
+    {
+      "id": 70,
+      "category": "Advanced JavaScript",
+      "title": "What is the Proxy and Reflect API used for?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "70-1", "title": "What are real-world use cases?" },
+        { "id": "70-2", "title": "How do you create validation with Proxy?" }
+      ]
+    },
+    {
+      "id": 71,
+      "category": "Advanced JavaScript",
+      "title": "Explain WeakMap and when it actually helps",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "71-1", "title": "Why does WeakMap exist?" },
+        { "id": "71-2", "title": "How does it enable memory-safe caching?" }
+      ]
+    },
+    {
+      "id": 72,
+      "category": "Advanced JavaScript",
+      "title": "How does structuredClone work?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "72-1", "title": "How does it differ from JSON copying?" },
+        { "id": "72-2", "title": "What types does it support?" }
+      ]
+    },
+    {
+      "id": 73,
+      "category": "Advanced JavaScript",
+      "title": "How does module resolution and caching work in ESM?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "73-1", "title": "How do browsers cache modules?" },
+        { "id": "73-2", "title": "What is top-level await?" }
+      ]
+    },
+    {
+      "id": 74,
+      "category": "Advanced React",
+      "title": "What are render props and how do they work?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "74-1",
+          "title": "How do render props compare to HOCs and hooks?"
+        },
+        { "id": "74-2", "title": "How do you avoid render prop hell?" }
+      ]
+    },
+    {
+      "id": 75,
+      "category": "Advanced React",
+      "title": "Explain Higher-Order Components (HOCs)",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "75-1", "title": "What are common pitfalls?" },
+        { "id": "75-2", "title": "When should you use HOCs in modern React?" }
+      ]
+    },
+    {
+      "id": 76,
+      "category": "Advanced React",
+      "title": "What are compound components?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "76-1",
+          "title": "How do you implement context-based compound components?"
+        },
+        { "id": "76-2", "title": "What problems do they solve?" }
+      ]
+    },
+    {
+      "id": 77,
+      "category": "Advanced React",
+      "title": "What does useImperativeHandle do?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "77-1", "title": "When should you use it?" },
+        { "id": "77-2", "title": "How do you expose imperative APIs safely?" }
+      ]
+    },
+    {
+      "id": 78,
+      "category": "Advanced React",
+      "title": "Explain Suspense in React",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "78-1", "title": "How does Suspense work?" },
+        { "id": "78-2", "title": "How do you avoid jarring UI fallbacks?" }
+      ]
+    },
+    {
+      "id": 79,
+      "category": "Advanced React",
+      "title": "What are concurrent features like useTransition?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "79-1", "title": "How does useTransition work?" },
+        { "id": "79-2", "title": "What problems do they solve?" }
+      ]
+    },
+    {
+      "id": 80,
+      "category": "Data Structures",
+      "title": "Implement an LRU Cache",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "80-1", "title": "What data structures are involved?" },
+        { "id": "80-2", "title": "How do you optimize for O(1) operations?" }
+      ]
+    },
+    {
+      "id": 81,
+      "category": "Data Structures",
+      "title": "Generate valid parentheses combinations for n pairs",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "81-1", "title": "What's the approach?" },
+        { "id": "81-2", "title": "What's the time and space complexity?" }
+      ]
+    },
+    {
+      "id": 82,
+      "category": "Data Structures",
+      "title": "Given a stream of integers, return median at each step",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "82-1", "title": "How do two heaps solve this?" },
+        { "id": "82-2", "title": "What's the time complexity?" }
+      ]
+    },
+    {
+      "id": 83,
+      "category": "Data Structures",
+      "title": "Implement debounce function",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "83-1", "title": "How do you handle cancellation?" },
+        { "id": "83-2", "title": "How do you test debounce?" }
+      ]
+    },
+    {
+      "id": 84,
+      "category": "Data Structures",
+      "title": "Implement throttle function",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "84-1", "title": "How is it different from debounce?" },
+        { "id": "84-2", "title": "What are real-world use cases?" }
+      ]
+    },
+    {
+      "id": 85,
+      "category": "Data Structures",
+      "title": "Convert snake_case to camelCase recursively",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "85-1", "title": "How do you handle nested objects?" },
+        { "id": "85-2", "title": "How do you handle arrays?" }
+      ]
+    },
+    {
+      "id": 86,
+      "category": "Data Structures",
+      "title": "Implement set(obj, path, value) function",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "86-1", "title": "How do you create nested paths?" },
+        { "id": "86-2", "title": "How do you handle edge cases?" }
+      ]
+    },
+    {
+      "id": 87,
+      "category": "Data Structures",
+      "title": "Implement deep equal function",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "87-1", "title": "How do you handle circular references?" },
+        { "id": "87-2", "title": "How do you handle order-insensitive arrays?" }
+      ]
+    },
+    {
+      "id": 88,
+      "category": "Data Structures",
+      "title": "Implement Flatten and Unflatten objects",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "88-1", "title": "How do you handle dot paths?" },
+        { "id": "88-2", "title": "How do you handle arrays?" }
+      ]
+    },
+    {
+      "id": 89,
+      "category": "Data Structures",
+      "title": "Implement cancellable fetch with AbortController",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "89-1", "title": "How do you wrap fetch?" },
+        { "id": "89-2", "title": "How do you clean up cancelled requests?" }
+      ]
+    },
+    {
+      "id": 90,
+      "category": "Data Structures",
+      "title": "Implement Promise.all",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "90-1", "title": "How do you handle errors?" },
+        {
+          "id": "90-2",
+          "title": "What's the difference from Promise.allSettled?"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "category": "Data Structures",
+      "title": "Implement memoization/caching function",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "91-1", "title": "How do you cache results?" },
+        { "id": "91-2", "title": "How do you handle cache invalidation?" }
+      ]
+    },
+    {
+      "id": 92,
+      "category": "Next.js",
+      "title": "What are CSR, SSR, SSG, and ISR in Next.js?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "92-1", "title": "When should you use each?" },
+        { "id": "92-2", "title": "What are the tradeoffs?" }
+      ]
+    },
+    {
+      "id": 93,
+      "category": "Next.js",
+      "title": "How do getStaticProps and getStaticPaths work?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "93-1", "title": "How do you handle dynamic routes?" },
+        { "id": "93-2", "title": "What is ISR?" }
+      ]
+    },
+    {
+      "id": 94,
+      "category": "Next.js",
+      "title": "How do Server Components work in Next.js?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "94-1", "title": "What can Server Components do?" },
+        { "id": "94-2", "title": "What are the tradeoffs?" }
+      ]
+    },
+    {
+      "id": 95,
+      "category": "CSS",
+      "title": "Explain CSS Grid vs Flexbox",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "95-1", "title": "When should you use each?" },
+        { "id": "95-2", "title": "What can each do that the other cannot?" }
+      ]
+    },
+    {
+      "id": 96,
+      "category": "CSS",
+      "title": "What is CSS containment and why is it useful?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "96-1", "title": "How does it improve performance?" },
+        { "id": "96-2", "title": "When should you use it?" }
+      ]
+    },
+    {
+      "id": 97,
+      "category": "CSS",
+      "title": "What are CSS variables and custom properties?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "97-1", "title": "How do you use them for theming?" },
+        { "id": "97-2", "title": "What are advantages over preprocessors?" }
+      ]
+    },
+    {
+      "id": 98,
+      "category": "Testing",
+      "title": "How do you test React components effectively?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "98-1", "title": "What should you test?" },
+        { "id": "98-2", "title": "What shouldn't you test?" }
+      ]
+    },
+    {
+      "id": 99,
+      "category": "Testing",
+      "title": "How do you test custom hooks?",
+      "type": "machine-coding",
+      "subQuestions": [
+        { "id": "99-1", "title": "What libraries help?" },
+        { "id": "99-2", "title": "How do you test side effects?" }
+      ]
+    },
+    {
+      "id": 100,
+      "category": "Testing",
+      "title": "What is visual regression testing?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "100-1", "title": "How do you implement it?" },
+        { "id": "100-2", "title": "What tools exist?" }
+      ]
+    },
+    {
+      "id": 101,
+      "category": "Security",
+      "title": "What is XSS and how do you prevent it?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "101-1", "title": "What are common attack vectors?" },
+        { "id": "101-2", "title": "What libraries help prevent XSS?" }
+      ]
+    },
+    {
+      "id": 102,
+      "category": "Security",
+      "title": "What is CSRF and how do you prevent it?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "102-1", "title": "How do SameSite cookies help?" },
+        { "id": "102-2", "title": "What other measures exist?" }
+      ]
+    },
+    {
+      "id": 103,
+      "category": "Security",
+      "title": "What is Content Security Policy (CSP)?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "103-1", "title": "How do you configure it?" },
+        { "id": "103-2", "title": "How do you prevent CSP violations?" }
+      ]
+    },
+    {
+      "id": 104,
+      "category": "Accessibility",
+      "title": "What is semantic HTML and why does it matter?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        {
+          "id": "104-1",
+          "title": "What elements should you use instead of divs?"
+        },
+        { "id": "104-2", "title": "How does it help accessibility?" }
+      ]
+    },
+    {
+      "id": 105,
+      "category": "Accessibility",
+      "title": "How do you implement keyboard navigation?",
+      "type": "machine-coding",
+      "subQuestions": [
+        {
+          "id": "105-1",
+          "title": "What keyboard patterns should components follow?"
+        },
+        { "id": "105-2", "title": "How do you manage focus?" }
+      ]
+    },
+    {
+      "id": 106,
+      "category": "Accessibility",
+      "title": "How do you test for accessibility?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "106-1", "title": "What tools help test accessibility?" },
+        { "id": "106-2", "title": "What can't automated tools catch?" }
+      ]
+    },
+    {
+      "id": 107,
+      "category": "System Design",
+      "title": "Design frontend component architecture for large SPA",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "107-1", "title": "How do you organize code across teams?" },
+        { "id": "107-2", "title": "How do you handle shared state?" },
+        { "id": "107-3", "title": "How do you prevent circular dependencies?" }
+      ]
+    },
+    {
+      "id": 108,
+      "category": "System Design",
+      "title": "Design a real-time dashboard",
+      "type": "machine-coding",
+      "subQuestions": [
+        {
+          "id": "108-1",
+          "title": "How do you prevent performance degradation?"
+        },
+        { "id": "108-2", "title": "How do you handle socket connections?" },
+        { "id": "108-3", "title": "How do you batch updates efficiently?" }
+      ]
+    },
+    {
+      "id": 109,
+      "category": "System Design",
+      "title": "Design file upload architecture",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "109-1", "title": "How do you handle large files?" },
+        { "id": "109-2", "title": "How do you track progress?" }
+      ]
+    },
+    {
+      "id": 110,
+      "category": "System Design",
+      "title": "Design authentication and token flow",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "110-1", "title": "How do you handle token refresh?" },
+        { "id": "110-2", "title": "How do you securely store tokens?" }
+      ]
+    },
+    {
+      "id": 111,
+      "category": "System Design",
+      "title": "Design a feature flag architecture",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "111-1", "title": "How do you roll out features gradually?" },
+        { "id": "111-2", "title": "How do you handle multiple teams?" }
+      ]
+    },
+    {
+      "id": 112,
+      "category": "Advanced React",
+      "title": "How does memoization fail in React?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "112-1", "title": "What is the unstable props trap?" },
+        { "id": "112-2", "title": "How do object literals break memoization?" }
+      ]
+    },
+    {
+      "id": 113,
+      "category": "Performance",
+      "title": "How do you implement infinite scroll?",
+      "type": "blog-worthy",
+      "subQuestions": [
+        { "id": "113-1", "title": "How do you handle race conditions?" },
+        { "id": "113-2", "title": "How do you prevent duplicate items?" }
+      ]
+    },
+    {
+      "id": 114,
+      "category": "JavaScript Core",
+      "title": "What is currying and partial application?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "114-1",
+          "title": "How is currying different from partial application?"
+        },
+        { "id": "114-2", "title": "What are practical use cases?" }
+      ]
+    },
+    {
+      "id": 115,
+      "category": "JavaScript Core",
+      "title": "What are higher-order functions?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "115-1",
+          "title": "How do map, filter, and reduce work internally?"
+        },
+        { "id": "115-2", "title": "When should you avoid using them?" }
+      ]
+    },
+    {
+      "id": 116,
+      "category": "JavaScript Core",
+      "title": "What is the difference between == and ===?",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "116-1", "title": "Why does coercion behave the way it does?" },
+        { "id": "116-2", "title": "What are equality quirks?" }
+      ]
+    },
+    {
+      "id": 117,
+      "category": "JavaScript Core",
+      "title": "Explain type checking: typeof, instanceof, toString",
+      "type": "theoretical",
+      "subQuestions": [
+        { "id": "117-1", "title": "When should you use each method?" },
+        { "id": "117-2", "title": "What are the quirks with typeof?" }
+      ]
+    },
+    {
+      "id": 118,
+      "category": "JavaScript Core",
+      "title": "What are spread vs rest operators?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "118-1",
+          "title": "How do you use spread in arrays and objects?"
+        },
+        {
+          "id": "118-2",
+          "title": "How do you use rest in function parameters?"
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "category": "JavaScript Core",
+      "title": "What is destructuring in JavaScript?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "119-1",
+          "title": "How do you use destructuring with default values?"
+        },
+        { "id": "119-2", "title": "How do you rename properties?" }
+      ]
+    },
+    {
+      "id": 120,
+      "category": "JavaScript Core",
+      "title": "What are Map, Set, WeakMap, WeakSet?",
+      "type": "theoretical",
+      "subQuestions": [
+        {
+          "id": "120-1",
+          "title": "When should you use them over objects/arrays?"
+        },
+        {
+          "id": "120-2",
+          "title": "What's the difference between Map and WeakMap?"
+        }
+      ]
+    }
+  ]
+}
