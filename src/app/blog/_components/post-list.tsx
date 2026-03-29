@@ -123,7 +123,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 </h2>
 
                 {metadata.summary ? (
-                  <p className="mt-2 text-gray-800 max-sm:text-sm dark:text-gray-300">
+                  <p className="mt-2 text-zinc-700 max-sm:text-sm dark:text-white/80">
                     {metadata.summary}
                   </p>
                 ) : null}
