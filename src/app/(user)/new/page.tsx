@@ -118,7 +118,7 @@ const JOURNEY = [
     role: "Full-stack Engineer",
     company: "Rava AI",
     detail:
-      "Took product from zero to production — frontend, backend, DevOps, and AI integrations end-to-end.",
+      "Took product from zero to production frontend, backend, DevOps, and AI integrations end-to-end.",
   },
 ]
 
@@ -185,7 +185,7 @@ export default function HomePage() {
           <p className="hero-desc">
             Building the platform engine at <strong>WaveMaker</strong> that
             powers React application generation. Previously at{" "}
-            <strong>Rava AI</strong> — took product from zero to production,
+            <strong>Rava AI</strong> took product from zero to production,
             end-to-end. Passionate about platform engineering, scalable systems,
             and developer tooling.
           </p>

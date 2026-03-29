@@ -4,6 +4,7 @@ import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import OpenToWork from "./_components/open-to-work"
 import { Projects } from "./_components/projects"
 import { skills } from "@/app/components/static-content"
+
 const GitHubContributions = dynamic(
   () => import("@/app/components/github-contributions"),
   {
@@ -35,7 +36,7 @@ const faqData = [
 ]
 
 export default function Home() {
-  // FAQPage JSON-LD for AEO — invisible to users, picked up by bots
+  // FAQPage JSON-LD for AEO invisible to users, picked up by bots
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -50,7 +51,7 @@ export default function Home() {
   }
 
   return (
-    <main className="box-border text-base" role="main">
+    <main className="font-giest text-ase box-border" role="main">
       {/* Invisible structured data for SEO/AEO */}
       <script
         type="application/ld+json"
@@ -58,15 +59,12 @@ export default function Home() {
       />
 
       <div className="mt-4 text-base lg:mt-8">
-        <div className="font-inter mt-4 text-base tracking-wide normal-case">
+        <div className="font-iter text-muted mt-4 text-base tracking-wide normal-case">
           Building the platform engine at{" "}
-          <Preview
-            containerClassName="text-violet-600 dark:text-violet-400 p-0"
-            content={<WavemakerCard />}
-          >
+          <Preview containerClassName="p-0" content={<WavemakerCard />}>
             {" "}
-            <span className="cursor-pointer font-semibold text-zinc-800 underline dark:text-zinc-200">
-              WaveMaker
+            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
+              Wavemaker
             </span>
           </Preview>{" "}
           that powers React application generation. Previously at{" "}
@@ -75,7 +73,7 @@ export default function Home() {
             content={<RavaAICard />}
           >
             {" "}
-            <span className="cursor-pointer font-semibold text-zinc-800 underline underline-offset-2 dark:text-zinc-200">
+            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
               Rava AI
             </span>
           </Preview>
@@ -89,7 +87,7 @@ export default function Home() {
         </div>
       </div>
 
-      <OpenToWork />
+      {/* <OpenToWork /> */}
       <Journey />
 
       <div className="mt-8">
@@ -98,7 +96,7 @@ export default function Home() {
             <Link href="/writings">Recent writings</Link>{" "}
           </h2>
         </div>
-        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
+        <div className="text-muted mt-2 text-base">
           <BlogList />
         </div>
       </div>
@@ -120,15 +118,15 @@ export default function Home() {
       </div>
       <GitHubContributions />
       <div className="mt-8">
-        <h2 className="text-lg font-semibold">contact.</h2>
-        <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          interested in a conversation? drop dm&apos;s over{" "}
+        <h2 className="text-lg font-semibold">Contact</h2>
+        <p className="text-muted mt-2 text-base">
+          Interested in a conversation? drop DMs over{" "}
           <Link
             href="/linkedin"
             className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
-            linkedin
+            Linkedin
           </Link>{" "}
           or{" "}
           <Link
@@ -136,9 +134,9 @@ export default function Home() {
             className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
-            email
+            Email
           </Link>
-          . ask me anything about my work, projects, or anything else.
+          . Ask me anything about my work, projects, or anything else.
         </p>
       </div>
     </main>

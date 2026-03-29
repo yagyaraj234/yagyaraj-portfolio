@@ -13,7 +13,7 @@ export function UserInfo() {
     <h1 className="hero-name">
       Yagyaraj
       <br />
-      <em className="font-dm-mono text-3xl text-zinc-700 dark:text-zinc-300">
+      <em className="font-dm-mono text-3xl text-muted">
         Engineer. Builder. Shipper.
       </em>
     </h1>
