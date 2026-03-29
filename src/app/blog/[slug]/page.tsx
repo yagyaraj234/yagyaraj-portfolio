@@ -102,7 +102,7 @@ export default async function Page({
         {postMetadata?.summary}
       </PostDescription> */}
 
-      <div className="mb-12 flex flex-col text-sm font-normal text-zinc-400">
+      <div className="mb-12 flex flex-col text-xs font-normal text-zinc-400 sm:text-sm">
         <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
       </div>
 

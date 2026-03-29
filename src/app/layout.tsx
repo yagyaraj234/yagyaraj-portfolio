@@ -1,6 +1,11 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Outfit, Shantell_Sans } from "next/font/google"
+import {
+  Shantell_Sans,
+  Geist,
+  Instrument_Serif,
+  DM_Mono,
+} from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { ReactLenis } from "lenis/react"
@@ -13,11 +18,6 @@ import Script from "next/script"
 import UmamiAnalytics from "./components/analytics/umami"
 
 // Font settings
-const outfit = Outfit({
-  subsets: ["latin"],
-  display: "swap",
-  preload: false,
-})
 
 const handwriting = Shantell_Sans({
   weight: ["500"],
@@ -25,6 +25,19 @@ const handwriting = Shantell_Sans({
   subsets: ["latin"],
   display: "swap",
   preload: false,
+})
+const giest = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+  display: "swap",
 })
 
 const sans = localFont({
@@ -45,29 +58,14 @@ const sans = localFont({
       style: "normal",
     },
     {
-      path: "./fonts/sans/bold-italic.woff2",
-      weight: "700",
-      style: "italic",
-    },
-    {
       path: "./fonts/sans/medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/sans/medium-italic.woff2",
-      weight: "500",
-      style: "italic",
-    },
-    {
       path: "./fonts/sans/semibold.woff2",
       weight: "600",
       style: "normal",
-    },
-    {
-      path: "./fonts/sans/semibold-italic.woff2",
-      weight: "600",
-      style: "italic",
     },
   ],
   variable: "--font-sans",
@@ -80,11 +78,6 @@ const serif = localFont({
     {
       path: "./fonts/pp-editorial-new/regular.woff2",
       weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/pp-editorial-new/bold.woff2",
-      weight: "700",
       style: "normal",
     },
   ],
@@ -151,8 +144,9 @@ export default function RootLayout({
             handwriting.variable,
             serif.variable,
             sans.variable,
-            outfit.className,
-            "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-zinc-900 dark:text-white dark:selection:bg-zinc-700"
+            giest.className,
+            instrumentSerif.variable,
+            "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
           )}
         >
           <UmamiAnalytics />

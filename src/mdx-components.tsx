@@ -34,14 +34,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     p: (props) => (
       <p
-        className="font-sans text-base leading-relaxed text-zinc-700 dark:text-zinc-300"
+        className="font-sans text-base leading-relaxed text-muted"
         {...props}
       />
     ),
     strong: (props) => <strong className="font-medium" {...props} />,
     blockquote: (props) => (
       <blockquote
-        className="my-4 border-l-2 border-zinc-300 pl-4 text-zinc-700 italic dark:border-zinc-700 dark:text-zinc-300"
+        className="my-4 border-l-2 border-zinc-300 pl-4 text-muted italic dark:border-zinc-700"
         {...props}
       />
     ),
@@ -49,7 +49,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: CodeBlock,
     ul: (props) => (
       <ul
-        className="my-4 ml-6 list-outside list-disc space-y-2 font-sans text-base text-zinc-700 dark:text-zinc-300"
+        className="my-4 ml-6 list-outside list-disc space-y-2 font-sans text-base text-muted"
         {...props}
       />
     ),

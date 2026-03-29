@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { Journey } from "./_components/journey"
+import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import OpenToWork from "./_components/open-to-work"
 import { Projects } from "./_components/projects"
 import { skills } from "@/app/components/static-content"
+
 const GitHubContributions = dynamic(
   () => import("@/app/components/github-contributions"),
   {
@@ -13,6 +14,7 @@ const GitHubContributions = dynamic(
 )
 import { USER } from "@/data/user.data"
 import BlogList from "./_components/blog-list"
+import { Preview } from "../components/ui/preview"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -34,7 +36,7 @@ const faqData = [
 ]
 
 export default function Home() {
-  // FAQPage JSON-LD for AEO — invisible to users, picked up by bots
+  // FAQPage JSON-LD for AEO invisible to users, picked up by bots
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -49,7 +51,7 @@ export default function Home() {
   }
 
   return (
-    <main className="box-border text-base" role="main">
+    <main className="font-giest text-ase box-border" role="main">
       {/* Invisible structured data for SEO/AEO */}
       <script
         type="application/ld+json"
@@ -57,40 +59,47 @@ export default function Home() {
       />
 
       <div className="mt-4 text-base lg:mt-8">
-        <h2 className="text-lg font-semibold">about me.</h2>
-        <p className="mt-4 lowercase">
-          i&apos;m a passionate full-stack developer who learns and transforms
-          complex problems into simple, beautiful, and intuitive solutions
-          through development and design.
-        </p>
+        <div className="font-iter text-muted mt-4 text-base tracking-wide normal-case">
+          Building the platform engine at{" "}
+          <Preview containerClassName="p-0" content={<WavemakerCard />}>
+            {" "}
+            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
+              Wavemaker
+            </span>
+          </Preview>{" "}
+          that powers React application generation. Previously at{" "}
+          <Preview
+            containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+            content={<RavaAICard />}
+          >
+            {" "}
+            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
+              Rava AI
+            </span>
+          </Preview>
+          , where I took the product from zero to production. handling frontend,
+          backend, DevOps, and AI integrations end-to-end.{" "}
+          <br className="h-3" />{" "}
+          <div className="mt-4">
+            I’m passionate about platform engineering, scalable web systems, and
+            building tools that make developers more productive.
+          </div>
+        </div>
       </div>
 
       {/* <OpenToWork /> */}
+      <Journey />
 
       <div className="mt-8">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">
-            recent{" "}
-            <Link href="/blog" className="underline">
-              blog
-            </Link>{" "}
-            posts.{" "}
+            <Link href="/writings">Recent writings</Link>{" "}
           </h2>
         </div>
-        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          {/* I've started writing{" "}
-          <Link
-            href="/blog"
-            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
-          >
-            blogs
-          </Link>{" "}
-          to help others improve their engineering skills. Stay tuned for more
-          content! */}
+        <div className="text-muted mt-2 text-base">
           <BlogList />
         </div>
       </div>
-      <Journey />
       <Projects show={1} />
       {/* Animated Skills Section */}
       <div className="mt-8">
@@ -100,7 +109,7 @@ export default function Home() {
           {skills.map((skill, idx) => (
             <div
               key={idx}
-              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white lowercase transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
+              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
             >
               {skill.toLowerCase()}
             </div>
@@ -108,17 +117,16 @@ export default function Home() {
         </div>
       </div>
       <GitHubContributions />
-
       <div className="mt-8">
-        <h2 className="text-lg font-semibold">contact.</h2>
-        <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          interested in a conversation? drop dm&apos;s over{" "}
+        <h2 className="text-lg font-semibold">Contact</h2>
+        <p className="text-muted mt-2 text-base">
+          Interested in a conversation? drop DMs over{" "}
           <Link
             href="/linkedin"
             className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
-            linkedin
+            Linkedin
           </Link>{" "}
           or{" "}
           <Link
@@ -126,9 +134,9 @@ export default function Home() {
             className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
             target="_blank"
           >
-            email
+            Email
           </Link>
-          . ask me anything about my work, projects, or anything else.
+          . Ask me anything about my work, projects, or anything else.
         </p>
       </div>
     </main>
