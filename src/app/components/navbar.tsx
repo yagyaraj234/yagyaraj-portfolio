@@ -15,7 +15,7 @@ export const navItems: NavItem[] = [
   },
   {
     name: "writings",
-    link: "/writings",
+    link: "/blog",
   },
 ]
 
