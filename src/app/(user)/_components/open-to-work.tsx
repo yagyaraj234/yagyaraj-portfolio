@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react"
 
 export default function OpenToWork() {
   return (
-    <div className="mt-6 space-y-4 rounded-md bg-neutral-100 p-4 text-base dark:bg-zinc-800">
+    <div className="mt-6 space-y-4 rounded-md bg-neutral-50 p-4 text-base dark:bg-zinc-800">
       <div>
         I&apos;m open to collaborate with talented individuals and contribute to
         impactful projects. If you&apos;d like to learn more about my work or

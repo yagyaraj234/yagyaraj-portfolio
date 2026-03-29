@@ -70,10 +70,11 @@ export const WavemakerCard = () => {
   )
 }
 
+
 export function Journey() {
   return (
     <div className="mt-8">
-      <h2 className="text-lg font-semibold">journey.</h2>
+      <h2 className="text-lg font-semibold">Experiences</h2>
 
       <div className="mt-4 flex w-full flex-col gap-4 space-y-4">
         <div className="group flex gap-4">

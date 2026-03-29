@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin 'tailwind-scrollbar';
+@plugin "tailwind-scrollbar";
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -77,5 +77,14 @@ svg {
 
 /* Pre/Code block styles */
 .inline-code:not(pre > code) {
-  @apply bg-gray-200 dark:bg-zinc-800 px-1 text-sm;
+  @apply bg-gray-200 px-1 text-sm dark:bg-zinc-800;
+}
+
+.hero-name {
+  font-family: var(--font-instrument-serif), serif;
+  font-size: clamp(42px, 8vw, 68px);
+  font-weight: 400;
+  line-height: 0.7;
+  letter-spacing: -0.02em;
+  margin: 2.5rem 0;
 }

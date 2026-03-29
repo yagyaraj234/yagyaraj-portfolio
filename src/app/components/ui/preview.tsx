@@ -8,6 +8,7 @@ export const Preview = ({
   content,
   children,
   containerClassName,
+  
 }: {
   content: string | React.ReactNode
   children: React.ReactNode
