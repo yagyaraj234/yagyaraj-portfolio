@@ -21,6 +21,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "performance.shopify.com",
+      },
+      {
+        protocol: "https",
+        hostname: "developer.chrome.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cf-assets.www.cloudflare.com",
+      },
     ],
   },
 }
