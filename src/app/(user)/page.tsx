@@ -58,15 +58,14 @@ export default function Home() {
       />
 
       <div className="mt-4 text-base lg:mt-8">
-        <h2 className="font-inter text-lg font-semibold">about me.</h2>
         <div className="font-inter mt-4 text-base tracking-wide normal-case">
           Building the platform engine at{" "}
           <Preview
-            containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
+            containerClassName="text-violet-600 dark:text-violet-400 p-0"
             content={<WavemakerCard />}
           >
             {" "}
-            <span className="cursor-pointer font-bold text-zinc-800 dark:text-zinc-200">
+            <span className="cursor-pointer font-semibold text-zinc-800 underline dark:text-zinc-200">
               WaveMaker
             </span>
           </Preview>{" "}
@@ -76,7 +75,7 @@ export default function Home() {
             content={<RavaAICard />}
           >
             {" "}
-            <span className="cursor-pointer font-bold text-zinc-800 dark:text-zinc-200">
+            <span className="cursor-pointer font-semibold text-zinc-800 underline underline-offset-2 dark:text-zinc-200">
               Rava AI
             </span>
           </Preview>
@@ -90,32 +89,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <OpenToWork /> */}
+      <OpenToWork />
+      <Journey />
 
       <div className="mt-8">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">
-            recent{" "}
-            <Link href="/blog" className="underline">
-              blog
-            </Link>{" "}
-            posts.{" "}
+            <Link href="/writings">Recent writings</Link>{" "}
           </h2>
         </div>
         <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          {/* I've started writing{" "}
-          <Link
-            href="/blog"
-            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
-          >
-            blogs
-          </Link>{" "}
-          to help others improve their engineering skills. Stay tuned for more
-          content! */}
           <BlogList />
         </div>
       </div>
-      <Journey />
       <Projects show={1} />
       {/* Animated Skills Section */}
       <div className="mt-8">
@@ -133,13 +119,6 @@ export default function Home() {
         </div>
       </div>
       <GitHubContributions />
-
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold">writing.</h2>
-        <div className="mt-2 text-base text-zinc-800 dark:text-zinc-200">
-          <BlogList />
-        </div>
-      </div>
       <div className="mt-8">
         <h2 className="text-lg font-semibold">contact.</h2>
         <p className="mt-2 text-base text-zinc-800 dark:text-zinc-200">

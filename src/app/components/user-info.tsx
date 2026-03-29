@@ -10,6 +10,15 @@ import {
 
 export function UserInfo() {
   return (
+    <h1 className="hero-name">
+      Yagyaraj
+      <br />
+      <em className="font-dm-mono text-3xl text-zinc-700 dark:text-zinc-300">
+        Engineer. Builder. Shipper.
+      </em>
+    </h1>
+  )
+  return (
     <div className="selection-none flex gap-4 select-none lg:mt-6">
       <div className="relative select-none">
         <div className="max-h-[96px] max-w-[96px] overflow-hidden rounded-full border-none">
