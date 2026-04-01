@@ -8,6 +8,7 @@ import {
   PostUpdatedText,
 } from "@/app/components/Post"
 import { Callout } from "@/app/components/mdx/callout"
+import { FAQ } from "@/app/components/mdx/faq"
 import { Aside } from "@/app/components/mdx/aside"
 import { Annotation } from "@/app/components/mdx/annotation"
 import { Columns, ColumnRight } from "@/app/components/mdx/columns"
@@ -110,6 +111,7 @@ export default async function Page({
         <Post
           components={{
             Callout,
+            FAQ,
             Aside,
             Annotation,
             Columns,
