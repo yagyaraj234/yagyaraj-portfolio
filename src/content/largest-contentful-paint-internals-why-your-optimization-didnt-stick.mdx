@@ -1,6 +1,5 @@
 export const metadata = {
-  title:
-    "Largest Contentful Paint Internals Why Your Optimization Did not Stick",
+  title: "Largest Contentful Paint Internals: Why Optimizations Fail Over Time",
   author: "Yagyaraj Lodhi",
   date: "2026-03-30",
   lastUpdated: "2026-03-30",
@@ -13,6 +12,8 @@ export const metadata = {
     "spa-performance",
     "critical-rendering-path",
   ],
+  ogImage:
+    "https://res.cloudinary.com/dif39heof/image/upload/v1774885704/blogs/505d6194-55d3-49ba-82f3-40d9eef90a74.avif",
   summary:
     "LCP optimizations failing? Uncover the Largest Contentful Paint internals preventing better scores & master the real solutions now.",
 }
@@ -217,13 +218,13 @@ Real success comes from identifying what is truly critical when the page first b
       question:
         "How does the browser specifically determine which element is the Largest Contentful Paint (LCP) element, especially with dynamically loaded content?",
       answer:
-        "The browser determines the LCP element by assessing various candidates during page load, often surprising developers by picking dynamically loaded content or unexpected elements rather than the intended hero image. This internal selection process means the \"hero\" isn't always the LCP element.",
+        'The browser determines the LCP element by assessing various candidates during page load, often surprising developers by picking dynamically loaded content or unexpected elements rather than the intended hero image. This internal selection process means the "hero" isn\'t always the LCP element.',
     },
     {
       question:
         "What are the practical implications of the differences between LCP measurements in lab tools (like Lighthouse) versus real-world (CrUX) data?",
       answer:
-        "The practical implication is that a \"pristine\" LCP score in lab tools like Lighthouse, which optimize for ideal conditions, might not reflect real user experiences. This means optimizing solely for lab data can create a \"performance mirage\" for actual users.",
+        'The practical implication is that a "pristine" LCP score in lab tools like Lighthouse, which optimize for ideal conditions, might not reflect real user experiences. This means optimizing solely for lab data can create a "performance mirage" for actual users.',
     },
     {
       question:
@@ -235,16 +236,17 @@ Real success comes from identifying what is truly critical when the page first b
       question:
         "How can excessive render-blocking JavaScript or CSS assets significantly delay LCP, even if the LCP element itself is small and optimized?",
       answer:
-        "Excessive render-blocking JavaScript or CSS assets can significantly delay LCP by forcing the browser to pause rendering until these files are processed. These \"critical path killers\" prevent the LCP element from being painted even if it's already optimized.",
+        'Excessive render-blocking JavaScript or CSS assets can significantly delay LCP by forcing the browser to pause rendering until these files are processed. These "critical path killers" prevent the LCP element from being painted even if it\'s already optimized.',
     },
     {
       question:
         "In what specific scenarios might optimizing solely for LCP lead to a suboptimal user experience, requiring focus on other Core Web Vitals like CLS or FID?",
       answer:
-        "While the blog focuses on LCP, it implies that even achieving a good LCP score doesn't guarantee a universally optimal experience, especially when Lighthouse optimizes for a \"ghost user.\" This suggests that other aspects beyond just LCP, though not explicitly detailed, could still lead to a suboptimal user experience.",
+        'While the blog focuses on LCP, it implies that even achieving a good LCP score doesn\'t guarantee a universally optimal experience, especially when Lighthouse optimizes for a "ghost user." This suggests that other aspects beyond just LCP, though not explicitly detailed, could still lead to a suboptimal user experience.',
     },
   ]}
 />
 
+---
 
 [linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234)
