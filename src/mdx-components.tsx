@@ -16,6 +16,7 @@ import { SkipLink } from "@/app/components/mdx/skip-link"
 import { Wide } from "@/app/components/mdx/Wide"
 import { Aside } from "@/app/components/mdx/aside"
 import { Callout } from "@/app/components/mdx/callout"
+import { FAQ } from "@/app/components/mdx/faq"
 import { MdxImage } from "@/app/components/mdx/image"
 import { cn } from "@/lib/utils"
 
@@ -92,6 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Note,
     Annotation,
     Callout,
+    FAQ,
     ProblemStatement: (props) => {
       return (
         <div className="my-4 rounded-t-lg">

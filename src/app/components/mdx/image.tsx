@@ -68,7 +68,7 @@ export function MdxImage({ alt, className, ...props }: MdxImageProps) {
           height={height}
           loading={props.loading ?? "lazy"}
           decoding={props.decoding ?? "async"}
-          className={`${imageClassName} h-auto w-full transition-transform duration-200 group-hover:scale-[1.01]`}
+          className={`${imageClassName} h-auto w-full transition-transform duration-200`}
           style={{ width: "100%", height: "auto", ...props.style }}
         />
       </button>

@@ -132,9 +132,14 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-600 dark:text-gray-400">
                   <div className="flex items-center gap-2">
                     {metadata.date && (
-                      <span>
-                        {new Date(metadata.date).toLocaleDateString()}
-                      </span>
+                      <time dateTime={metadata.date}>
+                        {new Intl.DateTimeFormat("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                          timeZone: "UTC",
+                        }).format(new Date(metadata.date))}
+                      </time>
                     )}
                     {readingTime && (
                       <div className="flex items-center gap-2">
