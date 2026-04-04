@@ -54,7 +54,7 @@ export function MdxImage({ alt, className, ...props }: MdxImageProps) {
     <>
       <button
         type="button"
-        className="group block cursor-zoom-in outline-none"
+        className="group block w-full cursor-zoom-in outline-none"
         onClick={() => setIsOpen(true)}
         aria-label={
           alt ? `Open image fullscreen: ${alt}` : "Open image fullscreen"
