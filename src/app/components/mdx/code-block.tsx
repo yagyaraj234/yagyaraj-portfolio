@@ -16,11 +16,28 @@ export async function getTokens(
   lang: BundledLanguage,
   theme: string
 ): Promise<Token[][]> {
-  const result = await codeToTokens(code, {
-    lang,
-    theme,
-  })
-  return result.tokens
+  try {
+    const result = await codeToTokens(code, {
+      lang,
+      theme,
+    })
+    return result.tokens
+  } catch (error) {
+    console.error(
+      `Failed to highlight code block for language "${lang}" with theme "${theme}"`,
+      error
+    )
+
+    // Keep the page renderable even if syntax highlighting fails at build time.
+    return code.split("\n").map((line) => [
+      {
+        content: line || " ",
+        offset: 0,
+        color: "",
+        fontStyle: 0,
+      } as Token,
+    ])
+  }
 }
 
 type Diff = {
