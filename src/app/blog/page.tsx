@@ -33,13 +33,22 @@ export default async function BlogIndexPage() {
 
   return (
     <main
-      className="prose dark:prose-invert min-h-[calc(100vh-128px)] py-4 sm:min-w-3xl"
+      className="prose dark:prose-invert min-h-[calc(100vh-128px)] sm:min-w-3xl"
       role="main"
     >
-      <div className="mt-4 flex-1 sm:min-w-3xl">
-        <div className="mb-12 text-2xl font-semibold underline decoration-blue-500 decoration-wavy underline-offset-4">
-          Writing. 👻
-        </div>
+      <div className="flex-1 sm:min-w-3xl">
+        <h1 className="hero-name">
+          Writings
+          <br />
+          <em className="font-dm-mono text-muted text-3xl">
+            Written to Remember.
+          </em>
+        </h1>
+
+        {/* <p className="max-w-lg text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+          Writing about frontend engineering, performance, and the occasional
+          rabbit hole I fell into building things.
+        </p> */}
 
         <Suspense
           fallback={<div className="text-gray-500">Loading posts...</div>}

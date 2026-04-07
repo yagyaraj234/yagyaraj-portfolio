@@ -1,63 +1,98 @@
-import { ArrowUpRight } from "lucide-react"
-import { projectData } from "@/app/components/static-content"
+import Link from "next/link"
+
+const projectsData = [
+  {
+    number: "01",
+    title: "Collab",
+    status: "Completed",
+    description:
+      "Trello-like project management app with organizations, boards, and task tracking. Integrated Stripe for subscription and payment management.",
+    live: "https://collab.yagyaraj.com",
+    git: "https://github.com/yagyaraj/collab",
+    tags: ["React", "Node.js", "Stripe", "MongoDB"],
+  },
+  {
+    number: "02",
+    title: "Preap",
+    description:
+      "Mock interview platform with role-based interviews, live call recording, behavioral analysis, and tiered pricing.",
+    live: "https://preap.yagyaraj.com",
+    tags: ["Next.js 15", "Framer Motion", "AI"],
+  },
+  {
+    number: "03",
+    title: "AI Blog Agent",
+    description:
+      "Mastra-powered writing agent with tools for research, drafting, and keyword analysis. Generates full blog posts autonomously.",
+    git: "https://github.com/yagyaraj/ai-blog-agent",
+    tags: ["Mastra", "LLM", "Node.js"],
+  },
+]
 
 export function Projects({ show = 10 }: { show?: number }) {
-  const projects = projectData.slice(0, show)
+  const projectsToDisplay = projectsData.slice(0, show)
   return (
-    <div className="mt-8">
-      <h2 className="text-lg font-semibold">projects.</h2>
+    <section className="mt-8 mb-6" aria-label="Projects">
+      <h2 className="text-lg font-semibold">Projects</h2>
 
-      <div className="mt-4 flex w-full flex-col gap-[16px] space-y-4 text-sm">
-        {projects.map((project, idx) => (
-          <div className="group flex gap-4" key={idx}>
-            <div className="min-h-full min-w-[1.5px] rounded-md bg-neutral-200 transition-colors delay-0 duration-700 ease-in-out group-hover:bg-yellow-500" />
-
-            <div className="w-full">
-              <div className="flex min-w-full justify-start text-sm">
-                <div className="w-full">
-                  <div className="flex items-center gap-4 text-lg font-medium">
-                    {project.name}{" "}
-                    <span className="my-1 rounded-[4px] bg-zinc-600 p-1 text-xs text-white uppercase transition-colors delay-75 duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700">
-                      {project.status}
-                    </span>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="group/live flex items-center gap-1 lowercase">
-                      <a href={project.live} target="_blank">
-                        live preview
-                      </a>
-                      <ArrowUpRight
-                        className="transition-all duration-300 ease-in-out group-hover/live:translate-x-1"
-                        size={16}
-                      />
-                    </div>
-                    <div className="group/github flex items-center gap-1 lowercase">
-                      <a href={project.git} target="_blank">
-                        source code
-                      </a>
-                      <ArrowUpRight
-                        className="transition-all duration-300 ease-in-out group-hover/github:translate-x-1"
-                        size={16}
-                      />
-                    </div>
-                  </div>
-                </div>
+      <div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[12px]">
+        {projectsToDisplay.map((project, idx) => (
+          <div
+            key={idx}
+            className="relative block cursor-pointer rounded-[12px] border-[0.5px] border-(--color-border) bg-(--color-bg-secondary) p-5 transition-colors duration-200 ease-in-out hover:border-(--color-border-hover)"
+          >
+            {project.status && (
+              <div className="absolute top-5 right-5 font-[family-name:var(--font-dm-mono),monospace] text-[10px] leading-none text-(--color-text-tertiary) uppercase">
+                {project.status}
               </div>
-              <ul className="mt-2 list-disc space-y-1 pl-4">
-                {project?.about &&
-                  project?.about?.map((about: string, idx: number) => (
-                    <li
-                      className="text-base text-zinc-800 lowercase dark:text-zinc-200"
-                      key={idx}
-                    >
-                      {about}
-                    </li>
-                  ))}
-              </ul>
+            )}
+
+            <div className="mb-[10px] font-[family-name:var(--font-dm-mono),monospace] text-[11px] leading-none text-(--color-text-tertiary)">
+              {project.number}
+            </div>
+
+            <h3 className="mb-[6px] font-[family-name:var(--font-sans),sans-serif] text-[14px] leading-snug font-medium text-(--color-text-primary)">
+              {project.title}
+            </h3>
+
+            <p className="mb-[14px] font-[family-name:var(--font-sans),sans-serif] text-[12px] leading-[1.6] text-(--color-text-secondary)">
+              {project.description}
+            </p>
+
+            <div className="mb-[12px] flex flex-row gap-[8px]">
+              {project.live && (
+                <Link
+                  href={project.live}
+                  target="_blank"
+                  className="rounded-[8px] border-[0.5px] border-(--color-border) bg-transparent px-[10px] py-[4px] font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) normal-case no-underline transition-colors duration-150 ease-in-out hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                >
+                  live preview ↗
+                </Link>
+              )}
+              {project.git && (
+                <Link
+                  href={project.git}
+                  target="_blank"
+                  className="rounded-[8px] border-[0.5px] border-(--color-border) bg-transparent px-[10px] py-[4px] font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) normal-case no-underline transition-colors duration-150 ease-in-out hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                >
+                  source code ↗
+                </Link>
+              )}
+            </div>
+
+            <div className="flex flex-wrap gap-[5px]">
+              {project.tags.map((tag, tagIdx) => (
+                <span
+                  key={tagIdx}
+                  className="rounded-[4px] border-[0.5px] border-(--color-border) bg-transparent px-[7px] py-[2px] font-[family-name:var(--font-dm-mono),monospace] text-[10px] leading-none text-(--color-text-tertiary) normal-case"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }
