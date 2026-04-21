@@ -137,11 +137,13 @@ export function CodeBlockMain({
   children,
   lang,
   highlight,
+  showHeader = true,
 }: {
   diff?: Diff
   children: string
   lang: BundledLanguage
   highlight?: number[]
+  showHeader?: boolean
 }) {
   return (
     <div
@@ -150,7 +152,10 @@ export function CodeBlockMain({
         diff && "-ml-4 pl-4"
       )}
     >
-      <div className="flex items-center justify-between border-b border-black/5 bg-zinc-50/50 px-4 py-3 backdrop-blur-sm dark:border-white/5 dark:bg-[#1F1F1F]">
+      <div
+        hidden={!showHeader}
+        className="flex items-center justify-between border-b border-black/5 bg-zinc-50/50 px-4 py-3 backdrop-blur-sm dark:border-white/5 dark:bg-[#1F1F1F]"
+      >
         <div className="flex items-center gap-4">
           <div className="flex space-x-1.5">
             <div className="h-3 w-3 rounded-full border border-red-500/50 bg-red-500/80" />
@@ -201,12 +206,18 @@ export async function CodeBlock(props: {
   children: any
   diff?: Diff
   highlight?: number[]
+  showHeader?: boolean
 }) {
   const code = props.children.props.children
   const lang = props.children.props.className?.replaceAll("language-", "")
   const formattedCode = await formatCode(code, lang || "")
   return (
-    <CodeBlockMain lang={lang} diff={props.diff} highlight={props.highlight}>
+    <CodeBlockMain
+      lang={lang}
+      diff={props.diff}
+      highlight={props.highlight}
+      showHeader={props.showHeader}
+    >
       {formattedCode}
     </CodeBlockMain>
   )

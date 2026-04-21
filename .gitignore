@@ -29,6 +29,8 @@ yarn-error.log*
 .env*.local
 .env
 !.env.sample
+public/robots.txt
+public/sitemap.xml
 
 # vercel
 .vercel

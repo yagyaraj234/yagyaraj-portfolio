@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin 'tailwind-scrollbar';
+@plugin "tailwind-scrollbar";
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -20,6 +20,13 @@
 
 body {
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  overscroll-behavior: none; /* Prevents overscroll in all directions */
 }
 
 /* Base mobile styles */
@@ -77,5 +84,5 @@ svg {
 
 /* Pre/Code block styles */
 .inline-code:not(pre > code) {
-  @apply bg-gray-200 dark:bg-zinc-800 px-1 text-sm;
+  @apply bg-gray-200 px-1 text-sm dark:bg-zinc-800;
 }
