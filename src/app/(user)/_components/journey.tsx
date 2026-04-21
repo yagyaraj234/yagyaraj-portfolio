@@ -1,6 +1,12 @@
-import { Preview } from "@/app/components/ui/preview"
+// import { Preview } from "@/app/components/ui/preview"
+"use client"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import Image from "next/image"
+
+const Preview = dynamic(() => import("@/app/components/ui/preview"), {
+  ssr: false,
+})
 
 const RavaAICard = () => {
   return (

@@ -194,7 +194,7 @@ export default function RootLayout({
                   }),
                 }}
               />
-              <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 sm:px-6 lg:px-0">
+              <div className="mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
                 {children}
                 <Footer />
               </div>

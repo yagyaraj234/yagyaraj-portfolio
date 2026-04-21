@@ -20,7 +20,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
 
     // First try to extract metadata from JavaScript export
     const jsMetadataMatch = fileContents.match(
-      /export const metadata\s*=\s*({[\s\S]*?});/
+      /export const metadata\s*=\s*({\s[\s\S]*?});?/
     )
     if (jsMetadataMatch) {
       try {

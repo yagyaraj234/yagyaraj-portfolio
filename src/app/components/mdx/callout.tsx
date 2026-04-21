@@ -1,16 +1,11 @@
 import { cn } from "@/lib/utils"
-import {
-  BsInfoCircleFill,
-  BsExclamationTriangleFill,
-  BsLightningFill,
-  BsCheckCircleFill,
-} from "react-icons/bs"
+import { Info, TriangleAlert, Zap, CircleCheck } from "lucide-react"
 
 const icons = {
-  info: <BsInfoCircleFill className="h-5 w-5 text-blue-500/80" />,
-  warning: <BsExclamationTriangleFill className="h-5 w-5 text-orange-500/80" />,
-  success: <BsCheckCircleFill className="h-5 w-5 text-emerald-500/80" />,
-  tip: <BsLightningFill className="h-5 w-5 text-zinc-500/80" />,
+  info: <Info className="h-5 w-5 text-blue-500/80" />,
+  warning: <TriangleAlert className="h-5 w-5 text-orange-500/80" />,
+  success: <CircleCheck className="h-5 w-5 text-emerald-500/80" />,
+  tip: <Zap className="h-5 w-5 text-zinc-500/80" />,
 }
 
 type CalloutType = keyof typeof icons

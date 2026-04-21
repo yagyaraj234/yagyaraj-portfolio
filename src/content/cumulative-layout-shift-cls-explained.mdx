@@ -1,0 +1,193 @@
+export const metadata = {
+  title: "Cumulative Layout Shift: Key Points You Need to Know",
+  author: "Yagyaraj Lodhi",
+  date: "2026-03-31",
+  lastUpdated: "2026-03-31",
+  tags: [
+    "cls",
+    "web-performance",
+    "core-web-vitals",
+    "layout-shift",
+    "lighthouse",
+    "real-user-monitoring",
+  ],
+  ogImage:
+    "https://res.cloudinary.com/dif39heof/image/upload/v1775050271/camulative%20layout%20shift.avif",
+  summary:
+    "Struggling with unexpected page jumps? Learn what causes Cumulative Layout Shift (CLS), how browsers measure it, and practical fixes to keep your layout stable.",
+}
+
+![Cumulative Layout Shift](https://res.cloudinary.com/dif39heof/image/upload/v1775050271/camulative%20layout%20shift.avif)
+
+**Cumulative Layout Shift (CLS)** measures how much elements on a webpage move unexpectedly while the page loads. These sudden movements create poor user experience, such as clicking the wrong button or losing your reading position. The main goal is to keep page content **stable from start to finish**.
+
+<br />
+
+A page may look stable while building it, but browsers calculate every small movement. Many tiny shifts can combine into a **high CLS score**.
+
+<br />
+## Why Pages Shift (Most Common Causes)
+
+### 1. Images Without Fixed Dimensions
+
+![Content Shift](https://res.cloudinary.com/dif39heof/image/upload/v1775051104/cls_fgy9wc.gif)
+
+If images do not have defined width and height, the browser does not know how much space to reserve. When the image loads, it pushes content down and causes a **layout shift**.
+
+```html
+<img src="/user.png" alt="user" />
+```
+
+**Key fix:** Always set explicit dimensions or an **aspect ratio** for images and videos.
+
+```html
+<img src="/user.png" alt="user" height="300" width="500" />
+```
+
+<br />
+### 2. Ads and Dynamic Content Loading Late
+
+Elements such as ads, chat widgets, or recommendation sections often load after the main content. When they appear, they push other elements around.
+
+<br />
+
+Examples of late content:
+
+- Ads
+- Social media widgets
+- Related posts
+- Cookie banners
+
+**Key fix:** Reserve space in advance using **placeholders** or a **fixed container**, then load the content there.
+
+```html
+<div id="ad-container">
+  <!-- ad content will load here -->
+</div>
+```
+
+```css
+#ad-container {
+  height: 500px;
+  width: 500px;
+}
+```
+
+<br />
+### 3. Fonts Swapping After Page Load
+
+Browsers sometimes display text using a **temporary font** while the real font downloads. When the final font loads, text size or spacing changes and the layout shifts.
+
+<br />
+
+**Key fix:** Use proper font loading strategies such as:
+
+- **font-display**
+- **font preloading**
+- **matching fallback fonts**
+
+<br />
+### 4. Dynamic Style Changes or Scripts
+
+JavaScript or CSS can change sizes, padding, or layout after the page loads. Even small changes can trigger **multiple layout shifts**.
+
+<br />
+
+Examples:
+
+- Changing font size
+- Adding borders
+- Expanding containers
+- Injecting content dynamically
+
+**Key fix:** Avoid resizing elements after rendering whenever possible.
+
+<br />
+## Hidden Reasons for High CLS
+
+Some layout shifts are subtle and easy to miss.
+
+<br />
+
+### Common Hidden Issues
+
+- **Late-loading elements** — Content appears seconds after the page loads.
+- **Scrollbar appearing** — When the page becomes longer, the scrollbar shows and shifts content slightly.
+- **Empty containers without height** — If a container starts with zero height and later expands, the layout changes.
+- **Animations that move layout elements** — Animations that change size or position can trigger shifts.
+
+<Callout type="warning">
+  All these small movements accumulate into a **high CLS score**. Even if each
+  individual shift seems negligible, the browser tracks every one of them.
+</Callout>
+
+<br />
+## Lab Data vs Real User Data
+
+Performance tools measure CLS in two different ways.
+
+### Lab Testing (Synthetic Tests)
+
+Examples:
+
+- **Lighthouse**
+- **PageSpeed Insights**
+
+These tools test pages in **controlled conditions** and mainly measure shifts during the initial load.
+
+### Real User Monitoring (RUM)
+
+This measures **actual user behavior** and captures shifts that occur:
+
+- After scrolling
+- After clicking
+- After delayed content loads
+
+<Callout type="tip">
+  A page can pass lab tests but still perform poorly for real users because
+  **late events** are not captured in simulated tests. Always monitor **real
+  user data** alongside lab results.
+</Callout>
+
+<br />
+## When CLS Is Not the Main Problem
+
+Sometimes improving CLS further provides little benefit.
+
+Focus on other metrics if:
+
+- Page loads slowly
+- Server response is slow
+- Buttons respond slowly
+
+Important related metrics:
+
+- **LCP (Largest Contentful Paint)** — loading speed of your main content
+- **FID (First Input Delay)** — how much time it takes to become responsive to user actions
+
+<Callout type="info">
+  Performance improvements should target the **biggest user problems** first.
+  CLS matters, but not in isolation.
+</Callout>
+
+<br />
+## Quick Checklist
+
+Most important actions to reduce CLS:
+
+- Set **width and height** for images
+- Reserve space for **dynamic content**
+- Load **fonts** correctly
+- Avoid **resizing elements** after load
+- Use **placeholders** for ads and widgets
+- Monitor **real user data**, not only lab tests
+
+<br />
+
+---
+
+Thank you for reading. If you found this useful, share it with someone who needs it.
+
+<br />
+[linkedin](https://linkedin.com/in/yagyaraj234) |
+[github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234)

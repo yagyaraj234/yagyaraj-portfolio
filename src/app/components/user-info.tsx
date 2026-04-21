@@ -44,8 +44,8 @@ export function UserInfo() {
                 >
                   <link.icon
                     aria-hidden="true"
-                    size={16}
-                    className="text-zinc-900 dark:text-zinc-300"
+                    // size={16}
+                    className="size-4 text-zinc-900 dark:text-zinc-300"
                   />
                 </Link>
               </TooltipTrigger>

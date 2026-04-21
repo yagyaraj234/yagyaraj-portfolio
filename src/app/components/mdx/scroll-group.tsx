@@ -13,7 +13,6 @@ import {
   Children,
   cloneElement,
 } from "react"
-import produce from "immer"
 import { ColumnRight, Columns } from "./columns"
 
 type EventEmitter<
@@ -145,42 +144,40 @@ export function ScrollGroup({
   )
 }
 
+// Replace useScrollGroupState with this
 export function useScrollGroupState<T>(key?: string) {
   const ctx = useScrollGroupContext()
   if (!ctx) {
     throw new Error("useScrollGroupState must be used within a ScrollGroup")
   }
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+
   let state = ctx.state as any
   if (key) {
     state = state[key]
   }
+
   return [
     state as T,
-    /**
-     * We allow consumers to mutably update the state, but we want to make sure
-     * they can only update the slice of state selected through `key`.
-     */
-    // biome-ignore lint/suspicious/noConfusingVoidType: <explanation>
     (cb: T | ((draft: T) => T | void)) => {
       if (typeof cb === "function") {
         ctx.setState((s: unknown) => {
+          const current = s as any
           if (key) {
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            return produce(s, (draft: any) => {
-              draft[key] = produce(draft[key], cb)
-            })
+            const slice = current[key]
+            const updated = (cb as Function)(slice)
+            return {
+              ...current,
+              [key]: updated !== undefined ? updated : slice,
+            }
           }
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-          return produce(s, cb as any)
+          const updated = (cb as Function)(current)
+          return updated !== undefined ? updated : { ...current }
         })
       } else {
         ctx.setState((s: unknown) => {
+          const current = s as any
           if (key) {
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-            return produce(s, (draft: any) => {
-              draft[key] = cb
-            })
+            return { ...current, [key]: cb }
           }
           return cb
         })

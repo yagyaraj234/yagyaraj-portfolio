@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import type { MDXComponents } from "mdx/types"
 import { Annotation } from "@/app/components/mdx/annotation"
 import { InlineNote, Note } from "@/app/components/mdx/note"
@@ -17,8 +16,9 @@ import { SkipLink } from "@/app/components/mdx/skip-link"
 import { Wide } from "@/app/components/mdx/Wide"
 import { Aside } from "@/app/components/mdx/aside"
 import { Callout } from "@/app/components/mdx/callout"
+import { FAQ } from "@/app/components/mdx/faq"
+import { MdxImage } from "@/app/components/mdx/image"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -57,10 +57,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ol: OrderedList,
     img: (props) => (
       <figure className="my-4 flex flex-col items-center justify-center">
-        <img {...props} className="select-none" alt={props.alt} />
-        <figcaption className="text-xs font-normal text-gray-500 dark:text-gray-300">
-          {props.alt}
-        </figcaption>
+        <MdxImage {...props} className="select-none" />
+        {props.alt ? (
+          <figcaption className="text-xs font-normal text-gray-500 dark:text-gray-300">
+            {props.alt}
+          </figcaption>
+        ) : null}
       </figure>
     ),
     hr: () => (
@@ -91,6 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Note,
     Annotation,
     Callout,
+    FAQ,
     ProblemStatement: (props) => {
       return (
         <div className="my-4 rounded-t-lg">
