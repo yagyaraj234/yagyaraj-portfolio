@@ -3,22 +3,22 @@ import { social_links } from "./static-content"
 
 export default function Footer() {
   return (
-    <footer className="text-muted mt-20 mb-8 flex flex-col items-center justify-center gap-4 text-sm max-sm:flex-col sm:mt-16">
-      <div className="flex gap-x-4">
+    <footer className="text-muted mt-8 mb-8 flex flex-col gap-4 text-sm max-sm:flex-col">
+      <div className="flex">
         {social_links.map((link, idx) => (
           <Link
             key={idx}
+            className="text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 after:mx-2 after:inline-block after:text-black after:no-underline after:content-['|'] last:after:hidden hover:underline"
             href={link.url}
             target="_blank"
-            aria-label={link.name}
-            className="text-zinc-700 transition-colors hover:text-zinc-900 dark:text-white/90 dark:hover:text-white"
+            rel="noreferrer"
           >
-            <link.icon className="size-5" aria-hidden="true" />
+            {link.name}
           </Link>
         ))}
       </div>
-      <div className="flex items-center gap-2">
-        <h3>Design & Developed by Yagyaraj</h3> 
+      <div className="mt-12 flex items-center justify-center gap-2">
+        <h3>Design & Developed by Yagyaraj</h3>
         <span className="hidden sm:inline-block">|</span>
         <p>&copy; {new Date().getFullYear()}. All rights reserved.</p>
       </div>

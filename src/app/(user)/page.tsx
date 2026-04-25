@@ -90,7 +90,7 @@ export default function Home() {
       {/* <OpenToWork /> */}
       <Journey />
 
-      <div className="mt-8">
+      <div className="mt-12">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">
             <Link href="/writings">Recent writings</Link>{" "}
@@ -100,19 +100,19 @@ export default function Home() {
           <BlogList />
         </div>
       </div>
-      <Projects show={1} />
-      {/* Animated Skills Section */}
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold">skills.</h2>
+      <Projects show={2} />
+      {/* Skills Section */}
+      <div className="mt-12">
+        <h2 className="text-lg font-semibold">Skills.</h2>
 
-        <div className="flex flex-wrap gap-x-2 gap-y-2 pt-4">
-          {skills.map((skill, idx) => (
-            <div
-              key={idx}
-              className="rounded-md bg-zinc-900 px-2 py-1 text-sm text-white transition-colors duration-500 ease-in-out hover:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-800"
+        <div className="mt-4 flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span
+              key={skill}
+              className="rounded border border-neutral-200 px-2.5 py-1 font-mono text-xs text-neutral-600 transition-all duration-200 hover:border-zinc-400 hover:text-zinc-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-500 dark:hover:text-zinc-100"
             >
-              {skill.toLowerCase()}
-            </div>
+              {skill}
+            </span>
           ))}
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function Home() {
           Interested in a conversation? drop DMs over{" "}
           <Link
             href="/linkedin"
-            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
+            className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
             target="_blank"
           >
             Linkedin
@@ -131,7 +131,7 @@ export default function Home() {
           or{" "}
           <Link
             href="mailto:hey@yagyaraj.com"
-            className="underline transition-colors duration-300 ease-in-out hover:text-yellow-500"
+            className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
             target="_blank"
           >
             Email

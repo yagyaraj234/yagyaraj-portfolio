@@ -19,7 +19,7 @@ export const metadata = {
   ogImage: "https://yagyaraj.com/post/react-hooks-simplified/og.png",
   summary:
     "Master React Hooks with this beginner-friendly guide. Learn useState, useRef, useEffect, useMemo, useCallback, and useContext with examples and common mistakes to avoid.",
-};
+}
 
 # Hooks Explained (ReactJS)
 
@@ -73,7 +73,7 @@ There are more hooks provided by React, but they are either used rarely or only 
 `useState` is used to manage dynamic data inside a component. When the state value changes, React automatically re-renders the component to reflect the UI changes.
 
 ```ts
-const [show, setShow] = useState<boolean>(false);
+const [show, setShow] = useState<boolean>(false)
 ```
 
 `useState` returns two values:
@@ -85,10 +85,10 @@ const [show, setShow] = useState<boolean>(false);
 
 ```tsx
 function ToggleButton() {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false)
 
   function toggleShow() {
-    setShow((prev) => !prev);
+    setShow((prev) => !prev)
   }
 
   return (
@@ -96,7 +96,7 @@ function ToggleButton() {
       <button onClick={toggleShow}>Toggle Show</button>
       {show ? <div>Show is ON</div> : null}
     </>
-  );
+  )
 }
 ```
 
@@ -146,17 +146,17 @@ Common use cases:
 - Hold mutable values across renders
 
 ```ts
-const inputRef = useRef<HTMLInputElement>(null);
+const inputRef = useRef<HTMLInputElement>(null)
 ```
 
 ### Accessing DOM Using useRef
 
 ```tsx
 function FocusInput() {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null)
 
   function focusInput() {
-    inputRef.current?.focus();
+    inputRef.current?.focus()
   }
 
   return (
@@ -164,7 +164,7 @@ function FocusInput() {
       <input ref={inputRef} />
       <button onClick={focusInput}>Focus Input</button>
     </>
-  );
+  )
 }
 ```
 
@@ -196,8 +196,8 @@ Common use cases include API calls, logging, timers, subscriptions, and validati
 
 ```tsx
 useEffect(() => {
-  console.log("My component mounted");
-}, []);
+  console.log("My component mounted")
+}, [])
 ```
 
 In this example:
@@ -223,11 +223,11 @@ In this example:
 The dependency array tells React when the effect should run.
 
 ```tsx
-const [username, setUsername] = useState("");
+const [username, setUsername] = useState("")
 
 useEffect(() => {
-  checkUserNameAvailable(username);
-}, [username]);
+  checkUserNameAvailable(username)
+}, [username])
 ```
 
 In this example:
@@ -243,19 +243,19 @@ This is useful when you want to perform checks or actions based on value changes
 ```tsx
 useEffect(() => {
   // runs on every render
-});
+})
 ```
 
 ```tsx
 useEffect(() => {
   // runs only once (on mount)
-}, []);
+}, [])
 ```
 
 ```tsx
 useEffect(() => {
   // runs when value changes
-}, [value]);
+}, [value])
 ```
 
 <Callout type="warning">
@@ -279,21 +279,21 @@ If you don't clean them up, you will cause **memory leaks**.
 ### Example: Using Cleanup with Interval
 
 ```tsx
-const timerRef = useRef<number | null>(null);
+const timerRef = useRef<number | null>(null)
 
 useEffect(() => {
   // store interval id in ref so it stays the same across renders
   timerRef.current = window.setInterval(() => {
-    console.log("performing some action every second");
-  }, 1000);
+    console.log("performing some action every second")
+  }, 1000)
 
   // cleanup function
   return () => {
     if (timerRef.current) {
-      clearInterval(timerRef.current);
+      clearInterval(timerRef.current)
     }
-  };
-}, []);
+  }
+}, [])
 ```
 
 What is happening here:
@@ -358,14 +358,14 @@ If you do this in `useEffect`, the user might see a flash, jump, or broken layou
 
 ```tsx
 function Box() {
-  const boxRef = useRef<HTMLDivElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const height = boxRef.current?.getBoundingClientRect().height;
-    console.log("box height:", height);
-  }, []);
+    const height = boxRef.current?.getBoundingClientRect().height
+    console.log("box height:", height)
+  }, [])
 
-  return <div ref={boxRef}>Hello</div>;
+  return <div ref={boxRef}>Hello</div>
 }
 ```
 
@@ -390,8 +390,8 @@ Here:
 
 ```tsx
 const result = useMemo(() => {
-  return heavyCalculation(value);
-}, [value]);
+  return heavyCalculation(value)
+}, [value])
 ```
 
 The calculation runs only when `value` changes.
@@ -429,8 +429,8 @@ The calculation runs only when `value` changes.
 
 ```tsx
 const handleClick = useCallback(() => {
-  doSomething();
-}, []);
+  doSomething()
+}, [])
 ```
 
 ### Why useCallback Exists
@@ -459,7 +459,7 @@ React analyzes your code and applies memoization at build time.
 If you do not want React to memoize a specific function or value, you can disable it using a directive. Add the following line at the top of your function or file:
 
 ```ts
-"use no memo";
+"use no memo"
 ```
 
 ---
@@ -514,9 +514,9 @@ This is useful for:
 ### Step 1: Create a Context
 
 ```ts
-import { createContext } from "react";
+import { createContext } from "react"
 
-const UserContext = createContext(null);
+const UserContext = createContext(null)
 ```
 
 This creates a context object.
@@ -527,13 +527,13 @@ Wrap your component tree using a Provider.
 
 ```tsx
 function App() {
-  const user = { name: "Yagyaraj" };
+  const user = { name: "Yagyaraj" }
 
   return (
     <UserContext.Provider value={user}>
       <Layout />
     </UserContext.Provider>
-  );
+  )
 }
 ```
 
@@ -542,11 +542,11 @@ Now, every component inside `Layout` can access `user`.
 ### Step 3: Consume the Context Using useContext
 
 ```tsx
-import { useContext } from "react";
+import { useContext } from "react"
 
 function UserProfile() {
-  const user = useContext(UserContext);
-  return <div>Hello {user.name}</div>;
+  const user = useContext(UserContext)
+  return <div>Hello {user.name}</div>
 }
 ```
 
@@ -581,16 +581,16 @@ If only one or two components need the value, use props.
 Most real apps use them together.
 
 ```tsx
-const ThemeContext = createContext(null);
+const ThemeContext = createContext(null)
 
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("light")
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
-  );
+  )
 }
 ```
 
@@ -620,5 +620,3 @@ Now you have global state with controlled updates.
 React hooks are powerful, but misuse causes bugs and performance issues. Understand them first, trust the compiler, and keep your code simple.
 
 <br />
-
-[linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234)
