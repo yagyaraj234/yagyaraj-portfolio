@@ -11,52 +11,55 @@ const Preview = dynamic(() => import("@/app/components/ui/preview"), {
 })
 
 export const RavaAICard = () => (
-  <div>
+  <>
     <Image
       src="/tooltip/ravaai.webp"
       alt="Rava AI"
-      width={100}
-      height={360}
+      height={500}
+      width={500}
       className="h-max w-full rounded-md"
       loading="eager"
       priority
       unoptimized
+      layout="responsive"
     />
     <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
       Rava AI is an agentic AI-powered go-to-market (GTM) platform for startups,
       automating strategy, marketing content, and investor pitch decks.
     </p>
-  </div>
+  </>
 )
 
 const SkillRazrCard = () => (
-  <div>
+  <>
     <Image
       src="/tooltip/skillrazr.webp"
       alt="SkillRazr"
-      width={100}
-      height={360}
+      layout="responsive"
       className="h-max w-full rounded-md"
       loading="eager"
       priority
       unoptimized
+      height={500}
+      width={500}
     />
     <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
       SkillRazr offers online tech training, internships, and skill development
       programs designed to prepare students for jobs.
     </p>
-  </div>
+  </>
 )
 
 export const WavemakerCard = () => (
-  <div>
+  <>
     <Image
       src="/tooltip/wavemaker.webp"
       alt="WaveMaker"
-      width={100}
-      height={360}
+      layout="responsive"
       className="h-max w-full rounded-md"
       loading="eager"
+      height={500}
+      width={500}
       priority
       unoptimized
     />
@@ -64,7 +67,7 @@ export const WavemakerCard = () => (
       WaveMaker offers a low-code development platform for professional
       developers to build web and mobile applications using open standards.
     </p>
-  </div>
+  </>
 )
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

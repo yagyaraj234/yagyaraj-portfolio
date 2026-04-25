@@ -44,7 +44,11 @@ export default async function BlogList() {
     if (!dateStr) return undefined
     const d = new Date(dateStr)
     return d
-      .toLocaleDateString("en-US", { month: "short", year: "numeric" })
+      .toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+      })
       .toLowerCase()
   }
 
@@ -52,7 +56,7 @@ export default async function BlogList() {
     <div className="mt-4 flex w-full flex-col">
       {posts?.slice(0, 3)?.map((pt, idx) => (
         <BlogItem
-          key={idx}
+          key={pt.slug}
           title={pt.metadata.title}
           url={`/blog/${pt.slug}`}
           date={formatDate(pt.metadata.date)}
