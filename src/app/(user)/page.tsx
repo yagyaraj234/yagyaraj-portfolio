@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import OpenToWork from "./_components/open-to-work"
 import { Projects } from "./_components/projects"
-import { skills } from "@/app/components/static-content"
+import { skills, social_links } from "@/app/components/static-content"
 
 const GitHubContributions = dynamic(
   () => import("@/app/components/github-contributions"),
@@ -12,9 +12,13 @@ const GitHubContributions = dynamic(
     ssr: true,
   }
 )
-import { USER } from "@/data/user.data"
 import BlogList from "./_components/blog-list"
 import { Preview } from "../components/ui/preview"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../components/ui/tooltip"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -86,6 +90,29 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="mt-4 flex gap-x-2">
+        {social_links.map((link, idx) => (
+          <Tooltip key={idx}>
+            <TooltipTrigger asChild>
+              <Link
+                href={link.url}
+                target="_blank"
+                className="rounded-full p-1"
+                aria-label={link.name}
+              >
+                <link.icon
+                  aria-hidden="true"
+                  className="size-4 text-zinc-600 dark:text-zinc-300"
+                />
+              </Link>
+            </TooltipTrigger>
+
+            <TooltipContent>
+              <p>{link.name}</p>
+            </TooltipContent>
+          </Tooltip>
+        ))}
+      </div>
 
       {/* <OpenToWork /> */}
       <Journey />
@@ -103,7 +130,7 @@ export default function Home() {
       <Projects show={2} />
       {/* Skills Section */}
       <div className="mt-12">
-        <h2 className="text-lg font-semibold">Skills.</h2>
+        <h2 className="text-lg font-semibold">Skills</h2>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {skills.map((skill) => (
@@ -133,6 +160,7 @@ export default function Home() {
             href="mailto:hey@yagyaraj.com"
             className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Email
           </Link>
