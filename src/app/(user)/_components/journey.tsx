@@ -218,7 +218,7 @@ export function Journey() {
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id))
 
   return (
-    <div className="mt-8">
+    <div className="mt-12">
       <h2 className="text-lg font-semibold">Experiences</h2>
 
       <div className="mt-4 flex w-full flex-col">

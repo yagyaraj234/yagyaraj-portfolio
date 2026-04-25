@@ -16,7 +16,7 @@ export const metadata = {
     "https://yagyaraj.com/post/the-cors-delusion-why-postman-doesnt-care-about-your-headers/og.webp",
   summary:
     "CORS only protects browsers, not your backend. Tools like Postman and cURL bypass it completely. Learn how to properly secure APIs with JWT authentication, rate limiting, and WAF.",
-};
+}
 
 If you've built even one web application you have definitely seen a big red error in the console screaming CORS error.
 
@@ -129,36 +129,36 @@ Here's a simple but real approach using Next.js middleware (v16+ proxy).
 
 ```tsx
 // proxy.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { verifyJWT } from "@/lib/auth";
+import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
+import { verifyJWT } from "@/lib/auth"
 
 export async function middleware(req: NextRequest) {
-  const token = req.headers.get("authorization")?.split(" ")[1];
+  const token = req.headers.get("authorization")?.split(" ")[1]
 
   if (!token) {
     return new NextResponse(
       JSON.stringify({ error: "Unauthorized: No token provided" }),
-      { status: 401, headers: { "content-type": "application/json" } },
-    );
+      { status: 401, headers: { "content-type": "application/json" } }
+    )
   }
 
-  const payload = await verifyJWT(token);
+  const payload = await verifyJWT(token)
 
   if (!payload) {
     return new NextResponse(
       JSON.stringify({ error: "Unauthorized: Invalid token" }),
-      { status: 401 },
-    );
+      { status: 401 }
+    )
   }
 
   // Optional: rate limiting logic here
-  return NextResponse.next();
+  return NextResponse.next()
 }
 
 export const config = {
   matcher: "/api/:path*",
-};
+}
 ```
 
 <br />
@@ -226,4 +226,4 @@ CORS is just a polite handshake between browser and server.
 
 Thank you for reading till the end. If you find this useful, drop a comment and like the post.
 
-[mail](mailto:hey@yagyaraj.com) | [linkedin](https://linkedin.com/in/yagyaraj234) | [github](https://github.com/yagyaraj234) | [twitter](https://x.com/yagyaraj234) | [website](https://yagyaraj.com)
+<br />

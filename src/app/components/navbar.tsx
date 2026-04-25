@@ -10,11 +10,11 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    name: "home",
+    name: "Home",
     link: "/",
   },
   {
-    name: "writings",
+    name: "Writings",
     link: "/blog",
   },
 ]
