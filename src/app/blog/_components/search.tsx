@@ -13,7 +13,7 @@ export default function Search() {
   )
 
   return (
-    <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-2 dark:border-gray-800 dark:bg-gray-900/50">
+    <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-2 dark:border-gray-800 dark:bg-zinc-950">
       <input
         type="text"
         value={search}
