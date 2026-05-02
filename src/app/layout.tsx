@@ -119,6 +119,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: USER.website,
+    types: {
+      "application/rss+xml": `${USER.website}/rss.xml`,
+    },
   },
   keywords: USER.keywords,
   other: {
