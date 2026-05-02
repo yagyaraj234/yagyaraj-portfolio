@@ -14,7 +14,7 @@ export default function UmamiAnalytics() {
       id="umami-analytics"
       src={umamiSrc}
       data-website-id={umamiId}
-      strategy="afterInteractive"
+      strategy="lazyOnload"
       async
     />
   )

@@ -20,11 +20,7 @@ export default function OpenToWork() {
 
         <button
           className="group cursor-pointer"
-          onClick={() =>
-            window.open(
-              "https://drive.google.com/file/d/1HH94EgoL2M73UtJD4miG74NAdxWg-HGS/view?usp=sharing"
-            )
-          }
+          onClick={() => window.open("/resume")}
         >
           <div className="flex items-center justify-between text-sm dark:text-white">
             Resume
