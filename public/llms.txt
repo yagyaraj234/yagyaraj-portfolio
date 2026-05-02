@@ -2,7 +2,7 @@
 
 # Personal Information
 Name: Yagyaraj
-Role: Full-Stack Software Engineer
+Role: Development Engineer at WaveMaker
 Location: India
 Website: https://yagyaraj.com
 Email: hey@yagyaraj.com
@@ -11,7 +11,7 @@ LinkedIn: https://linkedin.com/in/yagyaraj234
 Twitter: https://twitter.com/yagyaraj234
 
 # Professional Summary
-Description: Passionate full-stack developer who learns and transforms complex problems into simple, beautiful, and intuitive solutions through development and design. Specializes in modern web technologies, automated content workflows, and scalable application architecture.
+Description: Development Engineer at WaveMaker building React runtime and code generation infrastructure for scalable app exports. Previously shipped Rava AI from zero to production across frontend, backend, DevOps, and AI integrations.
 
 # Technical Skills
 Frontend: React, Next.js, TailwindCSS, TypeScript, Redux
@@ -22,7 +22,12 @@ Languages: TypeScript, JavaScript, Python, C++
 Tools: Git, Browser optimization, Embedding systems
 
 # Professional Experience
-Current Role: Software Engineer at Rava AI (January 2024 - December 2024)
+Current Role: Development Engineer at WaveMaker (January 2025 - Present)
+- Contributes to the React runtime engine powering WaveMaker Studio
+- Builds code generation pipelines that export maintainable React applications from visual studio definitions
+- Works on platform infrastructure for low-code application rendering and scalable app exports
+
+Previous Role: Software Engineer at Rava AI (January 2024 - December 2024)
 - Developed automated content workflows and embedding systems for diverse content types
 - Implemented browser caching optimizations reducing server load by 40%
 - Established CI/CD pipelines improving deployment speed by 70%
@@ -47,7 +52,7 @@ Passion: Building scalable applications, learning new technologies, solving comp
 # Contact Information
 Primary Email: hey@yagyaraj.com
 Portfolio: https://yagyaraj.com
-Resume: https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing
+Resume: https://yagyaraj.com/resume
 
 # Communication Preferences
 - Open to conversations about work, projects, technology, and collaboration
@@ -56,6 +61,8 @@ Resume: https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?u
 
 # Expertise Areas
 - Full-stack web development
+- React runtime and code generation
+- Platform engineering
 - Performance optimization and caching strategies
 - CI/CD pipeline implementation
 - Content management systems

@@ -25,7 +25,7 @@ const projectsData = [
     description:
       "Trello-like project management with organizations, boards, task tracking, and Stripe subscription billing.",
     live: "https://collab.yagyaraj.com",
-    git: "https://github.com/yagyaraj/collab",
+    git: "https://github.com/yagyaraj234/collab",
     tags: ["Nextjs", "Server Actions", "Zustand", "Stripe", "Prisma ORM"],
   },
 ]

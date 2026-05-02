@@ -87,7 +87,7 @@ export const social_links = [
   { name: "Medium", url: "https://blog.yagyaraj.com", icon: MediumIcon },
   {
     name: "Resume",
-    url: "https://drive.google.com/file/d/1nNQ-E0X8CAjEZ-wUyZvoiXG64TGVtyn9/view?usp=sharing",
+    url: "/resume",
     icon: ResumeIcon,
   },
 ]

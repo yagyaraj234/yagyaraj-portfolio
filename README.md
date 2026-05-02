@@ -124,7 +124,7 @@ This project is private and for personal use.
 - **GitHub**: [yagyaraj234](https://github.com/yagyaraj234)
 - **LinkedIn**: [yagyaraj234](https://linkedin.com/in/yagyaraj234)
 - **Twitter**: [yagyaraj234](https://twitter.com/yagyaraj234)
-- **Resume**: [View Resume](https://drive.google.com/file/d/1HDRjs-a3BH-40CQi_Ozr_aS175bhOzEm/view?usp=sharing)
+- **Resume**: [View Resume](https://yagyaraj.com/resume)
 
 ---
 

@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
-import OpenToWork from "./_components/open-to-work"
 import { Projects } from "./_components/projects"
 import { skills, social_links } from "@/app/components/static-content"
 
