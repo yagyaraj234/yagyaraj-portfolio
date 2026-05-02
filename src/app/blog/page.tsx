@@ -41,14 +41,9 @@ export default async function BlogIndexPage() {
           Writings
           <br />
           <em className="font-dm-mono text-muted text-3xl">
-            Written to Remember.
+            Written to <span style={{ color: "#1D6FA4" }}>Remember.</span>
           </em>
         </h1>
-
-        {/* <p className="max-w-lg text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
-          Writing about frontend engineering, performance, and the occasional
-          rabbit hole I fell into building things.
-        </p> */}
 
         <Suspense
           fallback={<div className="text-gray-500">Loading posts...</div>}
