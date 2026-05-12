@@ -1,3 +1,4 @@
+import { ArrowUp } from "lucide-react"
 import Link from "next/link"
 
 const projectsData = [
@@ -62,18 +63,18 @@ export function Projects({ show = 10 }: { show?: number }) {
               <Link
                 href={featured.live}
                 target="_blank"
-                className="rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
               >
-                live preview ↗
+                Live <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
             {featured.git && (
               <Link
                 href={featured.git}
                 target="_blank"
-                className="rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
               >
-                source code ↗
+                Code <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
           </div>
@@ -108,7 +109,7 @@ export function Projects({ show = 10 }: { show?: number }) {
               </p>
             </div>
 
-            <div className="flex flex-shrink-0 flex-col items-end gap-2">
+            <div className="flex shrink-0 flex-col items-end gap-2">
               <span className="font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-tertiary) uppercase">
                 {project.status}
               </span>
@@ -117,18 +118,18 @@ export function Projects({ show = 10 }: { show?: number }) {
                   <Link
                     href={project.live}
                     target="_blank"
-                    className="rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                    className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
                   >
-                    preview ↗
+                    Live <ArrowUp className="size-3 rotate-45" />
                   </Link>
                 )}
                 {project.git && (
                   <Link
                     href={project.git}
                     target="_blank"
-                    className="rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                    className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
                   >
-                    code ↗
+                    Code <ArrowUp className="size-3 rotate-45" />
                   </Link>
                 )}
               </div>

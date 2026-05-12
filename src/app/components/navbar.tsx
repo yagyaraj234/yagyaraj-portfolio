@@ -29,7 +29,7 @@ export const Navbar = () => {
             <Link
               key={idx}
               href={item.link}
-              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-base whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-white`}
+              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-white`}
             >
               {item.name}
             </Link>

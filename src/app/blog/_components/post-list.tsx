@@ -115,7 +115,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 <h2 className="text-xl font-semibold max-md:text-lg max-sm:text-lg">
                   <Link
                     href={`/blog/${slug}`}
-                    className="cursor-pointer hover:underline"
+                    className="cursor-pointer text-zinc-800 hover:underline dark:text-zinc-200"
                     prefetch={false}
                   >
                     {metadata.title}
@@ -123,13 +123,13 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 </h2>
 
                 {metadata.summary ? (
-                  <p className="mt-2 text-zinc-700 max-sm:text-sm dark:text-white/80">
+                  <p className="mt-1 text-sm text-zinc-800/80 dark:text-white/80">
                     {metadata.summary}
                   </p>
                 ) : null}
 
                 {/* published date, read time and tags */}
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-600 dark:text-gray-400">
+                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-600 dark:text-gray-400">
                   <div className="flex items-center gap-2">
                     {metadata.date && (
                       <time dateTime={metadata.date}>
