@@ -1,11 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import {
-  Shantell_Sans,
-  Geist,
-  Instrument_Serif,
-  DM_Mono,
-} from "next/font/google"
+import { Shantell_Sans, Geist, Instrument_Serif } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { ReactLenis } from "lenis/react"
@@ -14,8 +9,8 @@ import Footer from "@/app/components/footer"
 import { USER } from "@/data/user.data"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import localFont from "next/font/local"
-import Script from "next/script"
 import UmamiAnalytics from "./components/analytics/umami"
+import { Navbar } from "./components/navbar"
 
 // Font settings
 
@@ -192,6 +187,7 @@ export default function RootLayout({
                 }}
               />
               <div className="mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
+                <Navbar />
                 {children}
                 <Footer />
               </div>

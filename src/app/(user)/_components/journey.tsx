@@ -86,7 +86,7 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           React runtime engine
         </strong>{" "}
-        powering WaveMaker Studio — the layer responsible for interpreting
+        powering WaveMaker Studio the layer responsible for interpreting
         low-code definitions and rendering them as production-ready React
         applications.
       </>,
@@ -96,7 +96,7 @@ const experiences = [
           JavaScript Proxy-based state management
         </strong>{" "}
         system to track and coordinate complex application state across hundreds
-        of dynamically generated components — without requiring manual wiring.
+        of dynamically generated components without requiring manual wiring.
       </>,
       <>
         Built{" "}
@@ -112,8 +112,8 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           platform layer
         </strong>{" "}
-        — the kind of infrastructure most engineers never touch, where
-        reliability and predictability matter more than features.
+        the kind of infrastructure most engineers never touch, where reliability
+        and predictability matter more than features.
       </>,
     ],
     tags: [
@@ -135,7 +135,7 @@ const experiences = [
       "Took the product from zero to production: frontend, backend, DevOps, and AI end-to-end.",
     points: [
       <>
-        Owned the product end-to-end at a seed-stage AI startup — from{" "}
+        Owned the product end-to-end at a seed-stage AI startup from{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           system design to deployment
         </strong>
@@ -147,8 +147,8 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           automated content pipelines
         </strong>{" "}
-        using LLM APIs, embeddings, and vector search — processing diverse
-        content types and delivering them through persona-based targeting for{" "}
+        using LLM APIs, embeddings, and vector search processing diverse content
+        types and delivering them through persona-based targeting for{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           1000+ customers
         </strong>
@@ -159,15 +159,15 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           server load by 40%
         </strong>{" "}
-        through strategic browser caching — reducing infrastructure costs
-        without touching the core application logic.
+        through strategic browser caching reducing infrastructure costs without
+        touching the core application logic.
       </>,
       <>
         Reduced{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           deploy time by 70%
         </strong>{" "}
-        by building a CI/CD pipeline from scratch — turning multi-hour manual
+        by building a CI/CD pipeline from scratch turning multi-hour manual
         deploys into single-click automated releases.
       </>,
     ],
@@ -188,7 +188,7 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           interactive Git and SQL learning environments
         </strong>{" "}
-        — hands-on platforms where developers practice real commands in a
+        hands-on platforms where developers practice real commands in a
         sandboxed browser interface, not just watch videos.
       </>,
       <>
@@ -196,7 +196,7 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           responsive UI system
         </strong>{" "}
-        that worked consistently across mobile, tablet, and desktop —
+        that worked consistently across mobile, tablet, and desktop
         significantly improving completion rates for learners on smaller
         devices.
       </>,
@@ -205,7 +205,7 @@ const experiences = [
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           UI/UX upgrades
         </strong>{" "}
-        across the platform — standardising component patterns, improving visual
+        across the platform standardising component patterns, improving visual
         consistency, and reducing friction in the learner journey.
       </>,
     ],
@@ -259,7 +259,7 @@ export function Journey() {
                       </Preview>
                     </Link>
                   </div>
-                  {/* Summary — always visible */}
+                  {/* Summary always visible */}
                   <p className="text-xs text-neutral-400 max-sm:hidden dark:text-neutral-500">
                     {exp.summary}
                   </p>

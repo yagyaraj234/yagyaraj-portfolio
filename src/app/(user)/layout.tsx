@@ -8,7 +8,6 @@ export default function UserLayout({
 }) {
   return (
     <div className={`mx-auto max-w-3xl`}>
-      <Navbar />
       <UserInfo />
       {children}
     </div>
