@@ -132,7 +132,7 @@ const experiences = [
     href: "https://rava.ai",
     date: "jan – dec 2024",
     summary:
-      "Took the product from zero to production — frontend, backend, DevOps, and AI end-to-end.",
+      "Took the product from zero to production: frontend, backend, DevOps, and AI end-to-end.",
     points: [
       <>
         Owned the product end-to-end at a seed-stage AI startup — from{" "}
@@ -260,7 +260,7 @@ export function Journey() {
                     </Link>
                   </div>
                   {/* Summary — always visible */}
-                  <p className="text-xs text-neutral-400 dark:text-neutral-500">
+                  <p className="text-xs text-neutral-400 max-sm:hidden dark:text-neutral-500">
                     {exp.summary}
                   </p>
                 </div>
