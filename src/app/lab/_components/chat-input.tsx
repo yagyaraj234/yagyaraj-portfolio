@@ -138,10 +138,10 @@ export default function ChatBox(props: ChatInput) {
   }
 
   return (
-    <>
+    <div className="p-4">
       <div
         className={cn(
-          "mt-24 w-full rounded-[22px] p-2 shadow-[0_8px_40px_rgba(0,0,0,0.28)]",
+          "my-8 w-full rounded-[22px] p-2 shadow-[0_8px_40px_rgba(0,0,0,0.28)]",
           className,
           {
             "opacity-95": loading,
@@ -306,7 +306,7 @@ export default function ChatBox(props: ChatInput) {
         </div>
       </div>
 
-      <p className="mt-2 mb-48 text-center text-[11px] text-zinc-400">
+      <p className="mt-2 text-center text-[11px] text-zinc-400">
         Press{" "}
         <kbd className="rounded bg-zinc-200 px-1 py-0.5 font-mono text-[10px] text-zinc-500">
           Enter
@@ -317,6 +317,6 @@ export default function ChatBox(props: ChatInput) {
         </kbd>{" "}
         for new line
       </p>
-    </>
+    </div>
   )
 }
