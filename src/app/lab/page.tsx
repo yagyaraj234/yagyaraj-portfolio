@@ -211,7 +211,7 @@ export default function LabsPage() {
   return (
     <main className="flex-1 pb-24">
       {/* Page header */}
-      <div className="border-foreground/8 flex items-end justify-between gap-4 border-b pb-5">
+      <div className="border-foreground/8 mt-8 flex items-end justify-between gap-4 border-b pb-5">
         <div className="flex flex-col gap-1">
           <h1 className="text-3xl font-semibold tracking-[-0.03em]">Lab</h1>
           <p className="text-foreground/50 text-[14px]">
