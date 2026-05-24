@@ -65,7 +65,7 @@ export default function InfiniteCardStack() {
 
   // Returns which visual layer (0=front, 1=middle, 2=back) each card index is at
   const getLayer = useCallback(
-    (cardIndex) => {
+    (cardIndex: number) => {
       const diff = (cardIndex - activeIndex + total) % total
       return diff // 0 = front, 1 = middle, 2 = back
     },
@@ -125,8 +125,7 @@ export default function InfiniteCardStack() {
   }
 
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center select-none">
-      {/* Stack container — extra top padding so peeking cards don't overflow */}
+    <section className="flex flex-col items-center justify-center bg-white select-none">
       <div
         className="relative"
         style={{ width: 360, height: 280, marginTop: 40, paddingTop: 40 }}
@@ -151,7 +150,6 @@ export default function InfiniteCardStack() {
                 ...style,
               }}
             >
-              {/* Card */}
               <div
                 className="w-full overflow-hidden rounded-2xl bg-white p-1.5 pb-4 ring ring-zinc-200 drop-shadow-lg"
                 style={{
@@ -161,12 +159,10 @@ export default function InfiniteCardStack() {
                       : "0 2px 8px -2px rgba(0,0,0,0.08)",
                 }}
               >
-                {/* Card image/content area */}
                 <div className="h-44 w-full overflow-hidden rounded-xl ring ring-zinc-100">
                   {card.content}
                 </div>
 
-                {/* Card footer */}
                 <div className="flex items-center justify-between px-4 py-3">
                   <div>
                     <p className="text-sm font-semibold text-gray-900">
@@ -196,7 +192,7 @@ export default function InfiniteCardStack() {
         })}
       </div>
 
-      <div className="relative -top-2 z-50 w-full bg-white pt-8 pb-50">
+      <div className="relative z-50 w-full bg-white py-4">
         <div className="mx-auto w-max rounded-lg bg-white px-2 py-1 text-center text-sm font-medium ring ring-zinc-200 drop-shadow-2xl">
           <button onClick={handleAnimate} disabled={isAnimating}>
             Animate

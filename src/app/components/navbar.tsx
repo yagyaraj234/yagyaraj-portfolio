@@ -17,6 +17,10 @@ export const navItems: NavItem[] = [
     name: "Writings",
     link: "/blog",
   },
+  {
+    name: "Lab",
+    link: "/lab",
+  },
 ]
 
 export const Navbar = () => {
