@@ -8,6 +8,7 @@ export interface ListItemMetadata {
   lastUpdated?: string
   linkedinUrl?: string
   videoUrl?: string
+  ogImage?: string
   tags?: string[]
 }
 
