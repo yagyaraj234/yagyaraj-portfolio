@@ -95,6 +95,7 @@ function isListItemMetadata(value: unknown): value is ListItemMetadata {
       typeof metadata.linkedinUrl === "string") &&
     (metadata.videoUrl === undefined ||
       typeof metadata.videoUrl === "string") &&
+    (metadata.ogImage === undefined || typeof metadata.ogImage === "string") &&
     (metadata.tags === undefined || isStringArray(metadata.tags))
 
   return hasRequiredFields && hasValidOptionalFields

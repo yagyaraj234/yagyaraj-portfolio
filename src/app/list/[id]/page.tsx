@@ -129,7 +129,9 @@ export async function generateMetadata({
     }
   }
 
-  const ogImageUrl = `${USER.website}/api/og/list/${id}`
+  const ogImageUrl = metadata.ogImage
+    ? new URL(metadata.ogImage, USER.website).toString()
+    : `${USER.website}/api/og/list/${id}`
 
   return {
     title: `${metadata.title} | Yagyaraj`,
@@ -144,7 +146,7 @@ export async function generateMetadata({
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: metadata.title,
+          alt: "Animated landing page example with a Vantage hero and wearable focus device",
         },
       ],
       locale: "en_IN",

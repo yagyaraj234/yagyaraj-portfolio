@@ -1,10 +1,11 @@
 <!-- list:metadata
 {
   "title": "I vibe-coded an animated landing page in minutes. Here is how I did it.",
-  "description": "Steps to create a cursor-scrubbed animated landing page using Pinterest, Gemini, and an IDE agent.",
+  "description": "Step-by-step guide to vibe-code an animated landing page with Pinterest inspiration, Gemini-generated motion, OpenCode, and a cursor-scrubbed hero video.",
   "date": "2026-06-07",
   "linkedinUrl": "",
   "videoUrl": "/list/vibe-coding.mp4",
+  "ogImage": "/list/vibe-coded-landing-og.jpeg",
   "tags": ["vibe-coding", "landing-page", "animation", "gemini", "opencode"]
 }
 -->
