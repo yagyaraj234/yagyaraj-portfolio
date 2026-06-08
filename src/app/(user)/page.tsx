@@ -54,7 +54,7 @@ export default function Home() {
   }
 
   return (
-    <main className="font-giest text-ase box-border" role="main">
+    <main className="box-border" role="main">
       {/* Invisible structured data for SEO/AEO */}
       <script
         type="application/ld+json"
@@ -119,7 +119,7 @@ export default function Home() {
       <div className="mt-12">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">
-            <Link href="/writings">Recent writings</Link>{" "}
+            <Link href="/blog">Recent writings</Link>{" "}
           </h2>
         </div>
         <div className="text-muted mt-2 text-base">

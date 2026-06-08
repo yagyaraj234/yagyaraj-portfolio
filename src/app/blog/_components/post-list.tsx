@@ -72,7 +72,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 "rounded-full border px-3 py-1 text-xs transition-colors",
                 selectedTag === tag
                   ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
-                  : "border-gray-200 bg-transparent text-gray-600 hover:border-gray-400 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-600"
+                  : "border-zinc-200 bg-transparent text-zinc-600 hover:border-zinc-400 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-600"
               )}
             >
               #{tag}
@@ -82,7 +82,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
 
         <button
           onClick={toggleSort}
-          className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1 text-xs font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-900"
+          className="flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-1 text-xs font-medium whitespace-nowrap text-zinc-600 transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-900"
           title={`Sort by date ${sortOrder === "asc" ? "ascending" : "descending"}`}
         >
           {sortOrder === "asc" ? (
@@ -100,7 +100,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
       </div>
 
       {sortedPosts.length === 0 ? (
-        <p className="text-gray-500">
+        <p className="text-zinc-500">
           No posts found matching "{search}"
           {selectedTag && <span> with tag "#{selectedTag}"</span>}.
         </p>
@@ -129,7 +129,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                 ) : null}
 
                 {/* published date, read time and tags */}
-                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-600 dark:text-gray-400">
+                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                   <div className="flex items-center gap-2">
                     {metadata.date && (
                       <time dateTime={metadata.date}>
@@ -148,25 +148,6 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
                       </div>
                     )}
                   </div>
-
-                  {metadata.tags && metadata.tags.length > 0 && (
-                    <div className="flex gap-2">
-                      {metadata.tags.map((tag) => (
-                        <button
-                          key={tag}
-                          onClick={() => toggleTag(tag)}
-                          className={cn(
-                            "hidden hover:underline",
-                            selectedTag === tag
-                              ? "font-bold text-black dark:text-white"
-                              : ""
-                          )}
-                        >
-                          #{tag}
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
             </li>

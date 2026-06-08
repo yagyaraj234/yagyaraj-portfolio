@@ -144,7 +144,7 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
   }
 
   return (
-    <div className="w-full space-y-8 px-6 py-8">
+    <div className="w-full space-y-8 py-4">
       <InterviewFilters
         topics={topics}
         selectedTopic={selectedTopic}
@@ -155,8 +155,8 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
         onSearchChange={setSearchTerm}
       />
 
-      <div className="mx-auto max-w-7xl space-y-4">
-        <p className="text-xs font-medium text-gray-500">
+      <div className="space-y-4">
+        <p className="text-xs font-medium text-zinc-500">
           Showing {visibleQuestions.length} of {filteredQuestions.length}{" "}
           questions (Page {currentPage} of {totalPages})
         </p>
@@ -180,7 +180,7 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
           ))}
 
           {visibleQuestions.length === 0 && (
-            <div className="rounded-xl border border-dashed p-8 text-center text-sm text-gray-500">
+            <div className="rounded-xl border border-dashed p-8 text-center text-sm text-zinc-500">
               No questions found for selected filters.
             </div>
           )}

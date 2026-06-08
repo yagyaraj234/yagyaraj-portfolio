@@ -125,7 +125,7 @@ export default function InfiniteCardStack() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center bg-white select-none">
+    <section className="flex flex-col items-center justify-center bg-white dark:bg-zinc-950 select-none">
       <div
         className="relative"
         style={{ width: 360, height: 280, marginTop: 40, paddingTop: 40 }}
@@ -151,7 +151,7 @@ export default function InfiniteCardStack() {
               }}
             >
               <div
-                className="w-full overflow-hidden rounded-2xl bg-white p-1.5 pb-4 ring ring-zinc-200 drop-shadow-lg"
+                className="w-full overflow-hidden rounded-2xl bg-white dark:bg-zinc-900 p-1.5 pb-4 ring ring-zinc-200 dark:ring-zinc-700 drop-shadow-lg"
                 style={{
                   boxShadow:
                     layer === 0
@@ -165,12 +165,12 @@ export default function InfiniteCardStack() {
 
                 <div className="flex items-center justify-between px-4 py-3">
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                       {card.title}
                     </p>
-                    <p className="mt-0.5 text-xs text-gray-400">{card.date}</p>
+                    <p className="mt-0.5 text-xs text-zinc-400">{card.date}</p>
                   </div>
-                  <button className="flex items-center gap-1 rounded-full bg-gray-900 px-3.5 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-80">
+                  <button className="flex items-center gap-1 rounded-full bg-zinc-900 dark:bg-zinc-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-80">
                     Read
                     <svg
                       width="12"
@@ -192,8 +192,8 @@ export default function InfiniteCardStack() {
         })}
       </div>
 
-      <div className="relative z-50 w-full bg-white py-4">
-        <div className="mx-auto w-max rounded-lg bg-white px-2 py-1 text-center text-sm font-medium ring ring-zinc-200 drop-shadow-2xl">
+      <div className="relative z-50 w-full bg-white dark:bg-zinc-950 py-4">
+        <div className="mx-auto w-max rounded-lg bg-white dark:bg-zinc-900 px-2 py-1 text-center text-sm font-medium ring ring-zinc-200 dark:ring-zinc-700 drop-shadow-2xl">
           <button onClick={handleAnimate} disabled={isAnimating}>
             Animate
           </button>

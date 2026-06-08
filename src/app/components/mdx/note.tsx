@@ -13,7 +13,7 @@ export function Note({ children }: { children: React.ReactNode }) {
     <div
       className={cn(
         "rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-emerald-900 dark:border-emerald-900/30 dark:bg-emerald-950/20 dark:text-emerald-200",
-        "font-handwriting rotate-0 transform text-sm leading-relaxed 2xl:rotate-1 2xl:border-none 2xl:bg-transparent 2xl:p-0 2xl:text-xs 2xl:text-gray-500 2xl:dark:text-gray-400"
+        "font-handwriting rotate-0 transform text-sm leading-relaxed 2xl:rotate-1 2xl:border-none 2xl:bg-transparent 2xl:p-0 2xl:text-xs 2xl:text-zinc-500 2xl:dark:text-zinc-400"
       )}
       data-note
     >

@@ -29,7 +29,7 @@ const Chip = ({
       active
         ? (activeClassName ?? "border-black bg-black text-white")
         : (inactiveClassName ??
-          "border-gray-200 bg-white text-gray-600 hover:border-gray-400")
+          "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400")
     }`}
   >
     {label}
@@ -48,7 +48,7 @@ export const InterviewFilters = ({
   const statusFilters: FilterValue[] = ["all", "completed", "pending"]
 
   return (
-    <header className="mx-auto max-w-7xl space-y-6">
+    <header className="space-y-6">
       <h1 className="text-2xl font-bold tracking-tight">Frontend Roadmap</h1>
 
       <div className="flex flex-wrap gap-2">
@@ -89,7 +89,7 @@ export const InterviewFilters = ({
 
       <input
         placeholder="Filter by question..."
-        className="w-full rounded-lg border bg-gray-50 p-3 text-sm transition focus:bg-white"
+        className="w-full rounded-lg border bg-zinc-50 p-3 text-sm transition focus:bg-white dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:bg-zinc-800"
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
       />

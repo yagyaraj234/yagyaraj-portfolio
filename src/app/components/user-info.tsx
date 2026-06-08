@@ -4,7 +4,7 @@ export function UserInfo() {
       Yagyaraj
       <br />
       <em className="font-dm-mono text-muted text-3xl sm:text-4xl">
-        Engineer. Builder. <span style={{ color: "#1D6FA4" }}>Shipper.</span>
+        Engineer. Builder. <span className="text-[#1D6FA4]">Shipper.</span>
       </em>
     </h1>
   )
