@@ -209,7 +209,7 @@ export default function ChatBox(props: ChatInput) {
             <button
               onClick={() => setDeepResearch((v) => !v)}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out",
+                "flex h-9 items-center gap-2 rounded-xl px-3 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out sm:rounded-full sm:px-3.5",
                 {
                   "bg-zinc-800 text-white shadow-sm ring-zinc-700":
                     deepResearch,
@@ -222,13 +222,13 @@ export default function ChatBox(props: ChatInput) {
                 className={`size-[15px] ${deepResearch ? "text-white" : "text-zinc-500"}`}
                 strokeWidth={1.6}
               />
-              <span>Deep research</span>
+              <span className="max-sm:hidden">Deep research</span>
             </button>
 
             <button
               onClick={() => setThink((v) => !v)}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out",
+                "flex h-9 items-center gap-2 rounded-xl px-3 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out sm:rounded-full sm:px-3.5",
                 {
                   "bg-zinc-800 text-white shadow-sm ring-zinc-700": think,
                   "bg-[#F1F0EC] text-zinc-600 ring-black/8 hover:bg-[#E4E3DE] hover:shadow-sm active:scale-95":
@@ -240,7 +240,7 @@ export default function ChatBox(props: ChatInput) {
                 className={`size-[15px] ${think ? "text-white" : "text-zinc-500"}`}
                 strokeWidth={1.6}
               />
-              <span>Think</span>
+              <span className="max-sm:hidden">Think</span>
             </button>
 
             <div className="relative">

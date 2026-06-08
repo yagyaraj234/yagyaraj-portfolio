@@ -8,13 +8,13 @@ import {
 
 export default function PricingSection() {
   return (
-    <section className="grid grid-cols-2 gap-6 p-6">
-      <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl">
+    <section className="grid gap-6 p-6 sm:grid-cols-2">
+      <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl dark:bg-zinc-900 dark:ring-zinc-800">
         <div className="rounded-xl bg-linear-to-r from-blue-300 via-blue-600/20 to-blue-500/20 p-4 hue-rotate-25">
           <h4 className="mb-2 text-3xl font-semibold">Pro</h4>
           <div className="flex w-[70%] items-start gap-4">
             <h4 className="text-5xl">$15</h4>
-            <div className="text text-base font-medium text-black/70">
+            <div className="text text-base font-medium text-black/70 dark:text-white/70">
               Per month billed anually
             </div>
           </div>
@@ -50,18 +50,18 @@ export default function PricingSection() {
           <div className="my-4 text-sm text-zinc-600">Need higher limit ?</div>
         </div>
       </div>
-      <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl">
+      <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl dark:bg-zinc-900 dark:ring-zinc-800">
         <div className="rounded-xl p-4">
           <h4 className="mb-2 bg-linear-to-r from-blue-500 via-blue-800/20 to-blue-500/20 bg-clip-text text-3xl font-semibold text-transparent">
             Pro+
           </h4>
           <div className="mt-2 flex w-[70%] items-start gap-4">
             <h4 className="text-5xl">$25</h4>
-            <div className="text text-base font-medium text-black/70">
+            <div className="text text-base font-medium text-black/70 dark:text-white/70">
               Per month billed anually
             </div>
           </div>
-          <button className="mt-4 w-full rounded-xl bg-gray-200/80 px-4 py-3 ring ring-gray-300 drop-shadow-lg">
+          <button className="mt-4 w-full rounded-xl bg-zinc-200/80 px-4 py-3 ring ring-zinc-300 drop-shadow-lg dark:bg-zinc-700/80 dark:ring-zinc-600">
             Sign Up
           </button>
         </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import AnimatedCard from "./_components/animated-card"
-import BentoGrid from "./_components/bento-grid"
 import ChatBox from "./_components/chat-input"
 import InfiniteCardStack from "./_components/infinite-card-stack"
 import PricingSection from "./_components/pricing-section"
@@ -34,16 +33,6 @@ const experiments: Experiment[] = [
     component: ChatBox,
     span: "wide",
   },
-  // {
-  //   id: "bento-grid",
-  //   title: "Bento Grid",
-  //   description:
-  //     "Asymmetric feature grid with mixed cell sizes and subtle hover depth.",
-  //   category: "Layouts",
-  //   status: "stable",
-  //   component: BentoGrid,
-  //   span: "wide",
-  // },
   {
     id: "pricing",
     title: "Pricing Section",
@@ -62,7 +51,7 @@ const experiments: Experiment[] = [
     category: "Motion",
     status: "new",
     component: () => (
-      <div className="flex items-center justify-center gap-4 p-6">
+      <div className="flex items-center justify-center gap-4 p-6 max-sm:flex-col">
         <AnimatedCard
           title="Blurred Aura"
           description="A soft, diffused form fading into warm gradients - minimal, calm, and atmospheric."
@@ -188,7 +177,7 @@ function ExperimentCard({ exp }: { exp: Experiment }) {
       </div>
 
       {expanded && (
-        <div className="border-foreground/8 bg-foreground/[0.015] dp-6 border-t">
+        <div className="border-foreground/8 bg-foreground/[0.015] border-t sm:p-6">
           <Component />
         </div>
       )}
@@ -253,16 +242,3 @@ export default function LabsPage() {
     </main>
   )
 }
-
-//  <AnimatedCard
-//             title="Blurred Aura"
-//             description="A soft, diffused form fading into warm gradients - minimal, calm, and atmospheric."
-//             src="/gas.mp4"
-//           />
-//           <AnimatedCard
-//             title="Liquid Fire Form"
-//             description="A vivid macro of glowing, petal-like forms capturing the raw flow of heat and texture."
-//             className="bg-white text-zinc-700"
-//             src="/flower.mp4"
-//             btnClass="bg-zinc-800 text-white hover:bg-zinc-900/70"
-//           />

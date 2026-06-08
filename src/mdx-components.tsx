@@ -59,7 +59,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <figure className="my-4 flex flex-col items-center justify-center">
         <MdxImage {...props} className="select-none" />
         {props.alt ? (
-          <figcaption className="text-xs font-normal text-gray-500 dark:text-gray-300">
+          <figcaption className="text-xs font-normal text-zinc-500 dark:text-zinc-300">
             {props.alt}
           </figcaption>
         ) : null}
@@ -98,7 +98,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <div className="my-4 rounded-t-lg">
           <header>
-            <h4 className="-mx-px -mb-1.5 w-max rounded-t-lg border border-b-0 border-gray-700 bg-black px-4 py-1 pb-2.5 text-sm font-medium text-gray-100 dark:border-gray-700 dark:bg-neutral-700 dark:text-white">
+            <h4 className="-mx-px -mb-1.5 w-max rounded-t-lg border border-b-0 border-zinc-700 bg-zinc-950 px-4 py-1 pb-2.5 text-sm font-medium text-zinc-100 dark:border-zinc-700 dark:bg-neutral-700 dark:text-white">
               Problem
             </h4>
           </header>
