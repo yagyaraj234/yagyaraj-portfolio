@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="text-muted mt-8 mb-8 flex flex-col gap-4 text-sm max-sm:flex-col">
+    <footer className="text-muted mt-8 mb-8 flex flex-col gap-4 text-sm">
       <div className="mt-12 flex items-center justify-center gap-2 max-sm:flex-col">
         <h3>Design & Developed by Yagyaraj</h3>
         <span className="hidden sm:inline-block">|</span>

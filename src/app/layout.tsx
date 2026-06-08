@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Shantell_Sans, Geist, Instrument_Serif } from "next/font/google"
+import { Shantell_Sans, Geist, Instrument_Serif, DM_Mono } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { ReactLenis } from "lenis/react"
@@ -13,6 +13,15 @@ import UmamiAnalytics from "./components/analytics/umami"
 import { Navbar } from "./components/navbar"
 
 // Font settings
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-mono",
+  display: "swap",
+  preload: false,
+})
 
 const handwriting = Shantell_Sans({
   weight: ["500"],
@@ -142,6 +151,7 @@ export default function RootLayout({
             handwriting.variable,
             serif.variable,
             sans.variable,
+            dmMono.variable,
             giest.className,
             instrumentSerif.variable,
             "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"

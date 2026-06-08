@@ -169,7 +169,7 @@ export function CodeBlockMain({
         className={cn(
           "relative overflow-x-auto p-4 text-[13px] leading-6",
           "font-['ui-monospace','SFMono-Regular','Menlo','Monaco','Consolas','Liberation_Mono','Courier_New','monospace']",
-          diff && "border-gray-70 border-l"
+          diff && "border-zinc-700 border-l"
         )}
       >
         <div className="dark:hidden">

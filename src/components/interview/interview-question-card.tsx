@@ -125,7 +125,7 @@ export const InterviewQuestionCard = ({
     : progress.completed
 
   return (
-    <article className="w-full rounded-xl border bg-white shadow-sm transition hover:border-gray-300">
+    <article className="w-full rounded-xl border border-zinc-200 bg-white shadow-sm transition hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600">
       <div className="flex items-start gap-3 p-4">
         <input
           type="checkbox"
@@ -142,11 +142,11 @@ export const InterviewQuestionCard = ({
         />
 
         <button onClick={onToggleExpand} className="min-w-0 flex-1 text-left">
-          <p className="text-sm font-medium text-gray-900">
+          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
             {question.question}
           </p>
           <div className="mt-1 flex flex-wrap items-center gap-2">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">
+            <p className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase">
               {question.topic} • {question.subtopic}
             </p>
             <span
@@ -172,7 +172,7 @@ export const InterviewQuestionCard = ({
         <button
           onClick={onToggleExpand}
           aria-label={expanded ? "Collapse question" : "Expand question"}
-          className="shrink-0 rounded-lg p-1.5 text-gray-600 outline-none hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none"
+          className="shrink-0 rounded-lg p-1.5 text-zinc-600 outline-none hover:bg-zinc-100 hover:text-zinc-900 focus:ring-0 focus:outline-none dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           <ChevronDown
             className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : "rotate-0"}`}
@@ -183,13 +183,13 @@ export const InterviewQuestionCard = ({
       {expanded && (
         <div className="border-t p-4 pt-3">
           {hasSubQuestions && question.subQuestions && (
-            <div className="mb-4 rounded-xl bg-gray-50 p-4">
+            <div className="mb-4 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-4">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
+                  <p className="text-xs font-semibold tracking-wide text-zinc-500 dark:text-zinc-400 uppercase">
                     Sub Questions
                   </p>
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
                     Check all items to complete the parent question.
                   </p>
                 </div>
@@ -228,7 +228,7 @@ export const InterviewQuestionCard = ({
                         style={{ accentColor: "#4ade80", borderRadius: "8px" }}
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
                           {subQuestion.title}
                         </p>
                         <p
@@ -249,7 +249,7 @@ export const InterviewQuestionCard = ({
             <input
               type="text"
               placeholder="GitHub Solution URL"
-              className="w-full rounded-lg border p-3 text-sm"
+              className="w-full rounded-lg border p-3 text-sm dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500"
               value={progress.githubUrl}
               onChange={(event) =>
                 onUpdateField(question.id, "githubUrl", event.target.value)
@@ -257,7 +257,7 @@ export const InterviewQuestionCard = ({
             />
             <textarea
               placeholder="What did you learn?"
-              className="h-28 w-full resize-none rounded-lg border p-3 text-sm"
+              className="h-28 w-full resize-none rounded-lg border p-3 text-sm dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500"
               value={progress.notes}
               onChange={(event) =>
                 onUpdateField(question.id, "notes", event.target.value)
