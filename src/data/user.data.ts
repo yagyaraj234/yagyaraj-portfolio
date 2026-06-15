@@ -39,7 +39,7 @@ export const USER: User = {
   - Workspace system for different content types (chat, code reviews, video analysis)
 `,
   avatar: "/user.webp",
-  ogImage: "https://yagyaraj.com/api/og",
+  ogImage: "https://yagyaraj.com/og.png",
   namePronunciationUrl: "",
   timeZone: "Asia/Kolkata",
   keywords: [
