@@ -18,7 +18,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../components/ui/tooltip"
-import OpenToWork from "./_components/open-to-work"
+import { Section, SectionHeader } from "../components/ui/section"
+import { TechTag } from "../components/ui/tech-tag"
+
+const badgeClass =
+  "mx-0.5 cursor-pointer rounded bg-zinc-50 px-1 py-0.5 text-sm ring ring-zinc-200 transition-colors hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800 dark:hover:bg-zinc-800"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -55,56 +59,52 @@ export default function Home() {
   }
 
   return (
-    <main className="font-giest text-ase box-border" role="main">
+    <main className="box-border" role="main">
       {/* Invisible structured data for SEO/AEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="mt-4 text-base lg:mt-8">
-        <div className="font-iter text-muted mt-4 text-base tracking-wide normal-case">
+      {/* Intro */}
+      <div className="text-muted mt-6 space-y-4 text-base leading-relaxed tracking-wide normal-case lg:mt-8">
+        <p>
           Building the platform engine at{" "}
           <Preview containerClassName="p-0" content={<WavemakerCard />}>
-            {" "}
-            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
-              Wavemaker
-            </span>
+            <span className={badgeClass}>Wavemaker</span>
           </Preview>{" "}
-          that powers <b className="font-medium"> React/Nextjs</b> application
-          generation. Previously at{" "}
+          that powers{" "}
+          <b className="font-medium text-zinc-900 dark:text-zinc-100">
+            React / Next.js
+          </b>{" "}
+          application generation. Previously at{" "}
           <Preview
             containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
             content={<RavaAICard />}
           >
-            {" "}
-            <span className="mx-0.5 cursor-pointer rounded bg-zinc-50 p-0.5 px-1 text-sm ring ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800">
-              Rava AI
-            </span>
+            <span className={badgeClass}>Rava AI</span>
           </Preview>
-          , where I took the product from zero to production. handling frontend,
-          backend, DevOps, and AI integrations end-to-end.{" "}
-          <br className="h-3" />{" "}
-          <div className="mt-4">
-            I’m passionate about platform engineering, scalable web systems, and
-            building tools that make developers more productive.
-          </div>
-        </div>
+          , where I took the product from zero to production handling frontend,
+          backend, DevOps, and AI integrations end-to-end.
+        </p>
+        <p>
+          I’m passionate about platform engineering, scalable web systems, and
+          building tools that make developers more productive.
+        </p>
       </div>
-      <div className="mt-4 flex gap-x-2">
+
+      {/* Social links */}
+      <nav aria-label="Social links" className="mt-6 flex flex-wrap gap-1">
         {social_links.map((link, idx) => (
           <Tooltip key={idx}>
             <TooltipTrigger asChild>
               <Link
                 href={link.url}
                 target="_blank"
-                className="rounded-full p-1"
+                className="inline-flex items-center justify-center rounded-md p-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                 aria-label={link.name}
               >
-                <link.icon
-                  aria-hidden="true"
-                  className="size-4 text-zinc-600 dark:text-zinc-300"
-                />
+                <link.icon aria-hidden="true" className="size-4" />
               </Link>
             </TooltipTrigger>
 
@@ -113,48 +113,54 @@ export default function Home() {
             </TooltipContent>
           </Tooltip>
         ))}
-      </div>
+      </nav>
 
-      {/* <OpenToWork /> */}
       <Journey />
 
-      <div className="mt-12">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">
-            <Link href="/writings">Recent writings</Link>{" "}
-          </h2>
-        </div>
-        <div className="text-muted mt-2 text-base">
+      <Section id="writings">
+        <SectionHeader
+          id="writings-title"
+          label="Blog"
+          title="Recent writings"
+          href="/writings"
+        />
+        <div className="text-muted mt-5 text-base">
           <BlogList />
         </div>
-      </div>
-      <Projects show={1} />
-      {/* Skills Section */}
-      <div className="mt-12">
-        <h2 className="text-lg font-semibold">Skills</h2>
+      </Section>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+      <Projects show={1} />
+
+      <Section id="skills">
+        <SectionHeader id="skills" title="Skills" />
+        <div className="mt-5 flex flex-wrap gap-2">
           {skills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded border border-neutral-200 px-2.5 py-1 font-mono text-xs text-neutral-600 transition-all duration-200 hover:border-zinc-400 hover:text-zinc-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-500 dark:hover:text-zinc-100"
-            >
-              {skill}
-            </span>
+            <TechTag key={skill} label={skill} />
           ))}
         </div>
-      </div>
-      <GitHubContributions />
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold">Contact</h2>
-        <p className="text-muted mt-2 text-base">
-          Interested in a conversation? drop DMs over{" "}
+      </Section>
+
+      <Section id="github">
+        <SectionHeader
+          id="github-title"
+          label="Activity"
+          title="GitHub contributions"
+        />
+        <div className="mt-4">
+          <GitHubContributions />
+        </div>
+      </Section>
+
+      <Section id="contact">
+        <SectionHeader id="contact-title" label="Say hi" title="Contact" />
+        <p className="text-muted mt-3 text-base leading-relaxed">
+          Interested in a conversation? Drop a DM on{" "}
           <Link
             href="/linkedin"
             className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
             target="_blank"
           >
-            Linkedin
+            LinkedIn
           </Link>{" "}
           or{" "}
           <Link
@@ -163,11 +169,11 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Email
+            email
           </Link>
           . Ask me anything about my work, projects, or anything else.
         </p>
-      </div>
+      </Section>
     </main>
   )
 }

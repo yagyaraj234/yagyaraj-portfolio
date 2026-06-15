@@ -81,7 +81,7 @@ export const social_links = [
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/yagyaraj234",
+    url: "https://twitter.com/heyraj__",
     icon: XTwitterIcon,
   },
   { name: "Medium", url: "https://blog.yagyaraj.com", icon: MediumIcon },

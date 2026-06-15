@@ -1,5 +1,10 @@
 import { ArrowUp } from "lucide-react"
 import Link from "next/link"
+import { Section, SectionHeader } from "@/app/components/ui/section"
+import { TechTag } from "@/app/components/ui/tech-tag"
+
+const linkClass =
+  "inline-flex items-center gap-1.5 rounded-lg border border-(--color-border) px-2.5 py-1 font-dm-mono text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
 
 const projectsData = [
   {
@@ -13,10 +18,10 @@ const projectsData = [
       "TypeScript",
       "Hono.js",
       "Postgres + pgvector",
-      "Tree-sitter",
       "BullMQ + Redis",
       "Google Cloud Platform",
       "GitHub App",
+      "Tree-sitter",
     ],
   },
   {
@@ -36,57 +41,48 @@ export function Projects({ show = 10 }: { show?: number }) {
   const [featured, ...secondary] = projectsToDisplay
 
   return (
-    <section className="mt-12 mb-6" aria-label="Projects">
-      <h2 className="text-lg font-semibold">Projects</h2>
+    <Section divider id="projects">
+      <SectionHeader
+        id="projects-title"
+        label="Selected work"
+        title="Projects"
+      />
 
-      <div className="mt-4 flex flex-col gap-3">
+      <div className="mt-5 flex flex-col gap-3">
         {/* Featured project */}
-        <div className="rounded-xl border-[0.5px] border-(--color-border)/70 bg-(--color-bg-secondary) p-6 transition-colors duration-200 hover:border-(--color-border-hover)">
+        <div className="rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/50 p-6 transition-colors duration-200 hover:border-(--color-border-hover)">
           {/* Status badge */}
-          <div className="mb-4 inline-flex items-center gap-1.5 rounded-md bg-[#E1F5EE] px-2 py-1">
+          <div className="mb-4 inline-flex items-center gap-1.5 rounded-md bg-[#E1F5EE] px-2 py-1 dark:bg-[#0D9E75]/15">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0D9E75]" />
-            <span className="font-[family-name:var(--font-dm-mono),monospace] text-[10px] leading-none text-[#0F6E56]">
-              Completed
+            <span className="font-dm-mono text-[10px] leading-none text-[#0F6E56] dark:text-[#34D399]">
+              {featured.status}
             </span>
           </div>
 
-          <h3 className="mb-2 font-[family-name:var(--font-sans),sans-serif] text-xl font-medium text-(--color-text-primary)">
+          <h3 className="mb-2 font-sans text-xl font-medium text-(--color-text-primary)">
             {featured.title}
           </h3>
 
-          <p className="mb-5 font-[family-name:var(--font-sans),sans-serif] text-[13px] leading-[1.6] text-(--color-text-secondary)">
+          <p className="mb-5 max-w-prose font-sans text-[13px] leading-[1.6] text-(--color-text-secondary)">
             {featured.description}
           </p>
 
-          <div className="mb-5 flex gap-2">
+          {/* <div className="mb-5 flex gap-2">
             {featured.live && (
-              <Link
-                href={featured.live}
-                target="_blank"
-                className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
-              >
+              <Link href={featured.live} target="_blank" className={linkClass}>
                 Live <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
             {featured.git && (
-              <Link
-                href={featured.git}
-                target="_blank"
-                className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
-              >
+              <Link href={featured.git} target="_blank" className={linkClass}>
                 Code <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
-          </div>
+          </div> */}
 
-          <div className="flex flex-wrap gap-[5px]">
+          <div className="flex flex-wrap gap-1.5">
             {featured.tags.map((tag, i) => (
-              <span
-                key={i}
-                className="rounded-sm border-[0.5px] border-(--color-border) px-[7px] py-0.5 font-[family-name:var(--font-dm-mono),monospace] text-[10px] leading-none text-zinc-600"
-              >
-                {tag}
-              </span>
+              <TechTag key={i} label={tag} size="sm" />
             ))}
           </div>
         </div>
@@ -95,22 +91,22 @@ export function Projects({ show = 10 }: { show?: number }) {
         {secondary.map((project, idx) => (
           <div
             key={idx}
-            className="flex items-start justify-between gap-4 rounded-xl border-[0.5px] border-(--color-border)/70 bg-(--color-bg-secondary) px-5 py-4 transition-colors duration-200 hover:border-(--color-border-hover)"
+            className="flex items-start justify-between gap-4 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) px-5 py-4 transition-colors duration-200 hover:border-(--color-border-hover)"
           >
             <div className="flex-1">
-              <div className="mb-1 font-[family-name:var(--font-dm-mono),monospace] text-[11px] text-(--color-text-tertiary)">
+              <div className="font-dm-mono mb-1 text-[11px] text-(--color-text-tertiary)">
                 {project.number}
               </div>
-              <h3 className="mb-1 font-[family-name:var(--font-sans),sans-serif] text-[14px] font-medium text-(--color-text-primary)">
+              <h3 className="mb-1 font-sans text-[14px] font-medium text-(--color-text-primary)">
                 {project.title}
               </h3>
-              <p className="font-[family-name:var(--font-sans),sans-serif] text-[12px] leading-[1.6] text-(--color-text-secondary)">
+              <p className="font-sans text-[12px] leading-[1.6] text-(--color-text-secondary)">
                 {project.description}
               </p>
             </div>
 
             <div className="flex shrink-0 flex-col items-end gap-2">
-              <span className="font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-tertiary) uppercase">
+              <span className="font-dm-mono text-[10px] text-(--color-text-tertiary) uppercase">
                 {project.status}
               </span>
               <div className="flex gap-1.5">
@@ -118,7 +114,7 @@ export function Projects({ show = 10 }: { show?: number }) {
                   <Link
                     href={project.live}
                     target="_blank"
-                    className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                    className={linkClass}
                   >
                     Live <ArrowUp className="size-3 rotate-45" />
                   </Link>
@@ -127,7 +123,7 @@ export function Projects({ show = 10 }: { show?: number }) {
                   <Link
                     href={project.git}
                     target="_blank"
-                    className="flex items-center gap-2 rounded-lg border-[0.5px] border-(--color-border) bg-transparent px-2.5 py-1 font-[family-name:var(--font-dm-mono),monospace] text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
+                    className={linkClass}
                   >
                     Code <ArrowUp className="size-3 rotate-45" />
                   </Link>
@@ -137,6 +133,6 @@ export function Projects({ show = 10 }: { show?: number }) {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }

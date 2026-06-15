@@ -68,11 +68,12 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
             <button
               key={tag}
               onClick={() => toggleTag(tag)}
+              aria-pressed={selectedTag === tag}
               className={cn(
-                "rounded-full border px-3 py-1 text-xs transition-colors",
+                "font-dm-mono rounded-full border px-3 py-1 text-xs transition-colors",
                 selectedTag === tag
-                  ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
-                  : "border-gray-200 bg-transparent text-gray-600 hover:border-gray-400 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-600"
+                  ? "border-(--color-text-primary) bg-(--color-text-primary) text-(--background)"
+                  : "border-(--color-border) text-(--color-text-secondary) hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
               )}
             >
               #{tag}
@@ -82,7 +83,7 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
 
         <button
           onClick={toggleSort}
-          className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1 text-xs font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-900"
+          className="font-dm-mono flex shrink-0 items-center gap-2 rounded-lg border border-(--color-border) px-3 py-1 text-xs whitespace-nowrap text-(--color-text-secondary) transition-colors hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
           title={`Sort by date ${sortOrder === "asc" ? "ascending" : "descending"}`}
         >
           {sortOrder === "asc" ? (
@@ -100,75 +101,70 @@ export default function PostList({ posts }: { posts: PostIndexItem[] }) {
       </div>
 
       {sortedPosts.length === 0 ? (
-        <p className="text-gray-500">
-          No posts found matching "{search}"
-          {selectedTag && <span> with tag "#{selectedTag}"</span>}.
+        <p className="text-(--color-text-secondary)">
+          No posts found matching “{search}”
+          {selectedTag && <span> with tag “#{selectedTag}”</span>}.
         </p>
       ) : (
-        <ul className="not-prose space-y-4">
+        <ul className="not-prose flex flex-col">
           {sortedPosts.map(({ slug, metadata, readingTime }) => (
             <li
               key={slug}
-              className="flex justify-between gap-2 pb-2 max-md:flex-col md:pb-6"
+              className="group border-t border-(--color-border) first:border-t-0"
             >
-              <div>
-                <h2 className="text-xl font-semibold max-md:text-lg max-sm:text-lg">
-                  <Link
-                    href={`/blog/${slug}`}
-                    className="cursor-pointer text-zinc-800 hover:underline dark:text-zinc-200"
-                    prefetch={false}
-                  >
-                    {metadata.title}
-                  </Link>
+              <Link
+                href={`/blog/${slug}`}
+                prefetch={false}
+                className="block py-5 transition-opacity"
+              >
+                <h2 className="text-lg font-semibold tracking-tight text-(--color-text-primary) transition-colors group-hover:text-[#1D6FA4] dark:group-hover:text-[#5BA8D6]">
+                  {metadata.title}
                 </h2>
 
                 {metadata.summary ? (
-                  <p className="mt-1 text-sm text-zinc-800/80 dark:text-white/80">
+                  <p className="mt-1.5 text-sm leading-relaxed text-(--color-text-secondary)">
                     {metadata.summary}
                   </p>
                 ) : null}
 
-                {/* published date, read time and tags */}
-                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-600 dark:text-gray-400">
-                  <div className="flex items-center gap-2">
-                    {metadata.date && (
-                      <time dateTime={metadata.date}>
-                        {new Intl.DateTimeFormat("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                          timeZone: "UTC",
-                        }).format(new Date(metadata.date))}
-                      </time>
-                    )}
-                    {readingTime && (
-                      <div className="flex items-center gap-2">
-                        <div className="h-1 w-1 rounded-full bg-black/50 dark:bg-white/50"></div>
-                        <span>{readingTime}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {metadata.tags && metadata.tags.length > 0 && (
-                    <div className="flex gap-2">
-                      {metadata.tags.map((tag) => (
-                        <button
-                          key={tag}
-                          onClick={() => toggleTag(tag)}
-                          className={cn(
-                            "hidden hover:underline",
-                            selectedTag === tag
-                              ? "font-bold text-black dark:text-white"
-                              : ""
-                          )}
-                        >
-                          #{tag}
-                        </button>
-                      ))}
-                    </div>
+                {/* published date + read time */}
+                <div className="font-dm-mono mt-2.5 flex flex-wrap items-center gap-x-2 text-xs text-(--color-text-tertiary)">
+                  {metadata.date && (
+                    <time dateTime={metadata.date} className="tabular-nums">
+                      {new Intl.DateTimeFormat("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                        timeZone: "UTC",
+                      }).format(new Date(metadata.date))}
+                    </time>
                   )}
+                  {metadata.date && readingTime && (
+                    <span className="h-1 w-1 rounded-full bg-(--color-text-tertiary)" />
+                  )}
+                  {readingTime && <span>{readingTime}</span>}
                 </div>
-              </div>
+              </Link>
+
+              {metadata.tags && metadata.tags.length > 0 && (
+                <div className="-mt-1 flex hidden flex-wrap gap-2 pb-5">
+                  {metadata.tags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => toggleTag(tag)}
+                      aria-pressed={selectedTag === tag}
+                      className={cn(
+                        "font-dm-mono text-xs transition-colors hover:text-(--color-text-primary)",
+                        selectedTag === tag
+                          ? "font-medium text-(--color-text-primary)"
+                          : "text-(--color-text-tertiary)"
+                      )}
+                    >
+                      #{tag}
+                    </button>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

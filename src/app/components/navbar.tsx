@@ -17,10 +17,10 @@ export const navItems: NavItem[] = [
     name: "Writings",
     link: "/blog",
   },
-  {
-    name: "Lab",
-    link: "/lab",
-  },
+  // {
+  //   name: "Lab",
+  //   link: "/lab",
+  // },
 ]
 
 export const Navbar = () => {
@@ -33,7 +33,8 @@ export const Navbar = () => {
             <Link
               key={idx}
               href={item.link}
-              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-700 ease-in-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-white`}
+              aria-current={pathname === item.link ? "page" : undefined}
+              className={` ${pathname === item.link ? "text-gray-900 dark:text-white" : ""} cursor-pointer text-sm whitespace-nowrap text-gray-500 transition-colors duration-200 ease-in-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-white`}
             >
               {item.name}
             </Link>

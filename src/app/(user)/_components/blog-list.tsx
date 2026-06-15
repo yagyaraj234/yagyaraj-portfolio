@@ -11,14 +11,14 @@ type BlogItemProps = {
 
 function BlogItem(props: BlogItemProps) {
   return (
-    <div className="group border-b border-neutral-200 transition-colors hover:bg-neutral-50/50 dark:border-neutral-800 dark:hover:bg-neutral-900/20">
+    <div className="group border-t border-(--color-border) transition-colors first:border-t-0 hover:bg-neutral-50/50 dark:hover:bg-neutral-900/20">
       <Link
         href={props.url}
         className="flex w-full cursor-pointer items-start justify-between gap-4 py-3.5 text-left"
       >
         <div className="flex flex-col gap-1">
           <div className="flex flex-wrap items-baseline gap-2">
-            <span className="group-h text-sm font-medium text-zinc-900 transition-colors group-hover:opacity-80 dark:text-zinc-100">
+            <span className="text-sm font-medium text-zinc-900 transition-colors group-hover:opacity-80 dark:text-zinc-100">
               {props.title}
             </span>
           </div>
@@ -53,8 +53,8 @@ export default async function BlogList() {
   }
 
   return (
-    <div className="mt-4 flex w-full flex-col">
-      {posts?.slice(0, 3)?.map((pt, idx) => (
+    <div className="flex w-full flex-col">
+      {posts?.slice(0, 3)?.map((pt) => (
         <BlogItem
           key={pt.slug}
           title={pt.metadata.title}

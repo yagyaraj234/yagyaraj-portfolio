@@ -9,6 +9,7 @@
   --font-handwriting: var(--font-handwriting);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
+  --font-dm-mono: var(--font-dm-mono);
   --sh-class: #7aa2f7;
   --sh-sign: #89ddff;
   --sh-string: #9ece6a;
@@ -97,13 +98,36 @@ svg {
 
 .hero-name {
   font-family: var(--font-instrument-serif), serif;
-  font-size: clamp(42px, 8vw, 68px);
+  font-size: clamp(44px, 8vw, 68px);
   font-weight: 400;
   line-height: 0.7;
-  letter-spacing: -0.02em;
-  margin: 2.5rem 0;
+  letter-spacing: -0.025em;
+  margin: 2.25rem 0;
 }
 
 button {
   cursor: pointer;
+}
+
+/* Consistent, accessible keyboard focus ring across interactive elements */
+@layer base {
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: none;
+    border-radius: 4px;
+    box-shadow:
+      0 0 0 2px var(--background),
+      0 0 0 4px #1d6fa4;
+  }
+}
+
+/* Section eyebrow label  small uppercase mono, used across home sections */
+.section-label {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
 }

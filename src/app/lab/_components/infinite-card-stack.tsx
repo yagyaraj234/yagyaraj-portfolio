@@ -95,19 +95,19 @@ export default function InfiniteCardStack() {
 
   // When animating: front card flies down, middle advances, back card hides
   const animatingLayerStyles = [
-    // Front card — flies down
+    // Front card  flies down
     {
       transform: "translateY(120%) scale(1)",
       zIndex: 30,
       opacity: 0,
     },
-    // Middle card — moves to front position
+    // Middle card  moves to front position
     {
       transform: "translateY(0px) scale(1)",
       zIndex: 20,
       opacity: 1,
     },
-    // Back card — shrinks and fades out (hides behind middle)
+    // Back card  shrinks and fades out (hides behind middle)
     {
       transform: "translateY(-8px) scale(0.82)",
       zIndex: 10,
