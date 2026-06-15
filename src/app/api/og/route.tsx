@@ -100,7 +100,7 @@ export async function GET() {
               gap: 18,
             }}
           >
-            {/* role — briefcase */}
+            {/* role  briefcase */}
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <div
                 style={{
@@ -166,7 +166,7 @@ export async function GET() {
               </div>
             </div>
 
-            {/* location — pin */}
+            {/* location  pin */}
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <div
                 style={{
@@ -219,7 +219,7 @@ export async function GET() {
               </span>
             </div>
 
-            {/* skills — </> */}
+            {/* skills  </> */}
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <div
                 style={{

@@ -33,14 +33,14 @@ export default async function BlogIndexPage() {
 
   return (
     <main
-      className="prose dark:prose-invert min-h-[calc(100vh-128px)] sm:min-w-3xl"
+      className="prose dark:prose-invert min-h-[calc(100vh-128px)] w-full max-w-none"
       role="main"
     >
-      <div className="flex-1 sm:min-w-3xl">
+      <div className="w-full">
         <h1 className="hero-name">
           Writings
           <br />
-          <em className="font-dm-mono text-muted text-3xl sm:text-4xl">
+          <em className="font-instrumentSerif text-muted text-3xl sm:text-4xl">
             Written to <span style={{ color: "#1D6FA4" }}>Remember.</span>
           </em>
         </h1>

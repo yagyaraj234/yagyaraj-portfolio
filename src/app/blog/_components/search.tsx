@@ -13,13 +13,14 @@ export default function Search() {
   )
 
   return (
-    <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-2 dark:border-gray-800 dark:bg-zinc-950">
+    <div className="mb-6 rounded-lg border border-(--color-border) bg-(--color-bg-secondary) px-3 py-2 transition-colors focus-within:border-(--color-border-hover)">
       <input
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value || null)}
-        placeholder="Search posts..."
-        className="w-full bg-transparent px-2 text-sm outline-none placeholder:text-gray-500"
+        placeholder="Search posts…"
+        aria-label="Search posts"
+        className="w-full bg-transparent text-sm text-(--color-text-primary) outline-none placeholder:text-(--color-text-tertiary)"
       />
     </div>
   )

@@ -1,6 +1,11 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Shantell_Sans, Geist, Instrument_Serif } from "next/font/google"
+import {
+  Shantell_Sans,
+  Geist,
+  Instrument_Serif,
+  DM_Mono,
+} from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { ReactLenis } from "lenis/react"
@@ -32,6 +37,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-instrument-serif",
+  display: "swap",
+})
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-mono",
   display: "swap",
 })
 
@@ -144,6 +157,7 @@ export default function RootLayout({
             sans.variable,
             giest.className,
             instrumentSerif.variable,
+            dmMono.variable,
             "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
           )}
         >

@@ -49,7 +49,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "Execution context, call stack & hoisting",
-            desc: "Understand how JS creates an execution context (Global + Function) and how the call stack manages function calls in LIFO order. Hoisting moves var declarations and function declarations to the top of their scope at compile time — but not assignments. Try logging a var before it's declared.",
+            desc: "Understand how JS creates an execution context (Global + Function) and how the call stack manages function calls in LIFO order. Hoisting moves var declarations and function declarations to the top of their scope at compile time  but not assignments. Try logging a var before it's declared.",
             resources: [
               R(
                 "Execution Context – javascript.info",
@@ -76,7 +76,7 @@ const WEEKS: Week[] = [
           {
             block: "design",
             title: "Clone Vercel landing page layout",
-            desc: "Pick the Vercel.com hero section. Recreate it using HTML + TailwindCSS. Focus on spacing, font weights, and button styles. Don't copy-paste — type every line to build muscle memory. Goal: train your eye for spacing precision.",
+            desc: "Pick the Vercel.com hero section. Recreate it using HTML + TailwindCSS. Focus on spacing, font weights, and button styles. Don't copy-paste  type every line to build muscle memory. Goal: train your eye for spacing precision.",
             resources: [
               R("Vercel.com (reference)", "https://vercel.com", "Website"),
               R("TailwindCSS Docs", "https://tailwindcss.com/docs", "Docs"),
@@ -94,7 +94,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "ai",
-            title: "AI product ideation — brainstorm 5 ideas",
+            title: "AI product ideation  brainstorm 5 ideas",
             desc: "Spend this session thinking about what problem you want to solve with AI. Write 5 ideas, each with: problem, target user, core AI feature, and how you'd build it. Pick the one that excites you most. Keep it small enough to ship in 3 weeks.",
             resources: [
               R("Anthropic API Docs", "https://docs.anthropic.com", "Docs"),
@@ -133,7 +133,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "Closures, scope chain & lexical environment",
-            desc: "A closure is a function that remembers its outer scope even after the outer function returns. The scope chain is how JS looks up variables from inner to outer scope. The lexical environment stores variable bindings — it's what closures hold onto. These are the foundation of React hooks.",
+            desc: "A closure is a function that remembers its outer scope even after the outer function returns. The scope chain is how JS looks up variables from inner to outer scope. The lexical environment stores variable bindings  it's what closures hold onto. These are the foundation of React hooks.",
             resources: [
               R(
                 "Closures – javascript.info",
@@ -273,7 +273,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 3 + write 5 sentences",
-            desc: "New 12 words + 5 sentences. Today's challenge: use 3 words from this set in a short paragraph (4–5 sentences) about something you're learning this week. Writing connected paragraphs is harder — and better — than isolated sentences.",
+            desc: "New 12 words + 5 sentences. Today's challenge: use 3 words from this set in a short paragraph (4–5 sentences) about something you're learning this week. Writing connected paragraphs is harder  and better  than isolated sentences.",
             resources: [
               R(
                 "Merriam-Webster",
@@ -295,7 +295,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "Prototypes, prototype chain & the `this` keyword",
-            desc: "Every JS object has a hidden [[Prototype]] link. When you access a property, JS walks up the prototype chain until it finds it or hits null. The `this` keyword depends on how a function is called — not where it's defined. Master: implicit, explicit (call/apply/bind), new binding, and arrow functions (no own `this`).",
+            desc: "Every JS object has a hidden [[Prototype]] link. When you access a property, JS walks up the prototype chain until it finds it or hits null. The `this` keyword depends on how a function is called  not where it's defined. Master: implicit, explicit (call/apply/bind), new binding, and arrow functions (no own `this`).",
             resources: [
               R(
                 "Prototypes – javascript.info",
@@ -358,7 +358,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 4 + write 5 sentences",
-            desc: "New set + revise sets 1–3 (10 min). Write 5 sentences. Then pick your 3 favourite words from this week and explain each one out loud or in writing — in your own words, no copy-pasting the definition.",
+            desc: "New set + revise sets 1–3 (10 min). Write 5 sentences. Then pick your 3 favourite words from this week and explain each one out loud or in writing  in your own words, no copy-pasting the definition.",
             resources: [
               R(
                 "Anki – spaced repetition flashcards",
@@ -375,8 +375,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "ES6+ internals — generators, iterators & WeakMap",
-            desc: "The iterator protocol: an object with next() returning {value, done}. for...of uses iterators. Generators are pausable functions using yield — they return an iterator. WeakMap holds weak object references (GC-friendly). These show up in library internals and advanced patterns.",
+            title: "ES6+ internals  generators, iterators & WeakMap",
+            desc: "The iterator protocol: an object with next() returning {value, done}. for...of uses iterators. Generators are pausable functions using yield  they return an iterator. WeakMap holds weak object references (GC-friendly). These show up in library internals and advanced patterns.",
             resources: [
               R(
                 "Iterators & Generators – javascript.info",
@@ -397,7 +397,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Weekly design review — fix 2 things",
+            title: "Weekly design review  fix 2 things",
             desc: "Open all 4 UIs from this week. For each, write down 1 thing to improve. Then actually fix at least 2. Compare your work to the original reference. Look for: spacing inconsistencies, font size mismatches, color contrast issues, and alignment problems.",
             resources: [
               R(
@@ -420,7 +420,7 @@ const WEEKS: Week[] = [
           {
             block: "ai",
             title: "Build the first feature of your AI product",
-            desc: "Build one end-to-end: user input → API call → display result. Keep it simple but working. Don't worry about UI polish yet — focus on the core AI interaction loop. Add basic error handling and a loading state. Commit and push.",
+            desc: "Build one end-to-end: user input → API call → display result. Keep it simple but working. Don't worry about UI polish yet  focus on the core AI interaction loop. Add basic error handling and a loading state. Commit and push.",
             resources: [
               R(
                 "Anthropic Messages API",
@@ -456,7 +456,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "comm",
-            title: "Hour 1 — Vocabulary deep review (all week sets)",
+            title: "Hour 1  Vocabulary deep review (all week sets)",
             desc: "Go through all 60 words. Cover the meaning and try to recall before looking. Score yourself. Re-read all example sentences you wrote this week and note any grammatical mistakes.",
             resources: [
               R("Anki", "https://apps.ankiweb.net/", "Tool"),
@@ -465,7 +465,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 2 — Read 1–2 tech articles, study sentence structure",
+            title: "Hour 2  Read 1–2 tech articles, study sentence structure",
             desc: "Read slowly. For each paragraph notice: sentence length variation, connective words (however, therefore, consequently), and how technical terms are introduced. Pick 2 sentence structures you like and write your own versions.",
             resources: [
               R("Hacker News", "https://news.ycombinator.com", "Website"),
@@ -483,7 +483,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 3 — Write a short blog intro or LinkedIn post",
+            title: "Hour 3  Write a short blog intro or LinkedIn post",
             desc: "Write 150–200 words about something you learned this week. Write a first draft, then improve it once. Focus on: clear opening sentence, 2–3 supporting points, closing thought.",
             resources: [
               R(
@@ -496,7 +496,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 4 — YouTube shadowing (TED / tech talk)",
+            title: "Hour 4  YouTube shadowing (TED / tech talk)",
             desc: "Shadowing technique: play a sentence, pause, repeat out loud mimicking the speaker's rhythm and tone exactly. Do this for 20–30 min. Then watch one full video at normal speed.",
             resources: [
               R("TED Talks", "https://www.ted.com/talks", "YouTube"),
@@ -514,13 +514,13 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 5 — Conversation practice with Claude",
+            title: "Hour 5  Conversation practice with Claude",
             desc: "Open Claude and say: 'Let's have a 30-minute English conversation. Correct my grammar naturally. Topic: my learnings this week.' Review all corrections at the end.",
             resources: [R("Claude.ai", "https://claude.ai", "Tool")],
           },
           {
             block: "comm",
-            title: "Hour 6 — Review mistakes + plan next Saturday",
+            title: "Hour 6  Review mistakes + plan next Saturday",
             desc: "Write: words you keep forgetting, grammar patterns you made errors in, and 1 communication goal for next week. Plan Saturday's article topic and YouTube video in advance.",
             resources: [R("Notion", "https://notion.so", "Tool")],
           },
@@ -532,8 +532,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "rest",
-            title: "Rest day — light revision only if needed",
-            desc: "Rest is part of learning. Your brain consolidates memories during sleep and downtime. If you want to do something, spend max 20 mins re-reading notes — no new content today.",
+            title: "Rest day  light revision only if needed",
+            desc: "Rest is part of learning. Your brain consolidates memories during sleep and downtime. If you want to do something, spend max 20 mins re-reading notes  no new content today.",
             resources: [
               R(
                 "Huberman Lab – why rest improves learning",
@@ -555,7 +555,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "JSX compilation & React.createElement",
-            desc: "JSX is syntactic sugar that Babel transforms into React.createElement(type, props, ...children) calls. Understanding this helps you debug weird JSX errors. Try writing a component in pure createElement calls — no JSX.",
+            desc: "JSX is syntactic sugar that Babel transforms into React.createElement(type, props, ...children) calls. Understanding this helps you debug weird JSX errors. Try writing a component in pure createElement calls  no JSX.",
             resources: [
               R(
                 "JSX in depth – React docs",
@@ -576,7 +576,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Typography deep dive — pair fonts creatively",
+            title: "Typography deep dive  pair fonts creatively",
             desc: "3 rules of font pairing: contrast in style (serif + sans), consistency in mood, and hierarchy in size. Build a typography demo page with a display heading, subheading, body, and caption. Avoid Inter and Roboto.",
             resources: [
               R("Google Fonts", "https://fonts.google.com", "Tool"),
@@ -587,7 +587,7 @@ const WEEKS: Week[] = [
           {
             block: "ai",
             title: "Build the core AI feature (prompt + API)",
-            desc: "Write your system prompt carefully — this is the most impactful thing you'll write. Test multiple prompt versions. Build the full request/response cycle with error handling. Add a loading state. Stream the response if possible.",
+            desc: "Write your system prompt carefully  this is the most impactful thing you'll write. Test multiple prompt versions. Build the full request/response cycle with error handling. Add a loading state. Stream the response if possible.",
             resources: [
               R(
                 "Anthropic prompt engineering guide",
@@ -622,7 +622,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "Virtual DOM, diffing algorithm & reconciliation",
-            desc: "React maintains a virtual DOM — a JS object tree representing the UI. On state change, React creates a new virtual tree and diffs it using a heuristic O(n) algorithm: same type = update props, different type = replace, lists use the key prop. Only real differences get applied to the DOM.",
+            desc: "React maintains a virtual DOM  a JS object tree representing the UI. On state change, React creates a new virtual tree and diffs it using a heuristic O(n) algorithm: same type = update props, different type = replace, lists use the key prop. Only real differences get applied to the DOM.",
             resources: [
               R(
                 "Reconciliation – React docs",
@@ -643,7 +643,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Color theory — build a cohesive palette",
+            title: "Color theory  build a cohesive palette",
             desc: "Learn the 60-30-10 rule: 60% dominant, 30% secondary, 10% accent. Build a 5-color palette using Coolors. Apply it to a simple card layout. Ensure WCAG AA contrast ratio (4.5:1) for all text.",
             resources: [
               R("Coolors.co – palette generator", "https://coolors.co", "Tool"),
@@ -662,7 +662,7 @@ const WEEKS: Week[] = [
           {
             block: "ai",
             title: "Build the first UI screens for your product",
-            desc: "Design and build the main screen where the user interacts with your AI feature. Focus on: input area, output display, and loading state. It doesn't need to be beautiful yet — focus on the interaction flow being clear and usable.",
+            desc: "Design and build the main screen where the user interacts with your AI feature. Focus on: input area, output display, and loading state. It doesn't need to be beautiful yet  focus on the interaction flow being clear and usable.",
             resources: [
               R("Shadcn/ui components", "https://ui.shadcn.com/", "Docs"),
               R(
@@ -697,8 +697,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "React Fiber architecture — deep dive",
-            desc: "Fiber is React's reimplementation of the reconciler (React 16+). Each component maps to a fiber node — a unit of work. Fiber enables incremental rendering: React can pause, abort, or reuse work. This enables Suspense, Concurrent Mode, and useTransition.",
+            title: "React Fiber architecture  deep dive",
+            desc: "Fiber is React's reimplementation of the reconciler (React 16+). Each component maps to a fiber node  a unit of work. Fiber enables incremental rendering: React can pause, abort, or reuse work. This enables Suspense, Concurrent Mode, and useTransition.",
             resources: [
               R(
                 "React Fiber Architecture – GitHub",
@@ -719,7 +719,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Spacing and layout — 8px grid practice",
+            title: "Spacing and layout  8px grid practice",
             desc: "Most great design systems use a base-8 spacing scale (4, 8, 12, 16, 24, 32, 48, 64). Build a page layout using only multiples of 8 for all padding, margin, and gap values. Notice how it creates natural visual rhythm.",
             resources: [
               R(
@@ -771,8 +771,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Hooks internals — useState & useEffect under the hood",
-            desc: "Hooks are stored as a linked list on the fiber node. This is why hooks can't be called conditionally — React relies on the same call order every render. useState stores state in a hook object. useEffect schedules effects after paint. The dependency array is compared with Object.is().",
+            title: "Hooks internals  useState & useEffect under the hood",
+            desc: "Hooks are stored as a linked list on the fiber node. This is why hooks can't be called conditionally  React relies on the same call order every render. useState stores state in a hook object. useEffect schedules effects after paint. The dependency array is compared with Object.is().",
             resources: [
               R(
                 "Why hooks rely on call order – Overreacted",
@@ -815,7 +815,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "ai",
-            title: "Iterate on UI — polish interactions and fix bugs",
+            title: "Iterate on UI  polish interactions and fix bugs",
             desc: "Focus on: better empty states, clearer loading indicators, helpful error messages (not technical ones). Verify your UI works on mobile. Test on actual phone if possible.",
             resources: [
               R(
@@ -872,7 +872,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Weekly design review — compare with Dribbble",
+            title: "Weekly design review  compare with Dribbble",
             desc: "Find 3 Dribbble shots in your product category. Compare them to your work. For each, identify one specific technique you haven't tried: gradient borders, glassmorphism, illustrated backgrounds, etc. Implement one of them.",
             resources: [
               R("Dribbble", "https://dribbble.com", "Website"),
@@ -918,7 +918,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "comm",
-            title: "Hour 1 — Vocabulary deep review (sets 6–10)",
+            title: "Hour 1  Vocabulary deep review (sets 6–10)",
             desc: "Cover all 60 words. Self-test: hide the meaning and try to recall. For words you miss, write a new example sentence on the spot.",
             resources: [
               R("Quizlet", "https://quizlet.com", "Tool"),
@@ -927,7 +927,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 2 — Read and analyse 2 well-written articles",
+            title: "Hour 2  Read and analyse 2 well-written articles",
             desc: "Read once for content, then again to underline: sentence openers, transition phrases, and vocabulary from your sets. Write down 5 phrases you want to reuse.",
             resources: [
               R("Stratechery", "https://stratechery.com/", "Newsletter"),
@@ -940,7 +940,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 3 — Write a product description for your AI product",
+            title: "Hour 3  Write a product description for your AI product",
             desc: "Write 200 words: what your product does, who it's for, why it's useful. No jargon. Write as if explaining to a smart non-technical friend. Edit twice, then share with Claude for feedback.",
             resources: [
               R("Hemingway App", "https://hemingwayapp.com/", "Tool"),
@@ -949,7 +949,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 4 — YouTube shadowing session",
+            title: "Hour 4  YouTube shadowing session",
             desc: "Same technique as last week. Try a slightly faster speaker. After shadowing, pick one 2-minute clip and repeat it 3 times trying to perfectly match the speaker's natural rhythm.",
             resources: [
               R("TED Talks", "https://www.ted.com/talks", "YouTube"),
@@ -958,14 +958,14 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 5 — Conversation practice with Claude",
+            title: "Hour 5  Conversation practice with Claude",
             desc: "Explain one technical concept you learned this week (event loop, Fiber, etc.) in plain English to Claude as if teaching a junior developer. Ask Claude to point out unclear explanations or grammar issues.",
             resources: [R("Claude.ai", "https://claude.ai", "Tool")],
           },
           {
             block: "comm",
-            title: "Hour 6 — Mistakes review + week 3 planning",
-            desc: "Log grammar corrections from this week. Look for patterns — same mistake repeatedly? Plan next Saturday in advance: pick the article and video now.",
+            title: "Hour 6  Mistakes review + week 3 planning",
+            desc: "Log grammar corrections from this week. Look for patterns  same mistake repeatedly? Plan next Saturday in advance: pick the article and video now.",
             resources: [R("Notion", "https://notion.so", "Tool")],
           },
         ],
@@ -976,7 +976,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "rest",
-            title: "Rest day — optional light review",
+            title: "Rest day  optional light review",
             desc: "If you want to do something, re-read vocabulary sentences from the week or watch one short tech video. Keep it under 20 minutes.",
             resources: [],
           },
@@ -992,8 +992,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "memo, useMemo & useCallback — when and why",
-            desc: "React.memo prevents re-rendering if props haven't changed (shallow comparison). useMemo memoizes an expensive computed value. useCallback memoizes a function reference. Critical insight: these have a cost — only apply when you've profiled a real performance issue.",
+            title: "memo, useMemo & useCallback  when and why",
+            desc: "React.memo prevents re-rendering if props haven't changed (shallow comparison). useMemo memoizes an expensive computed value. useCallback memoizes a function reference. Critical insight: these have a cost  only apply when you've profiled a real performance issue.",
             resources: [
               R(
                 "useMemo – React docs",
@@ -1020,7 +1020,7 @@ const WEEKS: Week[] = [
           {
             block: "design",
             title: "Build a full landing page from scratch",
-            desc: "No cloning this time — design and build your own original landing page. Include: hero, features section, social proof, and CTA. Apply everything from weeks 1–2: 8px spacing system, font pairing, cohesive color palette, and responsive layout.",
+            desc: "No cloning this time  design and build your own original landing page. Include: hero, features section, social proof, and CTA. Apply everything from weeks 1–2: 8px spacing system, font pairing, cohesive color palette, and responsive layout.",
             resources: [
               R(
                 "Landing page examples – Lapa Ninja",
@@ -1033,7 +1033,7 @@ const WEEKS: Week[] = [
           {
             block: "ai",
             title: "Deploy your AI product to production",
-            desc: "Deploy to Vercel. Set up proper environment variables — ensure API keys are never exposed on the client side. Test the deployed version thoroughly on mobile and desktop. Share the live URL.",
+            desc: "Deploy to Vercel. Set up proper environment variables  ensure API keys are never exposed on the client side. Test the deployed version thoroughly on mobile and desktop. Share the live URL.",
             resources: [
               R(
                 "Vercel deployment docs",
@@ -1050,7 +1050,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 11 + write 5 sentences",
-            desc: "New 12 words + 5 sentences. From this week onwards: try to use new vocabulary naturally in your daily messages — Slack, WhatsApp, emails. Organic usage is the best reinforcement.",
+            desc: "New 12 words + 5 sentences. From this week onwards: try to use new vocabulary naturally in your daily messages  Slack, WhatsApp, emails. Organic usage is the best reinforcement.",
             resources: [
               R(
                 "Merriam-Webster",
@@ -1067,7 +1067,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Custom hooks — patterns and composability",
+            title: "Custom hooks  patterns and composability",
             desc: "Custom hooks let you extract stateful logic into reusable functions. A custom hook must call at least one built-in hook. Master common patterns: useDebounce, useFetch, useLocalStorage, useMediaQuery.",
             resources: [
               R(
@@ -1135,8 +1135,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Context internals — when it causes re-renders",
-            desc: "Every component calling useContext re-renders when the context value reference changes — even if the specific data it uses didn't change. Solutions: split contexts by update frequency, memoize the value with useMemo, or use Zustand.",
+            title: "Context internals  when it causes re-renders",
+            desc: "Every component calling useContext re-renders when the context value reference changes  even if the specific data it uses didn't change. Solutions: split contexts by update frequency, memoize the value with useMemo, or use Zustand.",
             resources: [
               R(
                 "useContext – React docs",
@@ -1157,8 +1157,8 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Dark mode — adapt your landing page",
-            desc: "Add a dark mode toggle. Use CSS custom properties and toggle a class on the html element. Study how Vercel and Linear handle dark mode — they use different shades for dark surfaces, not just color inversions.",
+            title: "Dark mode  adapt your landing page",
+            desc: "Add a dark mode toggle. Use CSS custom properties and toggle a class on the html element. Study how Vercel and Linear handle dark mode  they use different shades for dark surfaces, not just color inversions.",
             resources: [
               R(
                 "Dark mode in CSS – web.dev",
@@ -1206,8 +1206,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Zustand & Redux basics — state management internals",
-            desc: "Redux: single store, pure reducer functions, flux pattern (action → reducer → state → view). Zustand: simpler — a store is just a hook backed by a closure with set and get. Know when to reach for external state vs lifting state up.",
+            title: "Zustand & Redux basics  state management internals",
+            desc: "Redux: single store, pure reducer functions, flux pattern (action → reducer → state → view). Zustand: simpler  a store is just a hook backed by a closure with set and get. Know when to reach for external state vs lifting state up.",
             resources: [
               R(
                 "Zustand docs",
@@ -1228,7 +1228,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Mobile responsiveness — deep practice",
+            title: "Mobile responsiveness  deep practice",
             desc: "Make your landing page fully mobile-responsive. Test at: 375px (iPhone SE), 390px (iPhone 14), 768px (tablet). Common issues: text too small, tap targets too close (min 44px), images overflow, nav needs mobile menu.",
             resources: [
               R(
@@ -1258,7 +1258,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 14 + write 5 sentences",
-            desc: "New 12 words + 5 sentences. Also: create a personal top-20 cheat sheet — your favourite words from all sets that you want to actively use in daily communication.",
+            desc: "New 12 words + 5 sentences. Also: create a personal top-20 cheat sheet  your favourite words from all sets that you want to actively use in daily communication.",
             resources: [
               R("Anki", "https://apps.ankiweb.net/", "Tool"),
               R("Notion", "https://notion.so", "Tool"),
@@ -1272,7 +1272,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "Code splitting, lazy loading & Suspense",
-            desc: "Code splitting breaks your bundle into smaller chunks loaded on demand. React.lazy() + Suspense lets you lazy-load components. In Next.js, use dynamic(). Route-level splitting is almost always worth it — component-level only when the component is large and not used on first render.",
+            desc: "Code splitting breaks your bundle into smaller chunks loaded on demand. React.lazy() + Suspense lets you lazy-load components. In Next.js, use dynamic(). Route-level splitting is almost always worth it  component-level only when the component is large and not used on first render.",
             resources: [
               R(
                 "React.lazy – React docs",
@@ -1293,7 +1293,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Weekly design review — before/after comparison",
+            title: "Weekly design review  before/after comparison",
             desc: "Take screenshots of your Week 1 design work. Compare side-by-side with this week's work. Write down 3 concrete things that improved. Find one area still weak and make a plan.",
             resources: [
               R(
@@ -1317,7 +1317,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 15 + full week review",
-            desc: "New set + 5 sentences. Review all sets 11–15. Write a 100-word paragraph about your AI product journey so far — use as much vocabulary from your sets as naturally fits.",
+            desc: "New set + 5 sentences. Review all sets 11–15. Write a 100-word paragraph about your AI product journey so far  use as much vocabulary from your sets as naturally fits.",
             resources: [
               R("Hemingway App", "https://hemingwayapp.com/", "Tool"),
               R("Grammarly", "https://grammarly.com", "Tool"),
@@ -1331,13 +1331,13 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "comm",
-            title: "Hour 1 — Vocabulary deep review (sets 11–15)",
+            title: "Hour 1  Vocabulary deep review (sets 11–15)",
             desc: "Full 60-word review. Sort into 3 groups: know well / shaky / forgotten. Focus remaining time on the last two groups.",
             resources: [R("Anki", "https://apps.ankiweb.net/", "Tool")],
           },
           {
             block: "comm",
-            title: "Hour 2 — Read and take notes on 2 long articles",
+            title: "Hour 2  Read and take notes on 2 long articles",
             desc: "Pick articles 1500+ words. Read actively: underline topic sentences, note paragraph transitions, identify the thesis. Write a 3-sentence summary of each in your own words.",
             resources: [
               R(
@@ -1350,7 +1350,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 3 — Write a blog post about your AI product",
+            title: "Hour 3  Write a blog post about your AI product",
             desc: "Write 300–400 words: what you built, why, what you learned, what was hardest. Publish it on Dev.to or LinkedIn.",
             resources: [
               R("Dev.to – developer blog", "https://dev.to", "Website"),
@@ -1359,7 +1359,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 4 — YouTube shadowing + product pitch practice",
+            title: "Hour 4  YouTube shadowing + product pitch practice",
             desc: "After shadowing, practice explaining your AI product out loud as if presenting to an interviewer. 2 minutes max. Record yourself and listen back.",
             resources: [
               R("TED Talks", "https://www.ted.com/talks", "YouTube"),
@@ -1372,13 +1372,13 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 5 — Mock interview with Claude (explain your product)",
+            title: "Hour 5  Mock interview with Claude (explain your product)",
             desc: "Tell Claude: 'Play a senior engineer interviewing me. Ask about my AI product: what it does, how I built it, what challenges I faced.' Answer everything in English. Ask for a communication assessment at the end.",
             resources: [R("Claude.ai", "https://claude.ai", "Tool")],
           },
           {
             block: "comm",
-            title: "Hour 6 — Mistakes log + plan final week",
+            title: "Hour 6  Mistakes log + plan final week",
             desc: "Review all mistakes from 3 weeks. What patterns repeat? Plan week 4's Saturday content in advance. Set one specific communication goal for the final week.",
             resources: [R("Notion", "https://notion.so", "Tool")],
           },
@@ -1390,7 +1390,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "rest",
-            title: "Rest day — optional light review",
+            title: "Rest day  optional light review",
             desc: "Take a genuine break. If you want to do something, re-read your Week 1 notes and appreciate how much ground you've covered in 3 weeks.",
             resources: [],
           },
@@ -1407,7 +1407,7 @@ const WEEKS: Week[] = [
           {
             block: "react",
             title: "SSR, SSG & ISR internals in Next.js",
-            desc: "SSR: HTML on every request — fresh data, higher TTFB. SSG: HTML at build time — fastest delivery, potentially stale. ISR: static + background revalidation after N seconds — best of both. In App Router: fetch with cache: 'no-store' = SSR, cache: 'force-cache' = SSG, revalidate: N = ISR.",
+            desc: "SSR: HTML on every request  fresh data, higher TTFB. SSG: HTML at build time  fastest delivery, potentially stale. ISR: static + background revalidation after N seconds  best of both. In App Router: fetch with cache: 'no-store' = SSR, cache: 'force-cache' = SSG, revalidate: N = ISR.",
             resources: [
               R(
                 "Next.js rendering strategies",
@@ -1446,7 +1446,7 @@ const WEEKS: Week[] = [
           {
             block: "ai",
             title: "Start or continue product 2",
-            desc: "If starting fresh: apply all learnings from product 1 — better prompt design, cleaner code structure, faster MVP approach. Start with the core AI interaction loop before building anything else.",
+            desc: "If starting fresh: apply all learnings from product 1  better prompt design, cleaner code structure, faster MVP approach. Start with the core AI interaction loop before building anything else.",
             resources: [
               R("Anthropic API Docs", "https://docs.anthropic.com", "Docs"),
               R("Vercel AI SDK", "https://sdk.vercel.ai/docs", "Docs"),
@@ -1455,7 +1455,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 16 + write 5 sentences",
-            desc: "New 12 words + 5 sentences. Final month push — consciously use new vocabulary in any message you write this week: Slack, WhatsApp, emails, code comments.",
+            desc: "New 12 words + 5 sentences. Final month push  consciously use new vocabulary in any message you write this week: Slack, WhatsApp, emails, code comments.",
             resources: [
               R(
                 "Merriam-Webster",
@@ -1494,8 +1494,8 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Build a dashboard UI — tables, charts, metrics",
-            desc: "Dashboards are the most common UI pattern in SaaS. Build: a metrics row (3–4 stat cards), a data table, and a basic bar or line chart. Focus on data density without visual clutter — every element must earn its place.",
+            title: "Build a dashboard UI  tables, charts, metrics",
+            desc: "Dashboards are the most common UI pattern in SaaS. Build: a metrics row (3–4 stat cards), a data table, and a basic bar or line chart. Focus on data density without visual clutter  every element must earn its place.",
             resources: [
               R(
                 "Tremor – React dashboard components",
@@ -1547,7 +1547,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Next.js App Router — routing internals",
+            title: "Next.js App Router  routing internals",
             desc: "App Router uses React Server Components by default. Understand the file conventions: layout.js (wraps children, persists on navigation), page.js (route UI), loading.js (Suspense fallback), error.js (error boundary). Know route groups (folder), parallel routes @slot, and intercepting routes.",
             resources: [
               R(
@@ -1610,7 +1610,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "React interview questions — full revision sprint",
+            title: "React interview questions  full revision sprint",
             desc: "Practise explaining each in 60 seconds as if in an interview: virtual DOM vs real DOM, reconciliation, why hooks can't be conditional, useState vs useReducer, controlled vs uncontrolled, useEffect cleanup, React.memo usage, key prop purpose, and Fiber in simple terms.",
             resources: [
               R(
@@ -1632,7 +1632,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "design",
-            title: "Design system — document your components",
+            title: "Design system  document your components",
             desc: "Pick 5–6 components you built: button, card, navbar, input, badge. Document each with: usage rules, color variants, spacing, and don'ts. Showing a mini design system in an interview demonstrates senior-level thinking.",
             resources: [
               R(
@@ -1677,7 +1677,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "react",
-            title: "Mock teach React internals to Claude — get feedback",
+            title: "Mock teach React internals to Claude  get feedback",
             desc: "Open Claude and say: 'I'll teach you React internals. Give me feedback on accuracy, depth, and clarity as if evaluating a senior engineer.' Then explain: JSX compilation, virtual DOM, reconciliation, Fiber, hooks linked list, and re-render triggers.",
             resources: [
               R("Claude.ai", "https://claude.ai", "Tool"),
@@ -1699,7 +1699,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "ai",
-            title: "Full review — update READMEs, test deployments",
+            title: "Full review  update READMEs, test deployments",
             desc: "Final session: update both READMEs with case study content, add live demo links, verify environment variables are documented, test both deployments one final time, and clean up any dead code.",
             resources: [
               R("Readme.so", "https://readme.so/", "Tool"),
@@ -1713,7 +1713,7 @@ const WEEKS: Week[] = [
           {
             block: "comm",
             title: "Vocabulary set 20 + grand final review",
-            desc: "Final set of the plan. Write 5 sentences. Then the grand review: all 20 sets, all 240 words. Write a 200-word reflection on your 4-week communication journey — what improved, what still needs work.",
+            desc: "Final set of the plan. Write 5 sentences. Then the grand review: all 20 sets, all 240 words. Write a 200-word reflection on your 4-week communication journey  what improved, what still needs work.",
             resources: [
               R("Anki", "https://apps.ankiweb.net/", "Tool"),
               R("Hemingway App", "https://hemingwayapp.com/", "Tool"),
@@ -1727,7 +1727,7 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "comm",
-            title: "Hour 1 — Full vocabulary review (all 20 sets)",
+            title: "Hour 1  Full vocabulary review (all 20 sets)",
             desc: "All 240 words. Sort into: know well / shaky / forgotten. Create a final Anki deck with your weakest 30 words to continue reviewing in month 2.",
             resources: [
               R("Anki", "https://apps.ankiweb.net/", "Tool"),
@@ -1736,8 +1736,8 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 2 — Read and summarise a long article",
-            desc: "Re-read a favourite article from the past 4 weeks. Write a 100-word summary in your own words — without looking at the original while writing. Then compare to the article.",
+            title: "Hour 2  Read and summarise a long article",
+            desc: "Re-read a favourite article from the past 4 weeks. Write a 100-word summary in your own words  without looking at the original while writing. Then compare to the article.",
             resources: [
               R(
                 "Paul Graham Essays",
@@ -1753,7 +1753,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 3 — Write a 4-week progress reflection",
+            title: "Hour 3  Write a 4-week progress reflection",
             desc: "Write 300–400 words: what you committed to, what you did, what surprised you, what was hardest, and what you'll continue. Publish on LinkedIn.",
             resources: [
               R("LinkedIn", "https://linkedin.com", "Website"),
@@ -1762,7 +1762,7 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 4 — Shadowing + self-introduction drill",
+            title: "Hour 4  Shadowing + self-introduction drill",
             desc: "Final shadowing session. Then do a 2-minute self-introduction out loud: your name, background, what you've built, and what you're looking for. Record and listen back.",
             resources: [
               R("TED Talks", "https://www.ted.com/talks", "YouTube"),
@@ -1775,14 +1775,14 @@ const WEEKS: Week[] = [
           },
           {
             block: "comm",
-            title: "Hour 5 — Mock technical interview with Claude",
+            title: "Hour 5  Mock technical interview with Claude",
             desc: "Tell Claude: 'Interview me for a frontend/full-stack role. Ask about my experience, projects, and React knowledge. I'll answer in English. Give me honest feedback on communication clarity and grammar.' Do a full 30-minute session.",
             resources: [R("Claude.ai", "https://claude.ai", "Tool")],
           },
           {
             block: "comm",
-            title: "Hour 6 — Plan month 2 (DSA starts)",
-            desc: "Write your month 2 plan: DSA starts (arrays, strings, hashmaps first — covers 80% of frontend interviews), continue communication daily, keep building. Update your resume and identify 5 target companies for the $30K switch.",
+            title: "Hour 6  Plan month 2 (DSA starts)",
+            desc: "Write your month 2 plan: DSA starts (arrays, strings, hashmaps first  covers 80% of frontend interviews), continue communication daily, keep building. Update your resume and identify 5 target companies for the $30K switch.",
             resources: [
               R(
                 "NeetCode DSA roadmap",
@@ -1805,8 +1805,8 @@ const WEEKS: Week[] = [
         tasks: [
           {
             block: "rest",
-            title: "Rest and celebrate — 4 weeks done!",
-            desc: "You've completed 4 weeks of consistent work across React/JS internals, design, AI products, and communication. That's genuinely hard to do. Take the day off completely. Come back tomorrow — and start DSA.",
+            title: "Rest and celebrate  4 weeks done!",
+            desc: "You've completed 4 weeks of consistent work across React/JS internals, design, AI products, and communication. That's genuinely hard to do. Take the day off completely. Come back tomorrow  and start DSA.",
             resources: [],
           },
         ],

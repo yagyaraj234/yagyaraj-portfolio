@@ -151,7 +151,7 @@ function ExperimentCard({ exp }: { exp: Experiment }) {
     <div
       className={`group border-foreground/8 hover:border-foreground/18 flex flex-col overflow-hidden rounded-2xl border transition-all duration-200 ${exp.span === "wide" ? "col-span-2" : "col-span-1"}`}
     >
-      {/* Meta row — always visible */}
+      {/* Meta row  always visible */}
       <div className="flex items-center justify-between gap-4 px-5 py-4">
         <div className="flex flex-col gap-1.5">
           {/* Category + status */}
