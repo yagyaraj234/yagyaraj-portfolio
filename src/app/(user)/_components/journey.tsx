@@ -23,7 +23,7 @@ export const RavaAICard = () => (
       unoptimized
       layout="responsive"
     />
-    <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
+    <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
       Rava AI is an agentic AI-powered go-to-market (GTM) platform for startups,
       automating strategy, marketing content, and investor pitch decks.
     </p>
@@ -43,7 +43,7 @@ const SkillRazrCard = () => (
       height={500}
       width={500}
     />
-    <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
+    <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
       SkillRazr offers online tech training, internships, and skill development
       programs designed to prepare students for jobs.
     </p>
@@ -63,7 +63,7 @@ export const WavemakerCard = () => (
       priority
       unoptimized
     />
-    <p className="mt-4 text-base text-neutral-600 normal-case dark:text-neutral-400">
+    <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
       WaveMaker offers a low-code development platform for professional
       developers to build web and mobile applications using open standards.
     </p>
@@ -79,16 +79,19 @@ const experiences = [
     href: "https://wavemaker.com",
     date: "jan 2025 – present",
     summary:
-      "React runtime and code generation architecture for scalable app exports.",
+      "Building the Studio layer that generates production-grade Next.js enterprise applications.",
     points: [
       <>
         Contributed to the{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
           React runtime engine
         </strong>{" "}
-        powering WaveMaker Studio the layer responsible for interpreting
-        low-code definitions and rendering them as production-ready React
-        applications.
+        powering{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          WaveMaker Studio ( Low-Code )
+        </strong>{" "}
+        the layer responsible for interpreting low-code definitions and
+        rendering them as production-ready React applications.
       </>,
       <>
         Designed a{" "}
@@ -216,7 +219,7 @@ const experiences = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export function Journey() {
-  const [openId, setOpenId] = useState<string | null>(null)
+  const [openId, setOpenId] = useState<string | null>("wavemaker")
 
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id))
 

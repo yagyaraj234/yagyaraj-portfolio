@@ -5,7 +5,7 @@ const projectsData = [
   {
     number: "01",
     title: "Trevyn",
-    status: "Ongoing",
+    status: "Completed",
     description:
       "AI-powered GitHub App that reviews PRs with full codebase context and lets you apply fixes in one click or batch them into a single commit.",
     live: "https://trevyn.dev",
