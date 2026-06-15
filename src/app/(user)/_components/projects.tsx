@@ -46,7 +46,7 @@ export function Projects({ show = 10 }: { show?: number }) {
           <div className="mb-4 inline-flex items-center gap-1.5 rounded-md bg-[#E1F5EE] px-2 py-1">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0D9E75]" />
             <span className="font-[family-name:var(--font-dm-mono),monospace] text-[10px] leading-none text-[#0F6E56]">
-              ongoing
+              Completed
             </span>
           </div>
 

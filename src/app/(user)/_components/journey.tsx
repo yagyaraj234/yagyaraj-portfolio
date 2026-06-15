@@ -54,7 +54,7 @@ export const WavemakerCard = () => (
   <>
     <Image
       src="/tooltip/wavemaker.webp"
-      alt="WaveMaker"
+      alt="Wavemaker"
       layout="responsive"
       className="h-max w-full rounded-md"
       loading="eager"
@@ -64,7 +64,7 @@ export const WavemakerCard = () => (
       unoptimized
     />
     <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
-      WaveMaker offers a low-code development platform for professional
+      Wavemaker offers a low-code development platform for professional
       developers to build web and mobile applications using open standards.
     </p>
   </>
@@ -75,7 +75,7 @@ const experiences = [
   {
     id: "wavemaker",
     role: "Development Engineer",
-    company: "WaveMaker",
+    company: "Wavemaker",
     href: "https://wavemaker.com",
     date: "jan 2025 – present",
     summary:
@@ -88,7 +88,7 @@ const experiences = [
         </strong>{" "}
         powering{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          WaveMaker Studio ( Low-Code )
+          Wavemaker Studio ( Low-Code )
         </strong>{" "}
         the layer responsible for interpreting low-code definitions and
         rendering them as production-ready React applications.
@@ -244,7 +244,7 @@ export function Journey() {
                 <div className="flex flex-col gap-1">
                   {/* Role · Company */}
                   <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                    <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">
                       {exp.role}
                     </span>
                     <span className="text-xs text-neutral-400">·</span>
@@ -263,7 +263,7 @@ export function Journey() {
                     </Link>
                   </div>
                   {/* Summary always visible */}
-                  <p className="text-xs text-neutral-400 max-sm:hidden dark:text-neutral-500">
+                  <p className="text-[13px] text-neutral-400 max-sm:hidden dark:text-neutral-500">
                     {exp.summary}
                   </p>
                 </div>
@@ -298,7 +298,7 @@ export function Journey() {
                     {exp.points.map((point, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-                        <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                        <p className="text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
                           {point}
                         </p>
                       </li>

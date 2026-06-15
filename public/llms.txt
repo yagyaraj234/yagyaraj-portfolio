@@ -2,7 +2,7 @@
 
 # Personal Information
 Name: Yagyaraj
-Role: Development Engineer at WaveMaker
+Role: Development Engineer at Wavemaker
 Location: India
 Website: https://yagyaraj.com
 Email: hey@yagyaraj.com
@@ -11,7 +11,7 @@ LinkedIn: https://linkedin.com/in/yagyaraj234
 Twitter: https://twitter.com/yagyaraj234
 
 # Professional Summary
-Description: Development Engineer at WaveMaker building React runtime and code generation infrastructure for scalable app exports. Previously shipped Rava AI from zero to production across frontend, backend, DevOps, and AI integrations.
+Description: Development Engineer at Wavemaker building React runtime and code generation infrastructure for scalable app exports. Previously shipped Rava AI from zero to production across frontend, backend, DevOps, and AI integrations.
 
 # Technical Skills
 Frontend: React, Next.js, TailwindCSS, TypeScript, Redux
@@ -22,8 +22,8 @@ Languages: TypeScript, JavaScript, Python, C++
 Tools: Git, Browser optimization, Embedding systems
 
 # Professional Experience
-Current Role: Development Engineer at WaveMaker (January 2025 - Present)
-- Contributes to the React runtime engine powering WaveMaker Studio
+Current Role: Development Engineer at Wavemaker (January 2025 - Present)
+- Contributes to the React runtime engine powering Wavemaker Studio
 - Builds code generation pipelines that export maintainable React applications from visual studio definitions
 - Works on platform infrastructure for low-code application rendering and scalable app exports
 

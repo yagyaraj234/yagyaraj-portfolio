@@ -7,9 +7,9 @@ export const USER: User = {
   username: "yagyaraj234",
   gender: "male",
   pronouns: "he/him",
-  bio: "Development Engineer at WaveMaker | Building React runtime and code generation infrastructure",
+  bio: "Development Engineer at Wavemaker | Building React runtime and code generation infrastructure",
   flipSentences: [
-    "Development Engineer at WaveMaker",
+    "Development Engineer at Wavemaker",
     "React & Next.js Specialist",
     "Building Scalable Solutions",
   ],
@@ -21,12 +21,12 @@ export const USER: User = {
   jobs: [
     {
       title: "Development Engineer",
-      company: "WaveMaker",
+      company: "Wavemaker",
       website: "https://wavemaker.com",
     },
   ],
   about: `
-- **Development Engineer at WaveMaker** building React runtime and code generation infrastructure for scalable app exports
+- **Development Engineer at Wavemaker** building React runtime and code generation infrastructure for scalable app exports
 - Skilled in **React**, **Next.js**, **TypeScript**, **Node.js**, and modern frontend technologies
 - Passionate about creating elegant, performant solutions with clean code and intuitive user experiences
 - Built [Collab](https://collab-neon.vercel.app/) - A Trello-like project management application with Stripe integration
