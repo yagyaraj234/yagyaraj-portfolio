@@ -18,6 +18,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../components/ui/tooltip"
+import OpenToWork from "./_components/open-to-work"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -70,7 +71,8 @@ export default function Home() {
               Wavemaker
             </span>
           </Preview>{" "}
-          that powers React application generation. Previously at{" "}
+          that powers <b className="font-medium"> React/Nextjs</b> application
+          generation. Previously at{" "}
           <Preview
             containerClassName="text-neutral-600 dark:text-neutral-400 p-0"
             content={<RavaAICard />}
@@ -126,7 +128,7 @@ export default function Home() {
           <BlogList />
         </div>
       </div>
-      <Projects show={2} />
+      <Projects show={1} />
       {/* Skills Section */}
       <div className="mt-12">
         <h2 className="text-lg font-semibold">Skills</h2>
