@@ -118,11 +118,14 @@ const experiences = [
       </>,
     ],
     tags: [
+      "Nextjs",
       "React",
+      "Redux",
       "TypeScript",
+      "Nodejs",
       "JS Proxy",
-      "Code Generation",
-      "Platform Engineering",
+      "Low-Code Platform",
+      "Studio",
     ],
     tooltipContent: <WavemakerCard />,
   },
@@ -168,7 +171,18 @@ const experiences = [
         building CI/CD from scratch.
       </>,
     ],
-    tags: ["Next.js", "Node.js", "LLMs", "Embeddings", "CI/CD", "GCP"],
+    tags: [
+      "Next.js",
+      "TailwindCss",
+      "Shadcn",
+      "Redux",
+      "Node.js",
+      "Redis",
+      "GCP",
+      "LLMs",
+      "Embeddings",
+      "CI/CD",
+    ],
     tooltipContent: <RavaAICard />,
   },
   {
@@ -215,7 +229,7 @@ export function Journey() {
 
   return (
     <Section id="experience">
-      <SectionHeader id="experience-title" label="Career" title="Experience" />
+      <SectionHeader id="experience-title" title="Experience" />
 
       <div className="mt-4 flex w-full flex-col">
         {experiences.map((exp) => {

@@ -41,12 +41,8 @@ export function Projects({ show = 10 }: { show?: number }) {
   const [featured, ...secondary] = projectsToDisplay
 
   return (
-    <Section divider id="projects">
-      <SectionHeader
-        id="projects-title"
-        label="Selected work"
-        title="Projects"
-      />
+    <Section id="projects">
+      <SectionHeader id="projects-title" title="Projects" />
 
       <div className="mt-5 flex flex-col gap-3">
         {/* Featured project */}

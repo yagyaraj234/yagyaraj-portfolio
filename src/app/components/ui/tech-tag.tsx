@@ -21,6 +21,7 @@ import {
   SiStripe,
   SiGit,
   SiVite,
+  SiJavascript,
 } from "@icons-pack/react-simple-icons"
 import type { ComponentType } from "react"
 import { cn } from "@/lib/utils"
@@ -61,6 +62,7 @@ const ICONS: Record<string, IconEntry> = {
   git: { Icon: SiGit, brand: true },
   vite: { Icon: SiVite, brand: true },
   vitejs: { Icon: SiVite, brand: true },
+  jsproxy: { Icon: SiJavascript, brand: true },
 }
 
 const normalize = (label: string) =>
@@ -80,7 +82,7 @@ export function TechTag({ label, size = "md", className }: TechTagProps) {
   return (
     <span
       className={cn(
-        "font-dm-mono inline-flex items-center gap-1.5 rounded-md border-1 border-dashed border-(--color-border-hover) leading-none text-(--color-text-secondary) transition-colors duration-200 hover:text-(--color-text-primary)",
+        "font-dm-mono f inline-flex items-center gap-1.5 rounded-md border border-dashed border-(--color-border-hover) leading-none text-(--color-text-secondary) transition-colors duration-200 hover:text-(--color-text-primary)",
         size === "sm" ? "px-2 py-1 text-[10px]" : "px-2.5 py-1.5 text-[11px]",
         className
       )}
