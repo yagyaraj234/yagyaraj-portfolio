@@ -123,11 +123,3 @@ button {
 }
 
 /* Section eyebrow label  small uppercase mono, used across home sections */
-.section-label {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}

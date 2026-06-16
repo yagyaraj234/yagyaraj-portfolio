@@ -46,7 +46,7 @@ export function SectionHeader({
   const heading = (
     <h2
       id={id}
-      className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+      className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
     >
       {title}
     </h2>
@@ -55,11 +55,10 @@ export function SectionHeader({
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex flex-col gap-1.5">
-        {label && <span className="section-label">{label}</span>}
         {href ? (
           <Link
             href={href}
-            className="group inline-flex w-fit items-center gap-1 text-lg font-semibold tracking-tight text-zinc-900 transition-colors hover:text-[#1D6FA4] dark:text-zinc-100 dark:hover:text-[#5BA8D6]"
+            className="group inline-flex w-fit items-center gap-1 text-2xl font-semibold tracking-tight text-zinc-900 transition-colors hover:text-[#1D6FA4] dark:text-zinc-100 dark:hover:text-[#5BA8D6]"
           >
             <span id={id}>{title}</span>
             <ArrowUpRight className="size-3.5 translate-y-px text-neutral-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
