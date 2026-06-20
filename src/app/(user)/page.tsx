@@ -139,17 +139,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
-
-      <Section id="github">
-        <SectionHeader
-          id="github-title"
-          label="Activity"
-          title="GitHub contributions"
-        />
-        <div className="mt-4">
+      
           <GitHubContributions />
-        </div>
-      </Section>
 
       <Section id="contact">
         <SectionHeader id="contact-title" label="Say hi" title="Contact" />

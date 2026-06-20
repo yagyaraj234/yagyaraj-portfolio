@@ -19,6 +19,7 @@ import {
   TooltipTrigger,
 } from "@/app/components/ui/tooltip"
 import { filterLastSixMonths } from "@/app/api/github-contribution"
+import { SectionHeader } from "../ui/section"
 
 export function GitHubContributionGraph({
   contributions,
@@ -42,65 +43,76 @@ export function GitHubContributionGraph({
   // Filter data for mobile (last 6 months)
   const filteredData = isMobile ? filterLastSixMonths(data) : data
 
+  if (!filteredData.length) return null;
+
+
   return (
-    <ContributionGraph
-      className="mx-auto w-full py-2"
-      data={filteredData}
-      blockSize={11}
-      blockMargin={3}
-      blockRadius={0}
-    >
-      <ContributionGraphCalendar
-        className="no-scrollbar overflow-x-auto px-2"
-        title={
-          isMobile
-            ? "GitHub Contributions (Last 6 Months)"
-            : "GitHub Contributions"
-        }
+    <>
+      <SectionHeader
+        id="github-title"
+        label="Activity"
+        title="GitHub contributions"
+      />
+      <ContributionGraph
+        className="mx-auto w-full py-2"
+        data={filteredData}
+        blockSize={11}
+        blockMargin={3}
+        blockRadius={0}
       >
-        {({ activity, dayIndex, weekIndex }) => (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <g>
-                <ContributionGraphBlock
-                  activity={activity}
-                  dayIndex={dayIndex}
-                  weekIndex={weekIndex}
-                />
-              </g>
-            </TooltipTrigger>
+        <ContributionGraphCalendar
+          className="no-scrollbar overflow-x-auto px-2"
+          title={
+            isMobile
+              ? "GitHub Contributions (Last 6 Months)"
+              : "GitHub Contributions"
+          }
+        >
+          {({ activity, dayIndex, weekIndex }) => (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <g>
+                  <ContributionGraphBlock
+                    activity={activity}
+                    dayIndex={dayIndex}
+                    weekIndex={weekIndex}
+                  />
+                </g>
+              </TooltipTrigger>
 
-            <TooltipContent className="font-sans" sideOffset={0}>
-              <p>
-                {activity.count} contribution{activity.count > 1 ? "s" : null}{" "}
-                on {format(parseISO(activity.date), "dd.MM.yyyy")}
-              </p>
-            </TooltipContent>
-          </Tooltip>
-        )}
-      </ContributionGraphCalendar>
-
-      <ContributionGraphFooter className="px-2">
-        <ContributionGraphTotalCount>
-          {({ totalCount, year }) => (
-            <div className="text-muted-foreground">
-              {totalCount.toLocaleString("en")} contributions in {year} on{" "}
-              <a
-                className="font-medium underline underline-offset-4"
-                href={`https://github.com/${"yagyaraj234"}`}
-                target="_blank"
-                rel="noopener"
-              >
-                GitHub
-              </a>
-              .
-            </div>
+              <TooltipContent className="font-sans" sideOffset={0}>
+                <p>
+                  {activity.count} contribution{activity.count > 1 ? "s" : null}{" "}
+                  on {format(parseISO(activity.date), "dd.MM.yyyy")}
+                </p>
+              </TooltipContent>
+            </Tooltip>
           )}
-        </ContributionGraphTotalCount>
+        </ContributionGraphCalendar>
 
-        <ContributionGraphLegend />
-      </ContributionGraphFooter>
-    </ContributionGraph>
+        <ContributionGraphFooter className="px-2">
+          <ContributionGraphTotalCount>
+            {({ totalCount, year }) => (
+              <div className="text-muted-foreground">
+                {totalCount.toLocaleString("en")} contributions in {year} on{" "}
+                <a
+                  className="font-medium underline underline-offset-4"
+                  href={`https://github.com/${"yagyaraj234"}`}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  GitHub
+                </a>
+                .
+              </div>
+            )}
+          </ContributionGraphTotalCount>
+
+          <ContributionGraphLegend />
+        </ContributionGraphFooter>
+      </ContributionGraph>
+    </>
+
   )
 }
 

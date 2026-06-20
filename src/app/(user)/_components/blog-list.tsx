@@ -26,7 +26,7 @@ function BlogItem(props: BlogItemProps) {
 
         <div className="flex shrink-0 items-center gap-3">
           {props.date && (
-            <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
+            <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400 upper capitalize ">
               {props.date}
             </span>
           )}
