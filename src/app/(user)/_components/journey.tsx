@@ -256,7 +256,7 @@ export function Journey() {
                       href={exp.href}
                       target="_blank"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-sm text-neutral-500 underline-offset-2 transition-colors duration-200 hover:text-yellow-500 hover:underline dark:text-neutral-400"
+                      className="inline-flex items-center py-1 text-sm text-neutral-500 underline-offset-2 transition-colors duration-200 hover:text-yellow-500 hover:underline dark:text-neutral-400"
                     >
                       <Preview
                         containerClassName="p-0"
@@ -267,18 +267,18 @@ export function Journey() {
                     </Link>
                   </div>
                   {/* Date  shown inline on mobile, moves to the right on desktop */}
-                  <span className="font-dm-mono text-xs text-neutral-400 tabular-nums sm:hidden dark:text-neutral-500">
+                  <span className="font-dm-mono text-xs text-neutral-500 tabular-nums sm:hidden dark:text-neutral-400">
                     {exp.date}
                   </span>
                   {/* Summary  desktop only */}
-                  <p className="text-[13px] text-neutral-400 max-sm:hidden dark:text-neutral-500">
+                  <p className="text-[13px] text-neutral-500 max-sm:hidden dark:text-neutral-400">
                     {exp.summary}
                   </p>
                 </div>
 
                 {/* Date (desktop) + toggle */}
                 <div className="flex shrink-0 items-center gap-3 pt-0.5">
-                  <span className="font-dm-mono text-xs text-neutral-400 tabular-nums max-sm:hidden dark:text-neutral-500">
+                  <span className="font-dm-mono text-xs text-neutral-500 tabular-nums max-sm:hidden dark:text-neutral-400">
                     {exp.date}
                   </span>
                   <span

@@ -26,11 +26,11 @@ function BlogItem(props: BlogItemProps) {
 
         <div className="flex shrink-0 items-center gap-3">
           {props.date && (
-            <span className="font-mono text-xs text-neutral-400 dark:text-neutral-500">
+            <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
               {props.date}
             </span>
           )}
-          <ArrowUpRight className="h-3.5 w-3.5 text-neutral-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-neutral-500" />
+          <ArrowUpRight className="h-3.5 w-3.5 text-neutral-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-neutral-400" />
         </div>
       </Link>
     </div>
