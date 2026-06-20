@@ -79,7 +79,7 @@ const experiences = [
     role: "Development Engineer",
     company: "Wavemaker",
     href: "https://wavemaker.com",
-    date: "jan 2025 – present",
+    date: "Jan 2025 – Present",
     summary:
       "Building the Studio layer that generates production-grade Next.js enterprise applications.",
     points: [
@@ -134,7 +134,7 @@ const experiences = [
     role: "Software Engineer",
     company: "Rava AI",
     href: "https://rava.ai",
-    date: "jan – dec 2024",
+    date: "Jan – Dec 2024",
     summary:
       "Took the product from zero to production: frontend, backend, DevOps, and AI end-to-end.",
     points: [
@@ -187,10 +187,10 @@ const experiences = [
   },
   {
     id: "skillrazr",
-    role: "Full-stack Developer",
+    role: "Full-stack Developer Intern",
     company: "SkillRazr",
     href: "https://skillrazr.com",
-    date: "oct – dec 2023",
+    date: "Oct – Dec 2023",
     summary:
       "Interactive developer learning platforms built on GCP and Firebase.",
     points: [
@@ -259,7 +259,7 @@ export function Journey() {
                       className="text-sm text-neutral-500 underline-offset-2 transition-colors duration-200 hover:text-yellow-500 hover:underline dark:text-neutral-400"
                     >
                       <Preview
-                        containerClassName="p-0 text-neutral-600 dark:text-neutral-400"
+                        containerClassName="p-0"
                         content={exp.tooltipContent}
                       >
                         <span className="cursor-pointer">{exp.company}</span>
