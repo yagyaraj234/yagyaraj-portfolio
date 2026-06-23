@@ -1,0 +1,163 @@
+export const metadata = {
+  title: "What is hydration and Why does your app keep breaking",
+  author: "Yagyaraj Lodhi",
+  date: "2026-06-23",
+  lastUpdated: "2026-06-23",
+  tags: [
+    "hydration",
+    "ssr",
+    "server-side-rendering",
+    "web-performance",
+    "react",
+    "nextjs",
+    "frontend",
+  ],
+  ogImage: "https://yagyaraj.com/post/what-is-hydration/og.png",
+  summary:
+    "What hydration actually is, why hydration errors happen, and the 5 patterns modern frameworks use to handle it  selective, progressive, streaming, lazy, and partial.",
+}
+
+![What is hydration](/post/what-is-hydration/og.png)
+
+If you are building frontend apps and shipping to production, you've almost certainly hit this error:
+
+> **"Hydration failed because the initial UI does not match what was rendered on the server."**
+
+Most developers just add `suppressHydrationError` on the body tag and move on. But understanding why it happens and how React's hydration model actually works will save you a lot of pain.
+
+## What is Hydration?
+
+When you hit a URL, the server sends two things to your browser: **HTML** (the structure of the page) and **JavaScript** (the behavior).
+
+<br />
+
+The browser renders the HTML first so the user sees the page fast, then it downloads the JS bundle and attaches all event listeners, state, and interactivity to the visible DOM.
+
+<br />
+
+**Hydration** is the process of making your app interactive by attaching
+events and adding interactivity to the already-rendered HTML from the server.
+
+![how webpage rendered in browser](/post/what-is-hydration/process.gif)
+
+Think of it like an electrician walking into a finished house. The structure is already there they just wire up the power.
+
+<br />
+
+## Why Does a Hydration Error Happen?
+
+When client-rendered content does not match the server-rendered content, React throws a hydration error.
+
+<br />
+
+When the JS loads, the framework walks the existing DOM node by node and compares it against what it would build on the client. One mismatch even a single text node or attribute and it throws. It won't wire interactivity onto a DOM it doesn't trust, because there's no safe way to know which version is right.
+
+<br />
+
+### Common Causes
+
+- **`new Date()` or `Math.random()` in render** server and client run at different times, so the values never match
+- **Reading `window` or `localStorage` during SSR** those don't exist on the server
+
+The classic example: the server renders a timestamp at request time. The client renders a different one during hydration. They'll never match.
+
+```javascript
+// server runs this at 10:00:00.000Z
+// client runs it at 10:00:00.012Z  mismatch every time
+function Page() {
+  return <div>{new Date().toISOString()}</div>
+}
+```
+
+**Fix:** Don't read non-deterministic values during render. Read them only after the component is mounted (`useEffect`).
+
+---
+
+<br />
+
+## How Hydration Improves Performance
+
+**Without hydration (pure client-side rendering):**
+
+- Browser downloads an empty HTML shell
+- Downloads the full JS bundle
+- JS runs, fetches data, and builds the DOM
+- User sees the page only after all of this
+
+**With hydration (SSR + hydration):**
+
+- Browser gets complete HTML from the server
+- User sees the page immediately (fast **First Contentful Paint**)
+- JS loads in the background
+- Hydration attaches interactivity without re-rendering the DOM
+
+<Callout type="info">
+  The key insight: hydration doesn't re-paint the page. It just wires up
+  interactivity to what's already there. That's what makes it fast.
+</Callout>
+
+---
+
+<br />
+
+## 5 Types of Hydration
+
+<br />
+
+### 1. Selective Hydration
+
+Split the page into independent hydration zones. Whichever zone the user interacts with first gets prioritized everything else catches up in the background.
+
+<br />
+
+We can achieve in React 18 using `<Suspense>` boundaries.
+
+<br />
+
+### 2. Progressive Hydration
+
+Hydrate components as the user scrolls down, not all at once on load.
+
+<br />
+
+Hydration blocks the main thread. If you hydrate 30 components on mount, you're locking up the browser for all 30 at startup most of which the user hasn't even seen yet.
+
+<br />
+
+Progressive hydration fixes this using an `IntersectionObserver`: components only get hydrated when they enter the viewport. You can use the `react-intersection-observer` library for this in React.
+
+<br />
+
+### 3. Streaming Hydration
+
+The server doesn't wait to build the full HTML before sending it it streams chunks as they're ready.
+
+<br />
+
+In Next.js App Router, this is the default behavior.
+
+<br />
+
+### 4. Lazy Hydration
+
+Render the component as plain HTML without attaching any events, state, or interactivity (no JS). The component hydrates only when it receives a signal:
+
+- User interacts with it (e.g., hovering over a button)
+- `requestIdleCallback` fires when the browser is idle
+- The content enters the viewport
+
+<br />
+
+### 5. Partial Hydration
+
+On a page with multiple components, only hydrate the ones that actually need interactivity. Purely static components ship as plain HTML with no JS attached.
+
+<br />
+
+React Server Components are never hydrated they render once on the server and the browser just paints that content into the UI.
+
+<br />
+
+---
+
+<br />
