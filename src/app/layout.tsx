@@ -160,6 +160,7 @@ export default function RootLayout({
             dmMono.variable,
             "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
           )}
+          suppressHydrationWarning
         >
           <UmamiAnalytics />
           <ThemeProvider

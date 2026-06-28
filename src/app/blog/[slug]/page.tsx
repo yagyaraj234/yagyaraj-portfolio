@@ -2,11 +2,7 @@ import { blogData } from "./data"
 import { USER } from "@/data/user.data"
 import { getPostMetadata } from "@/lib/mdx-utils"
 import { Metadata } from "next"
-import {
-  PostTitle,
-  PostDescription,
-  PostUpdatedText,
-} from "@/app/components/Post"
+import { PostTitle, PostUpdatedText } from "@/app/components/Post"
 import { Callout } from "@/app/components/mdx/callout"
 import { FAQ } from "@/app/components/mdx/faq"
 import { Aside } from "@/app/components/mdx/aside"
@@ -124,8 +120,8 @@ export default async function Page({
         />
       </article>
 
-      <div className="flex">
-        {social_links.map((link, idx) => (
+      <div className="flex items-center">
+        {social_links?.slice(0, 4).map((link, idx) => (
           <Link
             key={idx}
             className="text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 after:mx-2 after:inline-block after:text-black after:no-underline after:content-['|'] last:after:hidden hover:underline"
