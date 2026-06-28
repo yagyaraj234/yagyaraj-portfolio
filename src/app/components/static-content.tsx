@@ -45,17 +45,6 @@ const MediumIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const MailIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-  >
-    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-  </svg>
-)
-
 const ResumeIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -72,19 +61,18 @@ const ResumeIcon = ({ className }: { className?: string }) => (
 )
 
 export const social_links = [
-  { name: "Email", url: "mailto:hey@yagyaraj.com", icon: MailIcon },
   { name: "Github", url: "https://github.com/yagyaraj234", icon: GithubIcon },
   {
     name: "LinkedIn",
     url: "https://linkedin.com/in/yagyaraj234",
     icon: LinkedinIcon,
   },
+  { name: "Medium", url: "https://blog.yagyaraj.com", icon: MediumIcon },
   {
     name: "Twitter",
     url: "https://twitter.com/heyraj__",
     icon: XTwitterIcon,
   },
-  { name: "Medium", url: "https://blog.yagyaraj.com", icon: MediumIcon },
   {
     name: "Resume",
     url: "/resume",

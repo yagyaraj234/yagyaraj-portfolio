@@ -20,6 +20,7 @@ import {
 } from "../components/ui/tooltip"
 import { Section, SectionHeader } from "../components/ui/section"
 import { TechTag } from "../components/ui/tech-tag"
+import { Email } from "../components/email-extend"
 
 const badgeClass =
   "mx-0.5 cursor-pointer rounded bg-zinc-50 px-1 py-0.5 text-sm ring ring-zinc-200 transition-colors hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800 dark:hover:bg-zinc-800"
@@ -113,6 +114,7 @@ export default function Home() {
             </TooltipContent>
           </Tooltip>
         ))}
+        <Email />
       </nav>
 
       <Journey />
@@ -139,8 +141,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
-      
-          <GitHubContributions />
+
+      <GitHubContributions />
 
       <Section id="contact">
         <SectionHeader id="contact-title" label="Say hi" title="Contact" />
