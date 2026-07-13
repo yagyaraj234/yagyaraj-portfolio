@@ -43,16 +43,11 @@ export function GitHubContributionGraph({
   // Filter data for mobile (last 6 months)
   const filteredData = isMobile ? filterLastSixMonths(data) : data
 
-  if (!filteredData.length) return null;
-
+  if (!filteredData.length) return null
 
   return (
     <>
-      <SectionHeader
-        id="github-title"
-        label="Activity"
-        title="GitHub contributions"
-      />
+      <SectionHeader id="github-title" title="GitHub contributions" />
       <ContributionGraph
         className="mx-auto w-full py-2"
         data={filteredData}
@@ -112,7 +107,6 @@ export function GitHubContributionGraph({
         </ContributionGraphFooter>
       </ContributionGraph>
     </>
-
   )
 }
 

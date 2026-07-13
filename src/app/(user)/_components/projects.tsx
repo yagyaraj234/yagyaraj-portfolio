@@ -46,7 +46,10 @@ export function Projects({ show = 10 }: { show?: number }) {
 
       <div className="mt-5 flex flex-col gap-3">
         {/* Featured project */}
-        <div className="rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/50 p-6 transition-colors duration-200 hover:border-(--color-border-hover)">
+        <div className="group relative overflow-hidden rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/50 p-6 transition-colors duration-200 hover:border-(--color-border-hover)">
+          <span className="font-dm-mono absolute top-5 right-5 text-[10px] tracking-[0.14em] text-(--color-text-tertiary)">
+            {featured.number} / FEATURED
+          </span>
           {/* Status badge */}
           <div className="mb-4 inline-flex items-center gap-1.5 rounded-md bg-[#E1F5EE] px-2 py-1 dark:bg-[#0D9E75]/15">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0D9E75]" />
@@ -63,18 +66,28 @@ export function Projects({ show = 10 }: { show?: number }) {
             {featured.description}
           </p>
 
-          {/* <div className="mb-5 flex gap-2">
+          <div className="mb-5 flex gap-2">
             {featured.live && (
-              <Link href={featured.live} target="_blank" className={linkClass}>
-                Live <ArrowUp className="size-3 rotate-45" />
+              <Link
+                href={featured.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClass}
+              >
+                Visit product <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
             {featured.git && (
-              <Link href={featured.git} target="_blank" className={linkClass}>
+              <Link
+                href={featured.git}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClass}
+              >
                 Code <ArrowUp className="size-3 rotate-45" />
               </Link>
             )}
-          </div> */}
+          </div>
 
           <div className="flex flex-wrap gap-1.5">
             {featured.tags.map((tag, i) => (

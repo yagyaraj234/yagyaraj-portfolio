@@ -23,7 +23,6 @@ export const RavaAICard = () => (
       loading="eager"
       priority
       unoptimized
-      layout="responsive"
     />
     <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
       Rava AI is an agentic AI-powered go-to-market (GTM) platform for startups,
@@ -37,7 +36,6 @@ const SkillRazrCard = () => (
     <Image
       src="/tooltip/skillrazr.webp"
       alt="SkillRazr"
-      layout="responsive"
       className="h-max w-full rounded-md"
       loading="eager"
       priority
@@ -57,7 +55,6 @@ export const WavemakerCard = () => (
     <Image
       src="/tooltip/wavemaker.webp"
       alt="Wavemaker"
-      layout="responsive"
       className="h-max w-full rounded-md"
       loading="eager"
       height={500}

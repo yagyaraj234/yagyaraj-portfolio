@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic"
 import Link from "next/link"
+import { ArrowUpRight, Mail } from "lucide-react"
 import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import { Projects } from "./_components/projects"
 import { skills, social_links } from "@/app/components/static-content"
@@ -95,7 +96,13 @@ export default function Home() {
       </div>
 
       {/* Social links */}
-      <nav aria-label="Social links" className="mt-6 flex flex-wrap gap-1">
+      <nav
+        aria-label="Social links"
+        className="mt-7 flex flex-wrap items-center gap-1"
+      >
+        <span className="font-dm-mono mr-2 text-[10px] tracking-[0.14em] text-(--color-text-tertiary) uppercase">
+          Elsewhere
+        </span>
         {social_links.map((link, idx) => (
           <Tooltip key={idx}>
             <TooltipTrigger asChild>
@@ -122,7 +129,6 @@ export default function Home() {
       <Section id="writings">
         <SectionHeader
           id="writings-title"
-          label="Blog"
           title="Recent writings"
           href="/writings"
         />
@@ -134,7 +140,7 @@ export default function Home() {
       <Projects show={1} />
 
       <Section id="skills">
-        <SectionHeader id="skills" title="Skills" />
+        <SectionHeader id="skills-title" title="Skills" />
         <div className="mt-5 flex flex-wrap gap-2">
           {skills.map((skill) => (
             <TechTag key={skill} label={skill} />
@@ -145,27 +151,50 @@ export default function Home() {
       <GitHubContributions />
 
       <Section id="contact">
-        <SectionHeader id="contact-title" label="Say hi" title="Contact" />
-        <p className="text-muted mt-3 text-base leading-relaxed">
-          Interested in a conversation? Drop a DM on{" "}
-          <Link
-            href="/linkedin"
-            className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
-            target="_blank"
-          >
-            LinkedIn
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="mailto:hey@yagyaraj.com"
-            className="underline decoration-blue-500 decoration-wavy underline-offset-4 transition-colors duration-300 ease-in-out hover:text-blue-500"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            email
-          </Link>
-          . Ask me anything about my work, projects, or anything else.
-        </p>
+        <SectionHeader id="contact-title" title="Contact" />
+        <div className="relative mt-5 overflow-hidden rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/55 p-5 sm:p-6">
+          <div
+            aria-hidden="true"
+            className="absolute -top-16 -right-16 size-40 rounded-full bg-[#1D6FA4]/8 blur-3xl"
+          />
+          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-lg">
+              <div className="mb-3 flex size-9 items-center justify-center rounded-lg border border-(--color-border) bg-white text-[#1D6FA4] shadow-sm dark:bg-zinc-900 dark:text-[#5BA8D6]">
+                <Mail aria-hidden="true" className="size-4" />
+              </div>
+              <p className="text-base font-medium tracking-tight text-(--color-text-primary)">
+                Have a product or platform problem worth unpacking?
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-(--color-text-secondary)">
+                Tell me the context, constraints, and outcome you want. What are
+                you building, and where is it stuck?
+              </p>
+            </div>
+            <Link
+              href="mailto:hey@yagyaraj.com?subject=Project%20conversation"
+              className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-[#1D6FA4] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-[transform,background-color,box-shadow] hover:-translate-y-0.5 hover:bg-[#185f8c] hover:shadow-md active:translate-y-0"
+            >
+              Write an email
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </div>
+          <div className="font-dm-mono relative mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-(--color-border) pt-3 text-[10px] text-(--color-text-tertiary)">
+            <span>Opens your email app</span>
+            <span aria-hidden="true">·</span>
+            <span>hey@yagyaraj.com</span>
+            <span aria-hidden="true">·</span>
+            <Link
+              href="/linkedin"
+              target="_blank"
+              className="transition-colors hover:text-(--color-text-primary)"
+            >
+              Prefer LinkedIn?
+            </Link>
+          </div>
+        </div>
       </Section>
     </main>
   )

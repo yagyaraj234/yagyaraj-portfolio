@@ -9,13 +9,11 @@ export default function GitHubContributions() {
 
   return (
     <Section id="github">
-      <h2 className="sr-only">GitHub Contributions</h2>
       <div className="my-8">
         <Suspense fallback={<GitHubContributionFallback />}>
           <GitHubContributionGraph contributions={contributions} />
         </Suspense>
       </div>
     </Section>
-
   )
 }
