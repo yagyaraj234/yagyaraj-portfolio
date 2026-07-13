@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip"
 
 const EMAIL = "hey@yagyaraj.com"
+type CopyState = "idle" | "copied" | "error"
 
 export const MailIcon = ({ className }: { className?: string }) => (
   <svg
@@ -16,26 +17,26 @@ export const MailIcon = ({ className }: { className?: string }) => (
 )
 
 export const Email = () => {
-  const [copied, setCopied] = useState(false)
+  const [copyState, setCopyState] = useState<CopyState>("idle")
   const [open, setOpen] = useState(false)
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(EMAIL)
-    setCopied(true)
+  const handleCopy = async (): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(EMAIL)
+      setCopyState("copied")
+    } catch {
+      setCopyState("error")
+    }
     setOpen(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
-
-  function handleChangeOpenState() {
-    setOpen((o) => !o)
+    setTimeout(() => setCopyState("idle"), 1500)
   }
 
   return (
-    <Tooltip open={open}>
+    <Tooltip open={open} onOpenChange={setOpen}>
       <TooltipTrigger asChild>
         <button
-          onMouseLeave={handleChangeOpenState}
-          onMouseEnter={handleChangeOpenState}
+          onMouseLeave={() => setOpen(false)}
+          onMouseEnter={() => setOpen(true)}
           onClick={handleCopy}
           aria-label="Copy email"
           className="group inline-flex items-center justify-center rounded-md p-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
@@ -54,7 +55,13 @@ export const Email = () => {
       </TooltipTrigger>
 
       <TooltipContent>
-        <p>{copied ? "Copied!" : "Click to copy"}</p>
+        <p role="status">
+          {copyState === "copied"
+            ? "Email copied"
+            : copyState === "error"
+              ? "Could not copy"
+              : "Copy email address"}
+        </p>
       </TooltipContent>
     </Tooltip>
   )
