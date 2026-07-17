@@ -201,7 +201,7 @@ export default function RootLayout({
                   }),
                 }}
               />
-              <div className="mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
+              <div className="page-frame relative mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
                 <Navbar />
                 {children}
                 <Footer />

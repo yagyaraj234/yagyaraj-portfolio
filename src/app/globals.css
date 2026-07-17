@@ -29,6 +29,28 @@ html {
   overflow-x: hidden;
 }
 
+@media (min-width: 48rem) {
+  .page-frame::before,
+  .page-frame::after {
+    position: absolute;
+    inset-block: 0;
+    pointer-events: none;
+    content: "";
+  }
+
+  .page-frame::before {
+    left: -1.5rem;
+    border-left: 1px dashed var(--color-border);
+    border-left-style: dashed !important;
+  }
+
+  .page-frame::after {
+    right: -1.5rem;
+    border-right: 1px dashed var(--color-border);
+    border-right-style: dashed !important;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

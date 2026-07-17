@@ -46,8 +46,8 @@ export function SectionHeader({ title, href, action, id }: SectionHeaderProps) {
   )
 
   return (
-    <div className="flex items-center justify-between gap-4">
-      <div className="flex flex-col gap-1.5">
+    <div className="flex items-center gap-4">
+      <div className="flex shrink-0 flex-col gap-1.5">
         {href ? (
           <Link
             href={href}
@@ -60,6 +60,10 @@ export function SectionHeader({ title, href, action, id }: SectionHeaderProps) {
           heading
         )}
       </div>
+      <span
+        aria-hidden="true"
+        className="min-w-8 flex-1 border-t border-dashed border-(--color-border)"
+      />
       {action}
     </div>
   )
