@@ -8,6 +8,8 @@ const RESUME_URLS = {
 
 const FULL_STACK_RESUME_URL = "https://ggl.link/fstack"
 
+const VALID_KEYS = new Set(Object.keys(RESUME_URLS))
+
 type ResumePageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
@@ -20,10 +22,10 @@ function getResumeType(
   const value = Array.isArray(namedParam) ? namedParam[0] : namedParam
   const resumeType =
     value?.toLowerCase() ??
-    Object.keys(searchParams).find((key) => key in RESUME_URLS)
+    Object.keys(searchParams).find((key) => VALID_KEYS.has(key.toLowerCase()))
 
-  return resumeType && resumeType in RESUME_URLS
-    ? (resumeType as keyof typeof RESUME_URLS)
+  return resumeType && VALID_KEYS.has(resumeType.toLowerCase())
+    ? (resumeType.toLowerCase() as keyof typeof RESUME_URLS)
     : undefined
 }
 

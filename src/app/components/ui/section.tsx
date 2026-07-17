@@ -48,10 +48,6 @@ export function SectionHeader({ title, href, action, id }: SectionHeaderProps) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex flex-col gap-1.5">
-        <div aria-hidden="true" className="flex h-2 w-16 items-center gap-2">
-          <span className="size-1.5 rounded-full bg-[#1D6FA4] shadow-[0_0_0_3px_rgba(29,111,164,0.1)] dark:bg-[#5BA8D6]" />
-          <span className="h-px flex-1 bg-linear-to-r from-(--color-border-hover) to-transparent" />
-        </div>
         {href ? (
           <Link
             href={href}
