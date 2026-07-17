@@ -66,7 +66,7 @@ export const Navbar = () => {
                 onPointerCancel={() =>
                   setSelectedIndex(Math.max(routeIndex, 0))
                 }
-                className={`relative z-10 rounded-full px-3 py-1.5 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out after:absolute after:bottom-0.5 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-[#1D6FA4] after:transition-transform active:scale-[0.97] ${isSelected ? "text-gray-900 after:scale-100 dark:text-white" : "text-gray-500 after:scale-0 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
+                className={`relative z-10 grid h-8 place-items-center rounded-full px-3 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isSelected ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
               >
                 {item.name}
               </Link>

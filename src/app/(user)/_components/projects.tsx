@@ -1,7 +1,7 @@
 import { ArrowUp } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { Section, SectionHeader } from "@/app/components/ui/section"
-import { TechTag } from "@/app/components/ui/tech-tag"
 
 const linkClass =
   "inline-flex items-center gap-1.5 rounded-lg border border-(--color-border) px-2.5 py-1 font-dm-mono text-[10px] text-(--color-text-secondary) no-underline transition-colors duration-150 hover:border-(--color-border-hover) hover:text-(--color-text-primary)"
@@ -14,15 +14,10 @@ const projectsData = [
     description:
       "AI-powered GitHub App that reviews PRs with full codebase context and lets you apply fixes in one click or batch them into a single commit.",
     live: "https://trevyn.dev",
-    tags: [
-      "TypeScript",
-      "Hono.js",
-      "Postgres + pgvector",
-      "BullMQ + Redis",
-      "Google Cloud Platform",
-      "GitHub App",
-      "Tree-sitter",
-    ],
+    image: "/project-preview/trevyn.png",
+    imageAlt: "Trevyn reviewing a pull request and proposing a code fix",
+    surface: "GitHub pull requests",
+    focus: "Repository-aware AI review",
   },
   {
     number: "02",
@@ -32,7 +27,6 @@ const projectsData = [
       "Trello-like project management with organizations, boards, task tracking, and Stripe subscription billing.",
     live: "https://collab.yagyaraj.com",
     git: "https://github.com/yagyaraj234/collab",
-    tags: ["Nextjs", "Server Actions", "Zustand", "Stripe", "Prisma ORM"],
   },
 ]
 
@@ -41,66 +35,88 @@ export function Projects({ show = 10 }: { show?: number }) {
   const [featured, ...secondary] = projectsToDisplay
 
   return (
-    <Section id="projects">
-      <SectionHeader id="projects-title" title="Projects" />
+    <Section id="projects" className="relative left-1/2 -translate-x-1/2">
+      <SectionHeader id="projects-title" title="Selected work" />
 
       <div className="mt-5 flex flex-col gap-3">
         {/* Featured project */}
-        <div className="group relative overflow-hidden rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/50 p-6 transition-colors duration-200 hover:border-(--color-border-hover)">
-          <span className="font-dm-mono absolute top-5 right-5 text-[10px] tracking-[0.14em] text-(--color-text-tertiary)">
-            {featured.number} / FEATURED
-          </span>
-          {/* Status badge */}
-          <div className="mb-4 inline-flex items-center gap-1.5 rounded-md bg-[#E1F5EE] px-2 py-1 dark:bg-[#0D9E75]/15">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#0D9E75]" />
-            <span className="font-dm-mono text-[10px] leading-none text-[#0F6E56] dark:text-[#34D399]">
-              {featured.status}
-            </span>
+        <article className="group overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-bg-secondary)/55 transition-colors duration-200 hover:border-(--color-border-hover) dark:bg-[#151513]">
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="flex flex-col p-6">
+              <div className="mb-2 flex items-center justify-between gap-4">
+                <h3 className="text-3xl font-medium tracking-tight text-(--color-text-primary)">
+                  {featured.title}
+                </h3>
+                <span className="font-dm-mono inline-flex items-center gap-1.5 text-[10px] text-[#0F6E56] dark:text-[#34D399]">
+                  <span className="size-1.5 rounded-full bg-current" />
+                  {featured.status}
+                </span>
+              </div>
+
+              <p className="max-w-md text-sm leading-relaxed text-(--color-text-secondary)">
+                {featured.description}
+              </p>
+
+              <dl className="mt-3 grid grid-cols-2 gap-5 border-t border-(--color-border) pt-2">
+                <div>
+                  <dt className="font-dm-mono text-[9px] tracking-[0.12em] text-(--color-text-tertiary) uppercase">
+                    Surface
+                  </dt>
+                  <dd className="mt-1 text-xs text-(--color-text-primary)">
+                    {featured.surface}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-dm-mono text-[9px] tracking-[0.12em] text-(--color-text-tertiary) uppercase">
+                    Focus
+                  </dt>
+                  <dd className="mt-1 text-xs text-(--color-text-primary)">
+                    {featured.focus}
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-3 flex gap-2">
+                <Link
+                  href={featured.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass}
+                >
+                  Visit product <ArrowUp className="size-3 rotate-45" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="border-t border-(--color-border) bg-[#e8f3ed] p-4 sm:p-6 lg:border-t-0 lg:border-l dark:bg-[#101b17]">
+              {featured.image && featured.imageAlt && (
+                <Link
+                  href={featured.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${featured.title}`}
+                  className="block overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_24px_60px_rgba(14,50,32,0.12)] dark:border-white/10"
+                >
+                  <Image
+                    src={featured.image}
+                    alt={featured.imageAlt}
+                    width={2000}
+                    height={1200}
+                    loading="eager"
+                    sizes="(min-width: 1024px) 600px, 100vw"
+                    className="aspect-5/3 w-full object-cover object-top-left transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.01]"
+                  />
+                </Link>
+              )}
+            </div>
           </div>
-
-          <h3 className="mb-2 font-sans text-xl font-medium text-(--color-text-primary)">
-            {featured.title}
-          </h3>
-
-          <p className="mb-5 max-w-prose font-sans text-[13px] leading-[1.6] text-(--color-text-secondary)">
-            {featured.description}
-          </p>
-
-          <div className="mb-5 flex gap-2">
-            {featured.live && (
-              <Link
-                href={featured.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClass}
-              >
-                Visit product <ArrowUp className="size-3 rotate-45" />
-              </Link>
-            )}
-            {featured.git && (
-              <Link
-                href={featured.git}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClass}
-              >
-                Code <ArrowUp className="size-3 rotate-45" />
-              </Link>
-            )}
-          </div>
-
-          <div className="flex flex-wrap gap-1.5">
-            {featured.tags.map((tag, i) => (
-              <TechTag key={i} label={tag} size="sm" />
-            ))}
-          </div>
-        </div>
+        </article>
 
         {/* Secondary projects */}
         {secondary.map((project, idx) => (
           <div
             key={idx}
-            className="flex items-start justify-between gap-4 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) px-5 py-4 transition-colors duration-200 hover:border-(--color-border-hover)"
+            className="flex items-start justify-between gap-4 rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/55 px-5 py-4 transition-colors duration-200 hover:border-(--color-border-hover) dark:bg-[#151513]"
           >
             <div className="flex-1">
               <div className="font-dm-mono mb-1 text-[11px] text-(--color-text-tertiary)">

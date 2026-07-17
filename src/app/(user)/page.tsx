@@ -4,14 +4,6 @@ import { ArrowUpRight, Mail } from "lucide-react"
 import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import { Projects } from "./_components/projects"
 import { skills, social_links } from "@/app/components/static-content"
-
-const GitHubContributions = dynamic(
-  () => import("@/app/components/github-contributions"),
-  {
-    loading: () => <p></p>,
-    ssr: true,
-  }
-)
 import BlogList from "./_components/blog-list"
 import { Preview } from "../components/ui/preview"
 import {
@@ -89,10 +81,6 @@ export default function Home() {
           , where I took the product from zero to production handling frontend,
           backend, DevOps, and AI integrations end-to-end.
         </p>
-        <p>
-          I’m passionate about platform engineering, scalable web systems, and
-          building tools that make developers more productive.
-        </p>
       </div>
 
       {/* Social links */}
@@ -100,15 +88,14 @@ export default function Home() {
         aria-label="Social links"
         className="mt-7 flex flex-wrap items-center gap-1"
       >
-        <span className="font-dm-mono mr-2 text-[10px] tracking-[0.14em] text-(--color-text-tertiary) uppercase">
-          Elsewhere
-        </span>
         {social_links.map((link, idx) => (
           <Tooltip key={idx}>
             <TooltipTrigger asChild>
               <Link
+                key={link.name}
                 href={link.url}
                 target="_blank"
+                title={link.name}
                 className="inline-flex items-center justify-center rounded-md p-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                 aria-label={link.name}
               >
@@ -126,6 +113,8 @@ export default function Home() {
 
       <Journey />
 
+      <Projects show={1} />
+
       <Section id="writings">
         <SectionHeader
           id="writings-title"
@@ -137,8 +126,6 @@ export default function Home() {
         </div>
       </Section>
 
-      <Projects show={1} />
-
       <Section id="skills">
         <SectionHeader id="skills-title" title="Skills" />
         <div className="mt-5 flex flex-wrap gap-2">
@@ -147,8 +134,6 @@ export default function Home() {
           ))}
         </div>
       </Section>
-
-      <GitHubContributions />
 
       <Section id="contact">
         <SectionHeader id="contact-title" title="Contact" />

@@ -78,7 +78,7 @@ const experiences = [
     href: "https://wavemaker.com",
     date: "Jan 2025 – Present",
     summary:
-      "Building the Studio layer that generates production-grade Next.js enterprise applications.",
+      "Building low-code platform layer for production-grade full-stack enterprise applications.",
     points: [
       <>
         Contributed to the{" "}
@@ -182,45 +182,45 @@ const experiences = [
     ],
     tooltipContent: <RavaAICard />,
   },
-  {
-    id: "skillrazr",
-    role: "Full-stack Developer Intern",
-    company: "SkillRazr",
-    href: "https://skillrazr.com",
-    date: "Oct – Dec 2023",
-    summary:
-      "Interactive developer learning platforms built on GCP and Firebase.",
-    points: [
-      <>
-        Built{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          interactive Git & SQL learning environments
-        </strong>{" "}
-        real commands in a sandboxed browser, not videos.
-      </>,
-      <>
-        Shipped a{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          responsive UI system
-        </strong>{" "}
-        across mobile, tablet, and desktop, lifting completion rates.
-      </>,
-      <>
-        Led{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          UI/UX upgrades
-        </strong>{" "}
-        standardising components and reducing learner friction.
-      </>,
-    ],
-    tags: ["React", "Firebase", "GCP", "Responsive Design"],
-    tooltipContent: <SkillRazrCard />,
-  },
+  // {
+  //   id: "skillrazr",
+  //   role: "Full-stack Developer Intern",
+  //   company: "SkillRazr",
+  //   href: "https://skillrazr.com",
+  //   date: "Oct – Dec 2023",
+  //   summary:
+  //     "Interactive developer learning platforms built on GCP and Firebase.",
+  //   points: [
+  //     <>
+  //       Built{" "}
+  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+  //         interactive Git & SQL learning environments
+  //       </strong>{" "}
+  //       real commands in a sandboxed browser, not videos.
+  //     </>,
+  //     <>
+  //       Shipped a{" "}
+  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+  //         responsive UI system
+  //       </strong>{" "}
+  //       across mobile, tablet, and desktop, lifting completion rates.
+  //     </>,
+  //     <>
+  //       Led{" "}
+  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+  //         UI/UX upgrades
+  //       </strong>{" "}
+  //       standardising components and reducing learner friction.
+  //     </>,
+  //   ],
+  //   tags: ["React", "Firebase", "GCP", "Responsive Design"],
+  //   tooltipContent: <SkillRazrCard />,
+  // },
 ]
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export function Journey() {
-  const [openId, setOpenId] = useState<string | null>("wavemaker")
+  const [openId, setOpenId] = useState<string | null>(null)
 
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id))
 
@@ -292,6 +292,7 @@ export function Journey() {
 
               {/* ── Expandable body ── */}
               <div
+                aria-hidden={!isOpen}
                 className="overflow-hidden transition-all duration-300 ease-in-out"
                 style={{
                   maxHeight: isOpen ? "600px" : "0px",

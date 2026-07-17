@@ -87,16 +87,11 @@ svg {
   body {
     color: var(--foreground);
     background: var(--background);
-    background-image:
-      radial-gradient(
-        circle at 50% -10%,
-        rgb(29 111 164 / 0.08),
-        transparent 28rem
-      ),
-      radial-gradient(circle, var(--color-border) 0.75px, transparent 0.75px);
-    background-size:
-      auto,
-      1.5rem 1.5rem;
+    background-image: radial-gradient(
+      circle at 50% -10%,
+      rgb(29 111 164 / 0.15),
+      transparent 32rem
+    );
     font-family: Arial, Helvetica, sans-serif;
   }
 }
