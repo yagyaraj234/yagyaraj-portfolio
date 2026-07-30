@@ -9,24 +9,23 @@ const linkClass =
 const projectsData = [
   {
     number: "01",
-    title: "Trevyn",
-    status: "Completed",
+    title: "Slides",
+    status: "Live",
     description:
-      "AI-powered GitHub App that reviews PRs with full codebase context and lets you apply fixes in one click or batch them into a single commit.",
-    live: "https://trevyn.dev",
-    image: "/project-preview/trevyn.png",
-    imageAlt: "Trevyn reviewing a pull request and proposing a code fix",
-    surface: "GitHub pull requests",
-    focus: "Repository-aware AI review",
+      "Voice-first AI presentation maker that turns spoken or typed ideas into editable slides and exports real PowerPoint decks.",
+    live: "https://slides.yagyaraj.com",
+    image: "/project-preview/slide-studio.png",
+    imageAlt: "Slides turning live voice input into an editable presentation",
+    surface: "Live voice and PowerPoint",
+    focus: "Voice-to-editable PPTX",
   },
   {
     number: "02",
-    title: "Collab",
-    status: "Completed",
+    title: "Trevyn",
+    status: "Live",
     description:
-      "Trello-like project management with organizations, boards, task tracking, and Stripe subscription billing.",
-    live: "https://collab.yagyaraj.com",
-    git: "https://github.com/yagyaraj234/collab",
+      "AI-powered GitHub App that reviews PRs with full codebase context and lets you apply fixes in one click or batch them into a single commit.",
+    live: "https://trevyn.dev",
   },
 ]
 
@@ -142,15 +141,6 @@ export function Projects({ show = 10 }: { show?: number }) {
                     className={linkClass}
                   >
                     Live <ArrowUp className="size-3 rotate-45" />
-                  </Link>
-                )}
-                {project.git && (
-                  <Link
-                    href={project.git}
-                    target="_blank"
-                    className={linkClass}
-                  >
-                    Code <ArrowUp className="size-3 rotate-45" />
                   </Link>
                 )}
               </div>

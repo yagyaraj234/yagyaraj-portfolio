@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og"
 import React from "react"
+import { USER } from "@/data/user.data"
 
 export async function GET() {
   return new ImageResponse(
@@ -68,7 +69,7 @@ export async function GET() {
                 marginTop: 8,
               }}
             >
-              @yagyaraj234
+              @{USER.xUsername}
             </span>
             <div
               style={{
@@ -497,7 +498,7 @@ export async function GET() {
                   color: "#374151",
                 }}
               >
-                @yagyaraj234
+                @{USER.xUsername}
               </span>
             </div>
           </div>

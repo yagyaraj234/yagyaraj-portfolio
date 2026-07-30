@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { USER } from "@/data/user.data"
 
 // SVG components for each icon
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -61,16 +62,20 @@ const ResumeIcon = ({ className }: { className?: string }) => (
 )
 
 export const social_links = [
-  { name: "Github", url: "https://github.com/yagyaraj234", icon: GithubIcon },
+  {
+    name: "Github",
+    url: `https://github.com/${USER.username}`,
+    icon: GithubIcon,
+  },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yagyaraj234",
+    url: `https://linkedin.com/in/${USER.username}`,
     icon: LinkedinIcon,
   },
   { name: "Medium", url: "https://blog.yagyaraj.com", icon: MediumIcon },
   {
-    name: "Twitter",
-    url: "https://twitter.com/heyraj__",
+    name: "X",
+    url: `https://x.com/${USER.xUsername}`,
     icon: XTwitterIcon,
   },
   {
@@ -81,18 +86,21 @@ export const social_links = [
 ]
 
 export const skills = [
+  "TypeScript",
+  "JavaScript",
   "React",
   "Next.js",
   "TailwindCSS",
-  "Typescript",
+  "TanStack Router",
   "Node.js",
-  "Redux",
-  "Prisma",
-  "Firebase",
-  "MongoDB",
-  "Docker",
-  "C++",
-  "Python",
+  "Express.js",
+  "Hono",
   "FastAPI",
-  "Golang",
+  "PostgreSQL",
+  "Neo4j",
+  "Redis",
+  "Docker",
+  "GCP",
+  "AI Agents",
+  "RAG",
 ]
