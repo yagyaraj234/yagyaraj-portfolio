@@ -74,148 +74,85 @@ const experiences = [
   {
     id: "wavemaker",
     role: "Development Engineer",
-    company: "Wavemaker",
+    company: "WaveMaker",
     href: "https://wavemaker.com",
-    date: "Jan 2025 – Present",
+    date: "Dec 2024 - Present",
     summary:
       "Building low-code platform layer for production-grade full-stack enterprise applications.",
+    description:
+      "The transpiler emits a full Next.js app from WaveMaker's proprietary DSL in under 2 seconds. The preview engine replaced a 10-second hard reload with 1-2s HMR. WMX is the extension system that lets teams drop custom React components into WaveMaker apps with two-way data binding and eventing wired at build time.",
     points: [
-      <>
-        Contributed to the{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          React runtime engine
-        </strong>{" "}
-        powering{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          Wavemaker Studio
-        </strong>{" "}
-        rendering low-code definitions as production-ready React apps.
-      </>,
-      <>
-        Designed a{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          JS Proxy-based state system
-        </strong>{" "}
-        coordinating state across hundreds of generated components, zero manual
-        wiring.
-      </>,
-      <>
-        Built{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          code-gen pipelines
-        </strong>{" "}
-        exporting clean React codebases teams can own and extend.
-      </>,
-      <>
-        Worked deep in the{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          platform layer
-        </strong>{" "}
-        where reliability matters more than features.
-      </>,
+      "Built a markup-to-React transpiler from scratch, converting WaveMaker's proprietary DSL into production Next.js in under 2 seconds, with SEO and AEO metadata precomputed at generation time and microfrontend compatibility out of the box.",
+      "Built a self-healing AI agent that generates WMX components from natural language prompts: it compiles each component, feeds build errors back to itself, and retries until the build passes. Converges in 1-3 iterations across INVOCATION_COUNT production invocations.",
+      "Rebuilt studio preview infrastructure from a hard-reload model (10s, no HMR) into a hot-reload engine with 2-4s cold start and 1-2s HMR, rendering user apps without spinning up per-user containers.",
+      "Architected WMX, an extension system letting teams plug custom React components into WaveMaker apps with automatic two-way data binding, eventing, and styling injected at build time.",
+      "Contributed to a localization agent generating labels from a single prompt: 20,000+ labels across Hindi, Arabic, Russian, Portuguese and more, used in 20+ enterprise applications.",
     ],
     tags: [
-      "Nextjs",
+      "Next.js",
       "React",
-      "Redux",
       "TypeScript",
-      "Nodejs",
-      "JS Proxy",
+      "Node.js",
+      "Transpiler",
+      "HMR",
+      "AI Agents",
+      "Micro Frontends",
       "Low-Code Platform",
-      "Studio",
     ],
     tooltipContent: <WavemakerCard />,
   },
   {
     id: "ravaai",
-    role: "Software Engineer",
+    role: "Founding Engineer",
     company: "Rava AI",
     href: "https://rava.ai",
-    date: "Jan – Dec 2024",
+    date: "Jan 2024 - Dec 2024",
     summary:
-      "Took the product from zero to production: frontend, backend, DevOps, and AI end-to-end.",
+      "Built the entire production backend and the frontend that ran on top of it.",
+    description:
+      "The backend was Express and Python on GCP Cloud Run: auth, payments, LLM endpoints, document indexing, and a Redis and BullMQ queue that ran thousand-row CSV jobs with adaptive batch sizing and per-row retry, over a hybrid Neo4j and pgvector retrieval layer. On the frontend I built the config-driven form and workflow trigger setup, so new content workflows shipped without code changes.",
     points: [
-      <>
-        Owned the product end-to-end{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          from system design to deployment
-        </strong>{" "}
-        frontend, backend, DevOps, and AI.
-      </>,
-      <>
-        Built{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          automated content pipelines
-        </strong>{" "}
-        with LLM APIs, embeddings, and vector search serving{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          1000+ customers
-        </strong>
-        .
-      </>,
-      <>
-        Cut{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          server load by 40%
-        </strong>{" "}
-        with strategic browser caching.
-      </>,
-      <>
-        Reduced{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          deploy time by 70%
-        </strong>{" "}
-        building CI/CD from scratch.
-      </>,
+      "Founding engineer and the only backend engineer on a 4-person team. Built the production backend from scratch in Node.js/Express on GCP Cloud Run: user services, payments (Stripe, Razorpay), LLM endpoints, and document indexing.",
+      "Built a Redis and BullMQ job queue for LLM batch processing with adaptive batch sizing (10 rows under low server load, 3-4 under high), per-row retry with a 3-attempt cap, and persistent job state so thousand-row CSV jobs survive browser closes.",
+      "Built a multi-format RAG ingestion pipeline (web scraping, document text extraction, OCR for images) feeding a hybrid Neo4j and pgvector retrieval layer: graph nodes for structure, vector search over content.",
+      "Built a token metering and billing system with per-plan credit balances checked and deducted on every LLM call, plus per-user rate limiting, custom auth (Google OAuth, email/password), and a GCS and CDN asset layer.",
+      "Built the config-driven React form system and workflow trigger setup, rendering workflow-specific input layouts from config so the platform supported new content workflows with zero frontend changes, paired with a two-layer caching strategy cutting server load 40% and response times 50%.",
     ],
     tags: [
-      "Next.js",
-      "TailwindCss",
-      "Shadcn",
-      "Redux",
       "Node.js",
+      "Express",
+      "GCP Cloud Run",
       "Redis",
-      "GCP",
+      "BullMQ",
+      "PostgreSQL",
+      "pgvector",
+      "Neo4j",
+      "RAG",
       "LLMs",
-      "Embeddings",
-      "CI/CD",
+      "Stripe",
+      "React",
+      "Next.js",
     ],
     tooltipContent: <RavaAICard />,
   },
-  // {
-  //   id: "skillrazr",
-  //   role: "Full-stack Developer Intern",
-  //   company: "SkillRazr",
-  //   href: "https://skillrazr.com",
-  //   date: "Oct – Dec 2023",
-  //   summary:
-  //     "Interactive developer learning platforms built on GCP and Firebase.",
-  //   points: [
-  //     <>
-  //       Built{" "}
-  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-  //         interactive Git & SQL learning environments
-  //       </strong>{" "}
-  //       real commands in a sandboxed browser, not videos.
-  //     </>,
-  //     <>
-  //       Shipped a{" "}
-  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-  //         responsive UI system
-  //       </strong>{" "}
-  //       across mobile, tablet, and desktop, lifting completion rates.
-  //     </>,
-  //     <>
-  //       Led{" "}
-  //       <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-  //         UI/UX upgrades
-  //       </strong>{" "}
-  //       standardising components and reducing learner friction.
-  //     </>,
-  //   ],
-  //   tags: ["React", "Firebase", "GCP", "Responsive Design"],
-  //   tooltipContent: <SkillRazrCard />,
-  // },
+  {
+    id: "skillrazr",
+    role: "Full-stack Developer Intern",
+    company: "SkillRazr",
+    href: "https://skillrazr.com",
+    date: "Oct 2023 - Dec 2023",
+    summary:
+      "Browser-based Git and SQL sandboxes where learners run real commands.",
+    description:
+      "The Git playground runs real commands in a sandboxed environment on GCP, built with Node.js and Firebase. The SQL playground executes live queries in the browser against a real database.",
+    points: [
+      "Built an interactive Git Playground on GCP using Node.js and Firebase, enabling users to practice real Git commands in a sandboxed environment.",
+      "Built an interactive SQL Playground where users write and run queries against a live database in the browser.",
+      "Shipped responsive layouts across mobile, tablet, and desktop.",
+    ],
+    tags: ["React", "Node.js", "Firebase", "GCP", "Responsive Design"],
+    tooltipContent: <SkillRazrCard />,
+  },
 ]
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -300,16 +237,9 @@ export function Journey() {
                 }}
               >
                 <div className="pb-4">
-                  <ul className="flex flex-col gap-2.5">
-                    {exp.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-                        <p className="text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
-                          {point}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    {exp.description}
+                  </p>
 
                   {/* Tags */}
                   <div className="mt-4 flex flex-wrap gap-1.5">

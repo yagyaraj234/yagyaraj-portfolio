@@ -23,7 +23,7 @@ const faqData = [
   {
     question: "What technologies does Yagyaraj work with?",
     answer:
-      "Yagyaraj specializes in React, Next.js, TypeScript, Node.js, TailwindCSS, Prisma, Firebase, MongoDB, and Docker. He builds full-stack web applications with a focus on performance, scalability, and clean architecture.",
+      "Yagyaraj works with TypeScript, React, Next.js, Node.js, Hono, PostgreSQL, Neo4j, Redis, Docker, GCP, RAG, and AI agents. He builds developer platforms and full-stack products with a focus on performance and maintainability.",
   },
   {
     question: "How can I hire Yagyaraj for a project?",
@@ -67,7 +67,7 @@ export default function Home() {
           <Preview containerClassName="p-0" content={<WavemakerCard />}>
             <span className={badgeClass}>Wavemaker</span>
           </Preview>{" "}
-          that powers{" "}
+          that powers full-stack{" "}
           <b className="font-medium text-zinc-900 dark:text-zinc-100">
             React / Next.js
           </b>{" "}

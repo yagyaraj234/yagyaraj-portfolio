@@ -2,48 +2,48 @@
 
 # Personal Information
 Name: Yagyaraj
-Role: Development Engineer at Wavemaker
+Role: Development Engineer at WaveMaker
 Location: India
-Website: https://yagyaraj.com
+Website: https://www.yagyaraj.com
 Email: hey@yagyaraj.com
 GitHub: https://github.com/yagyaraj234
 LinkedIn: https://linkedin.com/in/yagyaraj234
-Twitter: https://twitter.com/yagyaraj234
+X: https://x.com/heyraj__
 
 # Professional Summary
-Description: Development Engineer at Wavemaker building React runtime and code generation infrastructure for scalable app exports. Previously shipped Rava AI from zero to production across frontend, backend, DevOps, and AI integrations.
+Description: Development Engineer at WaveMaker building React runtime, code generation, preview infrastructure, and AI developer tools. Previously built Rava AI's production backend and frontend systems.
 
 # Technical Skills
-Frontend: React, Next.js, TailwindCSS, TypeScript, Redux
-Backend: Node.js, FastAPI, Python
-Databases: MongoDB, Prisma, Firebase
-Cloud & DevOps: Docker, GCP, Firebase, CI/CD pipelines
-Languages: TypeScript, JavaScript, Python, C++
-Tools: Git, Browser optimization, Embedding systems
+Languages: TypeScript, JavaScript
+Frontend: React, Next.js, TailwindCSS, TanStack Router, Micro Frontends
+Backend & APIs: Node.js, Express.js, Hono, FastAPI, REST APIs, Webhooks, BullMQ
+AI: RAG, AI agents, LLM integrations, embeddings, vector databases, OCR
+Databases: PostgreSQL, MongoDB, Firestore, Neo4j, Redis
+Infrastructure: Docker, GCP, AWS, CI/CD, GitHub Actions, Turborepo, Grafana, Firebase
 
 # Professional Experience
-Current Role: Development Engineer at Wavemaker (January 2025 - Present)
-- Contributes to the React runtime engine powering Wavemaker Studio
-- Builds code generation pipelines that export maintainable React applications from visual studio definitions
-- Works on platform infrastructure for low-code application rendering and scalable app exports
+Current Role: Development Engineer at WaveMaker (December 2024 - Present)
+- Built a markup-to-React transpiler that generates production Next.js applications in under 2 seconds
+- Built an AI agent for WMX extension components with a self-healing build loop
+- Rebuilt studio preview infrastructure with 2-4 second cold starts and 1-2 second HMR
+- Architected WMX for custom React components with data binding, events, and build-time styling
 
-Previous Role: Software Engineer at Rava AI (January 2024 - December 2024)
-- Developed automated content workflows and embedding systems for diverse content types
-- Implemented browser caching optimizations reducing server load by 40%
-- Established CI/CD pipelines improving deployment speed by 70%
-- Built personalized content generation features serving 1000+ customers based on user personas
-
-Previous Role: Full Stack Developer at SkillRazr (October 2023 - December 2023)
-- Engineered interactive Git and SQL learning platforms utilizing GCP and Firebase
-- Implemented responsive design principles to optimize cross-device functionality
-- Led UI/UX improvements across the platform ecosystem
+Previous Role: Software Engineer (Founding Engineer) at Rava.ai (January 2024 - December 2024)
+- Built the production backend on Node.js, Express, and GCP Cloud Run
+- Built Redis and BullMQ batch processing for thousand-row LLM jobs
+- Built a multi-format RAG pipeline over Neo4j and pgvector
+- Built config-driven React workflows and a token metering and billing system
 
 # Notable Projects
-Collab - Trello-like Application:
-- GitHub: https://github.com/yagyaraj234/collab
-- Live: https://collab-neon.vercel.app/
-- Features: Organization management, multiple boards per organization, task management with status updates and due dates
-- Integrated Stripe for payment processing and subscription management
+Slides:
+- Live: https://slides.yagyaraj.com
+- Turns spoken or typed ideas into editable slides
+- Generates live layouts and exports real PowerPoint files
+
+Trevyn:
+- Live: https://trevyn.dev
+- Reviews pull requests using PR diffs, repository context, and team rules
+- Delivers fixes as one-click or batched GitHub suggested changes
 
 # Education & Interests
 Focus: Modern web development, performance optimization, user experience design
@@ -51,8 +51,8 @@ Passion: Building scalable applications, learning new technologies, solving comp
 
 # Contact Information
 Primary Email: hey@yagyaraj.com
-Portfolio: https://yagyaraj.com
-Resume: https://yagyaraj.com/resume
+Portfolio: https://www.yagyaraj.com
+Resume: https://www.yagyaraj.com/resume
 
 # Communication Preferences
 - Open to conversations about work, projects, technology, and collaboration
@@ -60,12 +60,9 @@ Resume: https://yagyaraj.com/resume
 - Available for: Technical discussions, project collaborations, career opportunities
 
 # Expertise Areas
-- Full-stack web development
 - React runtime and code generation
-- Platform engineering
-- Performance optimization and caching strategies
-- CI/CD pipeline implementation
-- Content management systems
-- Payment integration (Stripe)
-- Cloud platform integration (GCP, Firebase)
-- Responsive design and cross-device compatibility
+- Platform and preview infrastructure
+- Full-stack product development
+- AI agents and retrieval systems
+- GitHub Apps and developer tooling
+- Performance optimization

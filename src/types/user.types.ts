@@ -16,12 +16,12 @@ export interface User {
   lastName: string
   displayName: string
   username: string
+  xUsername: string
   gender?: string
   pronouns?: string
 
   // Professional Information
   bio: string
-  flipSentences?: string[]
   jobTitle: string
   jobs: Job[]
   about: string

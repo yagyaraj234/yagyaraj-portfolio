@@ -13,11 +13,11 @@ export const metadata = {
     title: "Blog | Yagyaraj",
     description:
       "Thoughts on software engineering, web development, and building products.",
-    url: "https://yagyaraj.com/blog",
+    url: `${USER.website}/blog`,
     siteName: "Yagyaraj",
     images: [
       {
-        url: "https://yagyaraj.com/api/og", // Default site OG or specific blog OG
+        url: `${USER.website}/api/og`, // Default site OG or specific blog OG
         width: 1200,
         height: 630,
         alt: "Blog | Yagyaraj",

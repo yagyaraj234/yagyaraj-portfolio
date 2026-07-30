@@ -122,7 +122,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    creator: `@${USER.username}`,
+    creator: `@${USER.xUsername}`,
     images: [USER.ogImage],
   },
   alternates: {
@@ -188,7 +188,7 @@ export default function RootLayout({
                       sameAs: [
                         `https://github.com/${USER.username}`,
                         `https://linkedin.com/in/${USER.username}`,
-                        `https://x.com/${USER.username}`,
+                        `https://x.com/${USER.xUsername}`,
                       ],
                     },
                     dateCreated: USER.dateCreated,
