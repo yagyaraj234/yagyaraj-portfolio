@@ -16,6 +16,10 @@ export const navItems: NavItem[] = [
     link: "/",
   },
   {
+    name: "Lab",
+    link: "/lab",
+  },
+  {
     name: "Writings",
     link: "/blog",
   },
@@ -41,18 +45,7 @@ export const Navbar = () => {
         className="flex items-center gap-1 rounded-full border border-(--color-border) bg-(--color-bg-secondary)/60 p-1 backdrop-blur-sm"
         aria-label="Primary navigation"
       >
-        <div className="relative grid grid-cols-2">
-          <motion.span
-            aria-hidden="true"
-            initial={false}
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/2 rounded-full bg-white shadow-sm dark:bg-zinc-800"
-            animate={{ x: `${selectedIndex * 100}%` }}
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : { type: "spring", bounce: 0, duration: 0.4 }
-            }
-          />
+        <div className="flex">
           {navItems.map((item: NavItem, index: number) => {
             const isRouteActive = routeIndex === index
             const isSelected = selectedIndex === index
@@ -66,9 +59,22 @@ export const Navbar = () => {
                 onPointerCancel={() =>
                   setSelectedIndex(Math.max(routeIndex, 0))
                 }
-                className={`relative z-10 grid h-8 place-items-center rounded-full px-3 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isSelected ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
+                className={`relative grid h-8 place-items-center rounded-full px-2.5 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isSelected ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
               >
-                {item.name}
+                {isSelected && (
+                  <motion.span
+                    layoutId="active-nav-item"
+                    aria-hidden="true"
+                    initial={false}
+                    className="pointer-events-none absolute inset-0 rounded-full bg-white shadow-sm dark:bg-zinc-800"
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { type: "spring", bounce: 0, duration: 0.4 }
+                    }
+                  />
+                )}
+                <span className="relative">{item.name}</span>
               </Link>
             )
           })}

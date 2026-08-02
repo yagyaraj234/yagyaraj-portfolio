@@ -67,7 +67,7 @@ export default function Home() {
           <Preview containerClassName="p-0" content={<WavemakerCard />}>
             <span className={badgeClass}>Wavemaker</span>
           </Preview>{" "}
-          that powers{" "}
+          that powers full-stack{" "}
           <b className="font-medium text-zinc-900 dark:text-zinc-100">
             React / Next.js
           </b>{" "}
