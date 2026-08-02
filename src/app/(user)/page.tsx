@@ -65,7 +65,7 @@ export default function Home() {
         <p>
           Building the platform engine at{" "}
           <Preview containerClassName="p-0" content={<WavemakerCard />}>
-            <span className={badgeClass}>Wavemaker</span>
+            <span className={badgeClass}>WaveMaker</span>
           </Preview>{" "}
           that powers full-stack{" "}
           <b className="font-medium text-zinc-900 dark:text-zinc-100">

@@ -3,7 +3,6 @@ import Link from "next/link"
 import ThemeButton from "./theme-button"
 import { usePathname } from "next/navigation"
 import { motion, useReducedMotion } from "motion/react"
-import { useEffect, useState } from "react"
 
 export interface NavItem {
   name: string
@@ -16,17 +15,13 @@ export const navItems: NavItem[] = [
     link: "/",
   },
   {
-    name: "Lab",
-    link: "/lab",
-  },
-  {
     name: "Writings",
     link: "/blog",
   },
-  // {
-  //   name: "Lab",
-  //   link: "/lab",
-  // },
+  {
+    name: "Lab",
+    link: "/lab",
+  },
 ]
 
 export const Navbar = () => {
@@ -35,9 +30,6 @@ export const Navbar = () => {
   const routeIndex = navItems.findIndex((item) =>
     item.link === "/" ? pathname === item.link : pathname.startsWith(item.link)
   )
-  const [selectedIndex, setSelectedIndex] = useState(Math.max(routeIndex, 0))
-
-  useEffect(() => setSelectedIndex(Math.max(routeIndex, 0)), [routeIndex])
 
   return (
     <header className="flex w-full items-center justify-end pt-4 max-sm:mb-8">
@@ -48,20 +40,15 @@ export const Navbar = () => {
         <div className="flex">
           {navItems.map((item: NavItem, index: number) => {
             const isRouteActive = routeIndex === index
-            const isSelected = selectedIndex === index
 
             return (
               <Link
                 key={item.link}
                 href={item.link}
                 aria-current={isRouteActive ? "page" : undefined}
-                onPointerDown={() => setSelectedIndex(index)}
-                onPointerCancel={() =>
-                  setSelectedIndex(Math.max(routeIndex, 0))
-                }
-                className={`relative grid h-8 place-items-center rounded-full px-2.5 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isSelected ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
+                className={`relative grid h-8 place-items-center rounded-full px-2.5 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isRouteActive ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
               >
-                {isSelected && (
+                {isRouteActive && (
                   <motion.span
                     layoutId="active-nav-item"
                     aria-hidden="true"
@@ -70,7 +57,11 @@ export const Navbar = () => {
                     transition={
                       reduceMotion
                         ? { duration: 0 }
-                        : { type: "spring", bounce: 0, duration: 0.4 }
+                        : {
+                            type: "tween",
+                            duration: 0.2,
+                            ease: [0.77, 0, 0.175, 1],
+                          }
                     }
                   />
                 )}
