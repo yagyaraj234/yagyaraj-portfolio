@@ -7,9 +7,9 @@ export const USER: User = {
   username: "yagyaraj234",
   gender: "male",
   pronouns: "he/him",
-  bio: "Development Engineer at Wavemaker | Building React runtime and code generation infrastructure",
+  bio: "AI-Native Software Engineer at WaveMaker | Building React runtime and code generation infrastructure",
   flipSentences: [
-    "Development Engineer at Wavemaker",
+    "AI-Native Software Engineer at WaveMaker",
     "React & Next.js Specialist",
     "Building Scalable Solutions",
   ],
@@ -17,16 +17,16 @@ export const USER: User = {
   phoneNumber: "", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
   email: "aGV5QHlhZ3lhcmFqLmNvbQ==", // base64 encoded for hey@yagyaraj.com
   website: "https://yagyaraj.com",
-  jobTitle: "Development Engineer",
+  jobTitle: "AI-Native Software Engineer",
   jobs: [
     {
       title: "Development Engineer",
-      company: "Wavemaker",
+      company: "WaveMaker",
       website: "https://wavemaker.com",
     },
   ],
   about: `
-- **Development Engineer at Wavemaker** building React runtime and code generation infrastructure for scalable app exports
+- **Development Engineer at WaveMaker** building React runtime and code generation infrastructure for scalable app exports
 - Skilled in **React**, **Next.js**, **TypeScript**, **Node.js**, and modern frontend technologies
 - Passionate about creating elegant, performant solutions with clean code and intuitive user experiences
 - Built [Collab](https://collab-neon.vercel.app/) - A Trello-like project management application with Stripe integration

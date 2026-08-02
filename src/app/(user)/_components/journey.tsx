@@ -54,7 +54,7 @@ export const WavemakerCard = () => (
   <>
     <Image
       src="/tooltip/wavemaker.webp"
-      alt="Wavemaker"
+      alt="WaveMaker"
       className="h-max w-full rounded-md"
       loading="eager"
       height={500}
@@ -63,7 +63,7 @@ export const WavemakerCard = () => (
       unoptimized
     />
     <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
-      Wavemaker offers a low-code development platform for professional
+      WaveMaker offers a low-code development platform for professional
       developers to build web and mobile applications using open standards.
     </p>
   </>
@@ -74,7 +74,7 @@ const experiences = [
   {
     id: "wavemaker",
     role: "Development Engineer",
-    company: "Wavemaker",
+    company: "WaveMaker",
     href: "https://wavemaker.com",
     date: "Jan 2025 – Present",
     summary:
@@ -87,7 +87,7 @@ const experiences = [
         </strong>{" "}
         powering{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          Wavemaker Studio
+          WaveMaker Studio
         </strong>{" "}
         rendering low-code definitions as production-ready React apps.
       </>,
@@ -128,7 +128,7 @@ const experiences = [
   },
   {
     id: "ravaai",
-    role: "Software Engineer",
+    role: "Founding Engineer",
     company: "Rava AI",
     href: "https://rava.ai",
     date: "Jan – Dec 2024",
