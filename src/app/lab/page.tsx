@@ -14,6 +14,17 @@ interface Project {
 
 const projects: Project[] = [
   {
+    name: "GhostNote",
+    description:
+      "A private, offline teleprompter for macOS with a movable, resizable, auto-scrolling script overlay.",
+    tags: ["macOS teleprompter", "Auto-scroll", "Offline"],
+    stats: [
+      { label: "Platform", value: "macOS 14+" },
+      { label: "Storage", value: "Local" },
+    ],
+    href: "https://ghostnote.yagyaraj.com",
+  },
+  {
     name: "Slides",
     description:
       "Turns spoken or typed ideas into editable presentation decks, then exports them as real PowerPoint files.",
