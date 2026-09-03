@@ -81,38 +81,59 @@ const experiences = [
       "Building low-code platform layer for production-grade full-stack enterprise applications.",
     points: [
       <>
-        Contributed to the{" "}
+        Architectured the core system that lets applications created on{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          React runtime engine
+          WaveMaker low-code platform
         </strong>{" "}
-        powering{" "}
+        be exported as production-ready{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          WaveMaker Studio
-        </strong>{" "}
-        rendering low-code definitions as production-ready React apps.
+          React/Next.js applications
+        </strong>
+        .
       </>,
       <>
-        Designed a{" "}
+        Built a{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          JS Proxy-based state system
+          plugin
         </strong>{" "}
-        coordinating state across hundreds of generated components, zero manual
-        wiring.
+        that lets teams import and use their own React components inside
+        WaveMaker applications, with{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          data binding, events, and styling
+        </strong>
+        .
       </>,
       <>
-        Built{" "}
+        Shipped{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          code-gen pipelines
+          one-click Angular-to-React migration
         </strong>{" "}
-        exporting clean React codebases teams can own and extend.
+        for WaveMaker apps, delivering{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          40% better performance
+        </strong>{" "}
+        and Lighthouse scores above{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          80
+        </strong>{" "}
+        without targeted optimization.
       </>,
       <>
-        Worked deep in the{" "}
+        Cut Studio{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          platform layer
+          preview updates from 12s to ~2s
         </strong>{" "}
-        where reliability matters more than features.
+        for apps with up to{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          130 pages,
+        </strong>{" "}
+        built localization and WMX agents used 1,450+ and 180+ times.
       </>,
+      // <>
+      //   Contributed to building AI agents that continuously automate engineering
+      //   tasks like generating components, fixing bugs, and raising PRs with
+      //   minimal human intervention.
+      // </>,
     ],
     tags: [
       "Nextjs",
@@ -136,36 +157,43 @@ const experiences = [
       "Took the product from zero to production: frontend, backend, DevOps, and AI end-to-end.",
     points: [
       <>
-        Owned the product end-to-end{" "}
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          from system design to deployment
-        </strong>{" "}
-        frontend, backend, DevOps, and AI.
+        Owned Rava end to end across{" "}
+        <strong> Next.js / React and Node services</strong> , building
+        config-driven workflow UI, Firebase Auth, GCP Cloud Run / VMs, Redis,
+        GCS + CDN asset delivery, and billing.
       </>,
       <>
-        Built{" "}
+        Built a multi-format{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          automated content pipelines
+          RAG ingestion pipeline
         </strong>{" "}
-        with LLM APIs, embeddings, and vector search serving{" "}
+        (web, documents, OCR for images) feeding a{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          1000+ customers
+          pgvector retrieval layer
         </strong>
-        .
+        :{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          graph nodes for structure
+        </strong>
+        , vector search over content history.
       </>,
       <>
-        Cut{" "}
+        Cut server load by{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          server load by 40%
+          40%
         </strong>{" "}
-        with strategic browser caching.
+        through in-browser and server-side caching.
       </>,
       <>
-        Reduced{" "}
         <strong className="font-medium text-zinc-900 dark:text-zinc-100">
-          deploy time by 70%
+          Implemented token metering and billing system
         </strong>{" "}
-        building CI/CD from scratch.
+        with{" "}
+        <strong className="font-medium text-zinc-900 dark:text-zinc-100">
+          per-plan credit
+        </strong>{" "}
+        balances checked and deducted on every LLM call, plus per-user rate
+        limiting.
       </>,
     ],
     tags: [
