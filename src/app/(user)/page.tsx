@@ -1,22 +1,16 @@
-import dynamic from "next/dynamic"
 import Link from "next/link"
-import { ArrowUpRight, Mail } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { Journey, RavaAICard, WavemakerCard } from "./_components/journey"
 import { Projects } from "./_components/projects"
-import { skills, social_links } from "@/app/components/static-content"
+import { skills } from "@/app/components/static-content"
+import { SocialLinks } from "@/app/components/social-links"
 import BlogList from "./_components/blog-list"
 import { Preview } from "../components/ui/preview"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "../components/ui/tooltip"
 import { Section, SectionHeader } from "../components/ui/section"
 import { TechTag } from "../components/ui/tech-tag"
-import { Email } from "../components/email-extend"
 
 const badgeClass =
-  "mx-0.5 cursor-pointer rounded bg-zinc-50 px-1 py-0.5 text-sm ring ring-zinc-200 transition-colors hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800 dark:hover:bg-zinc-800"
+  "mx-0.5 cursor-pointer rounded bg-black/[0.06] px-1 py-0.5 text-sm hover:bg-black/[0.1] dark:bg-white/[0.08] dark:text-zinc-200 dark:hover:bg-white/[0.14]"
 
 // FAQ data for invisible FAQPage JSON-LD (AEO/SEO only, not rendered)
 const faqData = [
@@ -61,7 +55,7 @@ export default function Home() {
       />
 
       {/* Intro */}
-      <div className="text-muted mt-6 space-y-4 text-base leading-relaxed tracking-wide normal-case lg:mt-8">
+      <div className="text-muted mt-6 max-w-[62ch] space-y-4 text-base leading-relaxed tracking-wide normal-case lg:mt-8">
         <p>
           Building the platform engine at{" "}
           <Preview containerClassName="p-0" content={<WavemakerCard />}>
@@ -81,45 +75,30 @@ export default function Home() {
           , where I took the product from zero to production handling frontend,
           backend, DevOps, and AI integrations end-to-end.
         </p>
+        <p>
+          Outside work I ship my own products, most recently{" "}
+          <Link href="#projects" className={badgeClass}>
+            Fluently
+          </Link>
+          , an AI English coach with live voice practice, and{" "}
+          <Link href="#projects" className={badgeClass}>
+            Trevyn
+          </Link>
+          , a codebase-aware PR reviewer.
+        </p>
       </div>
 
-      {/* Social links */}
-      <nav
-        aria-label="Social links"
-        className="mt-7 flex flex-wrap items-center gap-1"
-      >
-        {social_links.map((link, idx) => (
-          <Tooltip key={idx}>
-            <TooltipTrigger asChild>
-              <Link
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                title={link.name}
-                className="inline-flex items-center justify-center rounded-md p-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-                aria-label={link.name}
-              >
-                <link.icon aria-hidden="true" className="size-4" />
-              </Link>
-            </TooltipTrigger>
-
-            <TooltipContent>
-              <p>{link.name}</p>
-            </TooltipContent>
-          </Tooltip>
-        ))}
-        <Email />
-      </nav>
+      <SocialLinks />
 
       <Journey />
 
-      <Projects show={1} />
+      <Projects show={2} />
 
       <Section id="writings">
         <SectionHeader
           id="writings-title"
           title="Recent writings"
-          href="/writings"
+          href="/blog"
         />
         <div className="text-muted mt-5 text-base">
           <BlogList />
@@ -137,36 +116,26 @@ export default function Home() {
 
       <Section id="contact">
         <SectionHeader id="contact-title" title="Contact" />
-        <div className="relative mt-5 overflow-hidden rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/55 p-5 sm:p-6">
-          <div
-            aria-hidden="true"
-            className="absolute -top-16 -right-16 size-40 rounded-full bg-[#1D6FA4]/8 blur-3xl"
-          />
-          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-5 rounded-xl bg-(--color-bg-secondary) p-5 sm:p-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-lg">
-              <div className="mb-3 flex size-9 items-center justify-center rounded-lg border border-(--color-border) bg-white text-[#1D6FA4] shadow-sm dark:bg-zinc-900 dark:text-[#5BA8D6]">
-                <Mail aria-hidden="true" className="size-4" />
-              </div>
-              <p className="text-base font-medium tracking-tight text-(--color-text-primary)">
+              <p className="text-lg font-medium tracking-tight text-(--color-text-primary)">
                 Have a product or platform problem worth unpacking?
               </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-(--color-text-secondary)">
+              <p className="mt-1.5 text-base leading-relaxed text-(--color-text-secondary)">
                 Tell me the context, constraints, and outcome you want. What are
                 you building, and where is it stuck?
               </p>
             </div>
             <Link
               href="mailto:hey@yagyaraj.com?subject=Project%20conversation"
-              className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-[#1D6FA4] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-[transform,background-color,box-shadow] hover:-translate-y-0.5 hover:bg-[#185f8c] hover:shadow-md active:translate-y-0"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#1D6FA4] px-4 text-sm font-medium text-white hover:bg-[#185f8c]"
             >
               Write an email
-              <ArrowUpRight
-                aria-hidden="true"
-                className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              <ArrowUpRight aria-hidden="true" className="size-3.5" />
             </Link>
           </div>
-          <div className="font-dm-mono relative mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-(--color-border) pt-3 text-[10px] text-(--color-text-tertiary)">
+          <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-(--color-text-tertiary)">
             <span>Opens your email app</span>
             <span aria-hidden="true">·</span>
             <span>hey@yagyaraj.com</span>
@@ -174,7 +143,7 @@ export default function Home() {
             <Link
               href="/linkedin"
               target="_blank"
-              className="transition-colors hover:text-(--color-text-primary)"
+              className="hit-area underline-offset-4 hover:text-(--color-text-primary) hover:underline"
             >
               Prefer LinkedIn?
             </Link>

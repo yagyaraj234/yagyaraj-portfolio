@@ -7,7 +7,7 @@ export default function BentoGrid() {
         Features
       </div>
       <h3 className="mt-8 text-center text-4xl font-semibold text-zinc-900">
-        Here's what Ticketapp Help can do:
+        Here’s what Ticketapp Help can do:
       </h3>
       <div className="text-center text-sm text-zinc-600">
         So you focus on what matters most.

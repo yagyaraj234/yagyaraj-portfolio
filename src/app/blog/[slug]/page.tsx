@@ -89,10 +89,10 @@ export default async function Page({
   return (
     <div className="mt-8 font-sans">
       <PostTitle
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-4 max-sm:text-4xl!"
+        initial={{ opacity: 0, transform: "translateY(8px)" }}
+        animate={{ opacity: 1, transform: "translateY(0px)" }}
+        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+        className="mb-4 text-balance max-sm:text-[1.75rem]!"
       >
         {postMetadata?.title}
       </PostTitle>
@@ -101,11 +101,11 @@ export default async function Page({
         {postMetadata?.summary}
       </PostDescription> */}
 
-      <div className="mb-12 flex flex-col text-xs font-normal text-zinc-400 sm:text-sm">
+      <div className="mb-12 flex flex-col">
         <PostUpdatedText>Published on {publishDate}</PostUpdatedText>
       </div>
 
-      <article className="prose prose-zinc dark:prose-invert max-w-none">
+      <article className="prose prose-zinc dark:prose-invert max-w-none [&>blockquote]:max-w-[68ch] [&>ol]:max-w-[68ch] [&>p]:max-w-[68ch] [&>ul]:max-w-[68ch]">
         <Post
           components={{
             Callout,
@@ -120,11 +120,11 @@ export default async function Page({
         />
       </article>
 
-      <div className="flex items-center">
+      <div className="mt-16 flex flex-wrap items-center gap-x-5 gap-y-2">
         {social_links?.slice(0, 4).map((link, idx) => (
           <Link
             key={idx}
-            className="text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 after:mx-2 after:inline-block after:text-black after:no-underline after:content-['|'] last:after:hidden hover:underline"
+            className="text-[#1D6FA4] decoration-wavy underline-offset-4 hover:underline dark:text-[#5BA8D6]"
             href={link.url}
             target="_blank"
             rel="noreferrer"

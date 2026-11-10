@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export const Heading = ({
   level,
@@ -19,5 +20,23 @@ export const Heading = ({
   }, [props.id])
 
   const Component = level
-  return <Component ref={ref} {...(id ? { id } : {})} {...props} />
+  return (
+    <Component
+      ref={ref}
+      {...props}
+      className={cn(level !== "h1" && "reveal", props.className)}
+      id={id ?? undefined}
+    >
+      {props.children}
+      {id && level !== "h1" && (
+        <a
+          className="heading-anchor"
+          href={`#${id}`}
+          aria-label="Link to this section"
+        >
+          #
+        </a>
+      )}
+    </Component>
+  )
 }

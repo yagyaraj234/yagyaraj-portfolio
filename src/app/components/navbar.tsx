@@ -34,7 +34,7 @@ export const Navbar = () => {
   return (
     <header className="flex w-full items-center justify-end pt-4 max-sm:mb-8">
       <nav
-        className="flex items-center gap-1 rounded-full border border-(--color-border) bg-(--color-bg-secondary)/60 p-1 backdrop-blur-sm"
+        className="flex items-center gap-1 rounded-full bg-(--color-bg-secondary) p-1"
         aria-label="Primary navigation"
       >
         <div className="flex">
@@ -46,14 +46,14 @@ export const Navbar = () => {
                 key={item.link}
                 href={item.link}
                 aria-current={isRouteActive ? "page" : undefined}
-                className={`relative grid h-8 place-items-center rounded-full px-2.5 text-center text-xs whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isRouteActive ? "text-gray-900 dark:text-white" : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"}`}
+                className={`relative grid h-8 place-items-center rounded-full px-3 text-center text-[13px] whitespace-nowrap transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${isRouteActive ? "text-gray-900 dark:text-white" : "text-(--color-text-secondary) hover:text-gray-900 dark:hover:text-white"}`}
               >
                 {isRouteActive && (
                   <motion.span
                     layoutId="active-nav-item"
                     aria-hidden="true"
                     initial={false}
-                    className="pointer-events-none absolute inset-0 rounded-full bg-white shadow-sm dark:bg-zinc-800"
+                    className="pointer-events-none absolute inset-0 rounded-full bg-white dark:bg-zinc-800"
                     transition={
                       reduceMotion
                         ? { duration: 0 }

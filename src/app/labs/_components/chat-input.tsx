@@ -8,7 +8,7 @@ import {
   MoreHorizontal,
   X,
   FileText,
-  Image,
+  Image as ImageIcon,
   Film,
   ScrollText,
   Languages,
@@ -26,7 +26,7 @@ type AttachedFile = {
 }
 
 function fileIcon(type: AttachedFile["type"]) {
-  if (type === "image") return <Image className="size-3.5 text-blue-400" />
+  if (type === "image") return <ImageIcon className="size-3.5 text-blue-400" />
   if (type === "video") return <Film className="size-3.5 text-purple-400" />
   return <FileText className="size-3.5 text-zinc-400" />
 }
@@ -82,6 +82,7 @@ interface ChatInput {
 
 export default function ChatBox(props: ChatInput) {
   const { className, onSubmit, loading } = props
+  const [feedback, setFeedback] = useState("")
   const [value, setValue] = useState("")
   const [deepResearch, setDeepResearch] = useState(false)
   const [think, setThink] = useState(false)
@@ -113,17 +114,17 @@ export default function ChatBox(props: ChatInput) {
     setFiles((prev) => prev.filter((_, i) => i !== idx))
 
   const handleSubmit = () => {
-    if (loading) return
+    if (loading || (!value.trim() && files.length === 0)) return
     onSubmit?.({
       value,
       deepResearch,
       think,
       files,
     })
-    if (!value.trim() && files.length === 0) return
-    // replace with real submit logic
-    alert(
-      `Sending:\n"${value}"\nModes: ${[deepResearch && "Deep research", think && "Think"].filter(Boolean).join(", ") || "none"}\nFiles: ${files.map((f) => f.name).join(", ") || "none"}`
+    setFeedback(
+      onSubmit
+        ? "Submitted"
+        : "Demo complete — nothing was sent. Try another prompt."
     )
     setValue("")
     setFiles([])
@@ -131,7 +132,7 @@ export default function ChatBox(props: ChatInput) {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault()
       handleSubmit()
     }
@@ -166,6 +167,7 @@ export default function ChatBox(props: ChatInput) {
                   </span>
                   <span className="text-[11px] text-zinc-400">{f.size}</span>
                   <button
+                    aria-label={`Remove ${f.name}`}
                     onClick={() => removeFile(i)}
                     className="ml-0.5 rounded-full p-0.5 text-zinc-400 transition-colors hover:bg-zinc-200 hover:text-zinc-600"
                   >
@@ -184,12 +186,13 @@ export default function ChatBox(props: ChatInput) {
             onInput={handleInput}
             onKeyDown={handleKeyDown}
             disabled={loading}
+            aria-label="Demo prompt"
             placeholder="Ask anything"
             className="max-h-[200px] min-h-[52px] w-full resize-none overflow-y-auto bg-transparent text-[1rem] leading-relaxed font-normal text-zinc-800 caret-zinc-500 outline-none placeholder:text-zinc-400"
           />
 
           {/* Toolbar */}
-          <div className="mt-2 flex items-center gap-1.5">
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
             <input
               ref={fileInputRef}
               type="file"
@@ -200,20 +203,21 @@ export default function ChatBox(props: ChatInput) {
 
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F1F0EC] ring-[0.5px] ring-black/8 transition-all duration-150 ease-out hover:bg-[#E4E3DE] hover:shadow-sm active:scale-95"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F1F0EC] ring-[0.5px] ring-black/8 transition-[background-color,color,box-shadow,transform] duration-150 ease-out hover:bg-[#E4E3DE] hover:shadow-sm active:scale-[0.97]"
               title="Attach file"
             >
               <Plus className="size-[18px] text-zinc-500" strokeWidth={1.8} />
             </button>
 
             <button
+              aria-pressed={deepResearch}
               onClick={() => setDeepResearch((v) => !v)}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out",
+                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-[background-color,color,box-shadow,transform] duration-150 ease-out",
                 {
                   "bg-zinc-800 text-white shadow-sm ring-zinc-700":
                     deepResearch,
-                  "bg-[#F1F0EC] text-zinc-600 ring-black/8 hover:bg-[#E4E3DE] hover:shadow-sm active:scale-95":
+                  "bg-[#F1F0EC] text-zinc-600 ring-black/8 hover:bg-[#E4E3DE] hover:shadow-sm active:scale-[0.97]":
                     !deepResearch,
                 }
               )}
@@ -226,12 +230,13 @@ export default function ChatBox(props: ChatInput) {
             </button>
 
             <button
+              aria-pressed={think}
               onClick={() => setThink((v) => !v)}
               className={cn(
-                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-all duration-150 ease-out",
+                "flex h-9 items-center gap-2 rounded-full px-3.5 text-[13px] font-medium tracking-[-0.01em] ring-[0.5px] transition-[background-color,color,box-shadow,transform] duration-150 ease-out",
                 {
                   "bg-zinc-800 text-white shadow-sm ring-zinc-700": think,
-                  "bg-[#F1F0EC] text-zinc-600 ring-black/8 hover:bg-[#E4E3DE] hover:shadow-sm active:scale-95":
+                  "bg-[#F1F0EC] text-zinc-600 ring-black/8 hover:bg-[#E4E3DE] hover:shadow-sm active:scale-[0.97]":
                     !think,
                 }
               )}
@@ -243,10 +248,23 @@ export default function ChatBox(props: ChatInput) {
               <span>Think</span>
             </button>
 
-            <div className="relative">
+            <div
+              className="relative"
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  setMoreOpen(false)
+                  event.currentTarget.querySelector("button")?.focus()
+                }
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget))
+                  setMoreOpen(false)
+              }}
+            >
               <button
                 onClick={() => setMoreOpen((v) => !v)}
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F1F0EC] ring-[0.5px] ring-black/8 transition-all duration-150 ease-out hover:bg-[#E4E3DE] hover:shadow-sm active:scale-95 ${moreOpen ? "bg-[#E4E3DE]" : ""}`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F1F0EC] ring-[0.5px] ring-black/8 transition-[background-color,color,box-shadow,transform] duration-150 ease-out hover:bg-[#E4E3DE] hover:shadow-sm active:scale-[0.97] ${moreOpen ? "bg-[#E4E3DE]" : ""}`}
+                aria-expanded={moreOpen}
                 title="More options"
               >
                 <MoreHorizontal
@@ -257,7 +275,10 @@ export default function ChatBox(props: ChatInput) {
               {moreOpen && (
                 <div className="absolute bottom-11 left-0 z-10 min-w-[160px] rounded-xl bg-white py-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.12)] ring-[0.5px] ring-black/8">
                   {MORE_OPTIONS.map(({ label, icon: Icon }) => (
-                    <div className="flex gap-2 px-3.5 py-2 text-left text-[13px] text-zinc-600 transition-colors hover:bg-[#F1F0EC]">
+                    <div
+                      key={label}
+                      className="flex gap-2 px-3.5 py-2 text-left text-[13px] text-zinc-600 transition-colors hover:bg-[#F1F0EC]"
+                    >
                       <Icon
                         className="size-[18px] text-zinc-500"
                         strokeWidth={1.8}
@@ -281,8 +302,9 @@ export default function ChatBox(props: ChatInput) {
 
             {(value.trim() || files.length > 0) && (
               <button
+                disabled={loading}
                 onClick={handleSubmit}
-                className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-white shadow-sm transition-all duration-150 hover:bg-zinc-700 active:scale-95"
+                className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-white shadow-sm transition-[background-color,transform] duration-150 ease-out hover:bg-zinc-700 active:scale-[0.97]"
                 title="Send (Enter)"
               >
                 {loading ? (
@@ -306,13 +328,16 @@ export default function ChatBox(props: ChatInput) {
         </div>
       </div>
 
-      <p className="mt-2 text-center text-[11px] text-zinc-400">
+      <p role="status" className="min-h-5 text-center text-xs text-zinc-500">
+        {feedback}
+      </p>
+      <p className="mt-2 text-center text-xs text-zinc-500">
         Press{" "}
-        <kbd className="rounded bg-zinc-200 px-1 py-0.5 font-mono text-[10px] text-zinc-500">
+        <kbd className="rounded bg-zinc-200 px-1 py-0.5 font-mono text-[11px] text-zinc-600">
           Enter
         </kbd>{" "}
         to send ·{" "}
-        <kbd className="rounded bg-zinc-200 px-1 py-0.5 font-mono text-[10px] text-zinc-500">
+        <kbd className="rounded bg-zinc-200 px-1 py-0.5 font-mono text-[11px] text-zinc-600">
           Shift+Enter
         </kbd>{" "}
         for new line

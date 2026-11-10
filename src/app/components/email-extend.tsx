@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip"
 
 const EMAIL = "hey@yagyaraj.com"
@@ -19,8 +19,16 @@ export const MailIcon = ({ className }: { className?: string }) => (
 export const Email = () => {
   const [copyState, setCopyState] = useState<CopyState>("idle")
   const [open, setOpen] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current)
+    },
+    []
+  )
 
   const handleCopy = async (): Promise<void> => {
+    if (timer.current) clearTimeout(timer.current)
     try {
       await navigator.clipboard.writeText(EMAIL)
       setCopyState("copied")
@@ -28,7 +36,7 @@ export const Email = () => {
       setCopyState("error")
     }
     setOpen(true)
-    setTimeout(() => setCopyState("idle"), 1500)
+    timer.current = setTimeout(() => setCopyState("idle"), 2500)
   }
 
   return (
@@ -38,16 +46,22 @@ export const Email = () => {
           onMouseLeave={() => setOpen(false)}
           onMouseEnter={() => setOpen(true)}
           onClick={handleCopy}
-          aria-label="Copy email"
+          aria-label={
+            copyState === "copied"
+              ? "Email copied"
+              : copyState === "error"
+                ? `Could not copy. Email ${EMAIL}`
+                : "Copy email"
+          }
           className="group inline-flex items-center justify-center rounded-md p-2 text-zinc-500 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           {/* icon: collapses to width 0 on hover */}
-          <span className="grid size-4 place-items-center overflow-hidden opacity-100 transition-all duration-300 ease-out group-hover:size-0 group-hover:opacity-0">
+          <span className="grid size-4 place-items-center overflow-hidden opacity-100 transition-[width,height,opacity] duration-200 ease-out group-hover:size-0 group-hover:opacity-0 group-focus-visible:size-0 group-focus-visible:opacity-0">
             <MailIcon aria-hidden="true" className="size-4" />
           </span>
           {/* email: 0fr -> 1fr expands intrinsic width smoothly */}
-          <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[1fr]">
-            <span className="overflow-hidden text-sm whitespace-nowrap opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-250 ease-out group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr]">
+            <span className="overflow-hidden text-sm whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
               {EMAIL}
             </span>
           </span>

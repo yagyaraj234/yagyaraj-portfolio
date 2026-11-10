@@ -1,5 +1,7 @@
 import { ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { PageHero } from "@/app/components/ui/page-hero"
 import { Section } from "@/app/components/ui/section"
 import { TechTag } from "@/app/components/ui/tech-tag"
 
@@ -10,9 +12,24 @@ interface Project {
   stats: { label: string; value: string }[]
   href?: string
   source?: string
+  /** Screenshot of the live product, in public/project-preview/lab. */
+  image?: string
 }
 
 const projects: Project[] = [
+  {
+    name: "Fluently",
+    description:
+      "An AI English coach for interviews and client calls: an assessment, an adaptive roadmap of lessons, and live voice roleplays.",
+    tags: ["English coaching", "Live voice", "Adaptive lessons"],
+    stats: [
+      { label: "Practice", value: "Voice + text" },
+      { label: "Roadmap", value: "Adaptive" },
+    ],
+    href: "https://tryfluently.site",
+    source: "https://github.com/yagyaraj234/tryfluently",
+    image: "/project-preview/lab/fluently.jpg",
+  },
   {
     name: "GhostNote",
     description:
@@ -23,6 +40,7 @@ const projects: Project[] = [
       { label: "Storage", value: "Local" },
     ],
     href: "https://ghostnote.yagyaraj.com",
+    image: "/project-preview/lab/ghostnote.jpg",
   },
   {
     name: "Slides",
@@ -46,6 +64,7 @@ const projects: Project[] = [
       { label: "Fixes", value: "One click" },
     ],
     href: "https://trevyn.dev",
+    image: "/project-preview/lab/trevyn.jpg",
   },
   {
     name: "Helix",
@@ -58,6 +77,7 @@ const projects: Project[] = [
     ],
     href: "https://helix.trevyn.dev",
     source: "https://github.com/yagyaraj234/Helix",
+    image: "/project-preview/lab/helix.jpg",
   },
   {
     name: "Collab",
@@ -70,6 +90,7 @@ const projects: Project[] = [
     ],
     href: "https://collab.yagyaraj.com",
     source: "https://github.com/yagyaraj234/Collab",
+    image: "/project-preview/lab/collab.jpg",
   },
   {
     name: "Preap",
@@ -97,15 +118,10 @@ const projects: Project[] = [
 export default function Page() {
   return (
     <main className="flex-1 pb-24">
-      <h1 className="hero-name">
-        Things I’ve Built
-        <br />
-        <em className="font-instrumentSerif text-muted text-xl sm:text-4xl">
-          A collection of <span style={{ color: "#1D6FA4" }}>useful</span>,{" "}
-          <span style={{ color: "#1D6FA4" }}>playful</span>, and{" "}
-          <span style={{ color: "#1D6FA4" }}>fast-made </span> projects.
-        </em>
-      </h1>
+      <PageHero
+        title="Things I’ve built"
+        subtitle="Useful, playful, and fast-made projects."
+      />
 
       <Section id="products">
         {/* <SectionHeader
@@ -118,53 +134,68 @@ export default function Page() {
           }
         /> */}
 
-        <div className="mt-12 flex flex-col gap-1.5" aria-label="Projects">
+        <div className="flex flex-col gap-1.5" aria-label="Projects">
           {projects.map((project, index) => (
             <article
               key={project.name}
-              className="group rounded-xl border border-(--color-border) bg-(--color-bg-secondary)/35 p-3.5 transition-colors duration-500 ease-in-out hover:border-(--color-border-hover) hover:bg-(--color-bg-secondary)/70 sm:grid sm:grid-cols-[7rem_1fr] sm:gap-x-4 sm:p-4"
+              className="reveal rounded-xl bg-(--color-bg-secondary) p-4 sm:grid sm:grid-cols-[7rem_1fr] sm:gap-x-4 sm:p-5"
             >
-              <div className="flex items-start justify-between gap-4 sm:block">
-                <span className="font-dm-mono block text-[10px] text-(--color-text-tertiary)">
-                  {(index + 1).toString().padStart(2, "0")}
-                </span>
-                <h2 className="mt-1.5 text-lg font-semibold tracking-tight text-(--color-text-primary) max-sm:mt-0">
-                  {project.name}
-                </h2>
-              </div>
+              {project.image && (
+                <a
+                  href={project.href ?? project.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="group/shot mb-5 block overflow-hidden rounded-lg bg-white sm:col-span-2"
+                >
+                  <Image
+                    src={project.image}
+                    alt=""
+                    width={1440}
+                    height={900}
+                    sizes="(min-width: 768px) 728px, 100vw"
+                    loading={index < 2 ? "eager" : "lazy"}
+                    className="aspect-16/9 w-full object-cover object-top transition-transform duration-300 ease-out group-hover/shot:scale-[1.02]"
+                  />
+                </a>
+              )}
+              <h2 className="text-lg font-semibold tracking-tight text-(--color-text-primary)">
+                {project.name}
+              </h2>
 
-              <div className="mt-2.5 min-w-0 sm:mt-0">
-                <p className="max-w-xl text-[13px] leading-normal text-(--color-text-secondary)">
+              <div className="mt-1.5 min-w-0 sm:mt-0.5">
+                <p className="max-w-[60ch] text-base leading-relaxed text-(--color-text-primary)">
                   {project.description}
                 </p>
 
-                <div className="mt-2 flex flex-wrap gap-1" aria-label="Tags">
+                <div className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags">
                   {project.tags.map((tag) => (
                     <TechTag key={tag} label={tag} size="sm" />
                   ))}
                 </div>
 
-                <div className="mt-2.5 flex flex-wrap items-end justify-between gap-3 border-t border-(--color-border) pt-2.5">
+                <div className="mt-4 flex flex-wrap items-end justify-between gap-3">
                   <dl className="flex flex-wrap gap-x-5 gap-y-1.5">
                     {project.stats.map((stat) => (
                       <div key={stat.label}>
-                        <dt className="font-dm-mono text-[9px] text-(--color-text-tertiary) uppercase">
+                        <dt className="text-[13px] text-(--color-text-tertiary)">
                           {stat.label}
                         </dt>
-                        <dd className="mt-0.5 text-xs font-medium text-(--color-text-primary)">
+                        <dd className="mt-0.5 text-sm font-medium text-(--color-text-primary)">
                           {stat.value}
                         </dd>
                       </div>
                     ))}
                   </dl>
 
-                  <div className="font-dm-mono flex items-center gap-3 text-[9px] tracking-[0.08em] uppercase">
+                  <div className="flex items-center gap-1.5 text-[13px] font-medium">
                     {project.source && (
                       <Link
                         href={project.source}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-(--color-text-tertiary) transition-colors hover:text-(--color-text-primary)"
+                        className="inline-flex h-8 items-center rounded-lg px-3 text-(--color-text-secondary) hover:bg-black/[0.05] hover:text-(--color-text-primary) dark:hover:bg-white/[0.08]"
                       >
                         Source
                       </Link>
@@ -174,9 +205,10 @@ export default function Page() {
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[#1D6FA4] transition-colors hover:text-[#185f8c] dark:text-[#5BA8D6]"
+                        className="inline-flex h-8 items-center gap-1 rounded-lg bg-[#1D6FA4] px-3 text-white hover:bg-[#185f8c]"
                       >
-                        Open <ArrowUpRight className="size-3" />
+                        Open{" "}
+                        <ArrowUpRight aria-hidden="true" className="size-3.5" />
                       </Link>
                     )}
                   </div>

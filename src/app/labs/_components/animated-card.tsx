@@ -1,3 +1,7 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+import { useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 interface AnimatedCardProps {
@@ -5,7 +9,6 @@ interface AnimatedCardProps {
   title: string
   description: string
   src: string
-  btnClass?: string
 }
 
 export default function AnimatedCard({
@@ -13,8 +16,18 @@ export default function AnimatedCard({
   title,
   description,
   src,
-  btnClass,
 }: AnimatedCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const reduceMotion = useReducedMotion()
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (reduceMotion) video.pause()
+    else
+      video.play().catch(() => {
+        /* Browser may block autoplay; native play control stays available. */
+      })
+  }, [reduceMotion])
   return (
     <div
       className={cn(
@@ -25,8 +38,10 @@ export default function AnimatedCard({
       <div className="flex w-full justify-center">
         <div className="max-h-60 min-h-60 overflow-hidden rounded-xl drop-shadow-xl">
           <video
-            autoPlay
-            preload="true"
+            ref={videoRef}
+            controls
+            playsInline
+            preload="metadata"
             loop
             muted
             className="h-full w-full rounded-xl object-cover"
@@ -39,17 +54,9 @@ export default function AnimatedCard({
         <h3 className="font-inter text-base font-semibold tracking-tighter text-shadow-[2px_2px_4px_rgba(0,0,0,0.1)]">
           {title}
         </h3>
-        <p className="mt-2 text-xs leading-normal tracking-tight text-zinc-400">
+        <p className="mt-2 text-xs leading-normal tracking-tight opacity-75">
           {description}
         </p>
-        <button
-          className={cn(
-            "mt-4 w-max cursor-pointer rounded-md bg-zinc-700 px-3 py-1.5 text-xs font-medium text-white duration-300 ease-in-out",
-            btnClass
-          )}
-        >
-          Learn More
-        </button>
       </div>
     </div>
   )

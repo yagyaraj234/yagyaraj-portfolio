@@ -75,7 +75,7 @@ function TitleAnchor({
   href: string
   direction?: "left" | "right"
   small?: boolean
-  as?: any
+  as?: React.ElementType
 }) {
   const Comp = Component ?? motion.a
 
@@ -156,7 +156,7 @@ export function PostDescription({ children }: { children: React.ReactNode }) {
 
 // PostUpdatedText
 export function PostUpdatedText({ children }: { children: React.ReactNode }) {
-  return <p className="font-mono text-sm text-neutral-500">{children}</p>
+  return <p className="text-sm text-(--color-text-tertiary)">{children}</p>
 }
 
 // PostContent

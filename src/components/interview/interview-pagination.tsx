@@ -20,7 +20,7 @@ export const InterviewPagination = ({
       >
         Previous
       </button>
-      <span className="text-xs font-semibold text-gray-500">
+      <span role="status" className="text-xs font-semibold text-gray-500">
         Page {currentPage} of {totalPages}
       </span>
       <button

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { useInterviewProgress } from "@/hooks/useInterviewProgress"
 import { InterviewQuestion, UserProgress } from "@/types/interview"
 import { InterviewFilters } from "@/components/interview/interview-filters"
@@ -21,7 +21,25 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
     "all" | "completed" | "pending"
   >("all")
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [requestedPage, setCurrentPage] = useState(1)
+
+  // A filter change starts the list over from page 1, collapsed.
+  const resetView = (): void => {
+    setCurrentPage(1)
+    setExpandedId(null)
+  }
+  const changeSearch = (value: string): void => {
+    setSearchTerm(value)
+    resetView()
+  }
+  const changeTopic = (topic: string): void => {
+    setSelectedTopic(topic)
+    resetView()
+  }
+  const changeStatus = (status: "all" | "completed" | "pending"): void => {
+    setFilterStatus(status)
+    resetView()
+  }
 
   const topics = useMemo(
     () => [
@@ -70,16 +88,9 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
     Math.ceil(filteredQuestions.length / PAGE_SIZE)
   )
 
-  useEffect(() => {
-    setCurrentPage(1)
-    setExpandedId(null)
-  }, [searchTerm, selectedTopic, filterStatus])
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages)
-    }
-  }, [currentPage, totalPages])
+  // Completing a question under the "pending" filter can shrink the list
+  // past the current page; clamp while rendering instead of in an effect.
+  const currentPage = Math.min(requestedPage, totalPages)
 
   const visibleQuestions = useMemo(() => {
     const startIndex = (currentPage - 1) * PAGE_SIZE
@@ -136,27 +147,27 @@ export const InterviewClient = ({ initialQuestions }: InterviewClientProps) => {
   }
 
   const handlePreviousPage = () => {
-    setCurrentPage((page) => Math.max(1, page - 1))
+    setCurrentPage(Math.max(1, currentPage - 1))
   }
 
   const handleNextPage = () => {
-    setCurrentPage((page) => Math.min(totalPages, page + 1))
+    setCurrentPage(Math.min(totalPages, currentPage + 1))
   }
 
   return (
-    <div className="w-full space-y-8 px-6 py-8">
+    <div className="w-full space-y-8 py-8">
       <InterviewFilters
         topics={topics}
         selectedTopic={selectedTopic}
-        onTopicChange={setSelectedTopic}
+        onTopicChange={changeTopic}
         selectedStatus={filterStatus}
-        onStatusChange={setFilterStatus}
+        onStatusChange={changeStatus}
         searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
+        onSearchChange={changeSearch}
       />
 
       <div className="mx-auto max-w-7xl space-y-4">
-        <p className="text-xs font-medium text-gray-500">
+        <p className="text-[13px] text-gray-500">
           Showing {visibleQuestions.length} of {filteredQuestions.length}{" "}
           questions (Page {currentPage} of {totalPages})
         </p>

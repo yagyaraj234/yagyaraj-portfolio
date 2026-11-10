@@ -11,14 +11,14 @@ type BlogItemProps = {
 
 function BlogItem(props: BlogItemProps) {
   return (
-    <div className="group border-t border-(--color-border) transition-colors first:border-t-0 hover:bg-neutral-50/50 dark:hover:bg-neutral-900/20">
+    <div className="group reveal">
       <Link
         href={props.url}
-        className="flex w-full cursor-pointer items-start justify-between gap-4 py-3.5 text-left"
+        className="flex w-full cursor-pointer items-start justify-between gap-4 py-3 text-left"
       >
         <div className="flex flex-col gap-1">
           <div className="flex flex-wrap items-baseline gap-2">
-            <span className="text-sm font-medium text-zinc-900 transition-colors group-hover:opacity-80 dark:text-zinc-100">
+            <span className="text-base font-medium text-(--color-text-primary) transition-colors group-hover:text-[#1D6FA4] dark:group-hover:text-[#5BA8D6]">
               {props.title}
             </span>
           </div>
@@ -26,11 +26,14 @@ function BlogItem(props: BlogItemProps) {
 
         <div className="flex shrink-0 items-center gap-3">
           {props.date && (
-            <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400 upper capitalize ">
+            <span className="text-[13px] text-(--color-text-tertiary) tabular-nums">
               {props.date}
             </span>
           )}
-          <ArrowUpRight className="h-3.5 w-3.5 text-neutral-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-neutral-400" />
+          <ArrowUpRight
+            aria-hidden="true"
+            className="size-3.5 text-(--color-text-tertiary) transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </div>
       </Link>
     </div>
@@ -43,13 +46,11 @@ export default async function BlogList() {
   const formatDate = (dateStr?: string) => {
     if (!dateStr) return undefined
     const d = new Date(dateStr)
-    return d
-      .toLocaleDateString("en-US", {
-        month: "short",
-        year: "numeric",
-        timeZone: "UTC",
-      })
-      .toLowerCase()
+    return d.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    })
   }
 
   return (
