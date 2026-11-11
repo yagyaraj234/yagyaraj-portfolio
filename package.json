@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "test:e2e": "next build && playwright test",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\""
   },
   "dependencies": {
@@ -23,7 +24,6 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
-    "lenis": "^1.1.19",
     "lucide-react": "^0.453.0",
     "motion": "^12.23.24",
     "next": "^16.4.6",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.4.6",
+    "@playwright/test": "^1.65.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^20",
     "@types/react": "19.3.0",
