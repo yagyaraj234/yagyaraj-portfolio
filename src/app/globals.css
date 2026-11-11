@@ -10,6 +10,9 @@
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-dm-mono: var(--font-dm-mono);
+  /* Stronger curves than Tailwind's defaults; every ease-out utility uses these. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --sh-class: #7aa2f7;
   --sh-sign: #89ddff;
   --sh-string: #9ece6a;
@@ -27,28 +30,6 @@ body {
 /* Base mobile styles */
 html {
   overflow-x: hidden;
-}
-
-@media (min-width: 48rem) {
-  .page-frame::before,
-  .page-frame::after {
-    position: absolute;
-    inset-block: 0;
-    pointer-events: none;
-    content: "";
-  }
-
-  .page-frame::before {
-    left: -1.5rem;
-    border-left: 1px dashed var(--color-border);
-    border-left-style: dashed !important;
-  }
-
-  .page-frame::after {
-    right: -1.5rem;
-    border-right: 1px dashed var(--color-border);
-    border-right-style: dashed !important;
-  }
 }
 
 * {
@@ -85,12 +66,13 @@ svg {
     --foreground: #171717;
     --muted: #3f3f46;
 
-    --color-bg-secondary: #f7f6f3;
+    --color-bg-secondary: #f4f4f4;
     --color-border: rgba(0, 0, 0, 0.1);
     --color-border-hover: rgba(0, 0, 0, 0.22);
     --color-text-primary: #0f0f0e;
-    --color-text-secondary: #6b6b67;
-    --color-text-tertiary: #a8a8a3;
+    --color-text-secondary: #5f5f5a;
+    /* 5.1:1 on white, 4.6:1 on bg-secondary; was #a8a8a3 (2.4:1) */
+    --color-text-tertiary: #6e6e68;
   }
 
   .dark {
@@ -102,18 +84,13 @@ svg {
     --color-border: rgba(255, 255, 255, 0.1);
     --color-border-hover: rgba(255, 255, 255, 0.22);
     --color-text-primary: #f0efe8;
-    --color-text-secondary: #8a8a84;
-    --color-text-tertiary: #555550;
+    --color-text-secondary: #a3a39c;
+    --color-text-tertiary: #85857f;
   }
 
   body {
     color: var(--foreground);
     background: var(--background);
-    background-image: radial-gradient(
-      circle at 50% -10%,
-      rgb(29 111 164 / 0.15),
-      transparent 32rem
-    );
     font-family: Arial, Helvetica, sans-serif;
   }
 }
@@ -127,26 +104,163 @@ svg {
   font-family: var(--font-instrument-serif), serif;
   font-size: clamp(44px, 8vw, 68px);
   font-weight: 400;
-  line-height: 0.7;
+  line-height: 1;
   letter-spacing: -0.025em;
-  margin: 2.25rem 0;
 }
 
 button {
   cursor: pointer;
 }
 
-/* Consistent, accessible keyboard focus ring across interactive elements */
+/* Keep focus visible even on controls that reset their outline locally. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #1d6fa4 !important;
+  outline-offset: 3px;
+}
+
+/* Small, shared interaction details; existing component styles take priority. */
 @layer base {
-  a:focus-visible,
-  button:focus-visible,
-  [role="button"]:focus-visible {
-    outline: none;
-    border-radius: 4px;
-    box-shadow:
-      0 0 0 2px var(--background),
-      0 0 0 4px #1d6fa4;
+  :where(a, button, summary, input, textarea, select) {
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease,
+      scale 140ms var(--ease-out),
+      opacity 160ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  :where(button, a.inline-flex):not(:disabled):active {
+    scale: 0.97;
+  }
+  :where(h1, h2, h3, section)[id] {
+    scroll-margin-top: 2rem;
+  }
+  :where(input, textarea) {
+    caret-color: #1d6fa4;
+  }
+  summary {
+    touch-action: manipulation;
   }
 }
 
-/* Section eyebrow label  small uppercase mono, used across home sections */
+.heading-anchor,
+.hit-area {
+  position: relative;
+}
+/* Invisible 44px touch target around small controls; no layout change. */
+.heading-anchor::before,
+.hit-area::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+.heading-anchor {
+  margin-left: 0.5em;
+  color: var(--color-text-secondary);
+  font-size: 0.65em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+:where(h2, h3):hover .heading-anchor,
+.heading-anchor:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  main article:focus-within {
+    border-color: var(--color-border-hover);
+  }
+  a:hover > .lucide-arrow-up-right {
+    transform: translate(2px, -2px);
+  }
+  a > .lucide-arrow-up-right {
+    transition: transform 160ms var(--ease-out);
+  }
+}
+@media (pointer: coarse) {
+  nav a,
+  button,
+  summary {
+    min-height: 44px;
+  }
+  button {
+    min-width: 44px;
+  }
+  .heading-anchor {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  details[open] > :not(summary),
+  .detail-enter {
+    animation: detail-enter 180ms var(--ease-out) both;
+  }
+  /* One staggered entrance per page load: each top-level block rises 8px. */
+  main > :not(script) {
+    animation: page-enter 420ms var(--ease-out) both;
+  }
+  main > :nth-child(2) {
+    animation-delay: 40ms;
+  }
+  main > :nth-child(3) {
+    animation-delay: 80ms;
+  }
+  main > :nth-child(4) {
+    animation-delay: 120ms;
+  }
+  main > :nth-child(n + 5) {
+    animation-delay: 160ms;
+  }
+  /* Cards and rows rise into place as they scroll in; linear because the scroll is the clock. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes detail-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

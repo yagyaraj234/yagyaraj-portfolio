@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import {
   BedDouble,
   BotIcon,
@@ -7,19 +10,24 @@ import {
 } from "lucide-react"
 
 export default function PricingSection() {
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
   return (
-    <section className="grid grid-cols-2 gap-6 p-6">
+    <section className="grid grid-cols-1 gap-6 p-6 text-zinc-900 sm:grid-cols-2">
       <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl">
         <div className="rounded-xl bg-linear-to-r from-blue-300 via-blue-600/20 to-blue-500/20 p-4 hue-rotate-25">
           <h4 className="mb-2 text-3xl font-semibold">Pro</h4>
           <div className="flex w-[70%] items-start gap-4">
             <h4 className="text-5xl">$15</h4>
             <div className="text text-base font-medium text-black/70">
-              Per month billed anually
+              Per month billed annually
             </div>
           </div>
-          <button className="mt-4 w-full rounded-xl bg-zinc-950/80 px-4 py-3 text-white ring ring-zinc-800 drop-shadow-lg">
-            Sign Up
+          <button
+            aria-pressed={selectedPlan === "Pro"}
+            onClick={() => setSelectedPlan("Pro")}
+            className="mt-4 w-full rounded-xl bg-zinc-950/80 px-4 py-3 text-white ring ring-zinc-800 drop-shadow-lg"
+          >
+            Select plan
           </button>
         </div>
 
@@ -47,7 +55,7 @@ export default function PricingSection() {
             </li>
           </ul>
 
-          <div className="my-4 text-sm text-zinc-600">Need higher limit ?</div>
+          <div className="my-4 text-sm text-zinc-600">Need a higher limit?</div>
         </div>
       </div>
       <div className="right-0 rounded-2xl bg-white p-1 ring-2 ring-zinc-100 drop-shadow-2xl">
@@ -58,11 +66,15 @@ export default function PricingSection() {
           <div className="mt-2 flex w-[70%] items-start gap-4">
             <h4 className="text-5xl">$25</h4>
             <div className="text text-base font-medium text-black/70">
-              Per month billed anually
+              Per month billed annually
             </div>
           </div>
-          <button className="mt-4 w-full rounded-xl bg-gray-200/80 px-4 py-3 ring ring-gray-300 drop-shadow-lg">
-            Sign Up
+          <button
+            aria-pressed={selectedPlan === "Pro+"}
+            onClick={() => setSelectedPlan("Pro+")}
+            className="mt-4 w-full rounded-xl bg-gray-200/80 px-4 py-3 ring ring-gray-300 drop-shadow-lg"
+          >
+            Select plan
           </button>
         </div>
         <div className="mt-2 h-px bg-zinc-200"></div>
@@ -91,9 +103,17 @@ export default function PricingSection() {
             </li>
           </ul>
 
-          <div className="my-4 text-sm text-zinc-600">Need higher limit ?</div>
+          <div className="my-4 text-sm text-zinc-600">Need a higher limit?</div>
         </div>
       </div>
+      <p
+        role="status"
+        className="min-h-5 text-center text-xs text-zinc-500 sm:col-span-2"
+      >
+        {selectedPlan
+          ? `${selectedPlan} selected. Demo only — no purchase made.`
+          : "Preview a plan to see the selected state."}
+      </p>
     </section>
   )
 }

@@ -42,6 +42,15 @@ export function SectionHeader({ title, href, action, id }: SectionHeaderProps) {
       className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
     >
       {title}
+      {id && (
+        <a
+          className="heading-anchor"
+          href={`#${id}`}
+          aria-label={`Link to ${title}`}
+        >
+          #
+        </a>
+      )}
     </h2>
   )
 
@@ -53,18 +62,17 @@ export function SectionHeader({ title, href, action, id }: SectionHeaderProps) {
             href={href}
             className="group inline-flex w-fit items-center gap-1 text-2xl font-semibold tracking-tight text-zinc-900 transition-colors hover:text-[#1D6FA4] dark:text-zinc-100 dark:hover:text-[#5BA8D6]"
           >
-            <span id={id}>{title}</span>
-            <ArrowUpRight className="size-3.5 translate-y-px text-neutral-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <h2 id={id}>{title}</h2>
+            <ArrowUpRight
+              aria-hidden="true"
+              className="size-4 translate-y-px text-(--color-text-tertiary)"
+            />
           </Link>
         ) : (
           heading
         )}
       </div>
-      <span
-        aria-hidden="true"
-        className="min-w-8 flex-1 border-t border-dashed border-(--color-border)"
-      />
-      {action}
+      {action && <div className="ml-auto">{action}</div>}
     </div>
   )
 }

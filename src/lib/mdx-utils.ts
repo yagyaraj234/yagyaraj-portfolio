@@ -57,7 +57,7 @@ export function getPostMetadata(slug: string): PostMetadata | null {
         }
 
         return metadata
-      } catch (jsError) {
+      } catch {
         console.warn(
           `Failed to parse JS metadata for ${slug}, falling back to gray-matter`
         )

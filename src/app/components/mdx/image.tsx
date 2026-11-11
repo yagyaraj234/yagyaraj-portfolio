@@ -1,119 +1,76 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useRef } from "react"
 import type { ImgHTMLAttributes } from "react"
-import { AnimatePresence, motion } from "motion/react"
-import { X } from "lucide-react"
+import { X, ZoomIn } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 type MdxImageProps = ImgHTMLAttributes<HTMLImageElement>
 
-const DEFAULT_WIDTH = 1200
-const DEFAULT_HEIGHT = 675
-
 function toNumber(value: string | number | undefined): number | undefined {
-  if (typeof value === "number") {
-    return Number.isFinite(value) ? value : undefined
-  }
-
-  if (typeof value === "string") {
-    const parsed = Number.parseInt(value, 10)
-    return Number.isFinite(parsed) ? parsed : undefined
-  }
-
-  return undefined
+  const parsed = typeof value === "string" ? Number.parseInt(value, 10) : value
+  return parsed !== undefined && Number.isFinite(parsed) ? parsed : undefined
 }
 
 export function MdxImage({ alt, className, ...props }: MdxImageProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const src = typeof props.src === "string" ? props.src : ""
-  const width = toNumber(props.width) ?? DEFAULT_WIDTH
-  const height = toNumber(props.height) ?? DEFAULT_HEIGHT
-  const imageClassName = ["rounded-lg select-none", className ?? ""]
-    .filter(Boolean)
-    .join(" ")
-
-  useEffect(() => {
-    if (!isOpen) return
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === "Escape") {
-        setIsOpen(false)
-      }
-    }
-
-    document.body.style.overflow = "hidden"
-    window.addEventListener("keydown", handleKeyDown)
-
-    return () => {
-      document.body.style.overflow = ""
-      window.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [isOpen])
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const width = toNumber(props.width) ?? 1200
+  const height = toNumber(props.height) ?? 675
 
   return (
     <>
       <button
         type="button"
-        className="group block w-full cursor-zoom-in outline-none"
-        onClick={() => setIsOpen(true)}
+        className="group relative block w-full cursor-zoom-in rounded-lg"
+        onClick={() => dialogRef.current?.showModal()}
         aria-label={
           alt ? `Open image fullscreen: ${alt}` : "Open image fullscreen"
         }
       >
         <img
           {...props}
-          src={src}
           alt={alt ?? ""}
           width={width}
           height={height}
           loading={props.loading ?? "lazy"}
           decoding={props.decoding ?? "async"}
-          className={`${imageClassName} h-auto w-full transition-transform duration-200`}
-          style={{ width: "100%", height: "auto", ...props.style }}
+          className={cn("h-auto w-full rounded-lg select-none", className)}
         />
+        <span
+          aria-hidden="true"
+          className="absolute right-3 bottom-3 rounded-full bg-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+        >
+          <ZoomIn className="size-4" />
+        </span>
       </button>
-
-      <AnimatePresence>
-        {isOpen ? (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
+      <dialog
+        ref={dialogRef}
+        aria-label={alt || "Fullscreen image"}
+        className="m-auto max-h-[95dvh] max-w-[95vw] overflow-auto border-0 bg-transparent p-0 backdrop:bg-black/85"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) dialogRef.current?.close()
+        }}
+      >
+        <div className="relative p-3 pt-14">
+          <button
+            type="button"
+            autoFocus
+            aria-label="Close fullscreen image"
+            onClick={() => dialogRef.current?.close()}
+            className="absolute top-1 right-3 grid size-10 place-items-center rounded-full bg-black/70 text-white hover:bg-black"
           >
-            <motion.button
-              type="button"
-              className="absolute top-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/20"
-              aria-label="Close fullscreen image"
-              onClick={() => setIsOpen(false)}
-            >
-              <X className="h-5 w-5" />
-            </motion.button>
-
-            <motion.div
-              className="flex max-h-[90vh] w-[90vw] items-center justify-center md:w-[80vw]"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 220, damping: 24 }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <img
-                {...props}
-                src={src}
-                alt={alt ?? ""}
-                width={width}
-                height={height}
-                loading="eager"
-                decoding="async"
-                className="h-auto w-full rounded-lg object-contain shadow-2xl"
-                style={{ width: "100%", height: "auto", ...props.style }}
-              />
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            <X aria-hidden="true" className="size-5" />
+          </button>
+          <img
+            {...props}
+            alt={alt ?? ""}
+            width={width}
+            height={height}
+            loading="lazy"
+            className="max-h-[80dvh] w-auto max-w-full rounded-lg object-contain"
+          />
+        </div>
+      </dialog>
     </>
   )
 }

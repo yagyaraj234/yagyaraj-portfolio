@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useCallback, useSyncExternalStore } from "react"
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -1822,47 +1822,40 @@ const BLOCK_STYLES: Record<Block, { badge: string; label: string }> = {
   design: { badge: "bg-amber-100 text-amber-700", label: "Design" },
   ai: { badge: "bg-emerald-100 text-emerald-700", label: "AI Product" },
   comm: { badge: "bg-violet-100 text-violet-700", label: "Comm" },
-  rest: { badge: "bg-stone-100 text-stone-500", label: "Rest" },
-}
-
-const RESOURCE_ICON: Record<string, string> = {
-  Article: "📄",
-  Docs: "📘",
-  YouTube: "▶",
-  Tool: "🔧",
-  Book: "📚",
-  Website: "🌐",
-  Blog: "✍",
-  GitHub: "⬡",
-  Course: "🎓",
-  Daily: "📅",
-  Newsletter: "📬",
-  Podcast: "🎙",
-  Community: "👥",
-  Reference: "📖",
+  rest: { badge: "bg-stone-100 text-stone-600", label: "Rest" },
 }
 
 const LS_KEY = "study_tracker_4w"
 const LS_EXP_KEY = "study_tracker_4w_exp"
 
+function readStored(key: string): Record<string, boolean> {
+  if (typeof window === "undefined") return {}
+  try {
+    return JSON.parse(localStorage.getItem(key) ?? "{}")
+  } catch {
+    return {}
+  }
+}
+
+const noopSubscribe = (): (() => void) => () => {}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function StudyTracker() {
   const [activeWeek, setActiveWeek] = useState(0)
-  const [checked, setChecked] = useState<Record<string, boolean>>({})
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({})
-  const [mounted, setMounted] = useState(false)
-
-  // Load from localStorage after mount
-  useEffect(() => {
-    try {
-      const c = localStorage.getItem(LS_KEY)
-      const e = localStorage.getItem(LS_EXP_KEY)
-      if (c) setChecked(JSON.parse(c))
-      if (e) setExpanded(JSON.parse(e))
-    } catch {}
-    setMounted(true)
-  }, [])
+  const [checked, setChecked] = useState<Record<string, boolean>>(() =>
+    readStored(LS_KEY)
+  )
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
+    readStored(LS_EXP_KEY)
+  )
+  // false on the server and during hydration, true after: the saved state
+  // only renders on the client, so the server HTML never mismatches it.
+  const mounted = useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false
+  )
 
   const taskKey = (w: number, d: number, t: number) => `${w}_${d}_${t}`
   const expKey = (w: number, d: number, t: number) => `e_${w}_${d}_${t}`
@@ -1933,14 +1926,14 @@ export default function StudyTracker() {
             <h1 className="text-xl font-semibold tracking-tight text-stone-900">
               4-week study tracker
             </h1>
-            <p className="mt-0.5 text-sm text-stone-400">
+            <p className="mt-0.5 text-sm text-stone-500">
               Mon–Fri · 4–5 hrs/day &nbsp;·&nbsp; Sat · 5–6 hrs communication
               &nbsp;·&nbsp; Sun · rest
             </p>
           </div>
           <button
             onClick={resetAll}
-            className="mt-1 rounded-lg border border-stone-200 px-3 py-1.5 text-xs text-stone-400 transition-colors hover:bg-stone-100"
+            className="mt-1 rounded-lg border border-stone-200 px-3 py-1.5 text-[13px] text-stone-600 transition-colors duration-150 ease-out hover:bg-stone-100"
           >
             Reset all
           </button>
@@ -1950,11 +1943,15 @@ export default function StudyTracker() {
         <div className="mt-4 mb-5">
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-stone-200">
             <div
-              className="h-1.5 rounded-full bg-emerald-500 transition-all duration-500"
-              style={{ width: `${pct(allKeys)}%` }}
+              className="h-1.5 rounded-full bg-emerald-500 transition-transform duration-300 ease-out"
+              style={{
+                width: "100%",
+                transformOrigin: "left",
+                transform: `scaleX(${pct(allKeys) / 100})`,
+              }}
             />
           </div>
-          <p className="mt-1.5 text-xs text-stone-400">
+          <p role="status" className="mt-1.5 text-xs text-stone-500">
             {doneCount} / {allKeys.length} tasks completed
           </p>
         </div>
@@ -1963,7 +1960,7 @@ export default function StudyTracker() {
         <div className="mb-6 grid grid-cols-4 gap-2.5">
           {(["react", "design", "ai", "comm"] as Block[]).map((b) => (
             <div key={b} className="rounded-xl bg-stone-100 p-3">
-              <p className="mb-1 text-[11px] text-stone-400">
+              <p className="mb-1 text-xs text-stone-600">
                 {BLOCK_STYLES[b].label}
               </p>
               <p className="text-lg font-semibold text-stone-800">
@@ -1978,11 +1975,12 @@ export default function StudyTracker() {
           {WEEKS.map((w, i) => (
             <button
               key={i}
+              aria-pressed={i === activeWeek}
               onClick={() => setActiveWeek(i)}
-              className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-all ${
+              className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors duration-150 ease-out ${
                 i === activeWeek
                   ? "border-stone-300 bg-stone-200 text-stone-900"
-                  : "border-stone-200 bg-white text-stone-400 hover:bg-stone-50"
+                  : "border-stone-200 bg-white text-stone-500 hover:bg-stone-50"
               }`}
             >
               {w.label}
@@ -1995,12 +1993,12 @@ export default function StudyTracker() {
           {WEEKS[activeWeek].days.map((day, di) => (
             <div
               key={di}
-              className="rounded-2xl border border-stone-100 bg-white px-5 py-4 shadow-sm"
+              className="rounded-2xl border border-stone-200/70 bg-white px-5 py-4"
             >
               <p
-                className={`mb-3 text-xs font-semibold tracking-wide ${day.isSat ? "text-blue-500" : day.isSun ? "text-stone-300" : "text-stone-400"}`}
+                className={`mb-3 text-[13px] font-semibold ${day.isSat ? "text-blue-700" : "text-stone-500"}`}
               >
-                {day.day.toUpperCase()}
+                {day.day}
               </p>
               <div className="flex flex-col divide-y divide-stone-50">
                 {day.tasks.map((task, ti) => {
@@ -2015,14 +2013,14 @@ export default function StudyTracker() {
                       {/* Task row */}
                       <div
                         className={`flex items-start gap-3 py-2.5 ${hasDetail ? "cursor-pointer" : ""}`}
-                        onClick={() =>
-                          hasDetail && toggleExpand(activeWeek, di, ti)
-                        }
                       >
                         {/* Checkbox */}
-                        <div
+                        <button
+                          type="button"
+                          aria-label={`Mark ${task.title} ${isChecked ? "incomplete" : "complete"}`}
+                          aria-pressed={isChecked}
                           onClick={(e) => toggleCheck(e, activeWeek, di, ti)}
-                          className={`mt-0.5 flex h-4 w-4 min-w-[16px] cursor-pointer items-center justify-center rounded border transition-all ${
+                          className={`hit-area mt-0.5 flex h-4 w-4 min-w-[16px] cursor-pointer items-center justify-center rounded border transition-colors duration-150 ease-out ${
                             isChecked
                               ? "border-emerald-500 bg-emerald-500"
                               : "border-stone-300 bg-white hover:border-stone-400"
@@ -2044,10 +2042,15 @@ export default function StudyTracker() {
                               />
                             </svg>
                           )}
-                        </div>
+                        </button>
 
                         {/* Content */}
-                        <div className="flex min-w-0 flex-1 items-start justify-between gap-2">
+                        <button
+                          type="button"
+                          aria-expanded={isExpanded}
+                          onClick={() => toggleExpand(activeWeek, di, ti)}
+                          className="flex min-w-0 flex-1 items-start justify-between gap-2 text-left"
+                        >
                           <div className="min-w-0">
                             <span
                               className={`mr-1.5 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${BLOCK_STYLES[task.block].badge}`}
@@ -2055,24 +2058,24 @@ export default function StudyTracker() {
                               {BLOCK_STYLES[task.block].label}
                             </span>
                             <span
-                              className={`text-sm leading-relaxed ${isChecked ? "text-stone-300 line-through" : "text-stone-700"}`}
+                              className={`text-sm leading-relaxed ${isChecked ? "text-stone-500 line-through" : "text-stone-700"}`}
                             >
                               {task.title}
                             </span>
                           </div>
                           {hasDetail && (
                             <span
-                              className={`mt-1 flex-shrink-0 text-[10px] text-stone-300 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                              className={`mt-1 flex-shrink-0 text-[11px] text-stone-500 transition-transform duration-200 ease-out ${isExpanded ? "rotate-180" : ""}`}
                             >
                               ▼
                             </span>
                           )}
-                        </div>
+                        </button>
                       </div>
 
                       {/* Expandable detail */}
                       {hasDetail && isExpanded && (
-                        <div className="pr-1 pb-3 pl-7">
+                        <div className="detail-enter pr-1 pb-3 pl-7">
                           {task.desc && (
                             <p className="mb-3 text-[13px] leading-relaxed text-stone-500">
                               {task.desc}
@@ -2080,7 +2083,7 @@ export default function StudyTracker() {
                           )}
                           {task.resources.length > 0 && (
                             <>
-                              <p className="mb-2 text-[10px] font-bold tracking-widest text-stone-300 uppercase">
+                              <p className="mb-2 text-xs font-semibold text-stone-500">
                                 Resources
                               </p>
                               <div className="flex flex-col gap-1.5">
@@ -2093,13 +2096,10 @@ export default function StudyTracker() {
                                     className="group flex items-center gap-2 rounded-lg border border-stone-100 bg-stone-50 px-3 py-2 transition-colors hover:border-blue-100 hover:bg-blue-50"
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    <span className="w-5 text-center text-sm">
-                                      {RESOURCE_ICON[r.type] || "🔗"}
-                                    </span>
                                     <span className="flex-1 text-[13px] font-medium text-blue-600 group-hover:text-blue-700">
                                       {r.name}
                                     </span>
-                                    <span className="text-[11px] text-stone-300">
+                                    <span className="text-xs text-stone-500">
                                       {r.type}
                                     </span>
                                   </a>
@@ -2117,8 +2117,8 @@ export default function StudyTracker() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-xs text-stone-300">
-          Progress saved automatically · Good luck Raj 🚀
+        <p className="mt-8 text-center text-xs text-stone-500">
+          Progress saved automatically · Good luck Raj
         </p>
       </div>
     </div>

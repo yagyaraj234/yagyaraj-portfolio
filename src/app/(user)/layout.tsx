@@ -1,4 +1,3 @@
-import { Navbar } from "../components/navbar"
 import { UserInfo } from "../components/user-info"
 
 export default function UserLayout({

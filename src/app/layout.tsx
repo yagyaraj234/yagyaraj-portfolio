@@ -8,7 +8,6 @@ import {
 } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/app/components/theme-provider"
-import { ReactLenis } from "lenis/react"
 import { Analytics } from "@vercel/analytics/next"
 import Footer from "@/app/components/footer"
 import { USER } from "@/data/user.data"
@@ -143,7 +142,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html id="top" lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -151,68 +150,66 @@ export default function RootLayout({
         <meta name="theme-color" content="#0f172a" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <ReactLenis root>
-        <body
-          className={cn(
-            handwriting.variable,
-            serif.variable,
-            sans.variable,
-            giest.className,
-            instrumentSerif.variable,
-            dmMono.variable,
-            "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
-          )}
-          suppressHydrationWarning
+      <body
+        className={cn(
+          handwriting.variable,
+          serif.variable,
+          sans.variable,
+          giest.className,
+          instrumentSerif.variable,
+          dmMono.variable,
+          "scrollbar-thin scrollbar-none relative min-h-screen overflow-x-hidden overflow-y-auto bg-white tracking-wide text-black antialiased selection:bg-zinc-700 selection:text-white dark:bg-[#111010] dark:text-white dark:selection:bg-zinc-700"
+        )}
+        suppressHydrationWarning
+      >
+        <UmamiAnalytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
         >
-          <UmamiAnalytics />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NuqsAdapter>
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "WebSite",
-                    name: `${USER.displayName} Portfolio`,
+          <NuqsAdapter>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  name: `${USER.displayName} Portfolio`,
+                  url: USER.website,
+                  description: USER.bio,
+                  author: {
+                    "@type": "Person",
+                    name: `${USER.firstName} ${USER.lastName}`,
                     url: USER.website,
-                    description: USER.bio,
-                    author: {
-                      "@type": "Person",
-                      name: `${USER.firstName} ${USER.lastName}`,
-                      url: USER.website,
-                      jobTitle: USER.jobTitle,
-                      image: `${USER.website}${USER.avatar}`,
-                      sameAs: [
-                        `https://github.com/${USER.username}`,
-                        `https://linkedin.com/in/${USER.username}`,
-                        `https://x.com/${USER.username}`,
-                      ],
-                    },
-                    dateCreated: USER.dateCreated,
-                    dateModified: USER.lastUpdated,
-                    potentialAction: {
-                      "@type": "SearchAction",
-                      target: `${USER.website}/blog?q={search_term_string}`,
-                      "query-input": "required name=search_term_string",
-                    },
-                  }),
-                }}
-              />
-              <div className="page-frame relative mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
-                <Navbar />
-                {children}
-                <Footer />
-              </div>
-            </NuqsAdapter>
-          </ThemeProvider>
-          <Analytics />
-        </body>
-      </ReactLenis>
+                    jobTitle: USER.jobTitle,
+                    image: `${USER.website}${USER.avatar}`,
+                    sameAs: [
+                      `https://github.com/${USER.username}`,
+                      `https://linkedin.com/in/${USER.username}`,
+                      `https://x.com/${USER.username}`,
+                    ],
+                  },
+                  dateCreated: USER.dateCreated,
+                  dateModified: USER.lastUpdated,
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: `${USER.website}/blog?q={search_term_string}`,
+                    "query-input": "required name=search_term_string",
+                  },
+                }),
+              }}
+            />
+            <div className="relative mx-auto flex min-h-screen max-w-3xl flex-1 flex-col px-4 sm:px-6 lg:px-0">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+          </NuqsAdapter>
+        </ThemeProvider>
+        <Analytics />
+      </body>
     </html>
   )
 }

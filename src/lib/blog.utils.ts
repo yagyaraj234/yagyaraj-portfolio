@@ -13,6 +13,14 @@ export function calculateReadTime(content: string): string {
   return `${Math.ceil(minutes)} min read`
 }
 
+// Map a post's ogImage URL to a local /public path, if that file is present
+function resolveCover(ogImage?: string): string | undefined {
+  if (!ogImage) return undefined
+  const { pathname } = new URL(ogImage, "https://yagyaraj.com")
+  const file = path.join(process.cwd(), "public", decodeURIComponent(pathname))
+  return fs.existsSync(file) ? pathname : undefined
+}
+
 // Utility: get all .mdx files as slugs
 export function getAllPostSlugs(): string[] {
   if (!fs.existsSync(POSTS_DIR)) return []
@@ -36,7 +44,9 @@ export async function readPosts(): Promise<PostIndexItem[]> {
         const content = fs.readFileSync(filePath, "utf-8")
         const readingTime = calculateReadTime(content)
 
-        return { slug, metadata, readingTime }
+        const cover = resolveCover(metadata.ogImage)
+
+        return { slug, metadata, readingTime, cover }
       } catch (error) {
         console.error(`Error reading post ${slug}:`, error)
         return null

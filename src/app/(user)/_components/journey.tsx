@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import { Plus } from "lucide-react"
 import { Section, SectionHeader } from "@/app/components/ui/section"
 import { TechTag } from "@/app/components/ui/tech-tag"
 
@@ -27,25 +28,6 @@ export const RavaAICard = () => (
     <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
       Rava AI is an agentic AI-powered go-to-market (GTM) platform for startups,
       automating strategy, marketing content, and investor pitch decks.
-    </p>
-  </>
-)
-
-const SkillRazrCard = () => (
-  <>
-    <Image
-      src="/tooltip/skillrazr.webp"
-      alt="SkillRazr"
-      className="h-max w-full rounded-md"
-      loading="eager"
-      priority
-      unoptimized
-      height={500}
-      width={500}
-    />
-    <p className="mt-4 text-sm text-neutral-600 normal-case dark:text-neutral-400">
-      SkillRazr offers online tech training, internships, and skill development
-      programs designed to prepare students for jobs.
     </p>
   </>
 )
@@ -260,90 +242,94 @@ export function Journey() {
         {experiences.map((exp) => {
           const isOpen = openId === exp.id
           return (
-            <div
-              key={exp.id}
-              className="group border-b border-neutral-200 dark:border-neutral-800"
-            >
+            <div key={exp.id} className="group reveal">
               {/* ── Row header ── */}
-              <button
-                onClick={() => toggle(exp.id)}
-                className="flex w-full cursor-pointer items-start justify-between gap-3 py-3.5 text-left"
-                aria-expanded={isOpen}
-              >
+              <div className="flex w-full items-start justify-between gap-3 py-3.5 text-left">
                 <div className="flex min-w-0 flex-col gap-1">
                   {/* Role · Company */}
                   <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                    <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">
-                      {exp.role}
-                    </span>
-                    <span className="text-xs text-neutral-400">·</span>
-                    <Link
-                      href={exp.href}
-                      target="_blank"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center py-1 text-sm text-neutral-500 underline-offset-2 transition-colors duration-200 hover:text-yellow-500 hover:underline dark:text-neutral-400"
+                    <button
+                      onClick={() => toggle(exp.id)}
+                      aria-expanded={isOpen}
+                      aria-controls={`${exp.id}-details`}
+                      className="rounded text-left text-base font-medium text-zinc-900 transition-colors hover:text-[#1D6FA4] dark:text-zinc-100"
                     >
-                      <Preview
-                        containerClassName="p-0"
-                        content={exp.tooltipContent}
+                      {exp.role}
+                    </button>
+                    <span className="text-xs text-neutral-400">·</span>
+                    <Preview
+                      focusable={false}
+                      containerClassName="p-0"
+                      content={exp.tooltipContent}
+                    >
+                      <Link
+                        href={exp.href}
+                        target="_blank"
+                        className="inline-flex items-center py-1 text-sm text-neutral-500 underline-offset-2 transition-colors hover:text-[#1D6FA4] hover:underline dark:text-neutral-400"
                       >
-                        <span className="cursor-pointer">{exp.company}</span>
-                      </Preview>
-                    </Link>
+                        {exp.company}
+                      </Link>
+                    </Preview>
                   </div>
                   {/* Date  shown inline on mobile, moves to the right on desktop */}
-                  <span className="font-dm-mono text-xs text-neutral-500 tabular-nums sm:hidden dark:text-neutral-400">
+                  <span className="text-[13px] text-(--color-text-tertiary) tabular-nums sm:hidden">
                     {exp.date}
                   </span>
                   {/* Summary  desktop only */}
-                  <p className="text-[13px] text-neutral-500 max-sm:hidden dark:text-neutral-400">
+                  <p className="text-sm text-(--color-text-secondary) max-sm:hidden">
                     {exp.summary}
                   </p>
                 </div>
 
                 {/* Date (desktop) + toggle */}
-                <div className="flex shrink-0 items-center gap-3 pt-0.5">
-                  <span className="font-dm-mono text-xs text-neutral-500 tabular-nums max-sm:hidden dark:text-neutral-400">
+                <button
+                  onClick={() => toggle(exp.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${exp.id}-details`}
+                  aria-label={`${isOpen ? "Collapse" : "Expand"} ${exp.company} experience`}
+                  className="flex shrink-0 items-center gap-3 rounded pt-1"
+                >
+                  <span className="text-[13px] text-(--color-text-tertiary) tabular-nums max-sm:hidden">
                     {exp.date}
                   </span>
-                  <span
-                    className="font-dm-mono text-sm text-neutral-400 transition-transform duration-200"
-                    style={{
-                      display: "inline-block",
-                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-                    }}
-                  >
-                    +
-                  </span>
-                </div>
-              </button>
+                  <Plus
+                    aria-hidden="true"
+                    className="size-4 text-(--color-text-tertiary) transition-transform duration-200 ease-out"
+                    style={{ rotate: isOpen ? "45deg" : "0deg" }}
+                  />
+                </button>
+              </div>
 
               {/* ── Expandable body ── */}
               <div
+                id={`${exp.id}-details`}
+                inert={!isOpen}
                 aria-hidden={!isOpen}
-                className="overflow-hidden transition-all duration-300 ease-in-out"
+                className="grid transition-[grid-template-rows,opacity] duration-250 ease-out"
                 style={{
-                  maxHeight: isOpen ? "600px" : "0px",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
                   opacity: isOpen ? 1 : 0,
                 }}
               >
-                <div className="pb-4">
-                  <ul className="flex flex-col gap-2.5">
-                    {exp.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-                        <p className="text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
-                          {point}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="min-h-0 overflow-hidden">
+                  <div className="pb-4">
+                    <ul className="flex flex-col gap-2.5">
+                      {exp.points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-300 dark:bg-neutral-600" />
+                          <p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+                            {point}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
 
-                  {/* Tags */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {exp.tags.map((tag) => (
-                      <TechTag key={tag} label={tag} size="sm" />
-                    ))}
+                    {/* Tags */}
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {exp.tags.map((tag) => (
+                        <TechTag key={tag} label={tag} size="sm" />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

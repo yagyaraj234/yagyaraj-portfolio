@@ -125,32 +125,38 @@ export const InterviewQuestionCard = ({
     : progress.completed
 
   return (
-    <article className="w-full rounded-xl border bg-white shadow-sm transition hover:border-gray-300">
+    <article className="w-full rounded-xl border bg-white transition-colors duration-150 ease-out hover:border-gray-300">
       <div className="flex items-start gap-3 p-4">
-        <input
-          type="checkbox"
-          checked={isCompleted}
-          disabled={hasSubQuestions}
-          onChange={() => onToggleQuestionCompletion(question.id)}
-          title={
-            hasSubQuestions
-              ? "Auto-completed from sub questions"
-              : "Mark question complete"
-          }
-          className="mt-1 h-4 w-4 shrink-0 rounded-lg focus:ring-0 disabled:cursor-not-allowed"
-          style={{ accentColor: "#4ade80", borderRadius: "8px" }}
-        />
+        <label className="-m-3 flex shrink-0 cursor-pointer p-3">
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            disabled={hasSubQuestions}
+            onChange={() => onToggleQuestionCompletion(question.id)}
+            title={
+              hasSubQuestions
+                ? "Auto-completed from sub questions"
+                : "Mark question complete"
+            }
+            className="mt-1 h-4 w-4 shrink-0 rounded-lg focus:ring-0 disabled:cursor-not-allowed"
+            style={{ accentColor: "#4ade80", borderRadius: "8px" }}
+          />
+        </label>
 
-        <button onClick={onToggleExpand} className="min-w-0 flex-1 text-left">
+        <button
+          aria-expanded={expanded}
+          onClick={onToggleExpand}
+          className="min-w-0 flex-1 text-left"
+        >
           <p className="text-sm font-medium text-gray-900">
             {question.question}
           </p>
           <div className="mt-1 flex flex-wrap items-center gap-2">
-            <p className="text-[10px] font-semibold text-gray-400 uppercase">
+            <p className="text-xs text-gray-500">
               {question.topic} • {question.subtopic}
             </p>
             <span
-              className={`rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase ${getDifficultyStyles(
+              className={`rounded-full px-1.5 py-0.5 text-[11px] font-medium capitalize ${getDifficultyStyles(
                 question.difficulty
               )}`}
             >
@@ -158,7 +164,7 @@ export const InterviewQuestionCard = ({
             </span>
 
             <span
-              className={`rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase ${
+              className={`rounded-full px-1.5 py-0.5 text-[11px] font-medium ${
                 isCompleted
                   ? "bg-emerald-100 text-emerald-700"
                   : "bg-amber-100 text-amber-700"
@@ -171,30 +177,31 @@ export const InterviewQuestionCard = ({
 
         <button
           onClick={onToggleExpand}
+          aria-expanded={expanded}
           aria-label={expanded ? "Collapse question" : "Expand question"}
           className="shrink-0 rounded-lg p-1.5 text-gray-600 outline-none hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none"
         >
           <ChevronDown
-            className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : "rotate-0"}`}
+            className={`h-4 w-4 transition-transform duration-200 ease-out ${expanded ? "rotate-180" : "rotate-0"}`}
           />
         </button>
       </div>
 
       {expanded && (
-        <div className="border-t p-4 pt-3">
+        <div className="detail-enter border-t p-4 pt-3">
           {hasSubQuestions && question.subQuestions && (
             <div className="mb-4 rounded-xl bg-gray-50 p-4">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
-                    Sub Questions
+                  <p className="text-[13px] font-semibold text-gray-700">
+                    Sub-questions
                   </p>
                   <p className="mt-1 text-xs text-gray-500">
                     Check all items to complete the parent question.
                   </p>
                 </div>
                 <span
-                  className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold shadow-sm ring-1"
+                  className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold ring-1"
                   style={{ color: theme.text, borderColor: theme.border }}
                 >
                   {completedSubQuestions}/{question.subQuestions.length} done
@@ -209,7 +216,7 @@ export const InterviewQuestionCard = ({
                   return (
                     <label
                       key={subQuestion.id}
-                      className="flex items-start gap-3 rounded-lg border px-3 py-2.5 transition"
+                      className="flex items-start gap-3 rounded-lg border px-3 py-2.5 transition-colors duration-150 ease-out"
                       style={{
                         borderColor: isChecked ? theme.border : "#e5e7eb",
                         boxShadow: isChecked
@@ -248,6 +255,7 @@ export const InterviewQuestionCard = ({
           <div className="space-y-3">
             <input
               type="text"
+              aria-label="GitHub Solution URL"
               placeholder="GitHub Solution URL"
               className="w-full rounded-lg border p-3 text-sm"
               value={progress.githubUrl}
@@ -256,6 +264,7 @@ export const InterviewQuestionCard = ({
               }
             />
             <textarea
+              aria-label="What did you learn?"
               placeholder="What did you learn?"
               className="h-28 w-full resize-none rounded-lg border p-3 text-sm"
               value={progress.notes}

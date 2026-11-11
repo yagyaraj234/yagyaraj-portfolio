@@ -57,6 +57,8 @@ const cards = [
   },
 ]
 
+const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)"
+
 export default function InfiniteCardStack() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -117,18 +119,27 @@ export default function InfiniteCardStack() {
 
   function handleAnimate() {
     if (isAnimating) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActiveIndex((prev) => (prev + 1) % total)
+      return
+    }
     setIsAnimating(true)
     setTimeout(() => {
       setActiveIndex((prev) => (prev + 1) % total)
       setIsAnimating(false)
-    }, 500)
+    }, 300)
   }
 
   return (
     <section className="flex flex-col items-center justify-center bg-white select-none">
       <div
         className="relative"
-        style={{ width: 360, height: 280, marginTop: 40, paddingTop: 40 }}
+        style={{
+          width: "min(360px, 100%)",
+          height: 280,
+          marginTop: 40,
+          paddingTop: 40,
+        }}
       >
         {cards.map((card, i) => {
           const layer = getLayer(i)
@@ -139,14 +150,15 @@ export default function InfiniteCardStack() {
           return (
             <div
               key={i}
+              inert={layer !== 0}
               style={{
                 position: "absolute",
                 width: "100%",
                 bottom: 0,
                 left: 0,
                 transition: isAnimating
-                  ? "transform 0.5s ease-in-out, opacity 0.4s ease-in-out"
-                  : "transform 0.5s ease-in-out",
+                  ? `transform 300ms ${EASE_OUT}, opacity 250ms ${EASE_OUT}`
+                  : `transform 300ms ${EASE_OUT}`,
                 ...style,
               }}
             >
@@ -168,10 +180,14 @@ export default function InfiniteCardStack() {
                     <p className="text-sm font-semibold text-gray-900">
                       {card.title}
                     </p>
-                    <p className="mt-0.5 text-xs text-gray-400">{card.date}</p>
+                    <p className="mt-0.5 text-xs text-gray-500">{card.date}</p>
                   </div>
-                  <button className="flex items-center gap-1 rounded-full bg-gray-900 px-3.5 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-80">
-                    Read
+                  <button
+                    onClick={handleAnimate}
+                    disabled={isAnimating}
+                    className="flex items-center gap-1 rounded-full bg-gray-900 px-3.5 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-80"
+                  >
+                    Next
                     <svg
                       width="12"
                       height="12"
@@ -192,12 +208,17 @@ export default function InfiniteCardStack() {
         })}
       </div>
 
+      <p role="status" className="sr-only">
+        Card {activeIndex + 1} of {total}: {cards[activeIndex].title}
+      </p>
       <div className="relative z-50 w-full bg-white py-4">
-        <div className="mx-auto w-max rounded-lg bg-white px-2 py-1 text-center text-sm font-medium ring ring-zinc-200 drop-shadow-2xl">
-          <button onClick={handleAnimate} disabled={isAnimating}>
-            Animate
-          </button>
-        </div>
+        <button
+          onClick={handleAnimate}
+          disabled={isAnimating}
+          className="mx-auto block min-h-11 w-max rounded-lg bg-white px-4 text-center text-sm font-medium ring ring-zinc-200 drop-shadow-2xl transition-transform duration-150 ease-out active:scale-[0.97]"
+        >
+          {isAnimating ? "Moving…" : "Next card"}
+        </button>
       </div>
     </section>
   )

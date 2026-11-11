@@ -14,22 +14,18 @@ const Chip = ({
   active,
   label,
   onClick,
-  activeClassName,
-  inactiveClassName,
 }: {
   active: boolean
   label: string
   onClick: () => void
-  activeClassName?: string
-  inactiveClassName?: string
 }) => (
   <button
+    aria-pressed={active}
     onClick={onClick}
-    className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+    className={`rounded-full border px-3 py-1 text-[13px] font-medium transition-colors duration-150 ease-out ${
       active
-        ? (activeClassName ?? "border-black bg-black text-white")
-        : (inactiveClassName ??
-          "border-gray-200 bg-white text-gray-600 hover:border-gray-400")
+        ? "border-gray-900 bg-gray-900 text-white"
+        : "border-gray-200 bg-white text-gray-600 hover:border-gray-400"
     }`}
   >
     {label}
@@ -66,30 +62,21 @@ export const InterviewFilters = ({
         {statusFilters.map((status) => (
           <Chip
             key={status}
-            label={status.toUpperCase()}
+            label={status[0].toUpperCase() + status.slice(1)}
             active={selectedStatus === status}
             onClick={() => onStatusChange(status)}
-            activeClassName={
-              status === "completed"
-                ? "border-emerald-600 bg-emerald-600 text-white"
-                : status === "pending"
-                  ? "border-amber-500 bg-amber-500 text-white"
-                  : "border-sky-700 bg-sky-700 text-white"
-            }
-            inactiveClassName={
-              status === "completed"
-                ? "border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-300"
-                : status === "pending"
-                  ? "border-amber-200 bg-amber-50 text-amber-700 hover:border-amber-300"
-                  : "border-sky-200 bg-sky-50 text-sky-700 hover:border-sky-300"
-            }
           />
         ))}
       </div>
 
       <input
+        type="search"
+        aria-label="Filter by question"
+        onKeyDown={(event) => {
+          if (event.key === "Escape") onSearchChange("")
+        }}
         placeholder="Filter by question..."
-        className="w-full rounded-lg border bg-gray-50 p-3 text-sm transition focus:bg-white"
+        className="w-full rounded-lg border bg-gray-50 p-3 text-base transition-colors duration-150 ease-out focus:bg-white"
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
       />

@@ -9,7 +9,6 @@ A modern, responsive portfolio website built with Next.js 14, showcasing my jour
 - **Responsive**: Fully responsive design that works on all devices
 - **Performance Optimized**: Built with Next.js 14 for optimal performance
 - **SEO Friendly**: Complete metadata and Open Graph tags for better discoverability
-- **Smooth Scrolling**: Enhanced scrolling experience with Lenis
 
 ## 🛠️ Tech Stack
 
@@ -18,7 +17,6 @@ A modern, responsive portfolio website built with Next.js 14, showcasing my jour
 - **Styling**: Tailwind CSS
 - **Animations**: Motion (Framer Motion)
 - **Icons**: Lucide React, React Icons
-- **Smooth Scrolling**: Lenis
 - **Theme**: next-themes for dark/light mode
 - **Deployment**: Vercel
 
@@ -104,7 +102,11 @@ Update the following in `src/app/page.tsx`:
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run test:e2e` - Test saved study-tracker progress in Chromium
 - `npm run postbuild` - Generate sitemap after build
+
+Install the test browser once with `npx playwright install chromium`, then run
+`npm run test:e2e`. This builds the app and tests a local production server on port 31783.
 
 ## 🌐 Deployment
 

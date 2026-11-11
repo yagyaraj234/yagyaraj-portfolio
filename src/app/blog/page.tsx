@@ -1,7 +1,8 @@
 import { Suspense } from "react"
+import { Rss } from "lucide-react"
 import PostList from "./_components/post-list"
 import { readPosts } from "@/lib/blog.utils"
-import { USER } from "@/data/user.data"
+import { PageHero } from "@/app/components/ui/page-hero"
 
 export const dynamic = "force-static"
 
@@ -37,13 +38,18 @@ export default async function BlogIndexPage() {
       role="main"
     >
       <div className="w-full">
-        <h1 className="hero-name">
-          Writings
-          <br />
-          <em className="font-instrumentSerif text-muted text-3xl sm:text-4xl">
-            Written to <span style={{ color: "#1D6FA4" }}>Remember.</span>
-          </em>
-        </h1>
+        <PageHero
+          title="Writings"
+          subtitle="Notes on React, Next.js and the web, written to remember."
+        >
+          <a
+            href="/rss.xml"
+            className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-[#1D6FA4] px-4 text-sm font-medium text-white no-underline hover:bg-[#185f8c]"
+          >
+            <Rss aria-hidden="true" className="size-4" />
+            Subscribe via RSS
+          </a>
+        </PageHero>
 
         <Suspense
           fallback={<div className="text-gray-500">Loading posts...</div>}

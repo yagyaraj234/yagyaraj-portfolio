@@ -82,8 +82,8 @@ export function TechTag({ label, size = "md", className }: TechTagProps) {
   return (
     <span
       className={cn(
-        "font-dm-mono f inline-flex items-center gap-1.5 rounded-md border border-dashed border-(--color-border-hover) leading-none text-(--color-text-secondary) transition-colors duration-200 hover:text-(--color-text-primary)",
-        size === "sm" ? "px-2 py-1 text-[10px]" : "px-2.5 py-1.5 text-[11px]",
+        "inline-flex items-center gap-1.5 rounded-md bg-black/[0.045] leading-none text-(--color-text-secondary) dark:bg-white/[0.07]",
+        size === "sm" ? "px-2 py-1.5 text-[13px]" : "px-2.5 py-1.5 text-sm",
         className
       )}
     >

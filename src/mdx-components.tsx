@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Children, isValidElement, type ComponentProps } from "react"
 import type { MDXComponents } from "mdx/types"
 import { Annotation } from "@/app/components/mdx/annotation"
 import { InlineNote, Note } from "@/app/components/mdx/note"
@@ -20,6 +21,19 @@ import { FAQ } from "@/app/components/mdx/faq"
 import { MdxImage } from "@/app/components/mdx/image"
 import { cn } from "@/lib/utils"
 
+function MdxFigure(props: ComponentProps<"img">) {
+  return (
+    <figure className="reveal my-4 flex flex-col items-center justify-center">
+      <MdxImage {...props} className="select-none" />
+      {props.alt ? (
+        <figcaption className="text-[13px] font-normal text-(--color-text-tertiary)">
+          {props.alt}
+        </figcaption>
+      ) : null}
+    </figure>
+  )
+}
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
@@ -33,16 +47,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h3: (props) => (
       <Heading level="h3" className="my-2 text-xl font-medium" {...props} />
     ),
-    p: (props) => (
-      <p
-        className="font-sans text-base leading-relaxed text-muted"
-        {...props}
-      />
-    ),
+    p: ({ children, ...props }) => {
+      // MDX wraps standalone images in paragraphs; figures need a flow container.
+      const hasImage = Children.toArray(children).some(
+        (child) =>
+          isValidElement(child) &&
+          (child.type === MdxFigure || child.type === "img")
+      )
+      const Tag = hasImage ? "div" : "p"
+      return (
+        <Tag
+          className="text-muted font-sans text-base leading-relaxed"
+          {...props}
+        >
+          {children}
+        </Tag>
+      )
+    },
     strong: (props) => <strong className="font-medium" {...props} />,
     blockquote: (props) => (
       <blockquote
-        className="my-4 border-l-2 border-zinc-300 pl-4 text-muted italic dark:border-zinc-700"
+        className="text-muted my-4 border-l-2 border-zinc-300 pl-4 italic dark:border-zinc-700"
         {...props}
       />
     ),
@@ -50,30 +75,19 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: CodeBlock,
     ul: (props) => (
       <ul
-        className="my-4 ml-6 list-outside list-disc space-y-2 font-sans text-base text-muted"
+        className="text-muted my-4 ml-6 list-outside list-disc space-y-2 font-sans text-base"
         {...props}
       />
     ),
     ol: OrderedList,
-    img: (props) => (
-      <figure className="my-4 flex flex-col items-center justify-center">
-        <MdxImage {...props} className="select-none" />
-        {props.alt ? (
-          <figcaption className="text-xs font-normal text-gray-500 dark:text-gray-300">
-            {props.alt}
-          </figcaption>
-        ) : null}
-      </figure>
-    ),
-    hr: () => (
-      <hr className="!w-max-[calc(100%+80px)] col-span-3! my-2 border-dashed opacity-30 md:-mx-10 dark:border-zinc-800/80" />
-    ),
+    img: MdxFigure,
+    hr: () => <hr className="my-8 border-0" />,
     a: ({ href, ...props }) => {
       const isExternal = href?.startsWith("http")
       if (isExternal) {
         return (
           <a
-            className="inline-flex text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 hover:underline"
+            className="[overflow-wrap:anywhere] text-blue-500 decoration-blue-500 decoration-wavy underline-offset-4 hover:underline"
             href={href}
             target="_blank"
             rel="noreferrer"
@@ -98,11 +112,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <div className="my-4 rounded-t-lg">
           <header>
-            <h4 className="-mx-px -mb-1.5 w-max rounded-t-lg border border-b-0 border-gray-700 bg-black px-4 py-1 pb-2.5 text-sm font-medium text-gray-100 dark:border-gray-700 dark:bg-neutral-700 dark:text-white">
+            <h4 className="-mb-1.5 w-max rounded-t-lg bg-zinc-900 px-4 py-1 pb-2.5 text-sm font-medium text-white dark:bg-neutral-700">
               Problem
             </h4>
           </header>
-          <div className="relative z-10 rounded-lg bg-white px-4 py-3 shadow ring-1 ring-neutral-950/15 dark:bg-neutral-900 dark:ring-neutral-800">
+          <div className="relative z-10 rounded-lg bg-(--color-bg-secondary) px-4 py-3">
             {props.children}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { codeToTokens, type TokensResult, type BundledLanguage } from "shiki"
+import type { ReactElement } from "react"
 import { cn } from "@/lib/utils"
 import { CopyButton } from "./copy-button"
 import { format } from "prettier/standalone"
@@ -11,6 +12,9 @@ import parserYaml from "prettier/plugins/yaml"
 
 export type Token = TokensResult["tokens"][number][number]
 
+// github-light-default comments (#6E7781) read 4.4:1 on the #fafafa block; darken to 6:1.
+const COLOR_OVERRIDES: Record<string, string> = { "#6E7781": "#57606A" }
+
 export async function getTokens(
   code: string,
   lang: BundledLanguage,
@@ -20,7 +24,12 @@ export async function getTokens(
     lang,
     theme,
   })
-  return result.tokens
+  return result.tokens.map((line) =>
+    line.map((token) => {
+      const color = token.color && COLOR_OVERRIDES[token.color]
+      return color ? { ...token, color } : token
+    })
+  )
 }
 
 type Diff = {
@@ -61,11 +70,11 @@ async function formatCode(code: string, lang: string) {
         parserCss,
         parserTypescript,
         parserYaml,
-      ] as any[],
+      ],
       semi: true,
       singleQuote: false,
     })
-  } catch (e) {
+  } catch {
     // Fallback to original code if formatting fails
     return code
   }
@@ -146,11 +155,11 @@ export function CodeBlockMain({
   return (
     <div
       className={cn(
-        "my-6 overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-[#171717]",
+        "reveal my-6 overflow-hidden rounded-xl bg-[#fafafa] dark:bg-[#171717]",
         diff && "-ml-4 pl-4"
       )}
     >
-      <div className="flex items-center justify-between border-b border-black/5 bg-zinc-50/50 px-4 py-3 backdrop-blur-sm dark:border-white/5 dark:bg-[#1F1F1F]">
+      <div className="flex items-center justify-between bg-(--color-bg-secondary) px-4 py-2.5 dark:bg-[#1F1F1F]">
         <div className="flex items-center gap-4">
           <div className="flex space-x-1.5">
             <div className="h-3 w-3 rounded-full border border-red-500/50 bg-red-500/80" />
@@ -158,7 +167,7 @@ export function CodeBlockMain({
             <div className="h-3 w-3 rounded-full border border-green-500/50 bg-green-500/80" />
           </div>
           {lang && (
-            <span className="text-xs font-medium tracking-wider text-zinc-600 uppercase opacity-70 dark:text-zinc-300">
+            <span className="text-[13px] text-(--color-text-tertiary)">
               {lang}
             </span>
           )}
@@ -197,13 +206,21 @@ export function CodeBlockMain({
   )
 }
 
+interface CodeElementProps {
+  children: string
+  className?: string
+}
+
 export async function CodeBlock(props: {
-  children: any
+  children: ReactElement<CodeElementProps>
   diff?: Diff
   highlight?: number[]
 }) {
   const code = props.children.props.children
-  const lang = props.children.props.className?.replaceAll("language-", "")
+  const lang = props.children.props.className?.replaceAll(
+    "language-",
+    ""
+  ) as BundledLanguage
   const formattedCode = await formatCode(code, lang || "")
   return (
     <CodeBlockMain lang={lang} diff={props.diff} highlight={props.highlight}>
